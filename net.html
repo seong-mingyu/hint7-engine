@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Intern Net - H-int</title>
+
+  <style>
+    @font-face {
+      font-family: 'HDHyundaiLight';
+      src: url('assets/fonts/HDHyundai-Light.ttf') format('truetype');
+    }
+
+    :root {
+      --discovery-blue: #003087;
+      --prosperity-green: #008233;
+      --trust-blue: #002554;
+      --gray-text: #63666A;
+      --bg-light: #f9f9f9;
+    }
+
+    body {
+      font-family: 'HDHyundaiLight', sans-serif;
+      margin: 0;
+      background-color: var(--bg-light);
+      color: var(--gray-text);
+    }
+
+    /* 상단바 */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: white;
+      padding: 1rem 1.5rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      position: relative;
+    }
+
+    .navbar img {
+      height: 32px;
+    }
+
+    .navbar-title {
+      font-size: 1.5rem;
+      font-family: 'HDHyundaiBold';
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .navbar-title a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .navbar-title .hd {
+      color: var(--discovery-blue);
+    }
+
+    .menu-icon {
+      font-size: 1.5rem;
+      cursor: pointer;
+      z-index: 1002;
+    }
+
+    .side-menu {
+      position: fixed;
+      top: 0;
+      right: -220px;
+      width: 200px;
+      height: 100%;
+      background-color: var(--trust-blue);
+      color: white;
+      padding-top: 60px;
+      transition: right 0.3s ease;
+      z-index: 1001;
+    }
+
+    .side-menu.open {
+      right: 0;
+    }
+
+    .side-menu a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      padding: 1rem;
+      font-weight: bold;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0);
+      z-index: 1000;
+    }
+
+    .overlay.show {
+      display: block;
+    }
+
+    /* 타이틀 */
+    .page-title {
+      text-align: center;
+      margin: 2rem 1rem 0.5rem;
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: var(--prosperity-green);
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 1rem;
+      color: var(--gray-text);
+      margin-bottom: 2rem;
+    }
+
+    /* 사진 카드 */
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.5rem;
+      padding: 1rem 1.5rem 4rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .photo-card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(8px);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+      transition: transform 0.2s ease;
+    }
+
+    .photo-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .photo-card img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .photo-card .caption {
+      padding: 0.8rem 1rem;
+      font-size: 0.95rem;
+      color: #444;
+    }
+
+    .photo-card .date {
+      font-size: 0.8rem;
+      color: #888;
+      padding: 0 1rem 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 상단바 -->
+  <div class="navbar">
+    <img src="assets/images/logo.png" alt="HD현대중공업 로고">
+    <div class="navbar-title">
+      <a href="index.html">
+        <span class="hd">H</span>int <span class="hd">D</span>ream
+      </a>
+    </div>
+    <div class="menu-icon" onclick="toggleMenu()">☰</div>
+  </div>
+
+  <div class="overlay" id="overlay" onclick="closeMenu()"></div>
+  <div class="side-menu" id="sideMenu">
+    <a href="net.html">Intern Net</a>
+    <a href="view.html">Intern View</a>
+    <a href="ship.html">Intern Ship</a>
+  </div>
+
+  <!-- 제목 -->
+  <div class="page-title">Intern Net</div>
+  <div class="subtitle">서로의 연결, 우리가 함께한 순간</div>
+
+  <!-- 사진 카드 -->
+  <div class="photo-grid">
+    <div class="photo-card">
+      <img src="assets/images/net_meeting.jpg" alt="조별회의">
+      <div class="caption">조별 회의 시간</div>
+      <div class="date">2025.01.09</div>
+    </div>
+    <div class="photo-card">
+      <img src="assets/images/net_clubhouse.jpg" alt="클럽하우스 방문">
+      <div class="caption">울산 HD 클럽하우스 방문</div>
+      <div class="date">2025.01.11</div>
+    </div>
+    <div class="photo-card">
+      <img src="assets/images/net_dinner.jpg" alt="회식">
+      <div class="caption">H-int 전체 회식</div>
+      <div class="date">2025.01.13</div>
+    </div>
+    <div class="photo-card">
+      <img src="assets/images/net_hd_match.jpg" alt="HD 직관">
+      <div class="caption">HD 중공업 축구 직관</div>
+      <div class="date">2025.01.17</div>
+    </div>
+    <div class="photo-card">
+      <img src="assets/images/net_mt.jpg" alt="7조 엠티">
+      <div class="caption">7조 엠티</div>
+      <div class="date">2025.01.20</div>
+    </div>
+    <div class="photo-card">
+      <img src="assets/images/net_bowling.jpg" alt="볼링">
+      <div class="caption">볼링 치는 시간</div>
+      <div class="date">2025.01.20</div>
+    </div>
+    <div class="photo-card">
+      <img src="assets/images/net_screenbaseball.jpg" alt="스크린야구">
+      <div class="caption">스크린야구</div>
+      <div class="date">2025.01.21</div>
+    </div>
+    <div class="photo-card">
+      <img src="assets/images/net_flower.jpg" alt="꽃놀이">
+      <div class="caption">봄날의 꽃놀이</div>
+      <div class="date">2025.01.23</div>
+    </div>
+    <div class="photo-card">
+      <img src="assets/images/net_drive.jpg" alt="드라이브">
+      <div class="caption">바닷가 드라이브</div>
+      <div class="date">2025.01.23</div>
+    </div>
+  </div>
+
+  <!-- 메뉴 스크립트 -->
+  <script>
+    function toggleMenu() {
+      document.getElementById('sideMenu').classList.toggle('open');
+      document.getElementById('overlay').classList.toggle('show');
+    }
+
+    function closeMenu() {
+      document.getElementById('sideMenu').classList.remove('open');
+      document.getElementById('overlay').classList.remove('show');
+    }
+  </script>
+
+</body>
+</html>

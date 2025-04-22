@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>H-int Internship</title>
 
-  <!-- HD현대체 폰트 연결 -->
   <style>
     @font-face {
       font-family: 'HDHyundaiLight';
@@ -54,12 +53,19 @@
     }
 
     .navbar img {
-      height: 40px;
+      height: 32px;
     }
 
     .navbar-title {
       font-size: 1.5rem;
       font-family: 'HDHyundaiBold';
+      text-align: center;
+      flex-grow: 1;
+    }
+
+    .navbar-title a {
+      text-decoration: none;
+      color: inherit;
     }
 
     .navbar-title .hd {
@@ -69,6 +75,7 @@
     .menu-icon {
       font-size: 1.5rem;
       cursor: pointer;
+      z-index: 1002;
     }
 
     /* 사이드 메뉴 */
@@ -85,6 +92,10 @@
       z-index: 1001;
     }
 
+    .side-menu.open {
+      right: 0;
+    }
+
     .side-menu a {
       display: block;
       color: white;
@@ -94,19 +105,37 @@
       border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     }
 
-    .side-menu.open {
-      right: 0;
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0);
+      z-index: 1000;
     }
 
-    /* 메인 섹션 링크 */
+    .overlay.show {
+      display: block;
+    }
+
+    /* 소개 문구 */
+    .intro {
+      text-align: center;
+      margin: 2rem 1rem 1rem;
+      font-size: 1rem;
+      font-family: 'HDHyundaiMedium';
+    }
+
+    /* 메인 링크 */
     .section-links {
       display: flex;
       flex-direction: column;
-      gap: 1rem;
-      padding: 2rem 1rem;
+      gap: 1.5rem;
+      padding: 2rem 1rem 4rem;
       max-width: 500px;
       margin: 0 auto;
-      text-align: center;
     }
 
     .section-link {
@@ -115,14 +144,33 @@
       padding: 1.5rem;
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
       text-decoration: none;
-      color: var(--prosperity-green);
       font-size: 1.2rem;
       font-weight: bold;
+      color: var(--gray-text);
       transition: transform 0.2s;
     }
 
     .section-link:hover {
       transform: scale(1.03);
+    }
+
+    .section-link .highlight-net {
+      color: var(--prosperity-green);
+    }
+
+    .section-link .highlight-view {
+      color: var(--discovery-blue);
+    }
+
+    .section-link .highlight-ship {
+      color: var(--trust-blue);
+    }
+
+    .subtitle {
+      font-family: 'HDHyundaiLight';
+      font-size: 0.95rem;
+      margin-top: 0.3rem;
+      color: var(--gray-text);
     }
 
     /* 하단 */
@@ -152,10 +200,15 @@
   <div class="navbar">
     <img src="assets/images/logo.png" alt="HD현대중공업 로고">
     <div class="navbar-title">
-      <span class="hd">H</span>int <span class="hd">D</span>ream
+      <a href="index.html">
+        <span class="hd">H</span>int <span class="hd">D</span>ream
+      </a>
     </div>
     <div class="menu-icon" onclick="toggleMenu()">☰</div>
   </div>
+
+  <!-- 배경 오버레이 -->
+  <div class="overlay" id="overlay" onclick="closeMenu()"></div>
 
   <!-- 사이드 메뉴 -->
   <div class="side-menu" id="sideMenu">
@@ -164,11 +217,26 @@
     <a href="ship.html">Intern Ship</a>
   </div>
 
+  <!-- 소개 -->
+  <div class="intro">
+    H-int 인턴십의 모든 순간을 기록하고 정리한 아카이브입니다.<br>
+    아래 항목을 통해 우리가 경험한 여정을 확인할 수 있어요.
+  </div>
+
   <!-- 본문 링크 -->
   <div class="section-links">
-    <a href="net.html" class="section-link">Intern Net</a>
-    <a href="view.html" class="section-link">Intern View</a>
-    <a href="ship.html" class="section-link">Intern Ship</a>
+    <a href="net.html" class="section-link">
+      <span class="highlight-net">Intern Net</span><br>
+      <div class="subtitle">서로의 연결, 우리가 함께한 순간</div>
+    </a>
+    <a href="view.html" class="section-link">
+      <span class="highlight-view">Intern View</span><br>
+      <div class="subtitle">우리가 본 것, 우리가 느낀 것</div>
+    </a>
+    <a href="ship.html" class="section-link">
+      <span class="highlight-ship">Intern Ship</span><br>
+      <div class="subtitle">우리의 항해, 인턴십 전체 과정</div>
+    </a>
   </div>
 
   <!-- 하단 -->
@@ -180,11 +248,16 @@
     </p>
   </footer>
 
-  <!-- 메뉴 토글 스크립트 -->
+  <!-- 메뉴 제어 스크립트 -->
   <script>
     function toggleMenu() {
-      const menu = document.getElementById('sideMenu');
-      menu.classList.toggle('open');
+      document.getElementById('sideMenu').classList.toggle('open');
+      document.getElementById('overlay').classList.toggle('show');
+    }
+
+    function closeMenu() {
+      document.getElementById('sideMenu').classList.remove('open');
+      document.getElementById('overlay').classList.remove('show');
     }
   </script>
 

@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Intern View - H-int</title>
+
+  <style>
+    @font-face {
+      font-family: 'HDHyundaiLight';
+      src: url('assets/fonts/HDHyundai-Light.ttf') format('truetype');
+    }
+
+    :root {
+      --discovery-blue: #003087;
+      --prosperity-green: #008233;
+      --trust-blue: #002554;
+      --gray-text: #63666A;
+      --bg-light: #f9f9f9;
+    }
+
+    body {
+      font-family: 'HDHyundaiLight', sans-serif;
+      margin: 0;
+      background-color: var(--bg-light);
+      color: var(--gray-text);
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: white;
+      padding: 1rem 1.5rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      position: relative;
+    }
+
+    .navbar img {
+      height: 32px;
+    }
+
+    .navbar-title {
+      font-size: 1.5rem;
+      font-family: 'HDHyundaiBold';
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .navbar-title a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .navbar-title .hd {
+      color: var(--discovery-blue);
+    }
+
+    .menu-icon {
+      font-size: 1.5rem;
+      cursor: pointer;
+      z-index: 1002;
+    }
+
+    .side-menu {
+      position: fixed;
+      top: 0;
+      right: -220px;
+      width: 200px;
+      height: 100%;
+      background-color: var(--trust-blue);
+      color: white;
+      padding-top: 60px;
+      transition: right 0.3s ease;
+      z-index: 1001;
+    }
+
+    .side-menu.open {
+      right: 0;
+    }
+
+    .side-menu a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      padding: 1rem;
+      font-weight: bold;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0);
+      z-index: 1000;
+    }
+
+    .overlay.show {
+      display: block;
+    }
+
+    .page-title {
+      text-align: center;
+      margin: 2rem 1rem 0.5rem;
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: var(--discovery-blue);
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 1rem;
+      color: var(--gray-text);
+      margin-bottom: 2rem;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.5rem;
+      padding: 0 1.5rem 3rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      padding: 1.2rem;
+    }
+
+    .card h3 {
+      margin-top: 0;
+      font-size: 1.1rem;
+      color: var(--discovery-blue);
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      margin: 0.4rem 0;
+      color: #444;
+    }
+
+    .interview-section {
+      background-color: white;
+      border-radius: 16px;
+      margin: 2rem 1.5rem;
+      padding: 2rem 1.2rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .interview-section h2 {
+      font-size: 1.3rem;
+      color: var(--trust-blue);
+    }
+
+    .interview-section .qa {
+      margin-top: 1rem;
+    }
+
+    .qa .q {
+      font-weight: bold;
+      margin-bottom: 0.3rem;
+    }
+
+    .qa .a {
+      margin-bottom: 1rem;
+    }
+
+    .atmosphere {
+      text-align: center;
+      font-style: italic;
+      color: #444;
+      margin: 3rem 1.5rem 2rem;
+      font-size: 1rem;
+    }
+
+    .atmosphere::before {
+      content: "❝";
+      font-size: 2rem;
+      vertical-align: top;
+      color: var(--prosperity-green);
+    }
+
+    .atmosphere::after {
+      content: "❞";
+      font-size: 2rem;
+      vertical-align: bottom;
+      color: var(--prosperity-green);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 상단바 -->
+  <div class="navbar">
+    <img src="assets/images/logo.png" alt="HD현대중공업 로고">
+    <div class="navbar-title">
+      <a href="index.html">
+        <span class="hd">H</span>int <span class="hd">D</span>ream
+      </a>
+    </div>
+    <div class="menu-icon" onclick="toggleMenu()">☰</div>
+  </div>
+
+  <div class="overlay" id="overlay" onclick="closeMenu()"></div>
+  <div class="side-menu" id="sideMenu">
+    <a href="net.html">Intern Net</a>
+    <a href="view.html">Intern View</a>
+    <a href="ship.html">Intern Ship</a>
+  </div>
+
+  <!-- 제목 -->
+  <div class="page-title">Intern View</div>
+  <div class="subtitle">우리가 본 것, 우리가 느낀 것</div>
+
+  <!-- 직무 카드 -->
+  <div class="card-grid">
+    <div class="card">
+      <h3>생산기술 직무</h3>
+      <p>도장 품질 향상을 위한 AI 기반 자동검사 시스템 참여</p>
+      <p><strong>도움이 된 스펙:</strong> Python, 딥러닝 프로젝트 경험</p>
+    </div>
+    <div class="card">
+      <h3>설계 직무</h3>
+      <p>배관 설계 검토, 3D 모델링 수정 및 개선안 제안</p>
+      <p><strong>도움이 된 스펙:</strong> NX, 설계도면 해석 능력</p>
+    </div>
+    <div class="card">
+      <h3>검사 직무</h3>
+      <p>육안 및 비파괴 검사 체계 이해 및 실습</p>
+      <p><strong>도움이 된 스펙:</strong> 품질관리 교육 이수</p>
+    </div>
+    <!-- 원하는 만큼 카드 추가 가능 -->
+  </div>
+
+  <!-- 인터뷰 섹션 -->
+  <div class="interview-section">
+    <h2>👤 지도선배 인터뷰</h2>
+    <div class="qa">
+      <div class="q">Q. 인턴 중 가장 중요하다고 느낀 점은 무엇인가요?</div>
+      <div class="a">A. 본인의 의견을 명확히 전달하고, 적극적으로 질문하는 자세가 중요했습니다.</div>
+      <div class="q">Q. 실무에서 가장 많이 활용된 역량은?</div>
+      <div class="a">A. 기본적인 프로그램 이해력과 소통력. 특히 도면 해석이 필수였습니다.</div>
+    </div>
+  </div>
+
+  <!-- 감성 문구 -->
+  <div class="atmosphere">
+    처음으로 현장에서 숨 쉬는 배를 보며, 우리도 조선의 일원이 된 듯한 느낌을 받았습니다.
+  </div>
+
+  <!-- 메뉴 스크립트 -->
+  <script>
+    function toggleMenu() {
+      document.getElementById('sideMenu').classList.toggle('open');
+      document.getElementById('overlay').classList.toggle('show');
+    }
+
+    function closeMenu() {
+      document.getElementById('sideMenu').classList.remove('open');
+      document.getElementById('overlay').classList.remove('show');
+    }
+  </script>
+
+</body>
+</html>

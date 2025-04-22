@@ -4,24 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>H-int Internship</title>
-
   <style>
     @font-face {
       font-family: 'HDHyundaiLight';
       src: url('assets/fonts/HDHyundai-Light.ttf') format('truetype');
-      font-weight: 300;
-    }
-
-    @font-face {
-      font-family: 'HDHyundaiMedium';
-      src: url('assets/fonts/HDHyundai-Medium.ttf') format('truetype');
-      font-weight: 500;
     }
 
     @font-face {
       font-family: 'HDHyundaiBold';
       src: url('assets/fonts/HDHyundai-Bold.ttf') format('truetype');
-      font-weight: 700;
     }
 
     :root {
@@ -39,7 +30,6 @@
       color: var(--gray-text);
     }
 
-    /* 상단바 */
     .navbar {
       display: flex;
       justify-content: space-between;
@@ -50,7 +40,6 @@
       position: sticky;
       top: 0;
       z-index: 1000;
-      position: relative;
     }
 
     .navbar img {
@@ -80,58 +69,57 @@
       z-index: 1002;
     }
 
-    /* 사이드 메뉴 */
-    .side-menu {
-      position: fixed;
-      top: 0;
-      right: -220px;
-      width: 200px;
-      height: 100%;
-      background-color: var(--trust-blue);
-      color: white;
-      padding-top: 60px;
-      transition: right 0.3s ease;
-      z-index: 1001;
+    .menu-popup {
+      position: absolute;
+      top: 64px;
+      right: 20px;
+      background: white;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      padding: 0.5rem 1rem;
+      z-index: 999;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-10px);
+      transition: all 0.3s ease;
     }
 
-    .side-menu.open {
-      right: 0;
+    .menu-popup.active {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
     }
 
-    .side-menu a {
-      display: block;
-      color: white;
+    .menu-popup ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .menu-popup li {
+      margin: 0.5rem 0;
+    }
+
+    .menu-popup a {
       text-decoration: none;
-      padding: 1rem;
-      font-weight: bold;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      color: var(--gray-text);
+      font-size: 0.95rem;
+      transition: color 0.2s;
     }
 
-    .overlay {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(0, 0, 0, 0);
-      z-index: 1000;
+    .menu-popup a:hover {
+      color: var(--discovery-blue);
     }
 
-    .overlay.show {
-      display: block;
-    }
-
-    /* 소개 문구 */
     .intro {
       text-align: center;
       margin: 2rem 1rem 1rem;
       font-size: 1rem;
-      font-family: 'HDHyundaiMedium';
+      font-family: 'HDHyundaiBold';
       line-height: 1.6;
     }
 
-    /* 메인 링크 */
     .section-links {
       display: flex;
       flex-direction: column;
@@ -150,7 +138,7 @@
       font-size: 1.2rem;
       font-weight: bold;
       color: var(--gray-text);
-      transition: transform 0.2s;
+      transition: transform 0.2s ease;
     }
 
     .section-link:hover {
@@ -170,13 +158,11 @@
     }
 
     .subtitle {
-      font-family: 'HDHyundaiLight';
       font-size: 0.95rem;
       margin-top: 0.3rem;
       color: var(--gray-text);
     }
 
-    /* 하단 */
     footer {
       text-align: center;
       padding: 2rem 1rem 1rem;
@@ -198,8 +184,6 @@
   </style>
 </head>
 <body>
-
-  <!-- 상단바 -->
   <div class="navbar">
     <img src="assets/images/logo.png" alt="HD현대중공업 로고">
     <div class="navbar-title">
@@ -207,27 +191,24 @@
         <span class="hd">H</span>int <span class="hd">D</span>ream
       </a>
     </div>
-    <div class="menu-icon" onclick="toggleMenu()">☰</div>
+    <div class="menu-icon">☰</div>
   </div>
 
-  <!-- 배경 오버레이 -->
-  <div class="overlay" id="overlay" onclick="closeMenu()"></div>
-
-  <!-- 사이드 메뉴 -->
-  <div class="side-menu" id="sideMenu">
-    <a href="net.html">Intern Net</a>
-    <a href="view.html">Intern View</a>
-    <a href="ship.html">Intern Ship</a>
+  <div id="menuPopup" class="menu-popup">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="net.html">Intern Net</a></li>
+      <li><a href="view.html">Intern View</a></li>
+      <li><a href="ship.html">Intern Ship</a></li>
+    </ul>
   </div>
 
-  <!-- 소개 -->
   <div class="intro">
     H-int 6기의 기록을 담은 웹페이지입니다.<br>
     아래 항목을 통해 우리의 경험과 여정을 확인하고,<br>
     실무와 인턴십에 대한 다양한 정보도 얻어가세요!
   </div>
 
-  <!-- 본문 링크 -->
   <div class="section-links">
     <a href="net.html" class="section-link">
       <span class="highlight-net">Intern Net</span><br>
@@ -243,11 +224,8 @@
     </a>
   </div>
 
-  <!-- 하단 -->
   <footer>
-    <p>
-      Made by <span style="color: #008233; font-weight: bold;">H-int</span> 7조 엔진기계사업부
-    </p>
+    <p>Made by <span style="color: #008233; font-weight: bold;">H-int</span> 7조 엔진기계사업부</p>
     <img src="assets/images/group_photo.jpg" alt="단체사진" class="group-photo">
     <div class="member-names">
       성민규 · 전수민 · 민성제 · 김동현1 · 노건우<br>
@@ -255,18 +233,19 @@
     </div>
   </footer>
 
-  <!-- 메뉴 제어 스크립트 -->
   <script>
-    function toggleMenu() {
-      document.getElementById('sideMenu').classList.toggle('open');
-      document.getElementById('overlay').classList.toggle('show');
-    }
+    const menuBtn = document.querySelector('.menu-icon');
+    const menuPopup = document.getElementById('menuPopup');
 
-    function closeMenu() {
-      document.getElementById('sideMenu').classList.remove('open');
-      document.getElementById('overlay').classList.remove('show');
-    }
+    menuBtn.addEventListener('click', () => {
+      menuPopup.classList.toggle('active');
+    });
+
+    window.addEventListener('click', (e) => {
+      if (!menuPopup.contains(e.target) && !menuBtn.contains(e.target)) {
+        menuPopup.classList.remove('active');
+      }
+    });
   </script>
-
 </body>
 </html>

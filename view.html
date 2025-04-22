@@ -191,13 +191,17 @@
 
   <div id="imageModal" class="modal" onclick="closeModal()">
     <div class="close">&times;</div>
-    <div class="modal-content" onclick="event.stopPropagation()">
-      <img id="modalImage" src="" alt="">
-      <div class="modal-caption" id="modalCaption"></div>
-      <div class="modal-sub" id="modalDesc"></div>
-      <div class="modal-sub" id="modalSpec"></div>
-    </div>
+   <div class="modal-content" onclick="event.stopPropagation()" style="display: flex; align-items: flex-start; gap: 1.2rem;">
+  <div style="flex-shrink: 0;">
+    <img id="modalImage" src="" alt="" style="width: 200px; height: 200px; object-fit: cover; border-radius: 10px;">
+    <div class="modal-caption" id="modalCaption" style="margin-top: 0.8rem; font-size: 1rem; font-weight: bold;"></div>
   </div>
+  <div style="text-align: left;">
+    <div class="modal-sub" id="modalDesc" style="white-space: pre-line; margin-bottom: 0.8rem;"></div>
+    <div class="modal-sub" id="modalSpec" style="white-space: pre-line; color: #555;"></div>
+  </div>
+</div>
+
 
   <script>
     function openModal(img, name, desc, spec) {

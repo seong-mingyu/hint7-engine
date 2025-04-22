@@ -7,14 +7,13 @@
 
   <style>
     @font-face {
-  font-family: 'HDHyundaiLight';
-  src: url('assets/fonts/HDHyundai-Light.ttf') format('truetype');
-}
-@font-face {
-  font-family: 'HDHyundaiBold';
-  src: url('assets/fonts/HDHyundai-Bold.ttf') format('truetype');
-}
-
+      font-family: 'HDHyundaiLight';
+      src: url('assets/fonts/HDHyundai-Light.ttf') format('truetype');
+    }
+    @font-face {
+      font-family: 'HDHyundaiBold';
+      src: url('assets/fonts/HDHyundai-Bold.ttf') format('truetype');
+    }
 
     :root {
       --discovery-blue: #003087;
@@ -41,7 +40,6 @@
       position: sticky;
       top: 0;
       z-index: 1000;
-      position: relative;
     }
 
     .navbar img {
@@ -71,45 +69,47 @@
       z-index: 1002;
     }
 
-    .side-menu {
-      position: fixed;
-      top: 0;
-      right: -220px;
-      width: 200px;
-      height: 100%;
-      background-color: var(--trust-blue);
-      color: white;
-      padding-top: 60px;
-      transition: right 0.3s ease;
-      z-index: 1001;
+    .menu-popup {
+      position: absolute;
+      top: 64px;
+      right: 20px;
+      background: white;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      padding: 0.5rem 1rem;
+      z-index: 999;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-10px);
+      transition: all 0.3s ease;
     }
 
-    .side-menu.open {
-      right: 0;
+    .menu-popup.active {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
     }
 
-    .side-menu a {
-      display: block;
-      color: white;
+    .menu-popup ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .menu-popup li {
+      margin: 0.5rem 0;
+    }
+
+    .menu-popup a {
       text-decoration: none;
-      padding: 1rem;
-      font-weight: bold;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      color: var(--gray-text);
+      font-size: 0.95rem;
+      transition: color 0.2s;
     }
 
-    .overlay {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(0, 0, 0, 0);
-      z-index: 1000;
-    }
-
-    .overlay.show {
-      display: block;
+    .menu-popup a:hover {
+      color: var(--discovery-blue);
     }
 
     .page-title {
@@ -202,8 +202,6 @@
   </style>
 </head>
 <body>
-
-  <!-- 상단바 -->
   <div class="navbar">
     <img src="assets/images/logo.png" alt="HD현대중공업 로고">
     <div class="navbar-title">
@@ -211,21 +209,21 @@
         <span class="hd">H</span>int <span class="hd">D</span>ream
       </a>
     </div>
-    <div class="menu-icon" onclick="toggleMenu()">☰</div>
+    <div class="menu-icon">☰</div>
   </div>
 
-  <div class="overlay" id="overlay" onclick="closeMenu()"></div>
-  <div class="side-menu" id="sideMenu">
-    <a href="net.html">Intern Net</a>
-    <a href="view.html">Intern View</a>
-    <a href="ship.html">Intern Ship</a>
+  <div id="menuPopup" class="menu-popup">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="net.html">Intern Net</a></li>
+      <li><a href="view.html">Intern View</a></li>
+      <li><a href="ship.html">Intern Ship</a></li>
+    </ul>
   </div>
 
-  <!-- 타이틀 -->
   <div class="page-title">Intern Ship</div>
   <div class="subtitle">우리의 항해, 인턴십 전체 과정</div>
 
-  <!-- 타임라인 -->
   <div class="timeline">
     <div class="timeline-item left">
       <div class="timeline-content">
@@ -269,16 +267,18 @@
   </div>
 
   <script>
-    function toggleMenu() {
-      document.getElementById('sideMenu').classList.toggle('open');
-      document.getElementById('overlay').classList.toggle('show');
-    }
+    const menuBtn = document.querySelector('.menu-icon');
+    const menuPopup = document.getElementById('menuPopup');
 
-    function closeMenu() {
-      document.getElementById('sideMenu').classList.remove('open');
-      document.getElementById('overlay').classList.remove('show');
-    }
+    menuBtn.addEventListener('click', () => {
+      menuPopup.classList.toggle('active');
+    });
+
+    window.addEventListener('click', (e) => {
+      if (!menuPopup.contains(e.target) && !menuBtn.contains(e.target)) {
+        menuPopup.classList.remove('active');
+      }
+    });
   </script>
-
 </body>
 </html>

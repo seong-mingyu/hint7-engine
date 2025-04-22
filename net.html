@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Intern Net - H-int</title>
+  <link rel="icon" href="assets/images/logo.png" type="image/png">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <style>
     @font-face {
       font-family: 'HDHyundaiLight';
@@ -20,15 +22,50 @@
       --gray-text: #63666A;
       --bg-light: #f9f9f9;
     }
-    * {
-      box-sizing: border-box;
-    }
+
     body {
       font-family: 'HDHyundaiLight', sans-serif;
       margin: 0;
       background-color: var(--bg-light);
       color: var(--gray-text);
+      opacity: 0;
+      transition: opacity 0.6s ease-in-out;
     }
+    body.loaded {
+      opacity: 1;
+    }
+
+    #splash {
+      position: fixed;
+      z-index: 3000;
+      background-color: white;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      animation: fadeSplash 0.8s ease forwards;
+    }
+
+    #splash img {
+      width: 60px;
+      height: auto;
+      margin-bottom: 1rem;
+    }
+
+    .splash-text {
+      font-family: 'HDHyundaiBold';
+      font-size: 1.5rem;
+      color: #003087;
+    }
+
+    @keyframes fadeSplash {
+      0% { opacity: 1; }
+      99% { opacity: 0; }
+      100% { display: none; z-index: -1; }
+    }
+
     .navbar {
       display: flex;
       justify-content: space-between;
@@ -40,9 +77,11 @@
       top: 0;
       z-index: 1000;
     }
+
     .navbar img {
       height: 32px;
     }
+
     .navbar-title {
       font-size: 1.5rem;
       font-family: 'HDHyundaiBold';
@@ -50,13 +89,16 @@
       left: 50%;
       transform: translateX(-50%);
     }
+
     .navbar-title a {
       text-decoration: none;
       color: inherit;
     }
+
     .navbar-title .hd {
       color: var(--discovery-blue);
     }
+
     .menu-icon {
       font-size: 1.5rem;
       cursor: pointer;
@@ -112,20 +154,22 @@
       font-weight: bold;
       color: var(--prosperity-green);
     }
+
     .subtitle {
       text-align: center;
       font-size: 1rem;
       color: var(--gray-text);
       margin-bottom: 2rem;
     }
+
     .gallery {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 1rem;
       padding: 1rem;
-      animation: fadeIn 1s ease-in-out;
     }
+
     .gallery img {
       width: 120px;
       height: 90px;
@@ -135,10 +179,12 @@
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
+
     .gallery img:hover {
       transform: scale(1.07);
       box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     }
+
     .modal {
       display: none;
       position: fixed;
@@ -150,8 +196,8 @@
       background-color: rgba(0,0,0,0.7);
       justify-content: center;
       align-items: center;
-      animation: fadeIn 0.4s ease-in-out;
     }
+
     .modal-content {
       background-color: white;
       padding: 1.2rem;
@@ -161,17 +207,26 @@
       text-align: center;
       animation: zoomIn 0.3s ease-in-out;
     }
+
     .modal-content img {
       max-width: 100%;
       max-height: 60vh;
       border-radius: 12px;
       box-shadow: 0 2px 12px rgba(0,0,0,0.2);
     }
+
     .modal-caption {
       margin-top: 1rem;
       font-size: 1rem;
       font-weight: 500;
     }
+
+    .modal-date {
+      margin-top: 0.4rem;
+      font-size: 0.85rem;
+      color: #999;
+    }
+
     .close {
       position: absolute;
       top: 20px;
@@ -182,18 +237,11 @@
       cursor: pointer;
       transition: 0.2s;
     }
+
     .close:hover {
       transform: scale(1.2);
     }
-    .modal-date {
-      margin-top: 0.4rem;
-      font-size: 0.85rem;
-      color: #999;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
+
     @keyframes zoomIn {
       from { transform: scale(0.8); opacity: 0; }
       to { transform: scale(1); opacity: 1; }
@@ -201,6 +249,11 @@
   </style>
 </head>
 <body>
+  <div id="splash">
+    <img src="assets/images/logo.png" alt="로고">
+    <div class="splash-text">H-int Dream</div>
+  </div>
+
   <div class="navbar">
     <img src="assets/images/logo.png" alt="HD현대중공업 로고">
     <div class="navbar-title">
@@ -208,22 +261,21 @@
         <span class="hd">H</span>int <span class="hd">D</span>ream
       </a>
     </div>
-    <div class="menu-icon">☰</div>
+    <div class="menu-icon" onclick="toggleMenu()">☰</div>
+    <div class="menu-popup" id="menuPopup">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="net.html">Intern Net</a></li>
+        <li><a href="view.html">Intern View</a></li>
+        <li><a href="ship.html">Intern Ship</a></li>
+      </ul>
+    </div>
   </div>
 
-  <div id="menuPopup" class="menu-popup">
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="net.html">Intern Net</a></li>
-      <li><a href="view.html">Intern View</a></li>
-      <li><a href="ship.html">Intern Ship</a></li>
-    </ul>
-  </div>
+  <div class="page-title" data-aos="fade-down">Intern Net</div>
+  <div class="subtitle" data-aos="fade-up">서로의 연결, 우리가 함께한 순간</div>
 
-  <div class="page-title">Intern Net</div>
-  <div class="subtitle">서로의 연결, 우리가 함께한 순간</div>
-
-  <div class="gallery">
+  <div class="gallery" data-aos="fade-up">
     <img src="assets/images/net_meeting.jpg" alt="조별 회의" onclick="openModal(this, '조별 회의 시간', '2025.01.09')">
     <img src="assets/images/net_clubhouse.jpg" alt="클럽하우스" onclick="openModal(this, '울산 HD 클럽하우스 방문', '2025.01.11')">
     <img src="assets/images/net_dinner.jpg" alt="회식" onclick="openModal(this, 'H-int 전체 회식', '2025.01.13')">
@@ -237,14 +289,17 @@
 
   <div id="imageModal" class="modal" onclick="closeModal()">
     <div class="close">&times;</div>
-    <div class="modal-content" onclick="event.stopPropagation()">
+    <div class="modal-content">
       <img id="modalImage" src="" alt="">
       <div class="modal-caption" id="modalCaption"></div>
       <div class="modal-date" id="modalDate"></div>
     </div>
   </div>
 
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
+    AOS.init({ duration: 800, once: true });
+
     function openModal(img, caption, date) {
       const modal = document.getElementById('imageModal');
       document.getElementById('modalImage').src = img.src;
@@ -257,17 +312,15 @@
       document.getElementById('imageModal').style.display = 'none';
     }
 
-    const menuBtn = document.querySelector('.menu-icon');
-    const menuPopup = document.getElementById('menuPopup');
+    function toggleMenu() {
+      document.getElementById("menuPopup").classList.toggle("active");
+    }
 
-    menuBtn.addEventListener('click', () => {
-      menuPopup.classList.toggle('active');
-    });
-
-    window.addEventListener('click', (e) => {
-      if (!menuPopup.contains(e.target) && !menuBtn.contains(e.target)) {
-        menuPopup.classList.remove('active');
-      }
+    window.addEventListener("load", () => {
+      setTimeout(() => {
+        document.getElementById("splash").style.display = "none";
+        document.body.classList.add("loaded");
+      }, 800);
     });
   </script>
 </body>

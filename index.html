@@ -6,7 +6,6 @@
   <title>H-int Internship</title>
   <link rel="icon" href="assets/images/logo.png" type="image/png">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
   <style>
     @font-face {
       font-family: 'HDHyundaiLight';
@@ -16,7 +15,6 @@
       font-family: 'HDHyundaiBold';
       src: url('assets/fonts/HDHyundai-Bold.ttf') format('truetype');
     }
-
     :root {
       --discovery-blue: #003087;
       --prosperity-green: #008233;
@@ -24,7 +22,6 @@
       --gray-text: #63666A;
       --bg-light: #f4f4f4;
     }
-
     body {
       font-family: 'HDHyundaiLight', sans-serif;
       margin: 0;
@@ -36,7 +33,6 @@
     body.loaded {
       opacity: 1;
     }
-
     #splash {
       position: fixed;
       z-index: 3000;
@@ -49,25 +45,21 @@
       align-items: center;
       animation: fadeSplash 0.8s ease forwards;
     }
-
     #splash img {
       width: 60px;
       height: auto;
       margin-bottom: 1rem;
     }
-
     .splash-text {
       font-family: 'HDHyundaiBold';
       font-size: 1.5rem;
       color: #003087;
     }
-
     @keyframes fadeSplash {
       0% { opacity: 1; }
       99% { opacity: 0; }
       100% { display: none; z-index: -1; }
     }
-
     .navbar {
       display: flex;
       justify-content: space-between;
@@ -101,45 +93,43 @@
       cursor: pointer;
       z-index: 1002;
     }
-
-    .side-menu {
-      position: fixed;
-      top: 0;
-      right: -220px;
-      width: 200px;
-      height: 100%;
-      background-color: var(--trust-blue);
-      color: white;
-      padding-top: 60px;
-      transition: right 0.3s ease;
-      z-index: 1001;
+    .menu-popup {
+      position: absolute;
+      top: 64px;
+      right: 20px;
+      background: white;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      padding: 0.5rem 1rem;
+      z-index: 999;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-10px);
+      transition: all 0.3s ease;
     }
-    .side-menu.open {
-      right: 0;
+    .menu-popup.active {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
     }
-    .side-menu a {
-      display: block;
-      color: white;
+    .menu-popup ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .menu-popup li {
+      margin: 0.5rem 0;
+    }
+    .menu-popup a {
       text-decoration: none;
-      padding: 1rem;
-      font-weight: bold;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      color: var(--gray-text);
+      font-size: 0.95rem;
+      transition: color 0.2s;
     }
-
-    .overlay {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(0, 0, 0, 0);
-      z-index: 1000;
+    .menu-popup a:hover {
+      color: var(--discovery-blue);
     }
-    .overlay.show {
-      display: block;
-    }
-
     .intro {
       text-align: center;
       margin: 2rem 1rem 1rem;
@@ -147,7 +137,6 @@
       font-family: 'HDHyundaiLight';
       line-height: 1.6;
     }
-
     .section-links {
       display: flex;
       flex-direction: column;
@@ -173,14 +162,12 @@
     .section-link .highlight-net { color: var(--prosperity-green); }
     .section-link .highlight-view { color: var(--discovery-blue); }
     .section-link .highlight-ship { color: var(--trust-blue); }
-
     .subtitle {
       font-family: 'HDHyundaiLight';
       font-size: 0.95rem;
       margin-top: 0.3rem;
       color: var(--gray-text);
     }
-
     footer {
       text-align: center;
       padding: 2rem 1rem 1rem;
@@ -215,11 +202,13 @@
     <div class="menu-icon" onclick="toggleMenu()">☰</div>
   </div>
 
-  <div class="overlay" id="overlay" onclick="closeMenu()"></div>
-  <div class="side-menu" id="sideMenu">
-    <a href="net.html">Intern Net</a>
-    <a href="view.html">Intern View</a>
-    <a href="ship.html">Intern Ship</a>
+  <div class="menu-popup" id="menuPopup">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="net.html">Intern Net</a></li>
+      <li><a href="view.html">Intern View</a></li>
+      <li><a href="ship.html">Intern Ship</a></li>
+    </ul>
   </div>
 
   <div class="intro" data-aos="fade-up">
@@ -259,14 +248,16 @@
     AOS.init({ duration: 800, once: true });
 
     function toggleMenu() {
-      document.getElementById('sideMenu').classList.toggle('open');
-      document.getElementById('overlay').classList.toggle('show');
+      document.getElementById("menuPopup").classList.toggle("active");
     }
 
-    function closeMenu() {
-      document.getElementById('sideMenu').classList.remove('open');
-      document.getElementById('overlay').classList.remove('show');
-    }
+    window.addEventListener("click", function (e) {
+      const menu = document.getElementById("menuPopup");
+      const icon = document.querySelector(".menu-icon");
+      if (!menu.contains(e.target) && !icon.contains(e.target)) {
+        menu.classList.remove("active");
+      }
+    });
 
     window.addEventListener("load", () => {
       setTimeout(() => {

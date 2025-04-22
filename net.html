@@ -10,9 +10,9 @@
       src: url('assets/fonts/HDHyundai-Light.ttf') format('truetype');
     }
     @font-face {
-  font-family: 'HDHyundaiBold';
-  src: url('assets/fonts/HDHyundai-Bold.ttf') format('truetype');
-}
+      font-family: 'HDHyundaiBold';
+      src: url('assets/fonts/HDHyundai-Bold.ttf') format('truetype');
+    }
 
     :root {
       --discovery-blue: #003087;
@@ -39,7 +39,6 @@
       position: sticky;
       top: 0;
       z-index: 1000;
-      position: relative;
     }
     .navbar img {
       height: 32px;
@@ -62,6 +61,50 @@
       font-size: 1.5rem;
       cursor: pointer;
     }
+
+    .menu-popup {
+      position: absolute;
+      top: 64px;
+      right: 20px;
+      background: white;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      padding: 0.5rem 1rem;
+      z-index: 999;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-10px);
+      transition: all 0.3s ease;
+    }
+
+    .menu-popup.active {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .menu-popup ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .menu-popup li {
+      margin: 0.5rem 0;
+    }
+
+    .menu-popup a {
+      text-decoration: none;
+      color: var(--gray-text);
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+
+    .menu-popup a:hover {
+      color: var(--discovery-blue);
+    }
+
     .page-title {
       text-align: center;
       margin: 2rem 1rem 0.5rem;
@@ -168,6 +211,15 @@
     <div class="menu-icon">☰</div>
   </div>
 
+  <div id="menuPopup" class="menu-popup">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="net.html">Intern Net</a></li>
+      <li><a href="view.html">Intern View</a></li>
+      <li><a href="ship.html">Intern Ship</a></li>
+    </ul>
+  </div>
+
   <div class="page-title">Intern Net</div>
   <div class="subtitle">서로의 연결, 우리가 함께한 순간</div>
 
@@ -185,7 +237,7 @@
 
   <div id="imageModal" class="modal" onclick="closeModal()">
     <div class="close">&times;</div>
-    <div class="modal-content">
+    <div class="modal-content" onclick="event.stopPropagation()">
       <img id="modalImage" src="" alt="">
       <div class="modal-caption" id="modalCaption"></div>
       <div class="modal-date" id="modalDate"></div>
@@ -200,9 +252,23 @@
       document.getElementById('modalDate').innerText = date;
       modal.style.display = 'flex';
     }
+
     function closeModal() {
       document.getElementById('imageModal').style.display = 'none';
     }
+
+    const menuBtn = document.querySelector('.menu-icon');
+    const menuPopup = document.getElementById('menuPopup');
+
+    menuBtn.addEventListener('click', () => {
+      menuPopup.classList.toggle('active');
+    });
+
+    window.addEventListener('click', (e) => {
+      if (!menuPopup.contains(e.target) && !menuBtn.contains(e.target)) {
+        menuPopup.classList.remove('active');
+      }
+    });
   </script>
 </body>
 </html>

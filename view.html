@@ -172,12 +172,14 @@
         transform: scale(1);
       }
     }
-    @media (max-width: 600px) {
+    /* 모바일 최적화 (화면 너비 600px 이하) */
+@media (max-width: 600px) {
   .modal-content {
     flex-direction: column;
     padding: 1.5rem;
     gap: 1rem;
     max-height: 90vh;
+    transition: all 0.3s ease;
   }
 
   .modal-left {
@@ -190,6 +192,7 @@
   .modal-left img {
     width: 160px;
     height: 160px;
+    transition: all 0.3s ease;
   }
 
   .modal-caption {
@@ -204,6 +207,40 @@
     font-size: 0.9rem;
   }
 }
+
+/* 태블릿 중간 범위 (600~900px) */
+@media (min-width: 601px) and (max-width: 900px) {
+  .modal-content {
+    flex-direction: row;
+    padding: 1.8rem;
+    gap: 1.5rem;
+    max-width: 95%;
+    max-height: 85vh;
+    transition: all 0.3s ease;
+  }
+
+  .modal-left img {
+    width: 180px;
+    height: 180px;
+  }
+
+  .modal-caption {
+    font-size: 1.15rem;
+  }
+
+  .modal-sub {
+    font-size: 0.95rem;
+  }
+}
+
+/* 감성적인 전환 효과 */
+.modal-content,
+.modal-left img,
+.modal-caption,
+.modal-sub {
+  transition: all 0.3s ease-in-out;
+}
+
    
 </style>
 

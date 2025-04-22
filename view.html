@@ -172,6 +172,39 @@
         transform: scale(1);
       }
     }
+    @media (max-width: 600px) {
+  .modal-content {
+    flex-direction: column;
+    padding: 1.5rem;
+    gap: 1rem;
+    max-height: 90vh;
+  }
+
+  .modal-left {
+    border-right: none;
+    padding-right: 0;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 1rem;
+  }
+
+  .modal-left img {
+    width: 160px;
+    height: 160px;
+  }
+
+  .modal-caption {
+    font-size: 1.1rem;
+  }
+
+  .modal-right {
+    padding-left: 0;
+  }
+
+  .modal-sub {
+    font-size: 0.9rem;
+  }
+}
+   
 </style>
 
 </head>

@@ -15,6 +15,9 @@
       --gray-text: #63666A;
       --bg-light: #f9f9f9;
     }
+    * {
+      box-sizing: border-box;
+    }
     body {
       font-family: 'HDHyundaiLight', sans-serif;
       margin: 0;
@@ -73,17 +76,20 @@
       justify-content: center;
       gap: 1rem;
       padding: 1rem;
+      animation: fadeIn 1s ease-in-out;
     }
     .gallery img {
       width: 120px;
       height: 90px;
       object-fit: cover;
-      border-radius: 8px;
+      border-radius: 10px;
       cursor: pointer;
-      transition: transform 0.2s;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
     .gallery img:hover {
-      transform: scale(1.05);
+      transform: scale(1.07);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     }
     .modal {
       display: none;
@@ -93,35 +99,56 @@
       top: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0,0,0,0.6);
+      background-color: rgba(0,0,0,0.7);
       justify-content: center;
       align-items: center;
+      animation: fadeIn 0.4s ease-in-out;
     }
     .modal-content {
       background-color: white;
-      padding: 1rem;
-      border-radius: 12px;
-      max-width: 90%;
+      padding: 1.2rem;
+      border-radius: 16px;
+      max-width: 92%;
       max-height: 90%;
       text-align: center;
+      animation: zoomIn 0.3s ease-in-out;
     }
     .modal-content img {
       max-width: 100%;
       max-height: 60vh;
       border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.2);
     }
     .modal-caption {
-      margin-top: 0.8rem;
+      margin-top: 1rem;
       font-size: 1rem;
+      font-weight: 500;
     }
     .close {
       position: absolute;
       top: 20px;
       right: 30px;
       color: white;
-      font-size: 2rem;
+      font-size: 2.2rem;
       font-weight: bold;
       cursor: pointer;
+      transition: 0.2s;
+    }
+    .close:hover {
+      transform: scale(1.2);
+    }
+    .modal-date {
+      margin-top: 0.4rem;
+      font-size: 0.85rem;
+      color: #999;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes zoomIn {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
     }
   </style>
 </head>
@@ -140,15 +167,15 @@
   <div class="subtitle">서로의 연결, 우리가 함께한 순간</div>
 
   <div class="gallery">
-    <img src="assets/images/net_meeting.jpg" alt="조별 회의" onclick="openModal(this, '조별 회의 시간')">
-    <img src="assets/images/net_clubhouse.jpg" alt="클럽하우스" onclick="openModal(this, '울산 HD 클럽하우스 방문')">
-    <img src="assets/images/net_dinner.jpg" alt="회식" onclick="openModal(this, 'H-int 전체 회식')">
-    <img src="assets/images/net_hd_match.jpg" alt="직관" onclick="openModal(this, 'HD 중공업 축구 직관')">
-    <img src="assets/images/net_mt.jpg" alt="엠티" onclick="openModal(this, '7조 엠티')">
-    <img src="assets/images/net_bowling.jpg" alt="볼링" onclick="openModal(this, '볼링 치는 시간')">
-    <img src="assets/images/net_screenbaseball.jpg" alt="스크린야구" onclick="openModal(this, '스크린야구')">
-    <img src="assets/images/net_flower.jpg" alt="꽃놀이" onclick="openModal(this, '봄날의 꽃놀이')">
-    <img src="assets/images/net_drive.jpg" alt="드라이브" onclick="openModal(this, '바닷가 드라이브')">
+    <img src="assets/images/net_meeting.jpg" alt="조별 회의" onclick="openModal(this, '조별 회의 시간', '2025.01.09')">
+    <img src="assets/images/net_clubhouse.jpg" alt="클럽하우스" onclick="openModal(this, '울산 HD 클럽하우스 방문', '2025.01.11')">
+    <img src="assets/images/net_dinner.jpg" alt="회식" onclick="openModal(this, 'H-int 전체 회식', '2025.01.13')">
+    <img src="assets/images/net_hd_match.jpg" alt="직관" onclick="openModal(this, 'HD 중공업 축구 직관', '2025.01.17')">
+    <img src="assets/images/net_mt.jpg" alt="엠티" onclick="openModal(this, '7조 엠티', '2025.01.20')">
+    <img src="assets/images/net_bowling.jpg" alt="볼링" onclick="openModal(this, '볼링 치는 시간', '2025.01.20')">
+    <img src="assets/images/net_screenbaseball.jpg" alt="스크린야구" onclick="openModal(this, '스크린야구', '2025.01.21')">
+    <img src="assets/images/net_flower.jpg" alt="꽃놀이" onclick="openModal(this, '봄날의 꽃놀이', '2025.01.23')">
+    <img src="assets/images/net_drive.jpg" alt="드라이브" onclick="openModal(this, '바닷가 드라이브', '2025.01.23')">
   </div>
 
   <div id="imageModal" class="modal" onclick="closeModal()">
@@ -156,14 +183,17 @@
     <div class="modal-content">
       <img id="modalImage" src="" alt="">
       <div class="modal-caption" id="modalCaption"></div>
+      <div class="modal-date" id="modalDate"></div>
     </div>
   </div>
 
   <script>
-    function openModal(img, caption) {
+    function openModal(img, caption, date) {
+      const modal = document.getElementById('imageModal');
       document.getElementById('modalImage').src = img.src;
       document.getElementById('modalCaption').innerText = caption;
-      document.getElementById('imageModal').style.display = 'flex';
+      document.getElementById('modalDate').innerText = date;
+      modal.style.display = 'flex';
     }
     function closeModal() {
       document.getElementById('imageModal').style.display = 'none';

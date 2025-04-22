@@ -1,250 +1,200 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Intern View - H-int</title>
   <style>
+    @font-face {
+      font-family: 'HDHyundaiLight';
+      src: url('assets/fonts/HDHyundai-Light.ttf') format('truetype');
+    }
     :root {
       --discovery-blue: #003087;
       --gray-text: #63666A;
-      --light-bg: #f9f9f9;
+      --bg-light: #f9f9f9;
     }
     body {
-      font-family: sans-serif;
+      font-family: 'HDHyundaiLight', sans-serif;
       margin: 0;
-      background: var(--light-bg);
+      background-color: var(--bg-light);
       color: var(--gray-text);
     }
     .navbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      background-color: white;
       padding: 1rem 1.5rem;
-      background: white;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      position: relative;
+    }
+    .navbar img {
+      height: 32px;
     }
     .navbar-title {
       font-size: 1.5rem;
-      font-weight: bold;
+      font-family: 'HDHyundaiBold';
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
     }
+    .navbar-title a {
+      text-decoration: none;
+      color: inherit;
+    }
     .navbar-title .hd {
       color: var(--discovery-blue);
     }
+    .menu-icon {
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
     .page-title {
       text-align: center;
-      font-size: 2rem;
-      margin-top: 2rem;
+      margin: 2rem 1rem 0.5rem;
+      font-size: 1.8rem;
+      font-weight: bold;
       color: var(--discovery-blue);
     }
     .subtitle {
       text-align: center;
       font-size: 1rem;
+      color: var(--gray-text);
       margin-bottom: 2rem;
     }
-    .card-container {
-      position: relative;
-      max-width: 600px;
-      margin: 0 auto;
-      background: white;
-      border-radius: 12px;
-      padding: 1.5rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-    .card-date {
-      text-align: center;
-      font-weight: bold;
-      margin-bottom: 1rem;
-      font-size: 1rem;
-      color: #555;
-    }
-    .card {
+    .gallery {
       display: flex;
-      flex-direction: column;
+      flex-wrap: wrap;
+      justify-content: center;
       gap: 1rem;
+      padding: 1rem;
+      animation: fadeIn 1s ease-in-out;
     }
-    .card-top {
-      display: flex;
-      align-items: flex-start;
-    }
-    .card img {
-      width: 100px;
-      height: 100px;
+    .gallery img {
+      width: 120px;
+      height: 120px;
       object-fit: cover;
-      border-radius: 8px;
-      margin-right: 1rem;
-    }
-    .card-info {
-      flex: 1;
-    }
-    .card-info .dept {
-      font-size: 1.1rem;
-      font-weight: bold;
-      margin-bottom: 0.5rem;
-      color: var(--discovery-blue);
-    }
-    .card-info .desc {
-      font-size: 0.95rem;
-    }
-    .card .name {
-      text-align: left;
-      margin-left: 100px;
-      font-weight: bold;
-      font-size: 1rem;
-    }
-    .card .spec {
-      font-size: 0.85rem;
-      margin-top: 0.5rem;
-      color: #888;
-      text-align: left;
-    }
-    .nav-buttons {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      pointer-events: none;
-    }
-    .nav-buttons button {
-      pointer-events: all;
-      background: var(--discovery-blue);
-      border: none;
-      color: white;
-      font-size: 1.2rem;
-      padding: 0.5rem 1rem;
-      border-radius: 50%;
+      border-radius: 10px;
       cursor: pointer;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .gallery img:hover {
+      transform: scale(1.07);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.7);
+      justify-content: center;
+      align-items: center;
+      animation: fadeIn 0.4s ease-in-out;
+    }
+    .modal-content {
+      background-color: white;
+      padding: 1.2rem;
+      border-radius: 16px;
+      max-width: 92%;
+      max-height: 90%;
+      text-align: center;
+      animation: zoomIn 0.3s ease-in-out;
+    }
+    .modal-content img {
+      max-width: 100%;
+      max-height: 60vh;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+    }
+    .modal-caption {
+      margin-top: 1rem;
+      font-size: 1rem;
+      font-weight: 500;
+    }
+    .modal-sub {
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      color: #999;
+    }
+    .close {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      color: white;
+      font-size: 2.2rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .close:hover {
+      transform: scale(1.2);
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes zoomIn {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
     }
   </style>
 </head>
 <body>
   <div class="navbar">
-    <img src="assets/images/logo.png" alt="로고" style="height: 32px">
-    <div class="navbar-title"><span class="hd">H</span>int <span class="hd">D</span>ream</div>
+    <img src="assets/images/logo.png" alt="HD현대중공업 로고">
+    <div class="navbar-title">
+      <a href="index.html">
+        <span class="hd">H</span>int <span class="hd">D</span>ream
+      </a>
+    </div>
     <div class="menu-icon">☰</div>
   </div>
 
   <div class="page-title">Intern View</div>
   <div class="subtitle">우리가 본 것, 우리가 느낀 것</div>
 
-  <div class="card-date" id="card-date">2025.05.12</div>
-  <div class="card-container">
-    <div class="card" id="card">
-      <div class="card-top">
-        <img src="assets/images/view_01.jpg" id="card-img" alt="인턴">
-        <div class="card-info">
-          <div class="dept" id="card-dept">📊 엔진기계사업기획부</div>
-          <div class="desc" id="card-desc">실적 분석과 전략 수립 회의에 참여하며 기획업무를 지원합니다.</div>
-        </div>
-      </div>
-      <div class="name" id="card-name">성민규 인턴</div>
-      <div class="spec" id="card-spec">도움이 된 스펙: Excel 데이터 분석, 기획서 작성 경험</div>
-    </div>
-    <div class="nav-buttons">
-      <button onclick="moveCard(-1)">←</button>
-      <button onclick="moveCard(1)">→</button>
+  <div class="gallery">
+    <img src="assets/images/view_01.jpg" alt="성민규 인턴" onclick="openModal(this, '성민규 인턴', '📊 엔진기계사업기획부\n실적 분석과 전략 수립 회의에 참여하며 기획업무를 지원', 'Excel, 기획서 작성 경험')">
+    <img src="assets/images/view_02.jpg" alt="김동현 인턴" onclick="openModal(this, '김동현 인턴', '🧪 엔진개발부\n엔진 성능 시험과 고장 진단 데이터를 분석하며 기술개발을 보조', 'MATLAB, 공학해석툴')">
+    <img src="assets/images/view_03.jpg" alt="전수민 인턴" onclick="openModal(this, '전수민 인턴', '🧠 힘센엔진설계부\n설계 도면 검토 및 3D 모델링 지원', 'NX, 도면 해석 능력')">
+    <img src="assets/images/view_04.jpg" alt="정명수 인턴" onclick="openModal(this, '정명수 인턴', '📞 엔진시스템기술영업부\n기술 제안서 및 프레젠테이션 준비', '기술영업, 발표력')">
+    <img src="assets/images/view_05.jpg" alt="노건우 인턴" onclick="openModal(this, '노건우 인턴', '🏭 생산기술2부\n작업표준서 개선 프로젝트 참여', '제조공정 이해, 실습')">
+    <img src="assets/images/view_06.jpg" alt="민성제 인턴" onclick="openModal(this, '민성제 인턴', '🛠 생산기술1부\n생산성 향상 아이디어 제안', '문제해결력, Lean 생산')">
+    <img src="assets/images/view_07.jpg" alt="김동현 인턴" onclick="openModal(this, '김동현 인턴', '📐 대형엔진설계부\n부품 설계 변경 및 강도 검토 지원', '구조해석, 재료역학')">
+    <img src="assets/images/view_08.jpg" alt="김우진 인턴" onclick="openModal(this, '김우진 인턴', '💻 엔진기계업무시스템기획부\n사용자 요구 분석 및 시스템 기획', 'UX 기획, 시스템 분석')">
+    <img src="assets/images/view_09.jpg" alt="이제진 인턴" onclick="openModal(this, '이제진 인턴', '🔬 엔진개발시험부\n내구시험 및 측정장비 운영', '장비 사용 경험, 데이터 해석')">
+    <img src="assets/images/view_10.jpg" alt="이민규 인턴" onclick="openModal(this, '이민규 인턴', '🏗 생산기술2부\n공정 시뮬레이션 분석', '시뮬레이션 툴, CAD')">
+  </div>
+
+  <div id="imageModal" class="modal" onclick="closeModal()">
+    <div class="close">&times;</div>
+    <div class="modal-content" onclick="event.stopPropagation()">
+      <img id="modalImage" src="" alt="">
+      <div class="modal-caption" id="modalCaption"></div>
+      <div class="modal-sub" id="modalDesc"></div>
+      <div class="modal-sub" id="modalSpec"></div>
     </div>
   </div>
-  <script>
-    const cards = [
-      {
-        date: "2025.05.12",
-        name: "성민규 인턴",
-        dept: "📊 엔진기계사업기획부",
-        desc: "실적 분석과 전략 수립 회의에 참여하며 기획업무를 지원합니다.",
-        spec: "도움이 된 스펙: Excel 데이터 분석, 기획서 작성 경험",
-        img: "assets/images/view_01.jpg"
-      },
-      {
-        date: "2025.05.13",
-        name: "김동현 인턴",
-        dept: "🧪 엔진개발부",
-        desc: "엔진 성능 시험과 고장 진단 데이터를 분석하며 기술개발을 보조하고 있습니다.",
-        spec: "도움이 된 스펙: MATLAB, 공학해석툴 활용 능력",
-        img: "assets/images/view_02.jpg"
-      },
-      {
-        date: "2025.05.14",
-        name: "전수민 인턴",
-        dept: "🧠 힘센엔진설계부",
-        desc: "힘센엔진 모델의 설계 도면 검토 및 3D 모델링을 보조하고 있습니다.",
-        spec: "도움이 된 스펙: NX, 기계도면 해독 능력",
-        img: "assets/images/view_03.jpg"
-      },
-      {
-        date: "2025.05.15",
-        name: "정명수 인턴",
-        dept: "📞 엔진시스템기술영업부",
-        desc: "고객 요청 기반의 기술 제안서 및 프레젠테이션을 준비하고 있습니다.",
-        spec: "도움이 된 스펙: 기술영업 경험, 발표력",
-        img: "assets/images/view_04.jpg"
-      },
-      {
-        date: "2025.05.16",
-        name: "노건우 인턴",
-        dept: "🏭 생산기술2부",
-        desc: "현장 공정 최적화 및 작업표준서 개선 프로젝트에 참여 중입니다.",
-        spec: "도움이 된 스펙: 제조공정 이해, 실습경험",
-        img: "assets/images/view_05.jpg"
-      },
-      {
-        date: "2025.05.17",
-        name: "민성제 인턴",
-        dept: "🛠 생산기술1부",
-        desc: "조립 라인 생산성 향상 아이디어를 실무에 제안하고 적용 중입니다.",
-        spec: "도움이 된 스펙: 문제해결력, Lean 생산기법 지식",
-        img: "assets/images/view_06.jpg"
-      },
-      {
-        date: "2025.05.18",
-        name: "김동현 인턴",
-        dept: "📐 대형엔진설계부",
-        desc: "대형 선박 엔진의 부품 설계 변경 및 강도 검토를 지원하고 있습니다.",
-        spec: "도움이 된 스펙: 구조해석, 재료역학 이해",
-        img: "assets/images/view_07.jpg"
-      },
-      {
-        date: "2025.05.19",
-        name: "김우진 인턴",
-        dept: "💻 엔진기계업무시스템기획부",
-        desc: "사내 시스템 개선을 위한 사용자 요구 분석 및 기획 작업을 수행하고 있습니다.",
-        spec: "도움이 된 스펙: UX 기획, 시스템 분석 경험",
-        img: "assets/images/view_08.jpg"
-      },
-      {
-        date: "2025.05.20",
-        name: "이제진 인턴",
-        dept: "🔬 엔진개발시험부",
-        desc: "신제품 엔진의 내구시험과 측정장비 운영 업무를 맡고 있습니다.",
-        spec: "도움이 된 스펙: 시험 장비 사용 경험, 데이터 해석",
-        img: "assets/images/view_09.jpg"
-      },
-      {
-        date: "2025.05.21",
-        name: "이민규 인턴",
-        dept: "🏗 생산기술2부",
-        desc: "공정 시뮬레이션 분석을 통해 생산 효율성을 높이는 작업을 진행 중입니다.",
-        spec: "도움이 된 스펙: 시뮬레이션 툴 사용 경험, CAD",
-        img: "assets/images/view_10.jpg"
-      }
-    ];
 
-    let current = 0;
-    function moveCard(step) {
-      current = (current + step + cards.length) % cards.length;
-      const data = cards[current];
-      document.getElementById('card-date').textContent = data.date;
-      document.getElementById('card-name').textContent = data.name;
-      document.getElementById('card-dept').textContent = data.dept;
-      document.getElementById('card-desc').textContent = data.desc;
-      document.getElementById('card-spec').textContent = data.spec;
-      document.getElementById('card-img').src = data.img;
+  <script>
+    function openModal(img, name, desc, spec) {
+      document.getElementById('modalImage').src = img.src;
+      document.getElementById('modalCaption').innerText = name;
+      document.getElementById('modalDesc').innerText = desc;
+      document.getElementById('modalSpec').innerText = "도움이 된 스펙: " + spec;
+      document.getElementById('imageModal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('imageModal').style.display = 'none';
     }
   </script>
 </body>

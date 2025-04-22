@@ -12,6 +12,7 @@
     :root {
       --discovery-blue: #003087;
       --prosperity-green: #008233;
+      --trust-blue: #002554;
       --gray-text: #63666A;
       --bg-light: #f9f9f9;
     }
@@ -20,6 +21,7 @@
       margin: 0;
       background-color: var(--bg-light);
       color: var(--gray-text);
+      overflow-x: hidden;
     }
     .navbar {
       display: flex;
@@ -31,7 +33,6 @@
       position: sticky;
       top: 0;
       z-index: 1000;
-      position: relative;
     }
     .navbar img {
       height: 32px;
@@ -60,22 +61,26 @@
       font-size: 1.8rem;
       font-weight: bold;
       color: var(--discovery-blue);
+      animation: fadeInDown 1s ease;
     }
     .subtitle {
       text-align: center;
       font-size: 1rem;
       color: var(--gray-text);
       margin-bottom: 2rem;
+      animation: fadeInDown 1.2s ease;
+    }
+    .slider-container {
+      position: relative;
+      overflow: hidden;
+      max-width: 100%;
     }
     .slider {
       display: flex;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      scroll-behavior: smooth;
+      transition: transform 0.6s ease;
     }
     .slide {
-      flex: 0 0 100%;
-      scroll-snap-align: center;
+      min-width: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -84,10 +89,14 @@
     .card {
       background: white;
       border-radius: 16px;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
       max-width: 400px;
       padding: 2rem;
       text-align: center;
+      transition: transform 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-6px);
     }
     .card img {
       width: 120px;
@@ -123,21 +132,114 @@
 </head>
 <body>
   <div class="navbar">
-    <img src="assets/images/logo.png" alt="HD현대중공업 로고" />
+    <img src="assets/images/logo.png" alt="HD현대중공업 로고">
     <div class="navbar-title">
       <a href="index.html">
         <span class="hd">H</span>int <span class="hd">D</span>ream
       </a>
     </div>
-    <div class="menu-icon" onclick="toggleMenu()">☰</div>
+    <div class="menu-icon">☰</div>
   </div>
 
   <div class="page-title">Intern View</div>
   <div class="subtitle">우리가 본 것, 우리가 느낀 것</div>
 
-  <div class="slider">
-    <!-- Slides here -->
-    REPLACED_CONTENT
+  <div class="slider-container">
+    <div class="slider" id="slider">
+
+      <!-- 성민규 -->
+      <div class="slide"><div class="card"><img src="assets/images/view_01.jpg" alt="성민규"><div class="name">성민규 인턴</div><div class="dept">📊 엔진기계사업기획부</div><div class="desc">부서별 실적 분석과 전략 수립 회의에 참여하며 기획업무를 지원합니다.</div><div class="spec">도움이 된 스펙: Excel 데이터 분석, 기획서 작성 경험</div><div class="date">2025.05.12</div></div></div>
+
+      <!-- 김동현 -->
+      <div class="slide"><div class="card"><img src="assets/images/view_02.jpg" alt="김동현"><div class="name">김동현 인턴</div><div class="dept">🧪 엔진개발부</div><div class="desc">엔진 성능 시험과 고장 진단 데이터를 분석하며 기술개발을 보조하고 있습니다.</div><div class="spec">도움이 된 스펙: MATLAB, 공학해석툴 활용 능력</div><div class="date">2025.05.13</div></div></div>
+
+      <!-- 전수민 -->
+      <div class="slide"><div class="card"><img src="assets/images/view_03.jpg" alt="전수민"><div class="name">전수민 인턴</div><div class="dept">🧠 힘센엔진설계부</div><div class="desc">힘센엔진 모델의 설계 도면 검토 및 3D 모델링을 보조하고 있습니다.</div><div class="spec">도움이 된 스펙: NX, 기계도면 해독 능력</div><div class="date">2025.05.14</div></div></div>
+
+      <!-- 정명수 -->
+      <div class="slide"><div class="card"><img src="assets/images/view_04.jpg" alt="정명수"><div class="name">정명수 인턴</div><div class="dept">📞 엔진시스템기술영업부</div><div class="desc">고객 요청 기반의 기술 제안서 및 프레젠테이션을 준비하고 있습니다.</div><div class="spec">도움이 된 스펙: 기술영업 경험, 발표력</div><div class="date">2025.05.15</div></div></div>
+
+      <!-- 노건우 -->
+      <div class="slide"><div class="card"><img src="assets/images/view_05.jpg" alt="노건우"><div class="name">노건우 인턴</div><div class="dept">🏭 생산기술2부</div><div class="desc">현장 공정 최적화 및 작업표준서 개선 프로젝트에 참여 중입니다.</div><div class="spec">도움이 된 스펙: 제조공정 이해, 실습경험</div><div class="date">2025.05.16</div></div></div>
+
+      <!-- 민성제 -->
+      <div class="slide"><div class="card"><img src="assets/images/view_06.jpg" alt="민성제"><div class="name">민성제 인턴</div><div class="dept">🛠 생산기술1부</div><div class="desc">조립 라인 생산성 향상 아이디어를 실무에 제안하고 적용 중입니다.</div><div class="spec">도움이 된 스펙: 문제해결력, Lean 생산기법 지식</div><div class="date">2025.05.17</div></div></div>
+
+      <!-- 김동현 -->
+      <div class="slide"><div class="card"><img src="assets/images/view_07.jpg" alt="김동현"><div class="name">김동현 인턴</div><div class="dept">📐 대형엔진설계부</div><div class="desc">대형 선박 엔진의 부품 설계 변경 및 강도 검토를 지원하고 있습니다.</div><div class="spec">도움이 된 스펙: 구조해석, 재료역학 이해</div><div class="date">2025.05.18</div></div></div>
+
+      <!-- 김우진 -->
+      <div class="slide"><div class="card"><img src="assets/images/view_08.jpg" alt="김우진"><div class="name">김우진 인턴</div><div class="dept">💻 엔진기계업무시스템기획부</div><div class="desc">사내 시스템 개선을 위한 사용자 요구 분석 및 기획 작업을 수행하고 있습니다.</div><div class="spec">도움이 된 스펙: UX 기획, 시스템 분석 경험</div><div class="date">2025.05.19</div></div></div>
+
+      <!-- 이제진 -->
+      <div class="slide"><div class="card"><img src="assets/images/view_09.jpg" alt="이제진"><div class="name">이제진 인턴</div><div class="dept">🔬 엔진개발시험부</div><div class="desc">신제품 엔진의 내구시험과 측정장비 운영 업무를 맡고 있습니다.</div><div class="spec">도움이 된 스펙: 시험 장비 사용 경험, 데이터 해석</div><div class="date">2025.05.20</div></div></div>
+
+      <!-- 이민규 -->
+      <div class="slide"><div class="card"><img src="assets/images/view_10.jpg" alt="이민규"><div class="name">이민규 인턴</div><div class="dept">🏗 생산기술2부</div><div class="desc">공정 시뮬레이션 분석을 통해 생산 효율성을 높이는 작업을 진행 중입니다.</div><div class="spec">도움이 된 스펙: 시뮬레이션 툴 사용 경험, CAD</div><div class="date">2025.05.21</div></div></div>
+
+    </div> <!-- slider end -->
+
+    <div class="nav-buttons">
+      <button onclick="moveSlide(-1)">← 이전</button>
+      <button onclick="moveSlide(1)">다음 →</button>
+    </div>
+    <div class="dots" id="dots"></div>
   </div>
+
+  <div class="interview-section">
+    <h2>👤 지도선배 인터뷰</h2>
+    <div class="qa">
+      <div class="q">Q. 인턴 중 가장 중요하다고 느낀 점은 무엇인가요?</div>
+      <div class="a">A. 본인의 의견을 명확히 전달하고, 적극적으로 질문하는 자세가 중요했습니다.</div>
+      <div class="q">Q. 실무에서 가장 많이 활용된 역량은?</div>
+      <div class="a">A. 기본적인 프로그램 이해력과 소통력. 특히 도면 해석이 필수였습니다.</div>
+    </div>
+  </div>
+
+  <div class="atmosphere">
+    처음으로 현장에서 숨 쉬는 배를 보며, 우리도 조선의 일원이 된 듯한 느낌을 받았습니다.
+  </div>
+
+  <script>
+    let currentIndex = 0;
+    const slider = document.getElementById(\"slider\");
+    const slides = slider.children;
+    const dotsContainer = document.getElementById(\"dots\");
+
+    function updateSlider() {
+      slider.style.transform = `translateX(-${100 * currentIndex}%)`;
+      [...dotsContainer.children].forEach((dot, i) => {
+        dot.classList.toggle(\"active\", i === currentIndex);
+      });
+    }
+
+    function moveSlide(step) {
+      currentIndex = (currentIndex + step + slides.length) % slides.length;
+      updateSlider();
+    }
+
+    function createDots() {
+      for (let i = 0; i < slides.length; i++) {
+        const dot = document.createElement(\"span\");
+        dot.classList.add(\"dot\");
+        dot.onclick = () => {
+          currentIndex = i;
+          updateSlider();
+        };
+        dotsContainer.appendChild(dot);
+      }
+    }
+
+    function autoSlide() {
+      moveSlide(1);
+    }
+
+    window.onload = () => {
+      createDots();
+      updateSlider();
+      setInterval(autoSlide, 5000);
+    };
+  </script>
+
 </body>
 </html>

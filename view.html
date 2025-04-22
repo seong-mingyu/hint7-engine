@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Intern View - H-int</title>
   <style>
     @font-face {
@@ -11,100 +11,72 @@
     }
     :root {
       --discovery-blue: #003087;
-      --prosperity-green: #008233;
-      --trust-blue: #002554;
       --gray-text: #63666A;
-      --bg-light: #f9f9f9;
     }
     body {
-      font-family: 'HDHyundaiLight', sans-serif;
       margin: 0;
-      background-color: var(--bg-light);
+      font-family: 'HDHyundaiLight', sans-serif;
+      background: #f9f9f9;
       color: var(--gray-text);
-      overflow-x: hidden;
     }
     .navbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background-color: white;
       padding: 1rem 1.5rem;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-    .navbar img {
-      height: 32px;
+      background: white;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
     }
     .navbar-title {
       font-size: 1.5rem;
-      font-family: 'HDHyundaiBold';
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
-    }
-    .navbar-title a {
-      text-decoration: none;
-      color: inherit;
+      font-weight: bold;
     }
     .navbar-title .hd {
       color: var(--discovery-blue);
     }
-    .menu-icon {
-      font-size: 1.5rem;
-      cursor: pointer;
-    }
     .page-title {
       text-align: center;
-      margin: 2rem 1rem 0.5rem;
-      font-size: 1.8rem;
-      font-weight: bold;
+      font-size: 2rem;
+      margin-top: 2rem;
       color: var(--discovery-blue);
-      animation: fadeInDown 1s ease;
     }
     .subtitle {
       text-align: center;
       font-size: 1rem;
-      color: var(--gray-text);
       margin-bottom: 2rem;
-      animation: fadeInDown 1.2s ease;
     }
     .slider-container {
-      position: relative;
-      overflow: hidden;
-      max-width: 100%;
+      overflow-x: auto;
+      white-space: nowrap;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
     }
     .slider {
       display: flex;
-      transition: transform 0.6s ease;
+      gap: 1rem;
+      padding: 1rem;
     }
     .slide {
-      min-width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 2rem;
+      flex: 0 0 auto;
+      scroll-snap-align: center;
     }
     .card {
       background: white;
       border-radius: 16px;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-      max-width: 400px;
-      padding: 2rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      width: 300px;
+      padding: 1.5rem;
       text-align: center;
-      transition: transform 0.3s;
-    }
-    .card:hover {
-      transform: translateY(-6px);
     }
     .card img {
-      width: 120px;
-      height: 120px;
+      width: 100px;
+      height: 100px;
       border-radius: 50%;
       object-fit: cover;
       margin-bottom: 1rem;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
     .name {
       font-size: 1.2rem;
@@ -113,31 +85,43 @@
     }
     .dept {
       font-size: 1rem;
-      margin-bottom: 0.5rem;
+      margin: 0.5rem 0;
     }
-    .desc {
-      font-size: 0.95rem;
-      margin-bottom: 1rem;
+    .desc, .spec, .date {
+      font-size: 0.9rem;
+      margin: 0.3rem 0;
     }
-    .spec {
-      font-size: 0.85rem;
-      color: #888;
+    .nav-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin: 1rem auto;
     }
-    .date {
-      margin-top: 1rem;
-      font-size: 0.8rem;
-      color: #aaa;
+    .nav-buttons button {
+      padding: 0.6rem 1.2rem;
+      font-size: 0.9rem;
+      border: none;
+      border-radius: 8px;
+      background: var(--discovery-blue);
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      transition: background 0.3s;
+    }
+    .nav-buttons button:hover {
+      background: #001d66;
+    }
+    @media screen and (min-width: 768px) {
+      .slider-container {
+        overflow: hidden;
+      }
     }
   </style>
 </head>
 <body>
   <div class="navbar">
-    <img src="assets/images/logo.png" alt="HD현대중공업 로고">
-    <div class="navbar-title">
-      <a href="index.html">
-        <span class="hd">H</span>int <span class="hd">D</span>ream
-      </a>
-    </div>
+    <img src="assets/images/logo.png" alt="로고" style="height: 32px">
+    <div class="navbar-title"><span class="hd">H</span>int <span class="hd">D</span>ream</div>
     <div class="menu-icon">☰</div>
   </div>
 
@@ -146,100 +130,35 @@
 
   <div class="slider-container">
     <div class="slider" id="slider">
-
-      <!-- 성민규 -->
-      <div class="slide"><div class="card"><img src="assets/images/view_01.jpg" alt="성민규"><div class="name">성민규 인턴</div><div class="dept">📊 엔진기계사업기획부</div><div class="desc">부서별 실적 분석과 전략 수립 회의에 참여하며 기획업무를 지원합니다.</div><div class="spec">도움이 된 스펙: Excel 데이터 분석, 기획서 작성 경험</div><div class="date">2025.05.12</div></div></div>
-
-      <!-- 김동현 -->
-      <div class="slide"><div class="card"><img src="assets/images/view_02.jpg" alt="김동현"><div class="name">김동현 인턴</div><div class="dept">🧪 엔진개발부</div><div class="desc">엔진 성능 시험과 고장 진단 데이터를 분석하며 기술개발을 보조하고 있습니다.</div><div class="spec">도움이 된 스펙: MATLAB, 공학해석툴 활용 능력</div><div class="date">2025.05.13</div></div></div>
-
-      <!-- 전수민 -->
-      <div class="slide"><div class="card"><img src="assets/images/view_03.jpg" alt="전수민"><div class="name">전수민 인턴</div><div class="dept">🧠 힘센엔진설계부</div><div class="desc">힘센엔진 모델의 설계 도면 검토 및 3D 모델링을 보조하고 있습니다.</div><div class="spec">도움이 된 스펙: NX, 기계도면 해독 능력</div><div class="date">2025.05.14</div></div></div>
-
-      <!-- 정명수 -->
-      <div class="slide"><div class="card"><img src="assets/images/view_04.jpg" alt="정명수"><div class="name">정명수 인턴</div><div class="dept">📞 엔진시스템기술영업부</div><div class="desc">고객 요청 기반의 기술 제안서 및 프레젠테이션을 준비하고 있습니다.</div><div class="spec">도움이 된 스펙: 기술영업 경험, 발표력</div><div class="date">2025.05.15</div></div></div>
-
-      <!-- 노건우 -->
-      <div class="slide"><div class="card"><img src="assets/images/view_05.jpg" alt="노건우"><div class="name">노건우 인턴</div><div class="dept">🏭 생산기술2부</div><div class="desc">현장 공정 최적화 및 작업표준서 개선 프로젝트에 참여 중입니다.</div><div class="spec">도움이 된 스펙: 제조공정 이해, 실습경험</div><div class="date">2025.05.16</div></div></div>
-
-      <!-- 민성제 -->
-      <div class="slide"><div class="card"><img src="assets/images/min.png" alt="민성제"><div class="name">민성제 인턴</div><div class="dept">🛠 생산기술1부</div><div class="desc">조립 라인 생산성 향상 아이디어를 실무에 제안하고 적용 중입니다.</div><div class="spec">도움이 된 스펙: 문제해결력, Lean 생산기법 지식</div><div class="date">2025.05.17</div></div></div>
-
-      <!-- 김동현 -->
-      <div class="slide"><div class="card"><img src="assets/images/view_07.jpg" alt="김동현"><div class="name">김동현 인턴</div><div class="dept">📐 대형엔진설계부</div><div class="desc">대형 선박 엔진의 부품 설계 변경 및 강도 검토를 지원하고 있습니다.</div><div class="spec">도움이 된 스펙: 구조해석, 재료역학 이해</div><div class="date">2025.05.18</div></div></div>
-
-      <!-- 김우진 -->
-      <div class="slide"><div class="card"><img src="assets/images/view_08.jpg" alt="김우진"><div class="name">김우진 인턴</div><div class="dept">💻 엔진기계업무시스템기획부</div><div class="desc">사내 시스템 개선을 위한 사용자 요구 분석 및 기획 작업을 수행하고 있습니다.</div><div class="spec">도움이 된 스펙: UX 기획, 시스템 분석 경험</div><div class="date">2025.05.19</div></div></div>
-
-      <!-- 이제진 -->
-      <div class="slide"><div class="card"><img src="assets/images/view_09.jpg" alt="이제진"><div class="name">이제진 인턴</div><div class="dept">🔬 엔진개발시험부</div><div class="desc">신제품 엔진의 내구시험과 측정장비 운영 업무를 맡고 있습니다.</div><div class="spec">도움이 된 스펙: 시험 장비 사용 경험, 데이터 해석</div><div class="date">2025.05.20</div></div></div>
-
-      <!-- 이민규 -->
-      <div class="slide"><div class="card"><img src="assets/images/view_10.jpg" alt="이민규"><div class="name">이민규 인턴</div><div class="dept">🏗 생산기술2부</div><div class="desc">공정 시뮬레이션 분석을 통해 생산 효율성을 높이는 작업을 진행 중입니다.</div><div class="spec">도움이 된 스펙: 시뮬레이션 툴 사용 경험, CAD</div><div class="date">2025.05.21</div></div></div>
-
-    </div> <!-- slider end -->
-
-    <div class="nav-buttons">
-      <button onclick="moveSlide(-1)">← 이전</button>
-      <button onclick="moveSlide(1)">다음 →</button>
-    </div>
-    <div class="dots" id="dots"></div>
-  </div>
-
-  <div class="interview-section">
-    <h2>👤 지도선배 인터뷰</h2>
-    <div class="qa">
-      <div class="q">Q. 인턴 중 가장 중요하다고 느낀 점은 무엇인가요?</div>
-      <div class="a">A. 본인의 의견을 명확히 전달하고, 적극적으로 질문하는 자세가 중요했습니다.</div>
-      <div class="q">Q. 실무에서 가장 많이 활용된 역량은?</div>
-      <div class="a">A. 기본적인 프로그램 이해력과 소통력. 특히 도면 해석이 필수였습니다.</div>
+      <div class="slide"><div class="card"><img src="assets/images/view_01.jpg" alt="성민규"><div class="name">성민규 인턴</div><div class="dept">📊 엔진기계사업기획부</div><div class="desc">실적 분석과 전략 수립 회의에 참여하며 기획업무를 지원</div><div class="spec">Excel, 기획서 작성 경험</div><div class="date">2025.05.12</div></div></div>
+      <div class="slide"><div class="card"><img src="assets/images/view_02.jpg" alt="김동현"><div class="name">김동현 인턴</div><div class="dept">🧪 엔진개발부</div><div class="desc">엔진 성능 시험과 고장 진단 데이터를 분석하며 기술개발을 보조</div><div class="spec">MATLAB, 공학해석툴</div><div class="date">2025.05.13</div></div></div>
+      <div class="slide"><div class="card"><img src="assets/images/view_03.jpg" alt="전수민"><div class="name">전수민 인턴</div><div class="dept">🧠 힘센엔진설계부</div><div class="desc">설계 도면 검토 및 3D 모델링 지원</div><div class="spec">NX, 도면 해석 능력</div><div class="date">2025.05.14</div></div></div>
+      <div class="slide"><div class="card"><img src="assets/images/view_04.jpg" alt="정명수"><div class="name">정명수 인턴</div><div class="dept">📞 엔진시스템기술영업부</div><div class="desc">기술 제안서 및 프레젠테이션 준비</div><div class="spec">기술영업, 발표력</div><div class="date">2025.05.15</div></div></div>
+      <div class="slide"><div class="card"><img src="assets/images/view_05.jpg" alt="노건우"><div class="name">노건우 인턴</div><div class="dept">🏭 생산기술2부</div><div class="desc">작업표준서 개선 프로젝트 참여</div><div class="spec">제조공정 이해, 실습</div><div class="date">2025.05.16</div></div></div>
+      <div class="slide"><div class="card"><img src="assets/images/min.png" alt="민성제"><div class="name">민성제 인턴</div><div class="dept">🛠 생산기술1부</div><div class="desc">생산성 향상 아이디어 제안</div><div class="spec">문제해결력, Lean 생산</div><div class="date">2025.05.17</div></div></div>
+      <div class="slide"><div class="card"><img src="assets/images/view_07.jpg" alt="김동현"><div class="name">김동현 인턴</div><div class="dept">📐 대형엔진설계부</div><div class="desc">부품 설계 변경 및 강도 검토 지원</div><div class="spec">구조해석, 재료역학</div><div class="date">2025.05.18</div></div></div>
+      <div class="slide"><div class="card"><img src="assets/images/view_08.jpg" alt="김우진"><div class="name">김우진 인턴</div><div class="dept">💻 엔진기계업무시스템기획부</div><div class="desc">사용자 요구 분석 및 시스템 기획</div><div class="spec">UX 기획, 시스템 분석</div><div class="date">2025.05.19</div></div></div>
+      <div class="slide"><div class="card"><img src="assets/images/view_09.jpg" alt="이제진"><div class="name">이제진 인턴</div><div class="dept">🔬 엔진개발시험부</div><div class="desc">내구시험 및 측정장비 운영</div><div class="spec">장비 사용 경험, 데이터 해석</div><div class="date">2025.05.20</div></div></div>
+      <div class="slide"><div class="card"><img src="assets/images/view_10.jpg" alt="이민규"><div class="name">이민규 인턴</div><div class="dept">🏗 생산기술2부</div><div class="desc">공정 시뮬레이션 분석</div><div class="spec">시뮬레이션 툴, CAD</div><div class="date">2025.05.21</div></div></div>
     </div>
   </div>
 
-  <div class="atmosphere">
-    처음으로 현장에서 숨 쉬는 배를 보며, 우리도 조선의 일원이 된 듯한 느낌을 받았습니다.
+  <div class="nav-buttons">
+    <button onclick="moveSlide(-1)">←</button>
+    <button onclick="moveSlide(1)">→</button>
   </div>
 
   <script>
     let currentIndex = 0;
-    const slider = document.getElementById(\"slider\");
-    const slides = slider.children;
-    const dotsContainer = document.getElementById(\"dots\");
-
-    function updateSlider() {
-      slider.style.transform = `translateX(-${100 * currentIndex}%)`;
-      [...dotsContainer.children].forEach((dot, i) => {
-        dot.classList.toggle(\"active\", i === currentIndex);
+    function moveSlide(step) {
+      const container = document.getElementById('slider');
+      const slides = container.children;
+      currentIndex = (currentIndex + step + slides.length) % slides.length;
+      container.scrollTo({
+        left: slides[currentIndex].offsetLeft,
+        behavior: 'smooth'
       });
     }
-
-    function moveSlide(step) {
-      currentIndex = (currentIndex + step + slides.length) % slides.length;
-      updateSlider();
-    }
-
-    function createDots() {
-      for (let i = 0; i < slides.length; i++) {
-        const dot = document.createElement(\"span\");
-        dot.classList.add(\"dot\");
-        dot.onclick = () => {
-          currentIndex = i;
-          updateSlider();
-        };
-        dotsContainer.appendChild(dot);
-      }
-    }
-
-    function autoSlide() {
-      moveSlide(1);
-    }
-
-    window.onload = () => {
-      createDots();
-      updateSlider();
-      setInterval(autoSlide, 5000);
-    };
   </script>
-
 </body>
 </html>

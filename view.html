@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -31,25 +32,6 @@
       transition: opacity 0.6s ease-in-out;
     }
     body.loaded { opacity: 1; }
-
-    #splash {
-      position: fixed;
-      z-index: 3000;
-      background-color: white;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-
-    #splash img { width: 60px; margin-bottom: 1rem; }
-    .splash-text {
-      font-family: 'HDHyundaiBold';
-      font-size: 1.5rem;
-      color: var(--discovery-blue);
-    }
 
     .navbar {
       display: flex;
@@ -95,6 +77,7 @@
       pointer-events: auto;
       transform: translateY(0);
     }
+
     .menu-popup ul {
       list-style: none;
       padding: 0;
@@ -146,12 +129,10 @@
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
-
     .card img:hover {
       transform: scale(1.07);
       box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     }
-
     .info {
       font-size: 0.9rem;
       margin-top: 0.5rem;
@@ -189,24 +170,20 @@
       object-fit: cover;
       border-radius: 16px;
     }
-
     .modal-caption {
       font-weight: bold;
       font-size: 1.1rem;
       margin-top: 0.8rem;
     }
-
     .modal-right {
       text-align: left;
       color: #444;
     }
-
     .modal-sub {
       font-size: 0.95rem;
       white-space: pre-line;
       margin-bottom: 1rem;
     }
-
     .close {
       position: absolute;
       top: 20px;
@@ -215,7 +192,6 @@
       font-size: 2.2rem;
       cursor: pointer;
     }
-
     @keyframes zoomIn {
       from { transform: scale(0.9); opacity: 0; }
       to { transform: scale(1); opacity: 1; }
@@ -223,11 +199,6 @@
   </style>
 </head>
 <body>
-  <div id="splash">
-    <img src="assets/images/logo.png" alt="로고">
-    <div class="splash-text">H-int Dream</div>
-  </div>
-
   <div class="navbar">
     <img src="assets/images/logo.png" alt="HD현대중공업 로고">
     <div class="navbar-title">
@@ -243,110 +214,83 @@
       </ul>
     </div>
   </div>
-
-  <div class="page-title" data-aos="fade-down">Intern View</div>
-  <div class="subtitle" data-aos="fade-up">우리가 본 것, 우리가 느낀 것</div>
-  <div class="gallery" data-aos="fade-up">
-  <div class="card">
-    <img src="assets/images/gyu.png" alt="성민규 인턴" onclick="openModal(this, '성민규 인턴', '📊 엔진기계사업기획부\n실적 분석과 전략 수립 회의에 참여하며 기획업무를 지원', 'Excel, 기획서 작성 경험')">
-    <div class="info"><strong>성민규 인턴</strong><br>엔진기계사업기획부</div>
+  <div class="page-title">Intern View</div>
+  <div class="subtitle">우리가 본 것, 우리가 느낀 것</div>
+<div class="gallery" data-aos="fade-up">
+    <div class="card">
+      <img src="assets/images/gyu.png" alt="성민규 인턴" onclick="openModal(this, '성민규 인턴', `📊 엔진기계사업기획부`, `실적 분석과 전략 수립 회의에 참여하며 기획업무를 지원`, `Excel, 기획서 작성 경험`)">
+      <div class="info"><strong>성민규 인턴</strong><br>엔진기계사업기획부</div>
+    </div>
+    <div class="card">
+      <img src="assets/images/dong1.png" alt="김동현 인턴" onclick="openModal(this, '김동현 인턴', `🧪 엔진개발부`, `엔진개발부는 선박에 탑재되는 엔진의 개발 및 설계를 담당하는 부서입니다. 친환경 연료 기반의 엔진 개발과 고효율 설계를 통해 탄소 배출 저감과 성능 향상을 추구하며, 다양한 테스트를 통해 기술력을 검증하고 있습니다.`, `MATLAB, 공학해석툴`)">
+      <div class="info"><strong>김동현 인턴</strong><br>엔진개발부</div>
+    </div>
+    <div class="card">
+      <img src="assets/images/soo.png" alt="전수민 인턴" onclick="openModal(this, '전수민 인턴', `🧠 힘센엔진설계부`, `설계 도면 검토 및 3D 모델링 지원 업무를 수행했습니다.`, `NX, 도면 해석 능력`)">
+      <div class="info"><strong>전수민 인턴</strong><br>힘센엔진설계부</div>
+    </div>
+    <div class="card">
+      <img src="assets/images/min.png" alt="정명수 인턴" onclick="openModal(this, '정명수 인턴', `📞 엔진시스템기술영업부`, `기술 제안서 작성 및 고객 대응 프레젠테이션을 준비했습니다.`, `기술영업, 발표력`)">
+      <div class="info"><strong>정명수 인턴</strong><br>엔진시스템기술영업부</div>
+    </div>
+    <div class="card">
+      <img src="assets/images/min.png" alt="노건우 인턴" onclick="openModal(this, '노건우 인턴', `🏭 생산기술2부`, `작업표준서 개선 프로젝트 참여를 통해 현장 작업 효율을 향상시켰습니다.`, `제조공정 이해, 실습`)">
+      <div class="info"><strong>노건우 인턴</strong><br>생산기술2부</div>
+    </div>
+    <div class="card">
+      <img src="assets/images/min2.png" alt="민성제 인턴" onclick="openModal(this, '민성제 인턴', `🛠 생산기술1부`, `생산기술 1부는 비유하자면 시나리오를 쓰는 작가라고 볼 수 있습니다. 설계부서에서 내려온 도면을 검토하고 공정을 설계하며 Tool을 고르고 작업절차를 정합니다. 이러한 공정을 위해 CAM/NX를 이용하여 CNC프로그램을 개발 및 장비 시뮬레이션을 돌려보며 이상이 없는지 확인합니다. 또한, 다양한 과제를 해결하며 공정개선을 위해 힘 쓰고 있습니다.`, `생산기술 1부는 설계에서 내려온 도면을 수정할 일이 잦게 발생합니다. 그러다 보니 3D Tool(Auto CAD, NX UG등) 역량이 있으면 좋다고 생각하고 저 또한 일반기계기사 자격증 공부를 하며 3D Tool 역량을 상승시켰기에 입사에 도움이 되었다고 생각합니다.`)">
+      <div class="info"><strong>민성제 인턴</strong><br>생산기술1부</div>
+    </div>
+    <div class="card">
+      <img src="assets/images/min.png" alt="김동현 인턴" onclick="openModal(this, '김동현 인턴', `📐 대형엔진설계부`, `부품 설계 변경 및 강도 검토 지원`, `구조해석, 재료역학`)">
+      <div class="info"><strong>김동현 인턴</strong><br>대형엔진설계부</div>
+    </div>
+    <div class="card">
+      <img src="assets/images/min.png" alt="김우진 인턴" onclick="openModal(this, '김우진 인턴', `💻 엔진기계업무시스템기획부`, `사용자 요구 분석 및 시스템 기획`, `UX 기획, 시스템 분석`)">
+      <div class="info"><strong>김우진 인턴</strong><br>엔진기계업무시스템기획부</div>
+    </div>
+    <div class="card">
+      <img src="assets/images/jin.png" alt="이제진 인턴" onclick="openModal(this, '이제진 인턴', `🔬 엔진개발시험부`, `엔진개발시험부는 기존엔진의 성능테스트를 진행하며 새로운 엔진을 개발합니다. 개발된 엔진은 우리가 원하는 목표치를 도달할 수 있도록 다양한 파리미터를 현장에서 시험하는 직무입니다.`, `학부연구생으로 설계에 관련된 프로젝트에 참여`)">
+      <div class="info"><strong>이제진 인턴</strong><br>엔진개발시험부</div>
+    </div>
+    <div class="card">
+      <img src="assets/images/min.png" alt="이민규 인턴" onclick="openModal(this, '이민규 인턴', `🏗 생산기술2부`, `공정 시뮬레이션 분석`, `시뮬레이션 툴, CAD`)">
+      <div class="info"><strong>이민규 인턴</strong><br>생산기술2부</div>
+    </div>
   </div>
 
-  <div class="card">
-    <img src="assets/images/dong1.png" alt="김동현 인턴" onclick="openModal(this, '김동현 인턴', '🧪 엔진개발부\n엔진개발부는 선박에 탑재되는 엔진의 개발 및 설계를 담당하는 부서입니다. 친환경 연료 기반의 엔진 개발과 고효율 설계를 통해 탄소 배출 저감과 성능 향상을 추구하며, 다양한 테스트를 통해 기술력을 검증하고 있습니다.', 'MATLAB, 공학해석툴')">
-    <div class="info"><strong>김동현 인턴</strong><br>엔진개발부</div>
-  </div>
-
-  <div class="card">
-    <img src="assets/images/soo.png" alt="전수민 인턴" onclick="openModal(this, '전수민 인턴', '🧠 힘센엔진설계부\n설계 도면 검토 및 3D 모델링 지원', 'NX, 도면 해석 능력')">
-    <div class="info"><strong>전수민 인턴</strong><br>힘센엔진설계부</div>
-  </div>
-
-  <div class="card">
-    <img src="assets/images/min.png" alt="정명수 인턴" onclick="openModal(this, '정명수 인턴', '📞 엔진시스템기술영업부\n기술 제안서 및 프레젠테이션 준비', '기술영업, 발표력')">
-    <div class="info"><strong>정명수 인턴</strong><br>엔진시스템기술영업부</div>
-  </div>
-
-  <div class="card">
-    <img src="assets/images/min.png" alt="노건우 인턴" onclick="openModal(this, '노건우 인턴', '🏭 생산기술2부\n작업표준서 개선 프로젝트 참여', '제조공정 이해, 실습')">
-    <div class="info"><strong>노건우 인턴</strong><br>생산기술2부</div>
-  </div>
-
-  <div class="card">
-    <img src="assets/images/min2.png" alt="민성제 인턴"
-      onclick="openModal(this, '민성제 인턴', 
-      `🛠 생산기술1부\n생산기술 1부는 비유하자면 시나리오를 쓰는 작가라고 볼 수 있습니다. 설계부서에서 내려온 도면을 검토하고 공정을 설계하며 Tool을 고르고 작업절차를 정합니다. 이러한 공정을 위해 CAM/NX를 이용하여 CNC프로그램을 개발 및 장비 시뮬레이션을 돌려보며 
-이상이 없는지 확인합니다. 또한, 다양한 과제를 해결하며 공정개선을 위해 힘 쓰고 있습니다.`,
-      `생산기술 1부는 설계에서 내려온 도면을 수정할 일이 잦게 발생합니다. 그러다 보니 3D Tool(Auto CAD, NX UG등) 역량이 있으면 좋다고 생각하고 저 또한 일반기계기사 자격증 공부를 하며 3D Tool 역량을 상승시켰기에 입사에 도움이 되었다고 생각합니다.`)">
-    <div class="info"><strong>민성제 인턴</strong><br>생산기술1부</div>
-  </div>
-
-  <div class="card">
-    <img src="assets/images/min.png" alt="김동현 인턴" 
-      onclick="openModal(this, '김동현 인턴', '📐 대형엔진설계부\n부품 설계 변경 및 강도 검토 지원', '구조해석, 재료역학')">
-    <div class="info"><strong>김동현 인턴</strong><br>대형엔진설계부</div>
-  </div>
-
-  <div class="card">
-    <img src="assets/images/min.png" alt="김우진 인턴" 
-      onclick="openModal(this, '김우진 인턴', '💻 엔진기계업무시스템기획부\n사용자 요구 분석 및 시스템 기획', 'UX 기획, 시스템 분석')">
-    <div class="info"><strong>김우진 인턴</strong><br>엔진기계업무시스템기획부</div>
-  </div>
-
-  <div class="card">
-    <img src="assets/images/jin.png" alt="이제진 인턴" 
-      onclick="openModal(this, '이제진 인턴', 
-      `🔬 엔진개발시험부\n엔진개발시험부는 기존엔진의 성능테스트를 진행하며 새로운 엔진을 개발합니다. 
-개발된 엔진은 우리가 원하는 목표치를 도달할 수 있도록 다양한 파리미터를 현장에서 시험하는 직무입니다.`, 
-      '학부연구생으로 설계에 관련된 프로젝트에 참여')">
-    <div class="info"><strong>이제진 인턴</strong><br>엔진개발시험부</div>
-  </div>
-
-  <div class="card">
-    <img src="assets/images/min.png" alt="이민규 인턴" onclick="openModal(this, '이민규 인턴', '🏗 생산기술2부\n공정 시뮬레이션 분석', '시뮬레이션 툴, CAD')">
-    <div class="info"><strong>이민규 인턴</strong><br>생산기술2부</div>
-  </div>
-</div>
   <div id="imageModal" class="modal" onclick="closeModal()">
     <div class="close">&times;</div>
-    <div class="modal-content">
+    <div class="modal-content" onclick="event.stopPropagation()">
       <div class="modal-left">
         <img id="modalImage" src="" alt="">
         <div class="modal-caption" id="modalCaption"></div>
       </div>
       <div class="modal-right">
-        <div class="modal-sub" id="modalDesc"></div>
-        <div class="modal-sub" id="modalSpec"></div>
+        <div class="qa-block">
+          <div class="question">Q. 직무에서는 어떤 업무를 하나요?</div>
+          <div class="answer" id="modalDesc"></div>
+          <div class="question">Q. 이 직무에 도움이 된 대학 시절 경험은?</div>
+          <div class="answer" id="modalSpec"></div>
+        </div>
       </div>
     </div>
   </div>
-
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    AOS.init({ duration: 800, once: true });
-
     function toggleMenu() {
       document.getElementById("menuPopup").classList.toggle("active");
     }
-
-    function openModal(img, name, desc, spec) {
+    function openModal(img, name, team, desc, spec) {
       document.getElementById("modalImage").src = img.src;
       document.getElementById("modalCaption").innerText = name;
       document.getElementById("modalDesc").innerText = desc;
-      document.getElementById("modalSpec").innerText = "도움이 된 스펙: " + spec;
+      document.getElementById("modalSpec").innerText = spec;
       document.getElementById("imageModal").style.display = "flex";
     }
 
     function closeModal() {
       document.getElementById("imageModal").style.display = "none";
     }
-
-    window.addEventListener("load", () => {
-      setTimeout(() => {
-        document.getElementById("splash").style.display = "none";
-        document.body.classList.add("loaded");
-      }, 800);
-    });
   </script>
 </body>
 </html>

@@ -7,37 +7,137 @@
   <link rel="icon" href="assets/images/logo.png" type="image/png">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <style>
-    @font-face { font-family:'HDHyundaiLight'; src:url('assets/fonts/HDHyundai-Light.ttf') format('truetype'); }
-    @font-face { font-family:'HDHyundaiBold'; src:url('assets/fonts/HDHyundai-Bold.ttf') format('truetype'); }
-    :root { --discovery-blue:#003087; --prosperity-green:#008233; --trust-blue:#002554; --gray-text:#63666A; --bg-light:#f9f9f9; }
-    body { margin:0; font-family:'HDHyundaiLight',sans-serif; background:var(--bg-light); color:var(--gray-text); opacity:0; transition:opacity .6s ease-in-out; }
-    body.loaded { opacity:1; }
-    #splash { position:fixed; top:0; left:0; width:100%; height:100%; background:#fff; display:flex; flex-direction:column; justify-content:center; align-items:center; z-index:1000; }
-    #splash img { width:60px; }
-    .splash-text { font-family:'HDHyundaiBold'; font-size:1.5rem; color:var(--trust-blue); margin-top:1rem; }
-    .navbar { display:flex; justify-content:space-between; align-items:center; padding:1rem; background:#fff; box-shadow:0 2px 4px rgba(0,0,0,0.1); position:sticky; top:0; z-index:999; }
-    .navbar-title { font-family:'HDHyundaiBold'; font-size:1.2rem; color:var(--discovery-blue); text-align:center; flex-grow:1; }
-    .menu-icon { font-size:1.5rem; cursor:pointer; }
-    .menu-popup { position:absolute; top:60px; right:1rem; background:#fff; border:1px solid #ccc; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.1); opacity:0; pointer-events:none; transform:translateY(-10px); transition:all .3s; }
-    .menu-popup.active { opacity:1; pointer-events:auto; transform:translateY(0); }
-    .menu-popup ul { list-style:none; margin:0; padding:.5rem; }
-    .menu-popup li { margin:.5rem 0; }
-    .menu-popup a { text-decoration:none; color:var(--gray-text); }
-    .content { max-width:900px; margin:2rem auto; padding:0 1rem; }
-    .page-title { text-align:center; font-size:1.8rem; font-family:'HDHyundaiBold'; color:var(--trust-blue); margin-bottom:.5rem; }
-    .subtitle { text-align:center; font-size:1rem; color:var(--gray-text); margin-bottom:2rem; }
-    .month-section { margin-bottom:2rem; }
-    .month-title { font-size:1.4rem; font-family:'HDHyundaiBold'; color:var(--discovery-blue); border-bottom:2px solid var(--prosperity-green); padding-bottom:.5rem; margin-bottom:1rem; }
-    .events { display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:1rem; }
-    .event-card { background:#fff; border-radius:12px; box-shadow:0 4px 12px rgba(0,0,0,0.08); padding:1rem; display:flex; flex-direction:column; transition:transform .3s; }
-    .event-card:hover { transform:translateY(-4px); }
-    .event-date { font-size:.9rem; color:var(--prosperity-green); margin-bottom:.5rem; }
-    .event-title { font-size:1.1rem; font-family:'HDHyundaiBold'; color:var(--discovery-blue); margin-bottom:.5rem; }
-    .event-desc { font-size:.95rem; flex-grow:1; }
+    @font-face { font-family: 'HDHyundaiLight'; src: url('assets/fonts/HDHyundai-Light.ttf') format('truetype'); }
+    @font-face { font-family: 'HDHyundaiBold'; src: url('assets/fonts/HDHyundai-Bold.ttf') format('truetype'); }
+
+    :root {
+      --discovery-blue: #003087;
+      --prosperity-green: #008233;
+      --trust-blue: #002554;
+      --gray-text: #63666A;
+      --bg-light: #f9f9f9;
+    }
+
+    body {
+      font-family: 'HDHyundaiLight', sans-serif;
+      margin: 0;
+      background-color: var(--bg-light);
+      color: var(--gray-text);
+      opacity: 0;
+      transition: opacity 0.6s ease-in-out;
+    }
+    body.loaded {
+      opacity: 1;
+    }
+
+    #splash {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: #fff;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      z-index: 1000;
+    }
+    #splash img { width: 60px; }
+    .splash-text {
+      font-family: 'HDHyundaiBold';
+      font-size: 1.5rem;
+      color: var(--trust-blue);
+      margin-top: 1rem;
+    }
+
+    .navbar {
+      display: flex; justify-content: space-between; align-items: center;
+      background: #fff;
+      padding: 1rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      position: sticky; top: 0;
+      z-index: 999;
+    }
+    .navbar-title {
+      flex-grow: 1;
+      text-align: center;
+      font-family: 'HDHyundaiBold';
+      font-size: 1.2rem;
+      color: var(--discovery-blue);
+    }
+    .menu-icon { font-size: 1.5rem; cursor: pointer; }
+    .menu-popup {
+      position: absolute; top: 60px; right: 1rem;
+      background: #fff; border: 1px solid #ccc; border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      opacity: 0; pointer-events: none;
+      transform: translateY(-10px);
+      transition: all 0.3s;
+    }
+    .menu-popup.active {
+      opacity: 1; pointer-events: auto;
+      transform: translateY(0);
+    }
+    .menu-popup ul { list-style: none; margin: 0; padding: 0.5rem; }
+    .menu-popup li { margin: 0.5rem 0; }
+    .menu-popup a { text-decoration: none; color: var(--gray-text); }
+
+    .content {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    .page-title {
+      text-align: center;
+      font-size: 1.8rem;
+      font-family: 'HDHyundaiBold';
+      color: var(--trust-blue);
+      margin-bottom: 0.5rem;
+    }
+    .subtitle {
+      text-align: center;
+      font-size: 1rem;
+      color: var(--gray-text);
+      margin-bottom: 2rem;
+    }
+
+    .month-section { margin-bottom: 2rem; }
+    .month-title {
+      font-size: 1.4rem;
+      font-family: 'HDHyundaiBold';
+      color: var(--discovery-blue);
+      border-bottom: 2px solid var(--prosperity-green);
+      padding-bottom: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .events {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+      gap: 1rem;
+    }
+    .event-card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      padding: 1rem;
+      display: flex; flex-direction: column;
+      transition: transform 0.3s;
+    }
+    .event-card:hover { transform: translateY(-4px); }
+    .event-date {
+      font-size: 0.9rem;
+      color: var(--prosperity-green);
+      margin-bottom: 0.5rem;
+    }
+    .event-title {
+      font-size: 1.1rem;
+      font-family: 'HDHyundaiBold';
+      color: var(--discovery-blue);
+      margin-bottom: 0.5rem;
+    }
+    .event-desc { font-size: 0.95rem; flex-grow: 1; }
+
     @media(max-width:600px) {
-      .events { grid-template-columns:1fr; }
-      .page-title { font-size:1.6rem; }
-      .month-title { font-size:1.2rem; }
+      .events { grid-template-columns: 1fr; }
+      .page-title { font-size: 1.6rem; }
+      .month-title { font-size: 1.2rem; }
     }
   </style>
 </head>
@@ -140,4 +240,9 @@
         <div class="event-card">
           <div class="event-date">6/?</div>
           <div class="event-title">최종 면접</div>
+          <div class="event-desc">인턴십 성과를 바탕으로 최종 면접이 진행되었습니다.</div>
+        </div>
+        <div class="event-card">
+          <div class="event-date">6/20</div>
+          <div class="event-title">인턴십 종료</div>
           <div class="event

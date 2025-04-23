@@ -30,46 +30,37 @@
     }
     body.loaded { opacity: 1; }
     #splash {
-      position: fixed;
-      z-index: 3000;
-      background-color: white;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      position: fixed; inset: 0; z-index: 3000;
+      background: white;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
     }
     #splash img { width: 60px; margin-bottom: 1rem; }
     .splash-text {
       font-family: 'HDHyundaiBold';
-      font-size: 1.5rem;
-      color: var(--discovery-blue);
+      font-size: 1.5rem; color: var(--discovery-blue);
     }
     .navbar {
-      display: flex;
-      justify-content: space-between;
+      display: flex; justify-content: space-between;
       align-items: center;
-      background-color: white;
-      padding: 1rem 1.5rem;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      background: white; padding: 1rem 1.5rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
       position: sticky; top: 0; z-index: 1000;
     }
     .navbar img { height: 32px; }
     .navbar-title {
-      font-size: 1.5rem;
-      font-family: 'HDHyundaiBold';
+      font-size: 1.5rem; font-family: 'HDHyundaiBold';
       position: absolute; left: 50%; transform: translateX(-50%);
     }
-    .navbar-title a { text-decoration: none; color: inherit; }
+    .navbar-title a { color: inherit; text-decoration: none; }
     .navbar-title .hd { color: var(--discovery-blue); }
-    .menu-icon { font-size: 1.5rem; cursor: pointer; z-index: 1002; }
+    .menu-icon { font-size: 1.5rem; cursor: pointer; }
     .menu-popup {
       position: absolute; top: 64px; right: 20px;
-      background: white; border: 1px solid #ccc; border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      padding: 0.5rem 1rem; z-index: 999;
-      opacity: 0; pointer-events: none; transform: translateY(-10px);
+      background: white; border: 1px solid #ccc;
+      border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      padding: 0.5rem 1rem; opacity: 0;
+      pointer-events: none; transform: translateY(-10px);
       transition: all 0.3s ease;
     }
     .menu-popup.active {
@@ -78,20 +69,19 @@
     .menu-popup ul { list-style: none; padding: 0; margin: 0; }
     .menu-popup li { margin: 0.5rem 0; }
     .menu-popup a {
-      text-decoration: none; color: var(--gray-text);
-      font-size: 0.95rem; transition: color 0.2s;
+      color: var(--gray-text); font-size: 0.95rem;
+      text-decoration: none;
     }
     .menu-popup a:hover { color: var(--discovery-blue); }
-
     .page-title {
       text-align: center; margin: 2rem 1rem 0.5rem;
-      font-size: 1.8rem; font-weight: bold; color: var(--discovery-blue);
+      font-size: 1.8rem; font-weight: bold;
+      color: var(--discovery-blue);
     }
     .subtitle {
-      text-align: center; font-size: 1rem; color: var(--gray-text);
-      margin-bottom: 2rem;
+      text-align: center; font-size: 1rem;
+      color: var(--gray-text); margin-bottom: 2rem;
     }
-
     .gallery {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
@@ -107,29 +97,34 @@
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     }
     .card img:hover {
-      transform: scale(1.07); box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      transform: scale(1.07);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     }
     .info {
       font-size: 0.9rem; margin-top: 0.5rem;
       line-height: 1.3; word-break: keep-all;
     }
-
     /* Modal */
     .modal {
-      display: none; position: fixed; z-index: 2000;
-      left: 0; top: 0; width: 100%; height: 100%;
-      background-color: rgba(0,0,0,0.7);
+      display: none; position: fixed; inset: 0;
+      background: rgba(0,0,0,0.7); z-index: 2000;
       justify-content: center; align-items: center;
     }
     .modal-content {
-      background: white; padding: 1.5rem; border-radius: 20px;
-      display: flex; flex-direction: column; align-items: center;
-      max-width: 90%; max-height: 90vh; overflow-y: auto;
-      animation: zoomIn 0.3s ease;
+      background: #fff; padding: 2rem 1.5rem;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      display: flex; flex-direction: column;
+      align-items: center;
+      width: 90%; max-width: 400px;
+      max-height: 90vh; overflow-y: auto;
+      animation: modalFadeIn 0.3s ease-out forwards;
     }
-    .modal-left {
-      text-align: center; margin-bottom: 1rem;
+    @keyframes modalFadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
     }
+    .modal-left { text-align: center; margin-bottom: 1rem; }
     .modal-left img {
       width: 120px; height: 150px; object-fit: cover;
       border-radius: 16px;
@@ -140,28 +135,37 @@
     }
     .modal-dept {
       font-family: 'HDHyundaiBold'; font-size: 1rem;
-      color: var(--discovery-blue); margin-bottom: 1rem;
-      text-align: center;
+      color: var(--discovery-blue); margin-bottom: 0.8rem;
+      position: relative; text-align: center;
+    }
+    .modal-dept::after {
+      content: ""; position: absolute; bottom: -4px;
+      left: 50%; transform: translateX(-50%);
+      width: 36px; height: 3px;
+      background: var(--discovery-blue); border-radius: 2px;
     }
     .modal-q {
-      width: 100%; font-weight: bold; font-size: 0.95rem;
-      color: white; background-color: var(--discovery-blue);
-      padding: 0.4rem 0.6rem; border-radius: 8px;
-      margin-top: 0.8rem; text-align: left;
+      width: 100%; background: #f0f7ff;
+      color: var(--discovery-blue); font-weight: 600;
+      font-size: 0.95rem; padding: 0.6rem 1rem;
+      border-left: 4px solid var(--discovery-blue);
+      border-radius: 4px; margin-top: 1rem;
+      opacity: 0; animation: slideUp 0.4s ease-out forwards;
     }
     .modal-a {
-      width: 100%; font-size: 0.9rem; color: #444;
-      margin: 0.4rem 0 0; padding-left: 0.6rem;
-      line-height: 1.4; word-break: keep-all;
-      text-align: left;
+      width: 100%; font-size: 0.9rem; color: #333;
+      padding-left: 1.2rem; margin: 0.4rem 0 0;
+      line-height: 1.5; opacity: 0;
+      animation: slideUp 0.4s ease-out forwards;
+      animation-delay: 0.15s;
+    }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
     }
     .close {
-      position: absolute; top: 20px; right: 30px;
-      color: white; font-size: 2.2rem; cursor: pointer;
-    }
-    @keyframes zoomIn {
-      from { transform: scale(0.9); opacity: 0; }
-      to { transform: scale(1); opacity: 1; }
+      position: absolute; top: 16px; right: 16px;
+      color: #fff; font-size: 1.8rem; cursor: pointer;
     }
   </style>
 </head>
@@ -170,7 +174,6 @@
     <img src="assets/images/logo.png" alt="로고">
     <div class="splash-text">H-int Dream</div>
   </div>
-
   <div class="navbar">
     <img src="assets/images/logo.png" alt="HD현대중공업 로고">
     <div class="navbar-title">
@@ -186,76 +189,75 @@
       </ul>
     </div>
   </div>
-
   <div class="page-title" data-aos="fade-down">Intern View</div>
   <div class="subtitle" data-aos="fade-up">우리가 본 것, 우리가 느낀 것</div>
-
   <div class="gallery" data-aos="fade-up">
-    <!-- 1 -->
+    <!-- 1 -->  
     <div class="card">
       <img src="assets/images/gyu.png" alt="성민규 인턴"
-        onclick="openModal(this,'성민규 인턴','엔진기계사업기획부','', '실적 분석과 전략 수립 회의에 참여하며 기획업무를 지원','Excel, 기획서 작성 경험')">
+        onclick="openModal(this,'성민규 인턴','엔진기계사업기획부','','실적 분석과 전략 수립 회의에 참여하며 기획업무를 지원','Excel, 기획서 작성 경험')">
       <div class="info"><strong>성민규 인턴</strong><br>엔진기계사업기획부</div>
     </div>
     <!-- 2 -->
     <div class="card">
       <img src="assets/images/dong1.png" alt="김동현 인턴"
-        onclick="openModal(this,'김동현 인턴','엔진개발부','', '친환경 연료 기반 엔진 설계 및 테스트 지원','MATLAB, 공학해석툴')">
+        onclick="openModal(this,'김동현 인턴','엔진개발부','','친환경 연료 기반 엔진 설계 및 테스트 지원','MATLAB, 공학해석툴')">
       <div class="info"><strong>김동현 인턴</strong><br>엔진개발부</div>
     </div>
     <!-- 3 -->
     <div class="card">
       <img src="assets/images/soo.png" alt="전수민 인턴"
-        onclick="openModal(this,'전수민 인턴','힘센엔진설계부','', '설계 도면 검토 및 3D 모델링 지원','NX, 도면 해석 능력')">
+        onclick="openModal(this,'전수민 인턴','힘센엔진설계부','','설계 도면 검토 및 3D 모델링 지원','NX, 도면 해석 능력')">
       <div class="info"><strong>전수민 인턴</strong><br>힘센엔진설계부</div>
     </div>
     <!-- 4 -->
     <div class="card">
       <img src="assets/images/min.png" alt="정명수 인턴"
-        onclick="openModal(this,'정명수 인턴','엔진시스템기술영업부','', '기술 제안서 및 프레젠테이션 준비','기술영업, 발표력')">
+        onclick="openModal(this,'정명수 인턴','엔진시스템기술영업부','','기술 제안서 및 프레젠테이션 준비','기술영업, 발표력')">
       <div class="info"><strong>정명수 인턴</strong><br>엔진시스템기술영업부</div>
     </div>
     <!-- 5 -->
     <div class="card">
       <img src="assets/images/min.png" alt="노건우 인턴"
-        onclick="openModal(this,'노건우 인턴','생산기술2부','', '작업표준서 개선 프로젝트 참여','제조공정 이해, 실습')">
+        onclick="openModal(this,'노건우 인턴','생산기술2부','','작업표준서 개선 프로젝트 참여','제조공정 이해, 실습')">
       <div class="info"><strong>노건우 인턴</strong><br>생산기술2부</div>
     </div>
     <!-- 6 -->
     <div class="card">
       <img src="assets/images/min2.png" alt="민성제 인턴"
-        onclick="openModal(this,'민성제 인턴','생산기술1부','', '생산기술 1부 관련 3D Tool 역량 강화 활동','AutoCAD, NX UG, 일반기계기사 자격증')">
+        onclick="openModal(this,'민성제 인턴','생산기술1부','','생산기술 1부 관련 3D Tool 역량 강화 활동','AutoCAD, NX UG, 일반기계기사 자격증')">
       <div class="info"><strong>민성제 인턴</strong><br>생산기술1부</div>
     </div>
-    <!-- 7 -->
+       <!-- 7 -->
     <div class="card">
       <img src="assets/images/min.png" alt="김동현 인턴"
-        onclick="openModal(this,'김동현 인턴','대형엔진설계부','', '부품 설계 변경 및 강도 검토 지원','구조해석, 재료역학')">
+        onclick="openModal(this,'김동현 인턴','대형엔진설계부','','부품 설계 변경 및 강도 검토 지원','구조해석, 재료역학')">
       <div class="info"><strong>김동현 인턴</strong><br>대형엔진설계부</div>
     </div>
     <!-- 8 -->
     <div class="card">
       <img src="assets/images/min.png" alt="김우진 인턴"
-        onclick="openModal(this,'김우진 인턴','엔진기계업무시스템기획부','', '사용자 요구 분석 및 시스템 기획','UX 기획, 시스템 분석')">
+        onclick="openModal(this,'김우진 인턴','엔진기계업무시스템기획부','','사용자 요구 분석 및 시스템 기획','UX 기획, 시스템 분석')">
       <div class="info"><strong>김우진 인턴</strong><br>엔진기계업무시스템기획부</div>
     </div>
     <!-- 9 -->
     <div class="card">
       <img src="assets/images/jin.png" alt="이제진 인턴"
-        onclick="openModal(this,'이제진 인턴','엔진개발시험부','', '기존 엔진 성능 테스트 및 시험 참여','학부연구생 프로젝트 참여')">
+        onclick="openModal(this,'이제진 인턴','엔진개발시험부','','기존 엔진 성능 테스트 및 신형 엔진 개발 시험 참여','학부연구생으로 설계 프로젝트 참여')">
       <div class="info"><strong>이제진 인턴</strong><br>엔진개발시험부</div>
     </div>
     <!-- 10 -->
     <div class="card">
       <img src="assets/images/min.png" alt="이민규 인턴"
-        onclick="openModal(this,'이민규 인턴','생산기술2부','', '공정 시뮬레이션 분석','시뮬레이션 툴, CAD')">
+        onclick="openModal(this,'이민규 인턴','생산기술2부','','공정 시뮬레이션 분석','시뮬레이션 툴, CAD')">
       <div class="info"><strong>이민규 인턴</strong><br>생산기술2부</div>
     </div>
-  </div>
+  </div> <!-- /.gallery -->
 
+  <!-- 모달 -->
   <div id="imageModal" class="modal" onclick="closeModal()">
-    <div class="close">&times;</div>
     <div class="modal-content">
+      <div class="close">&times;</div>
       <div class="modal-left">
         <img id="modalImage" src="" alt="">
         <div class="modal-caption" id="modalCaption"></div>
@@ -268,6 +270,7 @@
     </div>
   </div>
 
+  <!-- 스크립트 -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
     AOS.init({ duration: 800, once: true });
@@ -300,3 +303,4 @@
   </script>
 </body>
 </html>
+

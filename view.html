@@ -327,13 +327,25 @@
       document.getElementById("menuPopup").classList.toggle("active");
     }
 
-    function openModal(img, name, desc, spec) {
+    function openModal(img, name, department, desc, spec) {
       document.getElementById("modalImage").src = img.src;
       document.getElementById("modalCaption").innerText = name;
-      document.getElementById("modalDesc").innerText = desc;
-      document.getElementById("modalSpec").innerText = "도움이 된 스펙: " + spec;
+    
+      document.getElementById("modalDesc").innerHTML = `
+        <div style="font-size: 18px; margin-bottom: 10px;"><strong>💻 ${department}</strong></div>
+        <div style="margin-bottom: 15px;">
+          <strong>Q. ${department}에서는 어떤 업무를 수행하시나요?</strong><br>
+          ${desc}
+        </div>
+        <div>
+          <strong>Q. 대학생활에서 경험한 것 중에 해당 업무에 도움되었던건 어떤게 있나요?</strong><br>
+          ${spec}
+        </div>
+      `;
+
       document.getElementById("imageModal").style.display = "flex";
     }
+
 
     function closeModal() {
       document.getElementById("imageModal").style.display = "none";

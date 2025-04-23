@@ -328,23 +328,36 @@
     }
 
     function openModal(img, name, department, desc, spec) {
-      document.getElementById("modalImage").src = img.src;
-      document.getElementById("modalCaption").innerText = name;
-    
-      document.getElementById("modalDesc").innerHTML = `
-        <div style="font-size: 18px; margin-bottom: 10px;"><strong>💻 ${department}</strong></div>
-        <div style="margin-bottom: 15px;">
-          <strong>Q. ${department}에서는 어떤 업무를 수행하시나요?</strong><br>
-          ${desc}
-        </div>
-        <div>
-          <strong>Q. 대학생활에서 경험한 것 중에 해당 업무에 도움되었던건 어떤게 있나요?</strong><br>
-          ${spec}
-        </div>
-      `;
+  document.getElementById("modalImage").src = img.src;
+  document.getElementById("modalCaption").innerText = name;
 
-      document.getElementById("imageModal").style.display = "flex";
-    }
+  document.getElementById("modalDesc").innerHTML = `
+    <div style="font-size: 20px; font-weight: bold; margin-bottom: 10px;">
+      💻 ${department}
+    </div>
+
+    <div style="margin-bottom: 20px;">
+      <div style="font-weight: bold; font-size: 16px; color: #333; margin-bottom: 6px;">
+        Q. ${department}에서는 어떤 업무를 수행하시나요?
+      </div>
+      <div style="font-size: 15px; line-height: 1.6; color: #555;">
+        ${desc}
+      </div>
+    </div>
+
+    <div>
+      <div style="font-weight: bold; font-size: 16px; color: #333; margin-bottom: 6px;">
+        Q. 대학생활에서 경험한 것 중에 해당 업무에 도움되었던 건 어떤 게 있나요?
+      </div>
+      <div style="font-size: 15px; line-height: 1.6; color: #555;">
+        ${spec}
+      </div>
+    </div>
+  `;
+
+  document.getElementById("imageModal").style.display = "flex";
+}
+
 
 
     function closeModal() {

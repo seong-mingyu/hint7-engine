@@ -96,15 +96,20 @@
 
     /* Page Title & Subtitle */
     .page-title {
-      text-align: center;
-      margin: 2rem 1rem 0.5rem;
-      font-size: 1.8rem;
-      font-weight: bold;
-      /* Gradient text like index card */
-      background: linear-gradient(90deg, #00B3FF, #9932CC);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+  text-align: center;
+  margin: 2rem 1rem 0.5rem;
+  font-size: 1.8rem;
+  font-weight: bold;
+  /* index 카드와 100% 동일한 그라데이션 */
+  background: -webkit-linear-gradient(90deg, #00B3FF 0%, #9932CC 100%);
+  background: linear-gradient(90deg, #00B3FF 0%, #9932CC 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  /* 표준 속성 */
+  background-clip: text;
+  color: transparent;
+}
+
     .subtitle {
       text-align: center;
       font-size: 1rem;

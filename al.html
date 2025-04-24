@@ -94,34 +94,19 @@
     .menu-popup a { text-decoration: none; color: var(--gray-text); font-size: 0.95rem; transition: color 0.2s; }
     .menu-popup a:hover { color: var(--discovery-blue); }
 
-    /* Section Links */
-    .section-links {
-      display: flex;
-      justify-content: center;
-      padding: 4rem 1rem;
-    }
-    .section-link {
-      background-color: white;
-      border-radius: 12px;
-      padding: 2rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      text-decoration: none;
-      font-size: 1.5rem;
-      font-family: 'HDHyundaiBold';
-      color: var(--gray-text);
-      transition: transform 0.2s;
-    }
-    .section-link:hover { transform: scale(1.05); }
-    .section-link .highlight-al {
-      background: linear-gradient(90deg, #00B3FF, #9932CC);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    /* Page Title & Subtitle */
+    .page-title {
+      text-align: center;
+      margin: 2rem 1rem 0.5rem;
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: var(--trust-blue);
     }
     .subtitle {
-      font-family: 'HDHyundaiLight';
+      text-align: center;
       font-size: 1rem;
-      margin-top: 0.5rem;
       color: var(--gray-text);
+      margin-bottom: 2rem;
     }
   </style>
 </head>
@@ -152,34 +137,21 @@
     </ul>
   </div>
 
-  <!-- Intern Al Card -->
-  <div class="section-links" data-aos="fade-up" data-aos-delay="200">
-    <a href="al.html" class="section-link">
-      <span class="highlight-al">Intern Al</span><br>
-      <div class="subtitle">내면의 성향, AI가 추천하는 직무</div>
-    </a>
-  </div>
+  <!-- Page Header for Intern Al -->
+  <div class="page-title" data-aos="fade-down">Intern Al</div>
+  <div class="subtitle" data-aos="fade-up">내면의 성향, AI가 추천하는 직무</div>
 
   <!-- Scripts -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
     AOS.init({ duration: 800, once: true });
-    function toggleMenu() {
-      document.getElementById("menuPopup").classList.toggle("active");
-    }
+    function toggleMenu() { document.getElementById("menuPopup").classList.toggle("active"); }
     window.addEventListener("click", function(e) {
       const menu = document.getElementById("menuPopup");
       const icon = document.querySelector(".menu-icon");
-      if (!menu.contains(e.target) && !icon.contains(e.target)) {
-        menu.classList.remove("active");
-      }
+      if (!menu.contains(e.target) && !icon.contains(e.target)) menu.classList.remove("active");
     });
-    window.addEventListener("load", () => {
-      setTimeout(() => {
-        document.getElementById("splash").style.display = "none";
-        document.body.classList.add("loaded");
-      }, 800);
-    });
+    window.addEventListener("load", () => { setTimeout(() => { document.getElementById("splash").style.display = "none"; document.body.classList.add("loaded"); }, 800); });
   </script>
 </body>
 </html>

@@ -6,10 +6,18 @@
   <title>Intern Al - H-int</title>
   <link rel="icon" href="assets/images/logo.png" type="image/png">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
   <style>
-    /* 폰트 */
-    @font-face { font-family: 'HDHyundaiLight'; src: url('assets/fonts/HDHyundai-Light.ttf') format('truetype'); }
-    @font-face { font-family: 'HDHyundaiBold';  src: url('assets/fonts/HDHyundai-Bold.ttf') format('truetype'); }
+    /* 폰트 설정 */
+    @font-face {
+      font-family: 'HDHyundaiLight';
+      src: url('assets/fonts/HDHyundai-Light.ttf') format('truetype');
+    }
+    @font-face {
+      font-family: 'HDHyundaiBold';
+      src: url('assets/fonts/HDHyundai-Bold.ttf') format('truetype');
+    }
+
     :root {
       --discovery-blue: #003087;
       --prosperity-green: #008233;
@@ -17,6 +25,7 @@
       --gray-text: #63666A;
       --bg-light: #f4f4f4;
     }
+
     body {
       font-family: 'HDHyundaiLight', sans-serif;
       margin: 0;
@@ -25,96 +34,153 @@
       opacity: 0;
       transition: opacity 0.6s ease-in-out;
     }
-    body.loaded { opacity: 1; }
+    body.loaded {
+      opacity: 1;
+    }
 
-    /* 스플래시 */
+    /* Splash Screen */
     #splash {
-      position: fixed; z-index: 3000;
+      position: fixed;
+      z-index: 3000;
       background-color: white;
       width: 100%; height: 100%;
-      display: flex; flex-direction: column;
-      justify-content: center; align-items: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       animation: fadeSplash 0.8s ease forwards;
     }
-    #splash img { width: 60px; margin-bottom: 1rem; }
+    #splash img {
+      width: 60px;
+      margin-bottom: 1rem;
+    }
     .splash-text {
-      font-family: 'HDHyundaiBold'; font-size: 1.5rem;
+      font-family: 'HDHyundaiBold';
+      font-size: 1.5rem;
       color: var(--discovery-blue);
     }
-    @keyframes fadeSplash { 0% { opacity: 1; } 99% { opacity: 0; } 100% { display: none; z-index: -1; } }
+    @keyframes fadeSplash {
+      0%   { opacity: 1; }
+      99%  { opacity: 0; }
+      100% { display: none; z-index: -1; }
+    }
 
-    /* 네비게이션 */
+    /* Navbar */
     .navbar {
-      display: flex; justify-content: space-between; align-items: center;
-      background-color: white; padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: white;
+      padding: 1rem 1.5rem;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      position: sticky; top: 0; z-index: 1000;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
-    .navbar img { height: 32px; }
+    .navbar img {
+      height: 32px;
+    }
     .navbar-title {
-      font-family: 'HDHyundaiBold'; font-size: 1.5rem;
-      position: absolute; left: 50%; transform: translateX(-50%);
+      font-family: 'HDHyundaiBold';
+      font-size: 1.5rem;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
     }
-    .navbar-title a { text-decoration: none; color: inherit; }
-    .navbar-title .hd { color: var(--discovery-blue); }
-    .menu-icon { font-size: 1.5rem; cursor: pointer; z-index: 1002; }
+    .navbar-title a {
+      text-decoration: none;
+      color: inherit;
+    }
+    .navbar-title .hd {
+      color: var(--discovery-blue);
+    }
+    .menu-icon {
+      font-size: 1.5rem;
+      cursor: pointer;
+      z-index: 1002;
+    }
 
-    /* 팝업 메뉴 */
+    /* Menu Popup */
     .menu-popup {
-      position: absolute; top: 64px; right: 20px;
-      background: white; border: 1px solid #ccc; border-radius: 10px;
+      position: absolute;
+      top: 64px; right: 20px;
+      background: white;
+      border: 1px solid #ccc;
+      border-radius: 10px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      padding: 0.5rem 1rem; z-index: 999;
-      opacity: 0; pointer-events: none; transform: translateY(-10px);
+      padding: 0.5rem 1rem;
+      z-index: 999;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-10px);
       transition: all 0.3s ease;
     }
-    .menu-popup.active { opacity: 1; pointer-events: auto; transform: translateY(0); }
-    .menu-popup ul { list-style: none; padding: 0; margin: 0; }
-    .menu-popup li { margin: 0.5rem 0; }
-    .menu-popup a { text-decoration: none; color: var(--gray-text); font-size: 0.95rem; transition: color 0.2s; }
-    .menu-popup a:hover { color: var(--discovery-blue); }
+    .menu-popup.active {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+    .menu-popup ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .menu-popup li {
+      margin: 0.5rem 0;
+    }
+    .menu-popup a {
+      text-decoration: none;
+      color: var(--gray-text);
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+    .menu-popup a:hover {
+      color: var(--discovery-blue);
+    }
 
-   /* Intern Al 페이지 헤더 */
-.page-title {
-  text-align: center;
-  margin: 2rem 1rem 0.5rem;
-  font-size: 1.8rem;
-  /* net.html 에서 쓰는 볼드체 */
-  font-family: 'HDHyundaiBold';
-  /* index 카드와 동일한 그라데이션 */
-  background: -webkit-linear-gradient(90deg, #00B3FF 0%, #9932CC 100%);
-  background: linear-gradient(90deg, #00B3FF 0%, #9932CC 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  /* 표준 속성 */
-  background-clip: text;
-  color: transparent;
-}
-
-.subtitle {
-  text-align: center;
-  font-size: 1rem;
-  /* net.html 과 동일하게 회색 텍스트 유지 */
-  color: var(--gray-text);
-  margin-bottom: 2rem;
-}
-
+    /* Page Header */
+    .page-title {
+      text-align: center;
+      margin: 2rem 1rem 0.5rem;
+      font-size: 1.8rem;
+      font-family: 'HDHyundaiBold';
+      display: inline-block;  /* 텍스트 그라데이션 안정화 */
+      /* index 카드와 동일한 그라데이션 */
+      background: -webkit-linear-gradient(90deg, #00B3FF 0%, #9932CC 100%);
+      background: linear-gradient(90deg, #00B3FF 0%, #9932CC 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+    }
+    .subtitle {
+      text-align: center;
+      font-size: 1rem;
+      color: var(--gray-text);
+      margin-bottom: 2rem;
+    }
   </style>
 </head>
+
 <body>
+  <!-- Splash -->
   <div id="splash">
     <img src="assets/images/logo.png" alt="로고">
     <div class="splash-text">H-int Dream</div>
   </div>
 
+  <!-- Navbar -->
   <div class="navbar">
     <img src="assets/images/logo.png" alt="HD현대중공업 로고">
     <div class="navbar-title">
-      <a href="index.html"><span class="hd">H</span>int <span class="hd">D</span>ream</a>
+      <a href="index.html">
+        <span class="hd">H</span>int <span class="hd">D</span>ream
+      </a>
     </div>
     <div class="menu-icon" onclick="toggleMenu()">☰</div>
   </div>
 
+  <!-- Menu Popup -->
   <div class="menu-popup" id="menuPopup">
     <ul>
       <li><a href="index.html">Home</a></li>
@@ -125,19 +191,33 @@
     </ul>
   </div>
 
+  <!-- Page Header for Intern Al -->
   <div class="page-title" data-aos="fade-down">Intern Al</div>
   <div class="subtitle" data-aos="fade-up">내면의 성향, AI가 추천하는 직무</div>
 
+  <!-- Scripts -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
     AOS.init({ duration: 800, once: true });
-    function toggleMenu() { document.getElementById("menuPopup").classList.toggle("active"); }
-    window.addEventListener("click", function(e) {
+
+    function toggleMenu() {
+      document.getElementById("menuPopup").classList.toggle("active");
+    }
+
+    window.addEventListener("click", function (e) {
       const menu = document.getElementById("menuPopup");
       const icon = document.querySelector(".menu-icon");
-      if (!menu.contains(e.target) && !icon.contains(e.target)) menu.classList.remove("active");
+      if (!menu.contains(e.target) && !icon.contains(e.target)) {
+        menu.classList.remove("active");
+      }
     });
-    window.addEventListener("load", () => { setTimeout(() => { document.getElementById("splash").style.display = "none"; document.body.classList.add("loaded"); }, 800); });
+
+    window.addEventListener("load", () => {
+      setTimeout(() => {
+        document.getElementById("splash").style.display = "none";
+        document.body.classList.add("loaded");
+      }, 800);
+    });
   </script>
 </body>
 </html>

@@ -2,21 +2,15 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Intern Al - H-int</title>
-  <link rel="icon" href="assets/images/logo.png" type="image/png">
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="icon" href="assets/images/logo.png" type="image/png" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 
   <style>
     /* 폰트 설정 */
-    @font-face {
-      font-family: 'HDHyundaiLight';
-      src: url('assets/fonts/HDHyundai-Light.ttf') format('truetype');
-    }
-    @font-face {
-      font-family: 'HDHyundaiBold';
-      src: url('assets/fonts/HDHyundai-Bold.ttf') format('truetype');
-    }
+    @font-face { font-family: 'HDHyundaiLight'; src: url('assets/fonts/HDHyundai-Light.ttf') format('truetype'); }
+    @font-face { font-family: 'HDHyundaiBold';  src: url('assets/fonts/HDHyundai-Bold.ttf') format('truetype'); }
 
     :root {
       --discovery-blue: #003087;
@@ -26,166 +20,219 @@
       --bg-light: #f4f4f4;
     }
 
+    /* 기본 스타일 */
+    * { box-sizing: border-box; }
     body {
       font-family: 'HDHyundaiLight', sans-serif;
       margin: 0;
-      background-color: var(--bg-light);
+      background: var(--bg-light);
       color: var(--gray-text);
       opacity: 0;
       transition: opacity 0.6s ease-in-out;
     }
-    body.loaded {
-      opacity: 1;
-    }
+    body.loaded { opacity: 1; }
 
     /* Splash Screen */
     #splash {
-      position: fixed;
-      z-index: 3000;
-      background-color: white;
+      position: fixed; top: 0; left: 0;
       width: 100%; height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      background: #fff;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      z-index: 9999;
       animation: fadeSplash 0.8s ease forwards;
     }
-    #splash img {
-      width: 60px;
-      margin-bottom: 1rem;
-    }
+    #splash img { width: 60px; margin-bottom: 1rem; }
     .splash-text {
       font-family: 'HDHyundaiBold';
       font-size: 1.5rem;
       color: var(--discovery-blue);
     }
-    @keyframes fadeSplash {
-      0%   { opacity: 1; }
-      99%  { opacity: 0; }
-      100% { display: none; z-index: -1; }
-    }
+    @keyframes fadeSplash { 0%{opacity:1;} 99%{opacity:0;} 100%{display:none;}}  
 
     /* Navbar */
     .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: white;
+      position: sticky; top: 0;
+      background: #fff;
+      display: flex; justify-content: space-between; align-items: center;
       padding: 1rem 1.5rem;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      position: sticky;
-      top: 0;
       z-index: 1000;
     }
-    .navbar img {
-      height: 32px;
-    }
+    .navbar img { height:32px; }
     .navbar-title {
-      font-family: 'HDHyundaiBold';
-      font-size: 1.5rem;
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
+      position: absolute; left:50%; transform: translateX(-50%);
+      font-family: 'HDHyundaiBold'; font-size:1.5rem;
     }
-    .navbar-title a {
-      text-decoration: none;
-      color: inherit;
-    }
-    .navbar-title .hd {
-      color: var(--discovery-blue);
-    }
-    .menu-icon {
-      font-size: 1.5rem;
-      cursor: pointer;
-      z-index: 1002;
-    }
+    .navbar-title a { text-decoration:none; color:inherit; }
+    .navbar-title .hd { color: var(--discovery-blue); }
+    .menu-icon { font-size:1.5rem; cursor:pointer; }
 
     /* Menu Popup */
     .menu-popup {
-      position: absolute;
-      top: 64px; right: 20px;
-      background: white;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      padding: 0.5rem 1rem;
-      z-index: 999;
-      opacity: 0;
-      pointer-events: none;
+      position: absolute; top:64px; right:20px;
+      background: #fff;
+      border:1px solid #ccc; border-radius:10px;
+      box-shadow:0 4px 12px rgba(0,0,0,0.15);
+      padding:0.5rem 1rem;
+      opacity:0; pointer-events:none;
       transform: translateY(-10px);
-      transition: all 0.3s ease;
+      transition: all 0.3s;
     }
-    .menu-popup.active {
-      opacity: 1;
-      pointer-events: auto;
-      transform: translateY(0);
+    .menu-popup.active { opacity:1; pointer-events:auto; transform:translateY(0); }
+    .menu-popup ul { list-style:none; margin:0; padding:0; }
+    .menu-popup li { margin:0.5rem 0; }
+    .menu-popup a { text-decoration:none; color:var(--gray-text); font-size:0.95rem; }
+    .menu-popup a:hover { color: var(--discovery-blue); }
+
+    /* AL Intro */
+    .al-intro {
+      display:flex; flex-direction:column; align-items:center;
+      padding:4rem 1rem;
     }
-    .menu-popup ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
+    .al-intro .modal-title {
+      font-family: 'HDHyundaiBold'; font-size:2rem;
+      background:-webkit-linear-gradient(90deg,#00B3FF 0%,#9932CC 100%);
+      background:linear-gradient(90deg,#00B3FF 0%,#9932CC 100%);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text; color:transparent;
+      text-align:center;
+      margin-bottom:1rem;
     }
-    .menu-popup li {
-      margin: 0.5rem 0;
-    }
-    .menu-popup a {
-      text-decoration: none;
-      color: var(--gray-text);
-      font-size: 0.95rem;
-      transition: color 0.2s;
-    }
-    .menu-popup a:hover {
-      color: var(--discovery-blue);
+    .al-intro .intro-text {
+      font-size:1rem; text-align:center; margin-bottom:2rem;
+      line-height:1.5;
     }
 
-    /* Page Header */
-    .page-title {
-  display: block;
-  width: fit-content;
-  margin: 2rem auto 0.5rem;
-  text-align: center;
-  font-size: 1.8rem;
-  font-family: 'HDHyundaiBold';
-  /* index 카드와 동일한 그라데이션 */
-  background: -webkit-linear-gradient(90deg, #00B3FF 0%, #9932CC 100%);
-  background: linear-gradient(90deg, #00B3FF 0%, #9932CC 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  color: transparent;
-}
+    /* Modal overlay */
+    .modal {
+      position:fixed; top:0; left:0;
+      width:100%; height:100%;
+      background:rgba(0,0,0,0.6);
+      display:none; justify-content:center; align-items:center;
+      padding:1rem;
+      z-index:10000;
+    }
+    .modal.active { display:flex; }
 
-.subtitle {
-  display: block;
-  width: fit-content;
-  margin: 0 auto 2rem;
-  text-align: center;
-  font-size: 1rem;
-  color: var(--gray-text);
-}
+    .modal-content {
+      background:#fff;
+      border-radius:12px;
+      width:100%; max-width:500px;
+      padding:2rem;
+      position:relative;
+      display:flex; flex-direction:column;
+    }
+    .close-modal {
+      position:absolute; top:1rem; right:1rem;
+      background:transparent; border:none;
+      font-size:1.5rem; cursor:pointer;
+      color:var(--gray-text);
+    }
 
+    /* Steps */
+    .step { display:none; }
+    .step.active { display:block; }
+
+    /* Progress Bar */
+    .progress {
+      height:8px; background:#eee;
+      border-radius:4px; overflow:hidden;
+      margin-bottom:1rem;
+    }
+    .progress-bar {
+      height:100%; width:0%; background:var(--discovery-blue);
+      transition: width 0.3s;
+    }
+
+    /* Question */
+    .question-text {
+      font-size:1.1rem; margin-bottom:1.5rem;
+    }
+    .answer-buttons {
+      display:flex; justify-content:space-around; margin-bottom:1.5rem;
+    }
+    .answer-buttons .btn {
+      flex:1; margin:0 0.5rem;
+    }
+    .nav-buttons { display:flex; justify-content:space-between; }
+
+    /* Analysis */
+    .loading-indicator {
+      width:40px; height:40px;
+      border:4px solid var(--prosperity-green);
+      border-top-color:transparent;
+      border-radius:50%;
+      animation: spin 1s linear infinite;
+      margin:2rem auto;
+    }
+    @keyframes spin { to { transform:rotate(360deg);} }
+
+    /* Result */
+    .result-department {
+      font-family:'HDHyundaiBold';
+      font-size:1.5rem; text-align:center;
+      margin-bottom:0.5rem;
+      background:-webkit-linear-gradient(90deg,#00B3FF 0%,#9932CC 100%);
+      background:linear-gradient(90deg,#00B3FF 0%,#9932CC 100%);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+      background-clip:text; color:transparent;
+    }
+    .result-role {
+      font-family:'HDHyundaiBold'; font-size:1.3rem;
+      text-align:center; margin-bottom:1rem;
+      color:var(--trust-blue);
+    }
+    .result-desc {
+      font-size:1rem; text-align:center;
+      margin-bottom:2rem; line-height:1.4;
+    }
+
+    /* Footer & Buttons */
+    .modal-footer { text-align:center; }
+    .footer-note {
+      font-size:0.95rem; color:var(--gray-text);
+      margin:1rem 0;
+    }
+    .btn { padding:0.75rem 1.5rem; border:none; border-radius:8px;
+      font-family:'HDHyundaiBold'; font-size:1rem; cursor:pointer;
+      transition:background 0.2s,color 0.2s; }
+    .btn.primary { background:var(--discovery-blue); color:#fff; }
+    .btn.primary:hover { background:#002f6c; }
+    .btn.secondary { background:var(--prosperity-green); color:#fff; }
+    .btn.secondary:hover { background:#006629; }
+    .btn.tertiary { background:transparent; color:var(--trust-blue);
+      border:1px solid var(--trust-blue); }
+    .btn.tertiary:hover { background:var(--trust-blue); color:#fff; }
+    .btn-group { display:flex; justify-content:center; gap:0.5rem; }
+
+    /* Responsive */
+    @media (max-width:480px) {
+      .modal-content { padding:1rem; }
+      .navbar { padding:0.75rem 1rem; }
+      .al-intro { padding:2rem 1rem; }
+      .question-text { font-size:1rem; }
+      .btn { font-size:0.9rem; padding:0.5rem 1rem; }
+    }
   </style>
 </head>
 
 <body>
   <!-- Splash -->
   <div id="splash">
-    <img src="assets/images/logo.png" alt="로고">
+    <img src="assets/images/logo.png" alt="로고" />
     <div class="splash-text">H-int Dream</div>
   </div>
 
   <!-- Navbar -->
   <div class="navbar">
-    <img src="assets/images/logo.png" alt="HD현대중공업 로고">
+    <img src="assets/images/logo.png" alt="HD현대중공업 로고" />
     <div class="navbar-title">
-      <a href="index.html">
-        <span class="hd">H</span>int <span class="hd">D</span>ream
-      </a>
+      <a href="index.html"><span class="hd">H</span>int <span class="hd">D</span>ream</a>
     </div>
     <div class="menu-icon" onclick="toggleMenu()">☰</div>
   </div>
-
-  <!-- Menu Popup -->
   <div class="menu-popup" id="menuPopup">
     <ul>
       <li><a href="index.html">Home</a></li>
@@ -196,32 +243,139 @@
     </ul>
   </div>
 
-  <!-- Page Header for Intern Al -->
-  <div class="page-title" data-aos="fade-down">Intern Al</div>
-  <div class="subtitle" data-aos="fade-up">내면의 성향, AI가 추천하는 직무</div>
+  <!-- AL Intro -->
+  <div class="al-intro">
+    <div class="modal-title">Intern Al</div>
+    <div class="intro-text">AI가 여러분의 내면을 분석하여<br>가장 잘 맞는 직무를 추천합니다.</div>
+    <button id="startBtn" class="btn primary">테스트 시작</button>
+  </div>
+
+  <!-- Modal -->
+  <div id="alModal" class="modal">
+    <div class="modal-content">
+      <button class="close-modal" onclick="closeModal()">×</button>
+      <!-- Intro Step -->
+      <div id="stepIntro" class="step active">
+        <h2>테스트를 시작합니다</h2>
+        <button id="beginBtn" class="btn primary">시작하기</button>
+      </div>
+      <!-- Question Step -->
+      <div id="stepQuestion" class="step">
+        <div class="progress"><div id="progressBar" class="progress-bar"></div></div>
+        <div id="questionText" class="question-text"></div>
+        <div class="answer-buttons">
+          <button id="ans1Btn" class="btn tertiary"></button>
+          <button id="ans2Btn" class="btn tertiary"></button>
+        </div>
+        <div class="nav-buttons">
+          <button id="prevBtn" class="btn tertiary">이전</button>
+          <button id="nextBtn" class="btn tertiary">다음</button>
+        </div>
+      </div>
+      <!-- Analysis Step -->
+      <div id="stepAnalysis" class="step">
+        <div class="loading-indicator"></div>
+        <p style="text-align:center;">결과를 분석 중입니다...</p>
+      </div>
+      <!-- Result Step -->
+      <div id="stepResult" class="step">
+        <div class="result-department"></div>
+        <div class="result-role"></div>
+        <div class="result-desc"></div>
+        <div class="modal-footer">
+          <button class="btn primary" onclick="window.open('https://recruit.hd.com/kr','_blank')">HD현대중공업 지원하러 가기</button>
+          <p class="footer-note">인턴십 현장이 궁금하다면?</p>
+          <button class="btn secondary" onclick="location.href='view.html'">Intern View로 이동</button>
+          <div class="btn-group">
+            <button id="restartBtn" class="btn tertiary">테스트 다시하기</button>
+            <button id="closeBtn" class="btn tertiary">닫기</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Scripts -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    AOS.init({ duration: 800, once: true });
-
+    AOS.init({ duration:800, once:true });
+    // Menu toggle
     function toggleMenu() {
-      document.getElementById("menuPopup").classList.toggle("active");
+      document.getElementById('menuPopup').classList.toggle('active');
     }
-
-    window.addEventListener("click", function (e) {
-      const menu = document.getElementById("menuPopup");
-      const icon = document.querySelector(".menu-icon");
-      if (!menu.contains(e.target) && !icon.contains(e.target)) {
-        menu.classList.remove("active");
-      }
+    window.addEventListener('click', e => {
+      const menu = document.getElementById('menuPopup');
+      const icon = document.querySelector('.menu-icon');
+      if (!menu.contains(e.target) && !icon.contains(e.target)) menu.classList.remove('active');
     });
 
-    window.addEventListener("load", () => {
-      setTimeout(() => {
-        document.getElementById("splash").style.display = "none";
-        document.body.classList.add("loaded");
-      }, 800);
+    // Modal controls
+    const modal = document.getElementById('alModal');
+    const startBtn = document.getElementById('startBtn');
+    const beginBtn = document.getElementById('beginBtn');
+    const closeBtns = [document.querySelector('.close-modal'), document.getElementById('closeBtn')];
+    const restartBtn = document.getElementById('restartBtn');
+    const steps = {
+      intro: document.getElementById('stepIntro'),
+      question: document.getElementById('stepQuestion'),
+      analysis: document.getElementById('stepAnalysis'),
+      result: document.getElementById('stepResult'),
+    };
+
+    // Questions placeholder
+    const questions = [];// TODO: 20문항 배열
+    let selected = [], current=0, answers=[];
+
+    startBtn.onclick = () => modal.classList.add('active');
+    beginBtn.onclick = () => {
+      // initialize
+      selected = shuffle(questions).slice(0,10);
+      current=0; answers=[];
+      showStep('question'); updateQuestion();
+    };
+    closeBtns.forEach(btn=>btn.onclick=()=>{ modal.classList.remove('active'); showStep('intro'); });
+    restartBtn.onclick = () => beginBtn.click();
+
+    document.getElementById('nextBtn').onclick = () => {
+      // record answer and next
+      const choice = document.getElementById('ans1Btn').clicked?0:1;
+      answers[current]=choice;
+      if (current<9) {
+        current++; updateQuestion();
+      } else showAnalysis();
+    };
+    document.getElementById('prevBtn').onclick = () => {
+      if (current>0) { current--; updateQuestion(); }
+    };
+
+    function showStep(name) {
+      for (let key in steps) steps[key].classList.remove('active');
+      steps[name].classList.add('active');
+    }
+    function updateQuestion() {
+      showStep('question');
+      const q = selected[current];
+      document.getElementById('questionText').innerText = q.text;
+      document.getElementById('ans1Btn').innerText = q.opt1;
+      document.getElementById('ans2Btn').innerText = q.opt2;
+      document.getElementById('progressBar').style.width = ((current+1)/10*100)+'%';
+    }
+    function showAnalysis() {
+      showStep('analysis');
+      const delay = 4000 + Math.random()*5000;
+      setTimeout(showResult, delay);
+    }
+    function showResult() {
+      showStep('result');
+      // TODO: 매핑 로직으로 department, role, desc 설정
+      document.querySelector('.result-department').innerText = '조선사업부';
+      document.querySelector('.result-role').innerText = '상세설계';
+      document.querySelector('.result-desc').innerText = '설계도면을 검토하고 생산성을 개선합니다.';
+    }
+    function shuffle(arr) { return arr.sort(()=>Math.random()-0.5); }
+
+    window.addEventListener('load',()=>{
+      setTimeout(()=>{ document.getElementById('splash').style.display='none'; document.body.classList.add('loaded'); }, 800);
     });
   </script>
 </body>

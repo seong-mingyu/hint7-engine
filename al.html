@@ -1,1 +1,164 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Intern Al - H-int</title>
+  <link rel="icon" href="assets/images/logo.png" type="image/png">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    /* 공통 폰트 설정 */
+    @font-face { font-family: 'HDHyundaiLight'; src: url('assets/fonts/HDHyundai-Light.ttf') format('truetype'); }
+    @font-face { font-family: 'HDHyundaiBold';  src: url('assets/fonts/HDHyundai-Bold.ttf') format('truetype'); }
+
+    :root {
+      --discovery-blue: #003087;
+      --prosperity-green: #008233;
+      --trust-blue: #002554;
+      --gray-text: #63666A;
+      --bg-light: #f4f4f4;
+    }
+
+    body {
+      font-family: 'HDHyundaiLight', sans-serif;
+      margin: 0;
+      background-color: var(--bg-light);
+      color: var(--gray-text);
+      opacity: 0;
+      transition: opacity 0.6s ease-in-out;
+    }
+    body.loaded { opacity: 1; }
+
+    /* Splash Screen */
+    #splash {
+      position: fixed;
+      z-index: 3000;
+      background-color: white;
+      width: 100%; height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      animation: fadeSplash 0.8s ease forwards;
+    }
+    #splash img { width: 60px; height: auto; margin-bottom: 1rem; }
+    .splash-text {
+      font-family: 'HDHyundaiBold';
+      font-size: 1.5rem;
+      color: var(--discovery-blue);
+    }
+    @keyframes fadeSplash { 0% { opacity: 1; } 99% { opacity: 0; } 100% { display: none; z-index: -1; } }
+
+    /* Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: white;
+      padding: 1rem 1.5rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .navbar img { height: 32px; }
+    .navbar-title {
+      font-size: 1.5rem;
+      font-family: 'HDHyundaiBold';
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .navbar-title a { text-decoration: none; color: inherit; }
+    .navbar-title .hd { color: var(--discovery-blue); }
+    .menu-icon { font-size: 1.5rem; cursor: pointer; z-index: 1002; }
+
+    /* Menu Popup */
+    .menu-popup {
+      position: absolute;
+      top: 64px; right: 20px;
+      background: white;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      padding: 0.5rem 1rem;
+      z-index: 999;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-10px);
+      transition: all 0.3s ease;
+    }
+    .menu-popup.active { opacity: 1; pointer-events: auto; transform: translateY(0); }
+    .menu-popup ul { list-style: none; padding: 0; margin: 0; }
+    .menu-popup li { margin: 0.5rem 0; }
+    .menu-popup a { text-decoration: none; color: var(--gray-text); font-size: 0.95rem; transition: color 0.2s; }
+    .menu-popup a:hover { color: var(--discovery-blue); }
+
+    /* Intro Section */
+    .intro {
+      text-align: center;
+      margin: 2rem 1rem;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <!-- Splash Screen -->
+  <div id="splash">
+    <img src="assets/images/logo.png" alt="로고">
+    <div class="splash-text">H-int Dream</div>
+  </div>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <img src="assets/images/logo.png" alt="HD현대중공업 로고">
+    <div class="navbar-title">
+      <a href="index.html"><span class="hd">H</span>int <span class="hd">D</span>ream</a>
+    </div>
+    <div class="menu-icon" onclick="toggleMenu()">☰</div>
+  </div>
+
+  <!-- Menu Popup -->
+  <div class="menu-popup" id="menuPopup">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="ship.html">Intern Ship</a></li>
+      <li><a href="view.html">Intern View</a></li>
+      <li><a href="net.html">Intern Net</a></li>
+      <li><a href="al.html" class="active">Intern Al</a></li>
+    </ul>
+  </div>
+
+  <!-- Intro for Intern Al -->
+  <div class="intro" data-aos="fade-up">
+    AI와 내면을 분석하여 <span style="background: linear-gradient(90deg, #00B3FF, #9932CC); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight:bold;">직무를 추천</span> 받아보세요!
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 800, once: true });
+
+    function toggleMenu() {
+      document.getElementById("menuPopup").classList.toggle("active");
+    }
+
+    window.addEventListener("click", function (e) {
+      const menu = document.getElementById("menuPopup");
+      const icon = document.querySelector(".menu-icon");
+      if (!menu.contains(e.target) && !icon.contains(e.target)) {
+        menu.classList.remove("active");
+      }
+    });
+
+    window.addEventListener("load", () => {
+      setTimeout(() => {
+        document.getElementById("splash").style.display = "none";
+        document.body.classList.add("loaded");
+      }, 800);
+    });
+  </script>
+</body>
+</html>
 

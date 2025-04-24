@@ -140,25 +140,30 @@
 
     /* Page Header */
     .page-title {
-      text-align: center;
-      margin: 2rem 1rem 0.5rem;
-      font-size: 1.8rem;
-      font-family: 'HDHyundaiBold';
-      display: inline-block;  /* 텍스트 그라데이션 안정화 */
-      /* index 카드와 동일한 그라데이션 */
-      background: -webkit-linear-gradient(90deg, #00B3FF 0%, #9932CC 100%);
-      background: linear-gradient(90deg, #00B3FF 0%, #9932CC 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      color: transparent;
-    }
-    .subtitle {
-      text-align: center;
-      font-size: 1rem;
-      color: var(--gray-text);
-      margin-bottom: 2rem;
-    }
+  display: block;
+  width: fit-content;
+  margin: 2rem auto 0.5rem;
+  text-align: center;
+  font-size: 1.8rem;
+  font-family: 'HDHyundaiBold';
+  /* index 카드와 동일한 그라데이션 */
+  background: -webkit-linear-gradient(90deg, #00B3FF 0%, #9932CC 100%);
+  background: linear-gradient(90deg, #00B3FF 0%, #9932CC 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.subtitle {
+  display: block;
+  width: fit-content;
+  margin: 0 auto 2rem;
+  text-align: center;
+  font-size: 1rem;
+  color: var(--gray-text);
+}
+
   </style>
 </head>
 

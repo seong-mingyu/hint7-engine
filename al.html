@@ -76,12 +76,19 @@
 
     /* 페이지 헤더 */
     .page-title {
-      text-align: center; margin: 2rem 1rem 0.5rem;
-      font-size: 1.8rem; font-family: 'HDHyundaiBold';
+      text-align: center;
+      margin: 2rem 1rem 0.5rem;
+      font-size: 1.8rem;
+      /* 가벼운 느낌의 폰트 사용 */
+      font-family: 'HDHyundaiLight';
+      font-weight: normal;
+      /* 인덱스 카드와 동일한 그라데이션 */
       background: -webkit-linear-gradient(90deg, #00B3FF 0%, #9932CC 100%);
       background: linear-gradient(90deg, #00B3FF 0%, #9932CC 100%);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      background-clip: text; color: transparent;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
     }
     .subtitle {
       text-align: center; font-size: 1rem; color: var(--gray-text);

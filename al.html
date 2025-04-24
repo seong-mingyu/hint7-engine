@@ -74,26 +74,31 @@
     .menu-popup a { text-decoration: none; color: var(--gray-text); font-size: 0.95rem; transition: color 0.2s; }
     .menu-popup a:hover { color: var(--discovery-blue); }
 
-    /* 페이지 헤더 */
-    .page-title {
-      text-align: center;
-      margin: 2rem 1rem 0.5rem;
-      font-size: 1.8rem;
-      /* 가벼운 느낌의 폰트 사용 */
-      font-family: 'HDHyundaiLight';
-      font-weight: normal;
-      /* 인덱스 카드와 동일한 그라데이션 */
-      background: -webkit-linear-gradient(90deg, #00B3FF 0%, #9932CC 100%);
-      background: linear-gradient(90deg, #00B3FF 0%, #9932CC 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      color: transparent;
-    }
-    .subtitle {
-      text-align: center; font-size: 1rem; color: var(--gray-text);
-      margin-bottom: 2rem;
-    }
+   /* Intern Al 페이지 헤더 */
+.page-title {
+  text-align: center;
+  margin: 2rem 1rem 0.5rem;
+  font-size: 1.8rem;
+  /* net.html 에서 쓰는 볼드체 */
+  font-family: 'HDHyundaiBold';
+  /* index 카드와 동일한 그라데이션 */
+  background: -webkit-linear-gradient(90deg, #00B3FF 0%, #9932CC 100%);
+  background: linear-gradient(90deg, #00B3FF 0%, #9932CC 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  /* 표준 속성 */
+  background-clip: text;
+  color: transparent;
+}
+
+.subtitle {
+  text-align: center;
+  font-size: 1rem;
+  /* net.html 과 동일하게 회색 텍스트 유지 */
+  color: var(--gray-text);
+  margin-bottom: 2rem;
+}
+
   </style>
 </head>
 <body>

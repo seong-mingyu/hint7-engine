@@ -32,16 +32,19 @@
     .menu-popup a{text-decoration:none;color:var(--gray-text);}
     .menu-popup a:hover{color:var(--discovery-blue);}
     /* Intro */
-    .al-intro{display:flex;justify-content:center;padding:4rem 1rem;}
-    .btn{padding:.75rem 1.5rem;border:none;border-radius:8px;font-family:'HDHyundaiBold';font-size:1rem;color:#fff;cursor:pointer;transition:background .2s;margin:0;}
+    .al-intro{padding:3rem 1rem;text-align:center;}
+    .al-intro .page-title{font-family:'HDHyundaiBold';font-size:2rem;background:linear-gradient(90deg,#00B3FF,#9932CC);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.5rem;}
+    .al-intro .subtitle{font-size:1rem;color:var(--gray-text);margin-bottom:1.5rem;}
+    .al-intro .tagline{font-size:1rem;line-height:1.4;color:var(--gray-text);margin-bottom:2rem;}
+    .btn{padding:.75rem 1.5rem;border:none;border-radius:8px;font-family:'HDHyundaiBold';font-size:1rem;color:#fff;cursor:pointer;transition:background .2s;margin:0 auto;display:block;}
     .btn.primary{background:var(--discovery-blue);}
     .btn.secondary{background:var(--prosperity-green);}
     /* Modal */
     .modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;padding:1rem;z-index:10000;}
     .modal.active{display:flex;}
-    .modal-content{background:#fff;border-radius:12px;width:90%;max-width:600px;padding:2.5rem 2rem;position:relative;display:flex;flex-direction:column;}
+    .modal-content{background:#fff;border-radius:12px;width:80%;height:80vh;padding:2rem;position:relative;display:flex;flex-direction:column;overflow:auto;}
     .modal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;}
-    .modal-header h2{font-family:'HDHyundaiBold';font-size:1.8rem;}
+    .modal-header .title{font-family:'HDHyundaiBold';font-size:1.8rem;background:linear-gradient(90deg,#00B3FF,#9932CC);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
     .close-modal{background:transparent;border:none;font-size:1.5rem;color:var(--gray-text);cursor:pointer;}
     /* Question */
     .step{display:none;}
@@ -51,7 +54,7 @@
     .question-number{font-family:'HDHyundaiBold';font-size:1rem;}
     .progress{flex:1;height:8px;background:#eee;border-radius:4px;overflow:hidden;margin-left:1rem;}
     .progress-bar{height:100%;width:0%;background:var(--discovery-blue);transition:width .3s;}
-    .question-text{font-size:1.2rem;line-height:1.4;text-align:left;}
+    .question-text{font-size:1.2rem;line-height:1.5;text-align:left;}
     .question-options{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-top:1.5rem;}
     .option-btn{flex:1;padding:1.5rem;background:#fff;border:2px solid var(--bg-light);border-radius:12px;font-size:1.1rem;text-align:center;cursor:pointer;transition:border-color .2s,transform .2s;}
     .option-btn:hover{border-color:var(--discovery-blue);transform:scale(1.02);}
@@ -62,11 +65,11 @@
     @keyframes spin{to{transform:rotate(360deg);}}
     /* Result */
     .result-card{border-radius:12px;padding:2.5rem;text-align:center;margin-bottom:1.5rem;}
-    .result-department{font-size:1.1rem;opacity:0.9;}
-    .result-role{font-size:1.6rem;font-weight:bold;margin:0.5rem 0;}
+    .result-department{font-size:1.2rem;opacity:0.9;margin-bottom:.5rem;}
+    .result-role{font-size:1.5rem;font-weight:bold;margin-bottom:1rem;}
     .result-desc{font-size:1rem;line-height:1.5;text-align:left;}
     .result-buttons{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;margin-top:2rem;}
-    @media(max-width:480px){.modal-content{padding:2rem 1rem;} .btn{font-size:.9rem;padding:.5rem 1rem;} .question-text{font-size:1rem;} .option-btn{font-size:1rem;padding:1rem;}}
+    @media(max-width:480px){.modal-content{padding:1rem;} .btn{font-size:.9rem;padding:.5rem 1rem;} .question-text{font-size:1rem;} .option-btn{font-size:1rem;padding:1rem;}}
   </style>
 </head>
 <body>
@@ -89,12 +92,15 @@
     </ul>
   </div>
   <div class="al-intro">
+    <div class="page-title">Intern Al</div>
+    <div class="subtitle">내면의 성향, AI가 추천하는 직무</div>
+    <div class="tagline">밸런스 게임 10문제를 통해 AI가 추천하는 현대중공업 직무!</div>
     <button id="startBtn" class="btn primary">테스트 시작하기</button>
   </div>
   <div id="alModal" class="modal">
     <div class="modal-content">
       <div class="modal-header">
-        <h2>Hint Dream 직무 추천 프로그램</h2>
+        <div class="title">Intern Al</div>
         <button class="close-modal" onclick="closeModal()">×</button>
       </div>
       <div id="stepQuestion" class="step active">
@@ -131,79 +137,62 @@
     window.addEventListener('click',e=>{const m=document.getElementById('menuPopup'),i=document.querySelector('.menu-icon');if(!m.contains(e.target)&&!i.contains(e.target))m.classList.remove('active');});
     window.addEventListener('load',()=>setTimeout(()=>{document.getElementById('splash').style.display='none';document.body.classList.add('loaded');},800));
     const modal=document.getElementById('alModal'),startBtn=document.getElementById('startBtn'),closeBtn=document.querySelector('.close-modal');
-    const steps={ question:document.getElementById('stepQuestion'), analysis:document.getElementById('stepAnalysis'), result:document.getElementById('stepResult') };
+    const steps={question:document.getElementById('stepQuestion'),analysis:document.getElementById('stepAnalysis'),result:document.getElementById('stepResult')};
     const questions=[
-      { text:'12시까지 야근하기 vs 12시까지 회식하기는 어떠신가요?', opt1:'늦게까지 야근해도 OK', dim1:'responsibility', opt2:'회식 참석 선호', dim2:'teamwork' },
-      { text:'혼자서 몰입하는 작업 vs 팀원들과 협업하는 작업, 어느 쪽이 더 즐거우신가요?', opt1:'혼자 몰입 작업', dim1:'analytical', opt2:'팀 협업 작업', dim2:'teamwork' },
-      { text:'데이터를 세밀히 분석하기 vs 새로운 아이디어를 제안하기, 무엇이 더 흥미롭나요?', opt1:'세밀한 분석', dim1:'analytical', opt2:'창의적 아이디어', dim2:'creativity' },
-      { text:'리스크를 최소화하며 안정적 운영하기 vs 과감히 도전하며 혁신 추구하기, 어떤 스타일인가요?', opt1:'안정적 운영', dim1:'responsibility', opt2:'혁신 도전', dim2:'innovation' },
-      { text:'결정을 내릴 때 데이터 기반 분석 vs 직관에 의존하기, 어느 쪽이 더 편하신가요?', opt1:'데이터 기반', dim1:'analytical', opt2:'직관 기반', dim2:'innovation' },
-      { text:'체계적으로 계획을 수립하는 편 vs 즉흥적으로 아이디어를 실행하는 편, 당신의 업무 방식은?', opt1:'계획 수립', dim1:'responsibility', opt2:'즉흥 실행', dim2:'creativity' },
-      { text:'규칙과 절차를 엄격히 준수 vs 상황에 따라 유연하게 대처, 어떤 점이 더 중요하신가요?', opt1:'절차 준수', dim1:'responsibility', opt2:'유연 대처', dim2:'innovation' },
-      { text:'고객 요구사항을 철저히 분석하기 vs 새로운 시장 기회를 탐색하기, 어느 쪽이 더 흥미로운가요?', opt1:'요구사항 분석', dim1:'analytical', opt2:'시장 탐색', dim2:'innovation' },
-      { text:'작은 디테일에 집중 vs 전체적인 큰 그림을 조망, 어느 쪽에 자신이 있나요?', opt1:'디테일 집중', dim1:'analytical', opt2:'전체 조망', dim2:'innovation' },
-      { text:'문제의 원인을 철저히 찾는 편 vs 해결책을 신속히 제안하는 편, 어떤 방식을 선호하시나요?', opt1:'원인 분석', dim1:'analytical', opt2:'해결 제안', dim2:'creativity' },
-      { text:'새로운 기술을 학습하며 성장 vs 검증된 방식을 유지하며 안정성 확보, 무엇이 더 중요하신가요?', opt1:'신기술 학습', dim1:'innovation', opt2:'안정성 유지', dim2:'responsibility' },
-      { text:'문서를 꼼꼼하게 작성 vs 대면 커뮤니케이션으로 해결, 어떤 방식이 편하신가요?', opt1:'문서 작성', dim1:'responsibility', opt2:'대면 커뮤니케이션', dim2:'teamwork' },
-      { text:'장기 전략을 수립하기 vs 단기 목표를 달성하기, 어디에 더 집중하나요?', opt1:'장기 전략', dim1:'analytical', opt2:'단기 목표', dim2:'responsibility' },
-      { text:'업무의 정확성을 우선시 vs 업무 속도를 우선시, 어떤 방식을 선호하시나요?', opt1:'정확성 우선', dim1:'responsibility', opt2:'속도 우선', dim2:'analytical' },
-      { text:'전문 분야를 깊이 파고들기 vs 다양한 분야 경험하기, 어떤 경험을 선호하시나요?', opt1:'전문성 고도화', dim1:'analytical', opt2:'다양한 경험', dim2:'creativity' },
-      { text:'팀 목표를 위해 개인을 희생하기 vs 개인 성과를 중시하기, 어떤 선택을 하시겠어요?', opt1:'팀 희생', dim1:'teamwork', opt2:'개인 성과', dim2:'responsibility' },
-      { text:'리스크를 관리하며 안전하게 실행 vs 과감하게 시도하여 새 기회 창출, 어떤 스타일인가요?', opt1:'리스크 관리', dim1:'responsibility', opt2:'과감 시도', dim2:'innovation' },
-      { text:'근본 원인 해결 vs 임시 방편 적용, 어떤 방식이 더 적절하다고 보시나요?', opt1:'근본 해결', dim1:'analytical', opt2:'임시 방편', dim2:'innovation' },
-      { text:'발표 시 자세하게 설명 vs 간결하게 핵심만 전달, 어떤 방식을 선호하시나요?', opt1:'자세한 발표', dim1:'analytical', opt2:'간결한 발표', dim2:'creativity' },
-      { text:'혼자 공부 vs 동료와 스터디, 어떤 학습 방식이 효과적일까요?', opt1:'혼자 공부', dim1:'analytical', opt2:'스터디 그룹', dim2:'teamwork' }
+      {text:'12시까지 야근하기 vs 12시까지 회식하기는 어떠신가요?',opt1:'늦게까지 야근해도 OK',dim1:'responsibility',opt2:'회식 참석 선호',dim2:'teamwork'},
+      {text:'혼자서 몰입하는 작업 vs 팀원들과 협업하는 작업, 어느 쪽이 더 즐거우신가요?',opt1:'혼자 몰입 작업',dim1:'analytical',opt2:'팀 협업 작업',dim2:'teamwork'},
+      {text:'데이터를 세밀히 분석 vs 새로운 아이디어를 제안, 무엇이 더 흥미롭나요?',opt1:'세밀한 분석',dim1:'analytical',opt2:'창의적 아이디어',dim2:'creativity'},
+      {text:'리스크 최소화 vs 과감한 혁신, 어떤 스타일인가요?',opt1:'안정적 운영',dim1:'responsibility',opt2:'혁신 도전',dim2:'innovation'},
+      {text:'데이터 기반 의사결정 vs 직관에 의존, 어느 쪽이 편하신가요?',opt1:'데이터 기반',dim1:'analytical',opt2:'직관 기반',dim2:'innovation'},
+      {text:'체계적 계획 vs 즉흥 실행, 업무 방식은?',opt1:'계획 수립',dim1:'responsibility',opt2:'즉흥 실행',dim2:'creativity'},
+      {text:'규칙 준수 vs 유연 대처, 어떤 점이 중요하신가요?',opt1:'절차 준수',dim1:'responsibility',opt2:'유연 대처',dim2:'innovation'},
+      {text:'고객 요구 철저 분석 vs 시장 기회 탐색, 어느 쪽이 흥미로운가요?',opt1:'요구사항 분석',dim1:'analytical',opt2:'시장 탐색',dim2:'innovation'},
+      {text:'디테일 집중 vs 큰 그림 조망, 어느 쪽에 자신 있나요?',opt1:'디테일 집중',dim1:'analytical',opt2:'전체 조망',dim2:'innovation'},
+      {text:'문제 원인 분석 vs 해결책 제안, 어떤 방식 선호?',opt1:'원인 분석',dim1:'analytical',opt2:'해결 제안',dim2:'creativity'},
+      {text:'신기술 학습 vs 기존 방식 유지, 무엇이 중요하신가요?',opt1:'신기술 학습',dim1:'innovation',opt2:'안정성 유지',dim2:'responsibility'},
+      {text:'문서 작성 vs 대면 커뮤니케이션, 어떤 방식 편하신가요?',opt1:'문서 작성',dim1:'responsibility',opt2:'대면 소통',dim2:'teamwork'},
+      {text:'장기 전략 vs 단기 목표, where is focus?',opt1:'장기 전략',dim1:'analytical',opt2:'단기 목표',dim2:'responsibility'},
+      {text:'정확성 vs 속도, 우선순위는?',opt1:'정확성',dim1:'responsibility',opt2:'속도',dim2:'analytical'},
+      {text:'전문성 고도화 vs 다양한 업무 경험, 선호는?',opt1:'전문성 고도화',dim1:'analytical',	opt2:'다양한 경험',dim2:'creativity'},
+      {text:'팀 성과 우선 vs 개인 성과 중시, 어떤 선택?',opt1:'팀 성과',dim1:'teamwork',opt2:'개인 성과',dim2:'responsibility'},
+      {text:'리스크 관리 vs 과감 시도, 어떤 전략?',opt1:'리스크관리',dim1:'responsibility',opt2:'과감 시도',dim2:'innovation'},
+      {text:'근본 해결 vs 임시 방편, 적절한 해결책은?',opt1:'근본 해결',dim1:'analytical',opt2:'임시 방편',dim2:'innovation'},
+      {text:'자세 발표 vs 간결 발표, 어떤 커뮤니케이션?',opt1:'자세 발표',dim1:'analytical',opt2:'간결 발표',dim2:'creativity'},
+      {text:'혼자 공부 vs 스터디 그룹, 어떤 학습 방식?',opt1:'혼자 공부',dim1:'analytical',opt2:'스터디 그룹',dim2:'teamwork'}
     ];
-    let selected=[], current=0, answers=[];
-    startBtn.onclick=()=>{ selected=questions.sort(()=>Math.random()-0.5).slice(0,10); current=0; answers=[]; updateQuestion(); modal.classList.add('active'); };
+    let selected=[],current=0,answers=[];
+    startBtn.onclick=()=>{selected=questions.sort(()=>Math.random()-0.5).slice(0,10);current=0;answers=[];updateQuestion();modal.classList.add('active');};
     closeBtn.onclick=()=>modal.classList.remove('active');
     document.getElementById('ans1Btn').onclick=()=>selectAnswer(0);
     document.getElementById('ans2Btn').onclick=()=>selectAnswer(1);
-    function selectAnswer(choice){
-      answers[current]=choice;
-      document.querySelectorAll('.option-btn').forEach(b=>b.classList.remove('selected'));
-      document.getElementById(choice===0?'ans1Btn':'ans2Btn').classList.add('selected');
-      setTimeout(()=>{ if(current<9){ current++; updateQuestion(); } else showAnalysis(); },300);
-    }
-    function updateQuestion(){
-      showStep('question');
-      document.querySelector('.question-number').innerText=`${current+1}/10`;
-      document.getElementById('progressBar').style.width=`${(current+1)/10*100}%`;
-      document.getElementById('questionText').innerText=selected[current].text;
-      document.getElementById('ans1Btn').innerText=selected[current].opt1;
-      document.getElementById('ans2Btn').innerText=selected[current].opt2;
-      document.querySelectorAll('.option-btn').forEach(b=>b.classList.remove('selected'));
-    }
-    function showStep(name){ Object.values(steps).forEach(s=>s.classList.remove('active')); steps[name].classList.add('active'); }
-    function showAnalysis(){ showStep('analysis'); setTimeout(showResult,4000+Math.random()*5000); }
-    function showResult(){
-      showStep('result');
-      const scores={};
-      selected.forEach((q,i)=>{ const d=answers[i]===0?q.dim1:q.dim2; scores[d]=(scores[d]||0)+1; });
-      const jobs=[
-        { department:'엔진기계사업부', role:'생산기술 지원', weights:{responsibility:2,analytical:2,teamwork:1,innovation:1,creativity:0}, desc:'대형/중형 엔진 부품 주조 및 기계가공 생산기술 지원' },
-        { department:'엔진기계사업부', role:'조립·시운전 지원', weights:{responsibility:2,analytical:2,teamwork:1,innovation:1,creativity:0}, desc:'엔진 조립·시운전 표준 작업 수립 및 성능 분석' },
-        { department:'엔진기계사업부', role:'설비 개선·투자관리', weights:{responsibility:2,innovation:2,analytical:1,teamwork:1,creativity:0}, desc:'시운전 설비 개선 및 친환경 연료 설비 투자·유지보수' },
-        { department:'엔진기계사업부', role:'생산관리', weights:{responsibility:2,analytical:1,teamwork:1,innovation:0,creativity:0}, desc:'공정·품질 관리 및 설비 현대화 유지보수' },
-        { department:'엔진기계사업부', role:'생산지원', weights:{responsibility:2,analytical:2,teamwork:1,innovation:1,creativity:0}, desc:'사업부 운영전략 수립 및 생산계획 관리, 프로세스 개선' },
-        { department:'엔진기계사업부', role:'영업', weights:{teamwork:2,responsibility:1,innovation:1,creativity:1,analytical:1}, desc:'친환경 추진 기관 및 엔진 시스템 홍보·고객 기술영업' },
-        { department:'엔진기계사업부', role:'상세설계', weights:{analytical:2,creativity:1,innovation:1,responsibility:1,teamwork:0}, desc:'엔진 기계 부품/시스템 3D 모델링 및 도면 작성' },
-        { department:'엔진기계사업부', role:'제어시스템 개발', weights:{analytical:2,innovation:2,responsibility:1,creativity:1,teamwork:0}, desc:'엔진 제어시스템 설계 및 양산 기술 지원' },
-        { department:'엔진기계사업부', role:'품질관리', weights:{analytical:2,responsibility:2,teamwork:0,innovation:0,creativity:0}, desc:'엔진 및 기계 품질 관리 및 최적화' },
-        { department:'엔진기계사업부', role:'HR', weights:{teamwork:2,responsibility:1,analytical:0,innovation:0,creativity:0}, desc:'인사 및 조직 운영, 인재 육성 지원' },
-        { department:'엔진기계사업부', role:'통합구매', weights:{analytical:2,responsibility:1,teamwork:1,innovation:0,creativity:0}, desc:'엔진 부품 및 자재 조달, 공급망 관리' },
-        { department:'엔진기계사업부', role:'안전', weights:{responsibility:2,analytical:1,teamwork:1,innovation:0,creativity:0}, desc:'산업안전 및 환경 관리 기준 수립, 위험 예방' },
-        { department:'엔진기계사업부', role:'DT', weights:{innovation:2,analytical:1,creativity:1,teamwork:0,responsibility:0}, desc:'디지털 혁신 및 IT 시스템 개발' },
-        { department:'조선사업부', role:'기본설계', weights:{analytical:2,responsibility:1,teamwork:1,innovation:1,creativity:0}, desc:'선박 기본 틀 완성 및 계약 사양서 작성' },
-        { department:'조선사업부', role:'조선설계', weights:{analytical:2,creativity:1,teamwork:1,responsibility:1,innovation:0}, desc:'구조 해석, 공법 개선 및 생산도면 설계' },
-        { department:'조선사업부', role:'생산관리', weights:{responsibility:2,analytical:1,teamwork:1,innovation:0,creativity:0}, desc:'생산 계획, 자재·설비 투입 및 안전환경 관리' },
-        { department:'조선사업부', role:'기술기획', weights:{analytical:2,innovation:1,responsibility:1,teamwork:1,creativity:1}, desc:'기술경영 및 사업부 전략 기획' },
-        { department:'조선사업부', role:'생산지원', weights:{responsibility:2,analytical:2,teamwork:1,innovation:1,creativity:0}, desc:'생산계획 수립 및 외주 입고 일정 관리' },
-        { department:'해양사업부', role:'상세설계', weights:{analytical:2,innovation:1,responsibility:1,creativity:1,teamwork:0}, desc:'해양플랜트 설계 SPEC 결정 및 도면 작성' },
-        { department:'해양에너지', role:'설계', weights:{analytical:2,innovation:1,responsibility:1,creativity:1,teamwork:0}, desc:'해양에너지 설비 SPEC 결정 및 절차서 작성' },
-        { department:'특수선사업부', role:'상세설계', weights:{analytical:2,innovation:1,responsibility:1,teamwork:1,creativity:0}, desc:'함정 및 특수선 도면 설계 및 견적' },
-        { department:'특수선사업부', role:'생산관리', weights:{responsibility:2,analytical:1,teamwork:1,innovation:0,creativity:0}, desc:'조선 공사 시공 표준 수립 및 자재·설비 관리' },
-        { department:'특수선사업부', role:'영업', weights:{teamwork:2,innovation:1,responsibility:1,creativity:0,analytical:0}, desc:'함정 해외 수출 프로젝트 영업' }
+    function selectAnswer(choice){answers[current]=choice;document.querySelectorAll('.option-btn').forEach(b=>b.classList.remove('selected'));document.getElementById(choice===0?'ans1Btn':'ans2Btn').classList.add('selected');setTimeout(()=>{if(current<9){current++;updateQuestion();}else showAnalysis();},300);}    
+    function updateQuestion(){showStep('question');document.querySelector('.question-number').innerText=`${current+1}/10`;document.getElementById('progressBar').style.width=`${(current+1)/10*100}%`;document.getElementById('questionText').innerText=selected[current].text;document.getElementById('ans1Btn').innerText=selected[current].opt1;document.getElementById('ans2Btn').innerText=selected[current].opt2;document.querySelectorAll('.option-btn').forEach(b=>b.classList.remove('selected'));}
+    function showStep(name){Object.values(steps).forEach(s=>s.classList.remove('active'));steps[name].classList.add('active');}
+    function showAnalysis(){showStep('analysis');setTimeout(showResult,4000+Math.random()*5000);}    
+    function showResult(){showStep('result');const scores={};selected.forEach((q,i)=>{const d=answers[i]===0?q.dim1:q.dim2;scores[d]=(scores[d]||0)+1;});const jobs=[
+        {department:'엔진기계사업부',role:'생산기술 지원',weights:{responsibility:2,analytical:2,teamwork:1,innovation:1,creativity:0},desc:'대형/중형 엔진 부품 주조 및 기계가공 생산기술 지원'},
+        {department:'엔진기계사업부',role:'조립·시운전 지원',weights:{responsibility:2,analytical:2,teamwork:1,innovation:1,creativity:0},desc:'엔진 조립·시운전 표준 작업 수립 및 성능 분석'},
+        {department:'엔진기계사업부',role:'설비 개선·투자관리',weights:{responsibility:2,innovation:2,analytical:1,teamwork:1,creativity:0},desc:'시운전 설비 개선 및 친환경 연료 설비 투자·유지보수'},
+        {department:'엔진기계사업부',role:'생산관리',weights:{responsibility:2,analytical:1,teamwork:1,innovation:0,creativity:0},desc:'공정·품질 관리 및 설비 현대화 유지보수'},
+        {department:'엔진기계사업부',role:'생산지원',weights:{responsibility:2,analytical:2,teamwork:1,innovation:1,creativity:0},desc:'사업부 운영전략 수립 및 생산계획 관리, 프로세스 개선'},
+        {department:'엔진기계사업부',role:'영업',weights:{teamwork:2,responsibility:1,innovation:1,creativity:1,analytical:1},desc:'친환경 추진 기관 및 엔진 시스템 홍보·고객 기술영업'},
+        {department:'엔진기계사업부',role:'상세설계',weights:{analytical:2,creativity:1,innovation:1,responsibility:1,teamwork:0},desc:'엔진 기계 부품/시스템 3D 모델링 및 도면 작성'},
+        {department:'엔진기계사업부',role:'제어시스템 개발',weights:{analytical:2,innovation:2,responsibility:1,creativity:1,teamwork:0},desc:'엔진 제어시스템 설계 및 양산 기술 지원'},
+        {department:'엔진기계사업부',role:'품질관리',weights:{analytical:2,responsibility:2,teamwork:0,innovation:0,creativity:0},desc:'엔진 및 기계 품질 관리 및 최적화'},
+        {department:'엔진기계사업부',role:'HR',weights:{teamwork:2,responsibility:1,analytical:0,innovation:0,creativity:0},desc:'인사 및 조직 운영, 인재 육성 지원'},
+        {department:'엔진기계사업부',role:'통합구매',weights:{analytical:2,responsibility:1,teamwork:1,innovation:0,creativity:0},desc:'엔진 부품 및 자재 조달, 공급망 관리'},
+        {department:'엔진기계사업부',role:'안전',weights:{responsibility:2,analytical:1,teamwork:1,innovation:0,creativity:0},desc:'산업안전 및 환경 관리 기준 수립, 위험 예방'},
+        {department:'엔진기계사업부',role:'DT',weights:{innovation:2,analytical:1,creativity:1,teamwork:0,responsibility:0},desc:'디지털 혁신 및 IT 시스템 개발'},
+        {department:'조선사업부',role:'기본설계',weights:{analytical:2,responsibility:1,teamwork:1,innovation:1,creativity:0},desc:'선박 기본 틀 완성 및 계약 사양서 작성'},
+        {department:'조선사업부',role:'조선설계',weights:{analytical:2,creativity:1,teamwork:1,responsibility:1,innovation:0},desc:'구조 해석, 공법 개선 및 생산도면 설계'},
+        {department:'조선사업부',role:'생산관리',weights:{responsibility:2,analytical:1,teamwork:1,innovation:0,creativity:0},desc:'생산 계획, 자재·설비 투입 및 안전환경 관리'},
+        {department:'조선사업부',role:'기술기획',weights:{analytical:2,innovation:1,responsibility:1,teamwork:1,creativity:1},desc:'기술경영 및 사업부 전략 기획'},
+        {department:'조선사업부',role:'생산지원',weights:{responsibility:2,analytical:2,teamwork:1,innovation:1,creativity:0},desc:'생산계획 수립 및 외주 입고 일정 관리'},
+        {department:'해양사업부',role:'상세설계',weights:{analytical:2,innovation:1,responsibility:1,creativity:1,teamwork:0},desc:'해양플랜트 설계 SPEC 결정 및 도면 작성'},
+        {department:'해양에너지',role:'설계',weights:{analytical:2,innovation:1,responsibility:1,creativity:1,teamwork:0},desc:'해양에너지 설비 SPEC 결정 및 절차서 작성'},
+        {department:'특수선사업부',role:'상세설계',weights:{analytical:2,innovation:1,responsibility:1,teamwork:1,creativity:0},desc:'함정 및 특수선 도면 설계 및 견적'},
+        {department:'특수선사업부',role:'생산관리',weights:{responsibility:2,analytical:1,teamwork:1,innovation:0,creativity:0},desc:'조선 공사 시공 표준 수립 및 자재·설비 관리'},
+        {department:'특수선사업부',role:'영업',weights:{teamwork:2,innovation:1,responsibility:1,creativity:0,analytical:0},desc:'함정 해외 수출 프로젝트 영업'}
       ];
       const jobScores=jobs.map(j=>({...j,score:Object.entries(j.weights).reduce((sum,[d,w])=>sum+(scores[d]||0)*w,0)}));
       const best=jobScores.sort((a,b)=>b.score-a.score)[0];
@@ -217,8 +206,7 @@
       const gradient=colorMap[best.department]||colorMap['엔진기계사업부'];
       const card=document.getElementById('resultCard');
       card.style.background=gradient;
-      card.innerHTML=`<div class="result-department">${best.department}</div><div class="result-role">${best.role} 직무</div>`;
-      document.querySelector('.result-desc').innerText=best.desc;
+      card.innerHTML=`<div class="result-department">${best.department}</div><div class="result-role">${best.role} 직무</div><p class="result-desc">${best.desc}</p>`;
     }
   </script>
 </body>

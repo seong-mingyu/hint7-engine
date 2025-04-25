@@ -9,67 +9,76 @@
   <style>
     @font-face { font-family:'HDHyundaiLight'; src:url('assets/fonts/HDHyundai-Light.ttf') format('truetype'); }
     @font-face { font-family:'HDHyundaiBold';  src:url('assets/fonts/HDHyundai-Bold.ttf') format('truetype'); }
-    :root { --discovery-blue:#003087; --prosperity-green:#008233; --trust-blue:#002554; --gray-text:#63666A; --bg-light:#f4f4f4; }
-    *{box-sizing:border-box;margin:0;padding:0;}
-    body{font-family:'HDHyundaiLight',sans-serif;background:var(--bg-light);color:var(--gray-text);opacity:0;transition:opacity .6s;}
-    body.loaded{opacity:1;}
+    :root {
+      --blue: #003087;
+      --green: #008233;
+      --dark-bg: #0a1f44;
+      --light-text: #e0f7fa;
+      --gray-text: #63666A;
+      --card-bg: #f9f9f9;
+      --bg-light: #f4f4f4;
+    }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { font-family:'HDHyundaiLight',sans-serif; background:var(--bg-light); color:var(--gray-text); opacity:0; transition:opacity .6s; }
+    body.loaded { opacity:1; }
     /* Splash */
-    #splash{position:fixed;top:0;left:0;width:100%;height:100%;background:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;z-index:9999;animation:fadeSplash .8s ease forwards;}
-    #splash img{width:60px;margin-bottom:1rem;}
-    .splash-text{font-family:'HDHyundaiBold';font-size:1.5rem;color:var(--discovery-blue);}
-    @keyframes fadeSplash{0%{opacity:1;}99%{opacity:0;}100%{display:none;}}
+    #splash { position:fixed; top:0; left:0; width:100%; height:100%; background:#fff; display:flex; flex-direction:column; justify-content:center; align-items:center; z-index:9999; animation:fadeSplash .8s ease forwards; }
+    #splash img { width:60px; margin-bottom:1rem; }
+    .splash-text { font-family:'HDHyundaiBold'; font-size:1.5rem; color:var(--blue); }
+    @keyframes fadeSplash { 0%{opacity:1;} 99%{opacity:0;} 100%{display:none;} }
     /* Navbar */
-    .navbar{position:sticky;top:0;left:0;background:#fff;display:flex;align-items:center;justify-content:space-between;padding:1rem 1.5rem;box-shadow:0 2px 4px rgba(0,0,0,0.1);z-index:1000;}
-    .navbar img{height:32px;}
-    .navbar-title{position:absolute;left:50%;transform:translateX(-50%);font-family:'HDHyundaiBold';font-size:1.5rem;}
-    .navbar-title a{text-decoration:none;color:inherit;}
-    .navbar-title .hd{color:var(--discovery-blue);}
-    .menu-icon{font-size:1.5rem;cursor:pointer;}
-    .menu-popup{position:absolute;top:64px;right:20px;background:#fff;border:1px solid #ccc;border-radius:10px;box-shadow:0 4px 12px rgba(0,0,0,0.15);padding:.5rem 1rem;opacity:0;pointer-events:none;transform:translateY(-10px);transition:all .3s;}
-    .menu-popup.active{opacity:1;pointer-events:auto;transform:translateY(0);}
-    .menu-popup ul{list-style:none;}
-    .menu-popup li{margin:.5rem 0;}
-    .menu-popup a{text-decoration:none;color:var(--gray-text);}
-    .menu-popup a:hover{color:var(--discovery-blue);}
+    .navbar { position:sticky; top:0; background:#fff; display:flex; align-items:center; justify-content:space-between; padding:1rem 1.5rem; box-shadow:0 2px 4px rgba(0,0,0,0.1); z-index:1000; }
+    .navbar img { height:32px; }
+    .navbar-title { position:absolute; left:50%; transform:translateX(-50%); font-family:'HDHyundaiBold'; font-size:1.5rem; }
+    .navbar-title .hd { color:var(--blue); }
+    .menu-icon { font-size:1.5rem; cursor:pointer; }
+    .menu-popup { position:absolute; top:64px; right:20px; background:#fff; border:1px solid #ccc; border-radius:10px; box-shadow:0 4px 12px rgba(0,0,0,0.15); padding:.5rem 1rem; opacity:0; pointer-events:none; transform:translateY(-10px); transition:all .3s; }
+    .menu-popup.active { opacity:1; pointer-events:auto; transform:translateY(0); }
+    .menu-popup ul { list-style:none; }
+    .menu-popup li { margin:.5rem 0; }
+    .menu-popup a { text-decoration:none; color:var(--gray-text); }
+    .menu-popup a:hover { color:var(--blue); }
     /* Intro */
-    .al-intro{padding:3rem 1rem;text-align:center;}
-    .al-intro .page-title{font-family:'HDHyundaiBold';font-size:2rem;background:linear-gradient(90deg,#00B3FF,#9932CC);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.5rem;}
-    .al-intro .subtitle{font-size:1rem;color:var(--gray-text);margin-bottom:1.5rem;}
-    .al-intro .tagline{font-size:1rem;line-height:1.4;color:var(--gray-text);margin-bottom:2rem;}
-    .btn{padding:.75rem 1.5rem;border:none;border-radius:8px;font-family:'HDHyundaiBold';font-size:1rem;color:#fff;cursor:pointer;transition:background .2s;margin:0 auto;display:block;}
-    .btn.primary{background:var(--discovery-blue);}
-    .btn.secondary{background:var(--prosperity-green);}
+    .al-intro { padding:3rem 1rem; text-align:center; }
+    .al-intro .page-title { font-family:'HDHyundaiBold'; font-size:2rem; background:linear-gradient(90deg,#00B3FF,#9932CC); -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin-bottom:.5rem; }
+    .al-intro .subtitle { font-size:1rem; margin-bottom:1rem; }
+    .al-intro .tagline { font-size:1rem; margin-bottom:2rem; }
+    .btn { display:block; margin:0 auto; padding:.75rem 1.5rem; border:none; border-radius:8px; font-family:'HDHyundaiBold'; font-size:1rem; color:#fff; cursor:pointer; transition:background .2s; }
+    .btn.primary { background:var(--blue); }
+    .btn.secondary { background:var(--green); }
     /* Modal */
-    .modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;padding:1rem;z-index:10000;}
-    .modal.active{display:flex;}
-    .modal-content{background:#fff;border-radius:12px;width:80%;height:80vh;padding:2rem;position:relative;display:flex;flex-direction:column;overflow:auto;}
-    .modal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;}
-    .modal-header .title{font-family:'HDHyundaiBold';font-size:1.8rem;background:linear-gradient(90deg,#00B3FF,#9932CC);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-    .close-modal{background:transparent;border:none;font-size:1.5rem;color:var(--gray-text);cursor:pointer;}
+    .modal { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); display:none; align-items:center; justify-content:center; padding:1rem; z-index:10000; }
+    .modal.active { display:flex; }
+    .modal-content { background:#fff; border-radius:12px; width:80%; max-width:600px; max-height:70vh; padding:2rem; position:relative; display:flex; flex-direction:column; overflow-y:auto; }
+    .modal-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; }
+    .modal-header .title { font-family:'HDHyundaiBold'; font-size:1.8rem; background:linear-gradient(90deg,#00B3FF,#9932CC); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+    .close-modal { background:transparent; border:none; font-size:1.5rem; color:var(--gray-text); cursor:pointer; }
     /* Question */
-    .step{display:none;}
-    .step.active{display:block;}
-    .question-card{background:#f9f9f9;border-radius:12px;padding:1.5rem;margin-bottom:2rem;}
-    .question-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;}
-    .question-number{font-family:'HDHyundaiBold';font-size:1rem;}
-    .progress{flex:1;height:8px;background:#eee;border-radius:4px;overflow:hidden;margin-left:1rem;}
-    .progress-bar{height:100%;width:0%;background:var(--discovery-blue);transition:width .3s;}
-    .question-text{font-size:1.2rem;line-height:1.5;text-align:left;}
-    .question-options{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-top:1.5rem;}
-    .option-btn{flex:1;padding:1.5rem;background:#fff;border:2px solid var(--bg-light);border-radius:12px;font-size:1.1rem;text-align:center;cursor:pointer;transition:border-color .2s,transform .2s;}
-    .option-btn:hover{border-color:var(--discovery-blue);transform:scale(1.02);}
-    .option-btn.selected{background:var(--discovery-blue);color:#fff;}
-    .vs-label{font-family:'HDHyundaiBold';font-size:1.5rem;color:var(--trust-blue);margin:0 .5rem;}
+    .step { display:none; }
+    .step.active { display:block; }
+    .question-card { background:var(--card-bg); border-radius:12px; padding:1rem; margin-bottom:1rem; }
+    .question-card .question-text { border-bottom:1px solid #ddd; padding-bottom:1rem; margin-bottom:1rem; }
+    .question-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; }
+    .question-number { font-family:'HDHyundaiBold'; font-size:1rem; }
+    .progress { flex:1; height:8px; background:#eee; border-radius:4px; overflow:hidden; margin-left:1rem; }
+    .progress-bar { height:100%; width:0%; background:var(--blue); transition:width .3s; }
+    .question-text { font-size:1.2rem; line-height:1.5; text-align:left; }
+    .question-options { display:flex; align-items:center; justify-content:space-between; gap:1rem; margin-top:1rem; }
+    .option-btn { flex:1; padding:1rem; background:#fff; border:2px solid #ddd; border-radius:8px; font-size:1rem; text-align:center; cursor:pointer; transition:border-color .2s; }
+    .option-btn:hover { border-color:var(--blue); }
+    .option-btn.selected { background:var(--blue); color:#fff; }
+    .vs-label { font-family:'HDHyundaiBold'; font-size:1.5rem; color:var(--green); margin:0 .5rem; }
     /* Analysis */
-    .loading-indicator{width:50px;height:50px;margin:3rem auto;border:5px solid var(--prosperity-green);border-top-color:transparent;border-radius:50%;animation:spin 1s linear infinite;}
-    @keyframes spin{to{transform:rotate(360deg);}}
+    .loading-indicator { width:50px; height:50px; margin:3rem auto; border:5px solid var(--green); border-top-color:transparent; border-radius:50%; animation:spin 1s linear infinite; }
+    @keyframes spin { to { transform:rotate(360deg); } }
     /* Result */
-    .result-card{border-radius:12px;padding:2.5rem;text-align:center;margin-bottom:1.5rem;}
-    .result-department{font-size:1.2rem;opacity:0.9;margin-bottom:.5rem;}
-    .result-role{font-size:1.5rem;font-weight:bold;margin-bottom:1rem;}
-    .result-desc{font-size:1rem;line-height:1.5;text-align:left;}
-    .result-buttons{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;margin-top:2rem;}
-    @media(max-width:480px){.modal-content{padding:1rem;} .btn{font-size:.9rem;padding:.5rem 1rem;} .question-text{font-size:1rem;} .option-btn{font-size:1rem;padding:1rem;}}
+    .step#stepResult { text-align:center; }
+    .result-card { background:var(--dark-bg); color:var(--light-text); border-radius:12px; padding:2rem; margin-bottom:1rem; }
+    .result-department { font-size:1.2rem; opacity:0.8; }
+    .result-role { font-size:1.5rem; font-family:'HDHyundaiBold'; margin:0.5rem 0; }
+    .result-desc { margin-top:1rem; font-size:1rem; line-height:1.5; }
+    .result-buttons { display:flex; justify-content:center; gap:1rem; flex-wrap:wrap; margin-top:2rem; }
+    @media(max-width:480px) { .modal-content{padding:1rem;} .question-text{font-size:1rem;} .option-btn{font-size:1rem;} }
   </style>
 </head>
 <body>
@@ -145,20 +154,20 @@
       {text:'리스크 최소화 vs 과감한 혁신, 어떤 스타일인가요?',opt1:'안정적 운영',dim1:'responsibility',opt2:'혁신 도전',dim2:'innovation'},
       {text:'데이터 기반 의사결정 vs 직관에 의존, 어느 쪽이 편하신가요?',opt1:'데이터 기반',dim1:'analytical',opt2:'직관 기반',dim2:'innovation'},
       {text:'체계적 계획 vs 즉흥 실행, 업무 방식은?',opt1:'계획 수립',dim1:'responsibility',opt2:'즉흥 실행',dim2:'creativity'},
-      {text:'규칙 준수 vs 유연 대처, 어떤 점이 중요하신가요?',opt1:'절차 준수',dim1:'responsibility',opt2:'유연 대처',dim2:'innovation'},
-      {text:'고객 요구 철저 분석 vs 시장 기회 탐색, 어느 쪽이 흥미로운가요?',opt1:'요구사항 분석',dim1:'analytical',opt2:'시장 탐색',dim2:'innovation'},
+      {text:'규칙 준수 vs 유연 대처, 어떤 점이 더 중요하신가요?',opt1:'절차 준수',dim1:'responsibility',opt2:'유연 대처',dim2:'innovation'},
+      {text:'고객 요구 철저 분석 vs 시장 기회 탐색, 어떤 업무가 더 흥미로운가요?',opt1:'요구사항 분석',dim1:'analytical',opt2:'시장 탐색',dim2:'innovation'},
       {text:'디테일 집중 vs 큰 그림 조망, 어느 쪽에 자신 있나요?',opt1:'디테일 집중',dim1:'analytical',opt2:'전체 조망',dim2:'innovation'},
       {text:'문제 원인 분석 vs 해결책 제안, 어떤 방식 선호?',opt1:'원인 분석',dim1:'analytical',opt2:'해결 제안',dim2:'creativity'},
       {text:'신기술 학습 vs 기존 방식 유지, 무엇이 중요하신가요?',opt1:'신기술 학습',dim1:'innovation',opt2:'안정성 유지',dim2:'responsibility'},
       {text:'문서 작성 vs 대면 커뮤니케이션, 어떤 방식 편하신가요?',opt1:'문서 작성',dim1:'responsibility',opt2:'대면 소통',dim2:'teamwork'},
-      {text:'장기 전략 vs 단기 목표, where is focus?',opt1:'장기 전략',dim1:'analytical',opt2:'단기 목표',dim2:'responsibility'},
-      {text:'정확성 vs 속도, 우선순위는?',opt1:'정확성',dim1:'responsibility',opt2:'속도',dim2:'analytical'},
-      {text:'전문성 고도화 vs 다양한 업무 경험, 선호는?',opt1:'전문성 고도화',dim1:'analytical',	opt2:'다양한 경험',dim2:'creativity'},
-      {text:'팀 성과 우선 vs 개인 성과 중시, 어떤 선택?',opt1:'팀 성과',dim1:'teamwork',opt2:'개인 성과',dim2:'responsibility'},
-      {text:'리스크 관리 vs 과감 시도, 어떤 전략?',opt1:'리스크관리',dim1:'responsibility',opt2:'과감 시도',dim2:'innovation'},
-      {text:'근본 해결 vs 임시 방편, 적절한 해결책은?',opt1:'근본 해결',dim1:'analytical',opt2:'임시 방편',dim2:'innovation'},
-      {text:'자세 발표 vs 간결 발표, 어떤 커뮤니케이션?',opt1:'자세 발표',dim1:'analytical',opt2:'간결 발표',dim2:'creativity'},
-      {text:'혼자 공부 vs 스터디 그룹, 어떤 학습 방식?',opt1:'혼자 공부',dim1:'analytical',opt2:'스터디 그룹',dim2:'teamwork'}
+      {text:'장기 전략 vs 단기 목표, 무엇에 집중하시나요?',opt1:'장기 전략',dim1:'analytical',opt2:'단기 목표',dim2:'responsibility'},
+      {text:'정확성 vs 속도, 어느 쪽이 우선인가요?',opt1:'정확성 우선',dim1:'responsibility',opt2:'속도 우선',dim2:'analytical'},
+      {text:'전문성 고도화 vs 다양한 경험, 어떤 경력을 선호하시나요?',opt1:'전문성 고도화',dim1:'analytical',opt2:'다양한 경험',dim2:'creativity'},
+      {text:'팀 성과 vs 개인 성과, 어느 쪽을 더 중요시하시나요?',opt1:'팀 성과',dim1:'teamwork',opt2:'개인 성과',dim2:'responsibility'},
+      {text:'리스크 관리 vs 과감한 시도, 어떤 전략을 선호하시나요?',opt1:'리스크 관리',dim1:'responsibility',opt2:'과감 시도',dim2:'innovation'},
+      {text:'근본 해결 vs 임시 방편, 어떤 해결책이 적절할까요?',opt1:'근본 해결',dim1:'analytical',opt2:'임시 방편',dim2:'innovation'},
+      {text:'자세한 발표 vs 간결 발표, 어떤 커뮤니케이션 방식을 선호하시나요?',opt1:'자세한 발표',dim1:'analytical',opt2:'간결 발표',dim2:'creativity'},
+      {text:'혼자 공부 vs 스터디 그룹, 어떤 학습 방식이 효과적일까요?',opt1:'혼자 공부',dim1:'analytical',opt2:'스터디 그룹',dim2:'teamwork'}
     ];
     let selected=[],current=0,answers=[];
     startBtn.onclick=()=>{selected=questions.sort(()=>Math.random()-0.5).slice(0,10);current=0;answers=[];updateQuestion();modal.classList.add('active');};
@@ -166,48 +175,45 @@
     document.getElementById('ans1Btn').onclick=()=>selectAnswer(0);
     document.getElementById('ans2Btn').onclick=()=>selectAnswer(1);
     function selectAnswer(choice){answers[current]=choice;document.querySelectorAll('.option-btn').forEach(b=>b.classList.remove('selected'));document.getElementById(choice===0?'ans1Btn':'ans2Btn').classList.add('selected');setTimeout(()=>{if(current<9){current++;updateQuestion();}else showAnalysis();},300);}    
-    function updateQuestion(){showStep('question');document.querySelector('.question-number').innerText=`${current+1}/10`;document.getElementById('progressBar').style.width=`${(current+1)/10*100}%`;document.getElementById('questionText').innerText=selected[current].text;document.getElementById('ans1Btn').innerText=selected[current].opt1;document.getElementById('ans2Btn').innerText=selected[current].opt2;document.querySelectorAll('.option-btn').forEach(b=>b.classList.remove('selected'));}
+    function updateQuestion(){showStep('question');document.querySelector('.question-number').innerText=`${current+1}/10`;document.getElementById('progressBar').style.width=`${(current+1)/10*100}%`;document.getElementById('questionText').innerText=selected[current].text;document.getElementById('ans1Btn').innerText=selected[current].opt1;document.getElementById('ans2Btn').innerText=selected[current].opt2;}
     function showStep(name){Object.values(steps).forEach(s=>s.classList.remove('active'));steps[name].classList.add('active');}
     function showAnalysis(){showStep('analysis');setTimeout(showResult,4000+Math.random()*5000);}    
     function showResult(){showStep('result');const scores={};selected.forEach((q,i)=>{const d=answers[i]===0?q.dim1:q.dim2;scores[d]=(scores[d]||0)+1;});const jobs=[
-        {department:'엔진기계사업부',role:'생산기술 지원',weights:{responsibility:2,analytical:2,teamwork:1,innovation:1,creativity:0},desc:'대형/중형 엔진 부품 주조 및 기계가공 생산기술 지원'},
-        {department:'엔진기계사업부',role:'조립·시운전 지원',weights:{responsibility:2,analytical:2,teamwork:1,innovation:1,creativity:0},desc:'엔진 조립·시운전 표준 작업 수립 및 성능 분석'},
-        {department:'엔진기계사업부',role:'설비 개선·투자관리',weights:{responsibility:2,innovation:2,analytical:1,teamwork:1,creativity:0},desc:'시운전 설비 개선 및 친환경 연료 설비 투자·유지보수'},
-        {department:'엔진기계사업부',role:'생산관리',weights:{responsibility:2,analytical:1,teamwork:1,innovation:0,creativity:0},desc:'공정·품질 관리 및 설비 현대화 유지보수'},
-        {department:'엔진기계사업부',role:'생산지원',weights:{responsibility:2,analytical:2,teamwork:1,innovation:1,creativity:0},desc:'사업부 운영전략 수립 및 생산계획 관리, 프로세스 개선'},
-        {department:'엔진기계사업부',role:'영업',weights:{teamwork:2,responsibility:1,innovation:1,creativity:1,analytical:1},desc:'친환경 추진 기관 및 엔진 시스템 홍보·고객 기술영업'},
-        {department:'엔진기계사업부',role:'상세설계',weights:{analytical:2,creativity:1,innovation:1,responsibility:1,teamwork:0},desc:'엔진 기계 부품/시스템 3D 모델링 및 도면 작성'},
-        {department:'엔진기계사업부',role:'제어시스템 개발',weights:{analytical:2,innovation:2,responsibility:1,creativity:1,teamwork:0},desc:'엔진 제어시스템 설계 및 양산 기술 지원'},
-        {department:'엔진기계사업부',role:'품질관리',weights:{analytical:2,responsibility:2,teamwork:0,innovation:0,creativity:0},desc:'엔진 및 기계 품질 관리 및 최적화'},
-        {department:'엔진기계사업부',role:'HR',weights:{teamwork:2,responsibility:1,analytical:0,innovation:0,creativity:0},desc:'인사 및 조직 운영, 인재 육성 지원'},
-        {department:'엔진기계사업부',role:'통합구매',weights:{analytical:2,responsibility:1,teamwork:1,innovation:0,creativity:0},desc:'엔진 부품 및 자재 조달, 공급망 관리'},
-        {department:'엔진기계사업부',role:'안전',weights:{responsibility:2,analytical:1,teamwork:1,innovation:0,creativity:0},desc:'산업안전 및 환경 관리 기준 수립, 위험 예방'},
-        {department:'엔진기계사업부',role:'DT',weights:{innovation:2,analytical:1,creativity:1,teamwork:0,responsibility:0},desc:'디지털 혁신 및 IT 시스템 개발'},
-        {department:'조선사업부',role:'기본설계',weights:{analytical:2,responsibility:1,teamwork:1,innovation:1,creativity:0},desc:'선박 기본 틀 완성 및 계약 사양서 작성'},
-        {department:'조선사업부',role:'조선설계',weights:{analytical:2,creativity:1,teamwork:1,responsibility:1,innovation:0},desc:'구조 해석, 공법 개선 및 생산도면 설계'},
-        {department:'조선사업부',role:'생산관리',weights:{responsibility:2,analytical:1,teamwork:1,innovation:0,creativity:0},desc:'생산 계획, 자재·설비 투입 및 안전환경 관리'},
-        {department:'조선사업부',role:'기술기획',weights:{analytical:2,innovation:1,responsibility:1,teamwork:1,creativity:1},desc:'기술경영 및 사업부 전략 기획'},
-        {department:'조선사업부',role:'생산지원',weights:{responsibility:2,analytical:2,teamwork:1,innovation:1,creativity:0},desc:'생산계획 수립 및 외주 입고 일정 관리'},
-        {department:'해양사업부',role:'상세설계',weights:{analytical:2,innovation:1,responsibility:1,creativity:1,teamwork:0},desc:'해양플랜트 설계 SPEC 결정 및 도면 작성'},
-        {department:'해양에너지',role:'설계',weights:{analytical:2,innovation:1,responsibility:1,creativity:1,teamwork:0},desc:'해양에너지 설비 SPEC 결정 및 절차서 작성'},
-        {department:'특수선사업부',role:'상세설계',weights:{analytical:2,innovation:1,responsibility:1,teamwork:1,creativity:0},desc:'함정 및 특수선 도면 설계 및 견적'},
-        {department:'특수선사업부',role:'생산관리',weights:{responsibility:2,analytical:1,teamwork:1,innovation:0,creativity:0},desc:'조선 공사 시공 표준 수립 및 자재·설비 관리'},
-        {department:'특수선사업부',role:'영업',weights:{teamwork:2,innovation:1,responsibility:1,creativity:0,analytical:0},desc:'함정 해외 수출 프로젝트 영업'}
-      ];
-      const jobScores=jobs.map(j=>({...j,score:Object.entries(j.weights).reduce((sum,[d,w])=>sum+(scores[d]||0)*w,0)}));
-      const best=jobScores.sort((a,b)=>b.score-a.score)[0];
-      const colorMap={
-        '엔진기계사업부':'linear-gradient(135deg,#00B3FF,#9932CC)',
-        '조선사업부':'linear-gradient(135deg,#008233,#003087)',
-        '해양사업부':'linear-gradient(135deg,#9932CC,#00B3FF)',
-        '해양에너지':'linear-gradient(135deg,#008233,#9932CC)',
-        '특수선사업부':'linear-gradient(135deg,#003087,#008233)'
-      };
-      const gradient=colorMap[best.department]||colorMap['엔진기계사업부'];
-      const card=document.getElementById('resultCard');
-      card.style.background=gradient;
-      card.innerHTML=`<div class="result-department">${best.department}</div><div class="result-role">${best.role} 직무</div><p class="result-desc">${best.desc}</p>`;
-    }
+      {department:'엔진기계사업부',role:'생산기술 지원',weights:{responsibility:2,analytical:2,teamwork:1,innovation:1,creativity:0},desc:'대형/중형 엔진 부품 주조 및 기계가공 생산기술 지원'},
+      {department:'엔진기계사업부',role:'조립·시운전 지원',weights:{responsibility:2,analytical:2,teamwork:1,innovation:1,creativity:0},desc:'엔진 조립·시운전 표준 작업 수립 및 성능 분석'},
+      {department:'엔진기계사업부',role:'설비 개선·투자관리',weights:{responsibility:2,innovation:2,analytical:1,teamwork:1,creativity:0},desc:'시운전 설비 개선 및 친환경 연료 설비 투자·유지보수'},
+      {department:'엔진기계사업부',role:'생산관리',weights:{responsibility:2,analytical:1,teamwork:1,innovation:0,creativity:0},desc:'공정·품질 관리 및 설비 현대화 유지보수'},
+      {department:'엔진기계사업부',role:'생산지원',weights:{responsibility:2,analytical:2,teamwork:1,innovation:1,creativity:0},desc:'사업부 운영전략 수립 및 생산계획 관리, 프로세스 개선'},
+      {department:'엔진기계사업부',role:'영업',weights:{teamwork:2,responsibility:1,innovation:1,creativity:1,analytical:1},desc:'친환경 추진 기관 및 엔진 시스템 홍보·고객 기술영업'},
+      {department:'엔진기계사업부',role:'상세설계',weights:{analytical:2,creativity:1,innovation:1,responsibility:1,teamwork:0},desc:'엔진 기계 부품/시스템 3D 모델링 및 도면 작성'},
+      {department:'엔진기계사업부',role:'제어시스템 개발',weights:{analytical:2,innovation:2,responsibility:1,creativity:1,teamwork:0},desc:'엔진 제어시스템 설계 및 양산 기술 지원'},
+      {department:'엔진기계사업부',role:'품질관리',weights:{analytical:2,responsibility:2,teamwork:0,innovation:0,creativity:0},desc:'엔진 및 기계 품질 관리 및 최적화'},
+      {department:'엔진기계사업부',role:'HR',weights:{teamwork:2,responsibility:1,analytical:0,innovation:0,creativity:0},desc:'인사 및 조직 운영, 인재 육성 지원'},
+      {department:'엔진기계사업부',role:'통합구매',weights:{analytical:2,responsibility:1,teamwork:1,innovation:0,creativity:0},desc:'엔진 부품 및 자재 조달, 공급망 관리'},
+      {department:'엔진기계사업부',role:'안전',weights:{responsibility:2,analytical:1,teamwork:1,innovation:0,creativity:0},desc:'산업안전 및 환경 관리 기준 수립, 위험 예방'},
+      {department:'엔진기계사업부',role:'DT',weights:{innovation:2,analytical:1,creativity:1,teamwork:0,responsibility:0},desc:'디지털 혁신 및 IT 시스템 개발'},
+      {department:'조선사업부',role:'기본설계',weights:{analytical:2,responsibility:1,teamwork:1,innovation:1,creativity:0},desc:'선박 기본 틀 완성 및 계약 사양서 작성'},
+      {department:'조선사업부',role:'조선설계',weights:{analytical:2,creativity:1,teamwork:1,responsibility:1,innovation:0},desc:'구조 해석, 공법 개선 및 생산도면 설계'},
+      {department:'조선사업부',role:'생산관리',weights:{responsibility:2,analytical:1,teamwork:1,innovation:0,creativity:0},desc:'생산 계획, 자재·설비 투입 및 안전환경 관리'},
+      {department:'조선사업부',role:'기술기획',weights:{analytical:2,innovation:1,responsibility:1,teamwork:1,creativity:1},desc:'기술경영 및 사업부 전략 기획'},
+      {department:'조선사업부',role:'생산지원',weights:{responsibility:2,analytical:2,teamwork:1,innovation:1,creativity:0},desc:'생산계획 수립 및 외주 입고 일정 관리'},
+      {department:'해양사업부',role:'상세설계',weights:{analytical:2,innovation:1,responsibility:1,creativity:1,teamwork:0},desc:'해양플랜트 설계 SPEC 결정 및 도면 작성'},
+      {department:'해양에너지',role:'설계',weights:{analytical:2,innovation:1,responsibility:1,creativity:1,teamwork:0},desc:'해양에너지 설비 SPEC 결정 및 절차서 작성'},
+      {department:'특수선사업부',role:'상세설계',weights:{analytical:2,innovation:1,responsibility:1,teamwork:1,creativity:0},desc:'함정 및 특수선 도면 설계 및 견적'},
+      {department:'특수선사업부',role:'생산관리',weights:{responsibility:2,analytical:1,teamwork:1,innovation:0,creativity:0},desc:'조선 공사 시공 표준 수립 및 자재·설비 관리'},
+      {department:'특수선사업부',role:'영업',weights:{teamwork:2,innovation:1,responsibility:1,creativity:0,analytical:0},desc:'함정 해외 수출 프로젝트 영업'}
+    ];
+    const steps={ question:document.getElementById('stepQuestion'), analysis:document.getElementById('stepAnalysis'), result:document.getElementById('stepResult') };
+    let selected=[],current=0,answers=[];
+    startBtn.onclick=()=>{ selected=questions.sort(()=>Math.random()-0.5).slice(0,10); current=0; answers=[]; updateQuestion(); modal.classList.add('active'); };
+    closeBtn.onclick=()=>modal.classList.remove('active');
+    document.getElementById('ans1Btn').onclick=()=>selectAnswer(0);
+    document.getElementById('ans2Btn').onclick=()=>selectAnswer(1);
+    function selectAnswer(choice){ answers[current]=choice; document.querySelectorAll('.option-btn').forEach(b=>b.classList.remove('selected')); document.getElementById(choice===0?'ans1Btn':'ans2Btn').classList.add('selected'); setTimeout(()=>{ if(current<9){ current++; updateQuestion(); } else showAnalysis(); },300); }
+    function updateQuestion(){ showStep('question'); document.querySelector('.question-number').innerText=`${current+1}/10`; document.getElementById('progressBar').style.width=`${(current+1)/10*100}%`; document.getElementById('questionText').innerText=selected[current].text; document.getElementById('ans1Btn').innerText=selected[current].opt1; document.getElementById('ans2Btn').innerText=selected[current].opt2; }
+    function showStep(name){ Object.values(steps).forEach(s=>s.classList.remove('active')); steps[name].classList.add('active'); }
+    function showAnalysis(){ showStep('analysis'); setTimeout(showResult,4000+Math.random()*5000); }
+    function showResult(){ showStep('result'); const scores={}; selected.forEach((q,i)=>{ const d=answers[i]===0?q.dim1:q.dim2; scores[d]=(scores[d]||0)+1; }); const jobScores=jobs.map(j=>({...j,score:Object.entries(j.weights).reduce((sum,[d,w])=>sum+(scores[d]||0)*w,0)})); const best=jobScores.sort((a,b)=>b.score-a.score)[0]; const gradientMap={ '엔진기계사업부':'#00B3FF','#9932CC','조선사업부':'#008233','#003087','해양사업부':'#9932CC','#00B3FF','해양에너지':'#008233','#9932CC','특수선사업부':'#003087','#008233' }; document.getElementById('resultCard').style.background=var(--dark-bg); document.getElementById('resultCard').innerHTML=`<div class="result-department">${best.department}</div><div class="result-role">${best.role}</div><p class="result-desc">${best.desc}</p>`; }
   </script>
 </body>
 </html>

@@ -6,149 +6,190 @@
   <title>Intern Al - H-int</title>
   <link rel="icon" href="assets/images/logo.png" type="image/png">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
   <style>
     @font-face { font-family:'HDHyundaiLight'; src:url('assets/fonts/HDHyundai-Light.ttf') format('truetype'); }
     @font-face { font-family:'HDHyundaiBold';  src:url('assets/fonts/HDHyundai-Bold.ttf') format('truetype'); }
     :root {
-      --discovery-blue: #003087;
-      --prosperity-green: #008233;
-      --trust-blue: #002554;
-      --gray-text: #63666A;
-      --bg-light: #f4f4f4;
+      --discovery-blue:#003087; --prosperity-green:#008233;
+      --trust-blue:#002554;    --gray-text:#63666A;
+      --bg-light:#f4f4f4;
     }
-    * { box-sizing: border-box; }
+    * { box-sizing:border-box; margin:0; padding:0; }
     body {
-      font-family: 'HDHyundaiLight', sans-serif;
-      margin: 0;
-      background: var(--bg-light);
-      color: var(--gray-text);
-      opacity: 0;
-      transition: opacity 0.6s;
+      font-family:'HDHyundaiLight',sans-serif;
+      background:var(--bg-light); color:var(--gray-text);
+      opacity:0; transition:opacity .6s;
     }
-    body.loaded { opacity: 1; }
+    body.loaded { opacity:1; }
+    /* Splash */
     #splash {
-      position: fixed; top:0; left:0;
-      width:100%; height:100%;
-      background:#fff;
-      display:flex; align-items:center; justify-content:center;
-      flex-direction:column;
-      z-index:9999;
-      animation:fadeSplash 0.8s ease forwards;
+      position:fixed;top:0;left:0;width:100%;height:100%;
+      background:#fff;display:flex;flex-direction:column;
+      align-items:center;justify-content:center;z-index:9999;
+      animation:fadeSplash .8s ease forwards;
     }
     #splash img { width:60px; margin-bottom:1rem; }
     .splash-text {
-      font-family:'HDHyundaiBold'; font-size:1.5rem;
+      font-family:'HDHyundaiBold';font-size:1.5rem;
       color:var(--discovery-blue);
     }
-    @keyframes fadeSplash {0%{opacity:1;}99%{opacity:0;}100%{display:none;}}
+    @keyframes fadeSplash {0%{opacity:1}99%{opacity:0}100%{display:none}}
+    /* Navbar */
     .navbar {
-      position:sticky; top:0; background:#fff;
-      display:flex; align-items:center; justify-content:space-between;
-      padding:1rem 1.5rem; box-shadow:0 2px 4px rgba(0,0,0,0.1);
+      position:sticky;top:0;background:#fff;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:1rem 1.5rem;box-shadow:0 2px 4px rgba(0,0,0,0.1);
       z-index:1000;
     }
     .navbar img { height:32px; }
     .navbar-title {
-      position:absolute; left:50%; transform:translateX(-50%);
-      font-family:'HDHyundaiBold'; font-size:1.5rem;
+      position:absolute;left:50%;transform:translateX(-50%);
+      font-family:'HDHyundaiBold';font-size:1.5rem;
     }
     .navbar-title a { text-decoration:none; color:inherit; }
     .navbar-title .hd { color:var(--discovery-blue); }
     .menu-icon { font-size:1.5rem; cursor:pointer; }
     .menu-popup {
-      position:absolute; top:64px; right:20px;
-      background:#fff; border:1px solid #ccc; border-radius:10px;
+      position:absolute;top:64px;right:20px;
+      background:#fff;border:1px solid #ccc;border-radius:10px;
       box-shadow:0 4px 12px rgba(0,0,0,0.15);
-      padding:0.5rem 1rem;
-      opacity:0; pointer-events:none;
-      transform:translateY(-10px);
-      transition:all 0.3s;
+      padding:.5rem 1rem;opacity:0;pointer-events:none;
+      transform:translateY(-10px);transition:all .3s;
     }
-    .menu-popup.active { opacity:1; pointer-events:auto; transform:translateY(0); }
-    .menu-popup ul { list-style:none; margin:0; padding:0; }
-    .menu-popup li { margin:0.5rem 0; }
-    .menu-popup a { text-decoration:none; color:var(--gray-text); font-size:0.95rem; }
+    .menu-popup.active {
+      opacity:1;pointer-events:auto;transform:translateY(0);
+    }
+    .menu-popup ul { list-style:none; }
+    .menu-popup li { margin:.5rem 0; }
+    .menu-popup a { text-decoration:none; color:var(--gray-text); }
     .menu-popup a:hover { color:var(--discovery-blue); }
+
+    /* Intro */
     .al-intro {
-      padding:4rem 1rem; text-align:center;
+      text-align:center; padding:4rem 1rem;
     }
     .modal-title {
-      font-family:'HDHyundaiBold'; font-size:2rem;
+      font-family:'HDHyundaiBold';font-size:2rem;
       background:-webkit-linear-gradient(90deg,#00B3FF 0%,#9932CC 100%);
       background:linear-gradient(90deg,#00B3FF 0%,#9932CC 100%);
       -webkit-background-clip:text; -webkit-text-fill-color:transparent;
       background-clip:text; color:transparent;
       margin-bottom:1rem;
     }
-    .intro-text { font-size:1rem; line-height:1.5; margin-bottom:2rem; }
-    .btn { padding:0.75rem 1.5rem; border:none; border-radius:8px;
-      font-family:'HDHyundaiBold'; font-size:1rem; cursor:pointer;
-      transition:background 0.2s,color 0.2s; margin:0.5rem;
+    .intro-text {
+      font-size:1rem; line-height:1.5; margin-bottom:2rem;
     }
-    .btn.primary { background:var(--discovery-blue); color:#fff; }
+    .btn {
+      display:inline-block; margin:.5rem;
+      padding:.75rem 1.5rem;
+      border:none;border-radius:8px;
+      font-family:'HDHyundaiBold';font-size:1rem;
+      cursor:pointer;transition:background .2s,color .2s;
+    }
+    .btn.primary   { background:var(--discovery-blue); color:#fff; }
     .btn.secondary { background:var(--prosperity-green); color:#fff; }
-    .btn.tertiary { background:transparent; color:var(--trust-blue); border:1px solid var(--trust-blue); }
-    .btn-group { display:flex; justify-content:center; gap:0.5rem; }
+    .btn.tertiary  { background:transparent; color:var(--trust-blue);
+                     border:1px solid var(--trust-blue); }
+    .btn-group { display:flex; justify-content:center; gap:.5rem; }
+
+    /* Modal */
     .modal {
-      position:fixed; top:0; left:0;
-      width:100%; height:100%; background:rgba(0,0,0,0.6);
-      display:none; align-items:center; justify-content:center;
-      padding:1rem; z-index:10000;
+      position:fixed;top:0;left:0;width:100%;height:100%;
+      background:rgba(0,0,0,0.6);
+      display:none;align-items:center;justify-content:center;
+      padding:1rem;z-index:10000;
     }
     .modal.active { display:flex; }
     .modal-content {
-      background:#fff; border-radius:12px;
-      width:100%; max-width:500px;
-      padding:2rem; position:relative;
-      display:flex; flex-direction:column;
+      background:#fff;border-radius:12px;
+      width:100%;max-width:500px;
+      padding:2rem;position:relative;
+      display:flex;flex-direction:column;
     }
     .close-modal {
-      position:absolute; top:1rem; right:1rem; background:transparent;
-      border:none; font-size:1.5rem; cursor:pointer; color:var(--gray-text);
+      position:absolute;top:1rem;right:1rem;
+      background:transparent;border:none;
+      font-size:1.5rem;color:var(--gray-text);
+      cursor:pointer;
     }
+
+    /* Steps */
     .step { display:none; }
     .step.active { display:block; }
-    .progress { height:8px; background:#eee; border-radius:4px; overflow:hidden; margin-bottom:1rem; }
-    .progress-bar { height:100%; width:0%; background:var(--discovery-blue); transition:width 0.3s; }
+
+    /* Progress */
+    .progress {
+      height:8px;background:#eee;
+      border-radius:4px;overflow:hidden;
+      margin-bottom:1rem;
+    }
+    .progress-bar {
+      height:100%;width:0%;
+      background:var(--discovery-blue);
+      transition:width .3s;
+    }
+
+    /* Question */
     .question-text { font-size:1.1rem; margin-bottom:1.5rem; }
-    .answer-buttons { display:flex; gap:0.5rem; margin-bottom:1.5rem; }
+    .answer-buttons { display:flex; gap:.5rem; margin-bottom:1.5rem; }
     .answer-buttons .btn { flex:1; }
     .nav-buttons { display:flex; justify-content:space-between; }
+
+    /* Analysis */
     .loading-indicator {
-      width:40px; height:40px; margin:2rem auto;
-      border:4px solid var(--prosperity-green); border-top-color:transparent;
-      border-radius:50%; animation:spin 1s linear infinite;
+      width:40px;height:40px;margin:2rem auto;
+      border:4px solid var(--prosperity-green);
+      border-top-color:transparent;
+      border-radius:50%;animation:spin 1s linear infinite;
     }
-    @keyframes spin { to { transform:rotate(360deg); } }
+    @keyframes spin { to{transform:rotate(360deg);} }
+
+    /* Result */
     .result-department {
-      font-family:'HDHyundaiBold'; font-size:1.5rem; text-align:center;
+      font-family:'HDHyundaiBold';font-size:1.5rem;
+      text-align:center;margin-bottom:.5rem;
       background:-webkit-linear-gradient(90deg,#00B3FF 0%,#9932CC 100%);
       background:linear-gradient(90deg,#00B3FF 0%,#9932CC 100%);
       -webkit-background-clip:text; -webkit-text-fill-color:transparent;
       background-clip:text; color:transparent;
-      margin-bottom:0.5rem;
     }
-    .result-role { font-family:'HDHyundaiBold'; font-size:1.3rem; text-align:center;
-      color:var(--trust-blue); margin-bottom:1rem;
+    .result-role {
+      font-family:'HDHyundaiBold';font-size:1.3rem;
+      text-align:center;color:var(--trust-blue);
+      margin-bottom:1rem;
     }
-    .result-desc { font-size:1rem; text-align:center; margin-bottom:2rem; line-height:1.4; }
+    .result-desc {
+      font-size:1rem;text-align:center;line-height:1.4;
+      margin-bottom:2rem;
+    }
     .modal-footer { text-align:center; }
-    .footer-note { font-size:0.95rem; color:var(--gray-text); margin:1rem 0; }
+    .footer-note {
+      font-size:.95rem;color:var(--gray-text);
+      margin:1rem 0;
+    }
+
     @media (max-width:480px) {
       .modal-content { padding:1rem; }
-      .navbar { padding:0.75rem 1rem; }
-      .btn { font-size:0.9rem; padding:0.5rem 1rem; }
+      .navbar { padding:.75rem 1rem; }
+      .btn { font-size:.9rem; padding:.5rem 1rem; }
     }
   </style>
 </head>
+
 <body>
+  <!-- Splash -->
   <div id="splash">
     <img src="assets/images/logo.png" alt="로고">
     <div class="splash-text">H-int Dream</div>
   </div>
+
+  <!-- Navbar -->
   <div class="navbar">
     <img src="assets/images/logo.png" alt="HD현대중공업 로고">
-    <div class="navbar-title"><a href="index.html"><span class="hd">H</span>int <span class="hd">D</span>ream</a></div>
+    <div class="navbar-title">
+      <a href="index.html"><span class="hd">H</span>int <span class="hd">D</span>ream</a>
+    </div>
     <div class="menu-icon" onclick="toggleMenu()">☰</div>
   </div>
   <div class="menu-popup" id="menuPopup">
@@ -160,20 +201,33 @@
       <li><a href="al.html" class="active">Intern Al</a></li>
     </ul>
   </div>
+
+  <!-- Intro -->
   <div class="al-intro">
     <div class="modal-title">Intern Al</div>
-    <div class="intro-text">AI가 여러분의 내면을 분석하여<br>가장 잘 맞는 직무를 추천합니다.</div>
+    <div class="intro-text">
+      AI가 여러분의 내면을 분석하여<br>
+      가장 잘 맞는 직무를 추천합니다.
+    </div>
     <button id="startBtn" class="btn primary">테스트 시작</button>
   </div>
+
+  <!-- Modal -->
   <div id="alModal" class="modal">
     <div class="modal-content">
       <button class="close-modal" onclick="closeModal()">×</button>
+
+      <!-- Intro Step -->
       <div id="stepIntro" class="step active">
-        <h2>테스트를 시작합니다</h2>
+        <h2 style="text-align:center;">테스트를 시작합니다</h2>
         <button id="beginBtn" class="btn primary">시작하기</button>
       </div>
+
+      <!-- Question Step -->
       <div id="stepQuestion" class="step">
-        <div class="progress"><div id="progressBar" class="progress-bar"></div></div>
+        <div class="progress">
+          <div id="progressBar" class="progress-bar"></div>
+        </div>
         <div id="questionText" class="question-text"></div>
         <div class="answer-buttons">
           <button id="ans1Btn" class="btn tertiary"></button>
@@ -184,96 +238,180 @@
           <button id="nextBtn" class="btn tertiary">다음</button>
         </div>
       </div>
+
+      <!-- Analysis Step -->
       <div id="stepAnalysis" class="step">
         <div class="loading-indicator"></div>
         <p style="text-align:center;">결과를 분석 중입니다...</p>
       </div>
+
+      <!-- Result Step -->
       <div id="stepResult" class="step">
         <div class="result-department"></div>
         <div class="result-role"></div>
         <div class="result-desc"></div>
+
         <div class="modal-footer">
-          <button class="btn primary" onclick="window.open('https://recruit.hd.com/kr','_blank')">HD현대중공업 지원하러 가기</button>
+          <button class="btn primary" onclick="window.open('https://recruit.hd.com/kr','_blank')">
+            HD현대중공업 지원하러 가기
+          </button>
           <p class="footer-note">인턴십 현장이 궁금하다면?</p>
-          <button class="btn secondary" onclick="location.href='view.html'">Intern View로 이동</button>
+          <button class="btn secondary" onclick="location.href='view.html'">
+            Intern View로 이동
+          </button>
           <div class="btn-group">
             <button id="restartBtn" class="btn tertiary">테스트 다시하기</button>
             <button id="closeBtn" class="btn tertiary">닫기</button>
           </div>
         </div>
       </div>
+
     </div>
   </div>
+
+  <!-- Scripts -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    AOS.init({duration:800,once:true});
-    function toggleMenu(){document.getElementById('menuPopup').classList.toggle('active');}
-    window.addEventListener('click',e=>{const m=document.getElementById('menuPopup'),i=document.querySelector('.menu-icon');if(!m.contains(e.target)&&!i.contains(e.target))m.classList.remove('active');});
-    const modal=document.getElementById('alModal'),startBtn=document.getElementById('startBtn'),beginBtn=document.getElementById('beginBtn'),closeBtns=[document.querySelector('.close-modal'),document.getElementById('closeBtn')],restartBtn=document.getElementById('restartBtn');
-    const steps={intro:document.getElementById('stepIntro'),question:document.getElementById('stepQuestion'),analysis:document.getElementById('stepAnalysis'),result:document.getElementById('stepResult')};
-    const questions=[
-      {text:'12시까지 야근하기 vs 12시까지 회식하기',opt1:'야근하기',opt2:'회식하기',dim1:'responsibility',dim2:'teamwork'},
-      {text:'혼자 일하기 vs 팀과 협업하기',opt1:'혼자 일하기',opt2:'팀과 협업하기',dim1:'responsibility',dim2:'teamwork'},
-      {text:'자료를 꼼꼼히 분석 vs 창의적 아이디어 내기',opt1:'꼼꼼히 분석',opt2:'창의적 아이디어',dim1:'analytical',dim2:'creativity'},
-      {text:'안전하게 리스크 최소화 vs 도전적인 혁신 추구',opt1:'리스크 최소화',opt2:'혁신 추구',dim1:'responsibility',dim2:'innovation'},
-      {text:'데이터 기반 의사결정 vs 직관적 의사결정',opt1:'데이터 기반',opt2:'직관 기반',dim1:'analytical',dim2:'innovation'},
-      {text:'프로젝트 실행 관리 vs 아이디어 구상',opt1:'실행 관리',opt2:'아이디어 구상',dim1:'responsibility',dim2:'creativity'},
-      {text:'규칙과 절차 준수 vs 유연한 대처',opt1:'규칙 준수',opt2:'유연 대처',dim1:'responsibility',dim2:'innovation'},
-      {text:'고객 요구 분석 vs 새로운 시장 탐색',opt1:'요구 분석',opt2:'시장 탐색',dim1:'analytical',dim2:'innovation'},
-      {text:'세부 사항 집중 vs 큰 그림 전략',opt1:'세부 집중',opt2:'큰 그림',dim1:'analytical',dim2:'innovation'},
-      {text:'오류 찾기 vs 개선 방안 발굴',opt1:'오류 찾기',opt2:'개선 방안',dim1:'analytical',dim2:'creativity'},
-      {text:'새 기술 학습 vs 기존 방식 유지',opt1:'새 기술 학습',opt2:'기존 유지',dim1:'innovation',dim2:'responsibility'},
-      {text:'보고서 문서화 vs 구두 커뮤니케이션',opt1:'문서화',opt2:'구두 커뮤니케이션',dim1:'responsibility',dim2:'teamwork'},
-      {text:'장기 계획 수립 vs 단기 목표 달성',opt1:'장기 계획',opt2:'단기 목표',dim1:'analytical',dim2:'responsibility'},
-      {text:'정확성 우선 vs 속도 우선',opt1:'정확성',opt2:'속도',dim1:'responsibility',dim2:'analytical'},
-      {text:'깊이 있는 전문성 vs 다양한 경험',opt1:'전문성',opt2:'다양한 경험',dim1:'analytical',dim2:'creativity'},
-      {text:'팀 목표 희생 vs 개인 성과 중시',opt1:'팀 희생',opt2:'개인 성과',dim1:'teamwork',dim2:'responsibility'},
-      {text:'리스크 관리 vs 과감한 시도',opt1:'리스크 관리',opt2:'과감한 시도',dim1:'responsibility',dim2:'innovation'},
-      {text:'근본적 해결 vs 임시 방편',opt1:'근본 해결',opt2:'임시 방편',dim1:'analytical',dim2:'innovation'},
-      {text:'자세한 발표 vs 간결한 발표',opt1:'자세한 발표',opt2:'간결한 발표',dim1:'analytical',dim2:'creativity'},
-      {text:'자기 주도 학습 vs 동료와 스터디',opt1:'자기 주도',opt2:'동료 스터디',dim1:'analytical',dim2:'teamwork'}
-    ];
-    let selected=[],current=0,answers=[];
-    beginBtn.onclick=()=>{
-      selected=questions.sort(()=>Math.random()-0.5).slice(0,10);
-      current=0; answers=[]; showStep('question'); updateQuestion();
+    AOS.init({ duration: 800, once: true });
+
+    function toggleMenu() {
+      document.getElementById('menuPopup').classList.toggle('active');
+    }
+    window.addEventListener('click', e => {
+      const menu = document.getElementById('menuPopup'),
+            icon = document.querySelector('.menu-icon');
+      if (!menu.contains(e.target) && !icon.contains(e.target)) {
+        menu.classList.remove('active');
+      }
+    });
+
+    // Modal Control
+    const modal     = document.getElementById('alModal'),
+          startBtn  = document.getElementById('startBtn'),
+          beginBtn  = document.getElementById('beginBtn'),
+          closeBtns = [ document.querySelector('.close-modal'), document.getElementById('closeBtn') ],
+          restartBtn= document.getElementById('restartBtn');
+
+    const steps = {
+      intro:    document.getElementById('stepIntro'),
+      question: document.getElementById('stepQuestion'),
+      analysis: document.getElementById('stepAnalysis'),
+      result:   document.getElementById('stepResult')
     };
-    startBtn.onclick=()=>modal.classList.add('active');
-    closeBtns.forEach(b=>b.onclick=()=>modal.classList.remove('active'));
-    restartBtn.onclick=()=>beginBtn.click();
-    document.getElementById('nextBtn').onclick=()=>{answers[current]=document.getElementById('ans1Btn').innerText===selected[current].opt1?0:1; if(current<9){current++;updateQuestion();}else showAnalysis();};
-    document.getElementById('prevBtn').onclick=()=>{if(current>0){current--;updateQuestion();}};
-    function showStep(n){Object.values(steps).forEach(s=>s.classList.remove('active')); steps[n].classList.add('active');}
-    function updateQuestion(){showStep('question'); document.getElementById('questionText').innerText=selected[current].text; document.getElementById('ans1Btn').innerText=selected[current].opt1; document.getElementById('ans2Btn').innerText=selected[current].opt2; document.getElementById('progressBar').style.width=((current+1)/10*100)+'%';}
-    function showAnalysis(){showStep('analysis'); setTimeout(showResult,4000+Math.random()*5000);}  
-    function showResult(){showStep('result'); const scores={}; selected.forEach((q,i)=>{const d=answers[i]===0?q.dim1:q.dim2; scores[d]=(scores[d]||0)+1;}); const jobs=[
-      {department:'엔진기계사업부',role:'생산기술 지원',desc:'대형/중형 엔진 부품 주조 및 기계가공 생산기술을 지원합니다.',weights:{responsibility:2,analytical:2,teamwork:1,innovation:1,creativity:0}},
-      {department:'엔진기계사업부',role:'조립·시운전 지원',desc:'엔진 조립 및 시운전 성능 분석과 표준 작업을 지원합니다.',weights:{responsibility:2,analytical:2,teamwork:1,innovation:1,creativity:0}},
-      {department:'엔진기계사업부',role:'설비 개선·투자관리',desc:'엔진 시운전 설비 개선 및 친환경 연료 설비 투자를 관리합니다.',weights:{responsibility:2,innovation:2,analytical:1,teamwork:1,creativity:0}},
-      {department:'엔진기계사업부',role:'생산관리',desc:'생산 계획에 따른 공정·품질 관리 및 설비 현대화를 유지보수합니다.',weights:{responsibility:2,analytical:1,teamwork:1,innovation:0,creativity:0}},
-      {department:'엔진기계사업부',role:'생산지원',desc:'사업부 운영전략 및 생산계획 관리, 프로세스 개선을 수행합니다.',weights:{analytical:2,responsibility:2,teamwork:1,innovation:1,creativity:0}},
-      {department:'엔진기계사업부',role:'영업',desc:'친환경 엔진 시스템 홍보 및 고객 기술영업을 담당합니다.',weights:{teamwork:2,responsibility:1,innovation:1,creativity:1,analytical:1}},
-      {department:'엔진기계사업부',role:'상세설계',desc:'엔진 기계 부품 및 시스템 개발, 3D 모델링과 도면 작성 업무를 수행합니다.',weights:{analytical:2,creativity:1,innovation:1,responsibility:1,teamwork:0}},
-      {department:'엔진기계사업부',role:'제어시스템 개발',desc:'엔진 제어시스템 설계와 양산 기술 지원을 담당합니다.',weights:{analytical:2,innovation:2,responsibility:1,creativity:1,teamwork:0}},
-      {department:'엔진기계사업부',role:'품질관리',desc:'엔진 및 기계 품질 관리 및 최적화 업무를 수행합니다.',weights:{analytical:2,responsibility:2}},
-      {department:'엔진기계사업부',role:'HR',desc:'인사 및 조직 운영과 인재 육성을 지원합니다.',weights:{teamwork:2,responsibility:1}},
-      {department:'엔진기계사업부',role:'통합구매',desc:'엔진 부품 및 자재 조달, 공급망 관리 업무를 수행합니다.',weights:{analytical:2,responsibility:1,teamwork:1}},
-      {department:'엔진기계사업부',role:'안전',desc:'산업안전 및 환경 관리 기준 수립과 위험 예방 활동을 수행합니다.',weights:{responsibility:2,analytical:1,teamwork:1}},
-      {department:'엔진기계사업부',role:'DT',desc:'디지털 혁신 및 IT 시스템 개발을 담당합니다.',weights:{innovation:2,analytical:1,creativity:1}},
-      {department:'조선사업부',role:'기본설계',desc:'선박 기본 사양서 작성 및 계약 기술 협의를 수행합니다.',weights:{analytical:2,responsibility:1,teamwork:1,innovation:1}},
-      {department:'조선사업부',role:'조선설계',desc:'구조해석과 생산도면 설계, 공법 개선을 담당합니다.',weights->{analytical:2,creativity:1,teamwork:1,responsibility:1}},
-      {department:'조선사업부',role:'생산관리',desc:'생산 계획 수립과 안전환경 관리, 현장 감독 업무를 수행합니다.',weights:{responsibility:2,analytical:1,teamwork:1}},
-      {department:'조선사업부',role:'기술기획',desc:'조선사업부 기술경영 및 기획 업무를 수행합니다.',weights:{analytical:2,innovation:1,responsibility:1,teamwork:1,creativity:1}},
-      {department:'조선사업부',role:'생산지원',desc:'생산지원 업무로, 생산계획 수립 및 입고 일정 관리, 프로세스 개선을 수행합니다.',weights:{analytical:2,responsibility:2,teamwork:1,innovation:1}},
-      {department:'해양사업부',role:'상세설계',desc:'해양플랜트 설계 SPEC 결정, 도면 및 구매사양서 작성을 수행합니다.',weights:{analytical:2,innovation:1,responsibility:1,creativity:1}},
-      {department:'해양에너지',role:'설계',desc:'해양에너지 설비 설계 및 SPEC 결정, 도면과 절차서 작성을 수행합니다.',weights:{analytical:2,innovation:1,responsibility:1,creativity:1}},
-      {department:'특수선사업부',role:'상세설계',desc:'함정 및 특수선 도면 설계와 견적 업무를 담당합니다.',weights:{analytical:2,innovation:1,responsibility:1,teamwork:1}},
-      {department:'특수선사업부',role:'생산관리',desc:'조선 시공 표준 수립 및 자재·설비 관리 감독을 수행합니다.',weights:{responsibility:2,analytical:1,teamwork:1}},
-      {department:'특수선사업부',role:'영업',desc:'함정 해외수출 영업 활동을 담당합니다.',weights:{teamwork:2,innovation:1,responsibility:1}}
+
+    // 질문 데이터
+    const questions = [
+      { text:'12시까지 야근하기 vs 12시까지 회식하기', opt1:'야근하기', opt2:'회식하기', dim1:'responsibility', dim2:'teamwork' },
+      { text:'혼자 일하기 vs 팀과 협업하기',               opt1:'혼자 일하기', opt2:'팀과 협업하기', dim1:'responsibility', dim2:'teamwork' },
+      { text:'자료를 꼼꼼히 분석 vs 창의적 아이디어 내기', opt1:'꼼꼼히 분석', opt2:'창의적 아이디어', dim1:'analytical', dim2:'creativity' },
+      { text:'안전하게 리스크 최소화 vs 도전적인 혁신 추구', opt1:'리스크 최소화', opt2:'혁신 추구', dim1:'responsibility', dim2:'innovation' },
+      { text:'데이터 기반 의사결정 vs 직관적 의사결정',     opt1:'데이터 기반', opt2:'직관 기반', dim1:'analytical', dim2:'innovation' },
+      { text:'프로젝트 실행 관리 vs 아이디어 구상',       opt1:'실행 관리', opt2:'아이디어 구상', dim1:'responsibility', dim2:'creativity' },
+      { text:'규칙과 절차 준수 vs 유연한 대처',           opt1:'규칙 준수', opt2:'유연 대처', dim1:'responsibility', dim2:'innovation' },
+      { text:'고객 요구 분석 vs 새로운 시장 탐색',       opt1:'요구 분석', opt2:'시장 탐색', dim1:'analytical', dim2:'innovation' },
+      { text:'세부 사항 집중 vs 큰 그림 전략',           opt1:'세부 집중', opt2:'큰 그림', dim1:'analytical', dim2:'innovation' },
+      { text:'오류 찾기 vs 개선 방안 발굴',               opt1:'오류 찾기', opt2:'개선 방안', dim1:'analytical', dim2:'creativity' },
+      { text:'새 기술 학습 vs 기존 방식 유지',           opt1:'새 기술 학습', opt2:'기존 유지', dim1:'innovation', dim2:'responsibility' },
+      { text:'보고서 문서화 vs 구두 커뮤니케이션',         opt1:'문서화', opt2:'구두 커뮤니케이션', dim1:'responsibility', dim2:'teamwork' },
+      { text:'장기 계획 수립 vs 단기 목표 달성',         opt1:'장기 계획', opt2:'단기 목표', dim1:'analytical', dim2:'responsibility' },
+      { text:'정확성 우선 vs 속도 우선',                 opt1:'정확성', opt2:'속도', dim1:'responsibility', dim2:'analytical' },
+      { text:'깊이 있는 전문성 vs 다양한 경험',         opt1:'전문성', opt2:'다양한 경험', dim1:'analytical', dim2:'creativity' },
+      { text:'팀 목표 희생 vs 개인 성과 중시',           opt1:'팀 희생', opt2:'개인 성과', dim1:'teamwork', dim2:'responsibility' },
+      { text:'리스크 관리 vs 과감한 시도',               opt1:'리스크 관리', opt2:'과감한 시도', dim1:'responsibility', dim2:'innovation' },
+      { text:'근본적 해결 vs 임시 방편',                 opt1:'근본 해결', opt2:'임시 방편', dim1:'analytical', dim2:'innovation' },
+      { text:'자세한 발표 vs 간결한 발표',               opt1:'자세한 발표', opt2:'간결한 발표', dim1:'analytical', dim2:'creativity' },
+      { text:'자기 주도 학습 vs 동료와 스터디',           opt1:'자기 주도', opt2:'동료 스터디', dim1:'analytical', dim2:'teamwork' }
     ];
-    const jobScores = jobs.map(job => ({...job, total: Object.entries(job.weights).reduce((sum,[dim,w])=>sum + (scores[dim]||0)*w,0)}));
-    const best = jobScores.sort((a,b)=>b.total-a.total)[0];
-    document.querySelector('.result-department').innerText = best.department;
-    document.querySelector('.result-role').innerText = best.role;
-    document.querySelector('.result-desc').innerText = best.desc;
-  }
+
+    let selected = [], current = 0, answers = [];
+
+    // 모달 열기/닫기
+    startBtn.onclick = () => modal.classList.add('active');
+    closeBtns.forEach(b => b.onclick = () => modal.classList.remove('active'));
+    restartBtn.onclick = () => beginBtn.click();
+
+    // 테스트 시작
+    beginBtn.onclick = () => {
+      selected = questions.sort(() => Math.random()-0.5).slice(0,10);
+      current = 0; answers = [];
+      showStep('question'); updateQuestion();
+    };
+
+    // 이전/다음
+    document.getElementById('nextBtn').onclick = () => {
+      answers[current] = (document.getElementById('ans1Btn').innerText === selected[current].opt1) ? 0 : 1;
+      if (current < 9) { current++; updateQuestion(); }
+      else showAnalysis();
+    };
+    document.getElementById('prevBtn').onclick = () => {
+      if (current > 0) { current--; updateQuestion(); }
+    };
+
+    function showStep(name) {
+      Object.values(steps).forEach(s => s.classList.remove('active'));
+      steps[name].classList.add('active');
+    }
+    function updateQuestion() {
+      showStep('question');
+      document.getElementById('questionText').innerText = selected[current].text;
+      document.getElementById('ans1Btn').innerText = selected[current].opt1;
+      document.getElementById('ans2Btn').innerText = selected[current].opt2;
+      document.getElementById('progressBar').style.width = `${(current+1)/10*100}%`;
+    }
+    function showAnalysis() {
+      showStep('analysis');
+      setTimeout(showResult, 4000 + Math.random()*5000);
+    }
+    function showResult() {
+      showStep('result');
+      const scores = {};
+      selected.forEach((q,i) => {
+        const dim = answers[i]===0 ? q.dim1 : q.dim2;
+        scores[dim] = (scores[dim]||0) + 1;
+      });
+
+      const jobs = [
+        {department:'엔진기계사업부',role:'생산기술 지원',weights:{responsibility:2,analytical:2,teamwork:1,innovation:1,creativity:0},desc:'대형/중형 엔진 부품 주조 및 기계가공 생산기술을 지원합니다.'},
+        {department:'엔진기계사업부',role:'조립·시운전 지원',weights:{responsibility:2,analytical:2,teamwork:1,innovation:1,creativity:0},desc:'엔진 조립 및 시운전 성능 분석과 표준 작업을 지원합니다.'},
+        {department:'엔진기계사업부',role:'설비 개선·투자관리',weights:{responsibility:2,innovation:2,analytical:1,teamwork:1,creativity:0},desc:'엔진 시운전 설비 개선 및 친환경 연료 설비 투자를 관리합니다.'},
+        {department:'엔진기계사업부',role:'생산관리',weights:{responsibility:2,analytical:1,teamwork:1,innovation:0,creativity:0},desc:'생산 계획에 따른 공정·품질 관리 및 설비 현대화를 유지보수합니다.'},
+        {department:'엔진기계사업부',role:'생산지원',weights:{analytical:2,responsibility:2,teamwork:1,innovation:1,creativity:0},desc:'사업부 운영전략 및 생산계획 관리, 프로세스 개선을 수행합니다.'},
+        {department:'엔진기계사업부',role:'영업',weights:{teamwork:2,responsibility:1,innovation:1,creativity:1,analytical:1},desc:'친환경 엔진 시스템 홍보 및 고객 기술영업을 담당합니다.'},
+        {department:'엔진기계사업부',role:'상세설계',weights:{analytical:2,creativity:1,innovation:1,responsibility:1,teamwork:0},desc:'엔진 기계 부품 및 시스템 개발, 3D 모델링과 도면 작성 업무를 수행합니다.'},
+        {department:'엔진기계사업부',role:'제어시스템 개발',weights:{analytical:2,innovation:2,responsibility:1,creativity:1,teamwork:0},desc:'엔진 제어시스템 설계와 양산 기술 지원을 담당합니다.'},
+        {department:'엔진기계사업부',role:'품질관리',weights:{analytical:2,responsibility:2},desc:'엔진 및 기계 품질 관리 및 최적화 업무를 수행합니다.'},
+        {department:'엔진기계사업부',role:'HR',weights:{teamwork:2,responsibility:1},desc:'인사 및 조직 운영과 인재 육성을 지원합니다.'},
+        {department:'엔진기계사업부',role:'통합구매',weights:{analytical:2,responsibility:1,teamwork:1},desc:'엔진 부품 및 자재 조달, 공급망 관리 업무를 수행합니다.'},
+        {department:'엔진기계사업부',role:'안전',weights:{responsibility:2,analytical:1,teamwork:1},desc:'산업안전 및 환경 관리 기준 수립과 위험 예방 활동을 수행합니다.'},
+        {department:'엔진기계사업부',role:'DT',weights:{innovation:2,analytical:1,creativity:1},desc:'디지털 혁신 및 IT 시스템 개발을 담당합니다.'},
+        {department:'조선사업부',role:'기본설계',weights:{analytical:2,responsibility:1,teamwork:1,innovation:1},desc:'선박 기본 사양서 작성 및 계약 기술 협의를 수행합니다.'},
+        {department:'조선사업부',role:'조선설계',weights:{analytical:2,creativity:1,teamwork:1,responsibility:1},desc:'구조해석과 생산도면 설계, 공법 개선을 담당합니다.'},
+        {department:'조선사업부',role:'생산관리',weights:{responsibility:2,analytical:1,teamwork:1},desc:'생산 계획 수립과 안전환경 관리, 현장 감독 업무를 수행합니다.'},
+        {department:'조선사업부',role:'기술기획',weights:{analytical:2,innovation:1,responsibility:1,teamwork:1,creativity:1},desc:'조선사업부 기술경영 및 기획 업무를 수행합니다.'},
+        {department:'조선사업부',role:'생산지원',weights:{analytical:2,responsibility:2,teamwork:1,innovation:1},desc:'생산지원 업무로, 생산계획 수립 및 입고 일정 관리, 프로세스 개선을 수행합니다.'},
+        {department:'해양사업부',role:'상세설계',weights:{analytical:2,innovation:1,responsibility:1,creativity:1},desc:'해양플랜트 설계 SPEC 결정, 도면 및 구매사양서 작성을 수행합니다.'},
+        {department:'해양에너지',role:'설계',weights:{analytical:2,innovation:1,responsibility:1,creativity:1},desc:'해양에너지 설비 설계 및 SPEC 결정, 도면과 절차서 작성을 수행합니다.'},
+        {department:'특수선사업부',role:'상세설계',weights:{analytical:2,innovation:1,responsibility:1,teamwork:1},desc:'함정 및 특수선 도면 설계와 견적 업무를 담당합니다.'},
+        {department:'특수선사업부',role:'생산관리',weights:{responsibility:2,analytical:1,teamwork:1},desc:'조선 시공 표준 수립 및 자재·설비 관리 감독을 수행합니다.'},
+        {department:'특수선사업부',role:'영업',weights:{teamwork:2,innovation:1,responsibility:1},desc:'함정 해외수출 영업 활동을 담당합니다.'}
+      ];
+
+      const jobScores = jobs.map(job => ({
+        ...job,
+        total: Object.entries(job.weights).reduce((sum, [dim, w]) => sum + (scores[dim]||0)*w, 0)
+      }));
+      const best = jobScores.sort((a,b) => b.total - a.total)[0];
+
+      document.querySelector('.result-department').innerText = best.department;
+      document.querySelector('.result-role').innerText       = best.role;
+      document.querySelector('.result-desc').innerText       = best.desc;
+    }
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('splash').style.display = 'none';
+        document.body.classList.add('loaded');
+      }, 800);
+    });
+  </script>
+</body>
+</html>

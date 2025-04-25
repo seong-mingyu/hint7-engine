@@ -94,22 +94,26 @@
     .question-text{font-size:1.2rem;line-height:1.5;text-align:left;}
     .question-options{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-top:1.5rem;}
     .option-btn {
-  /* 기존 flex:1; → 아래처럼 변경 */
-  flex: 1 1 calc(50% - 0.5rem);  /* gap(1rem) 제외하고 50%씩 차지 */
-  padding: 1.5rem;               /* 수평 패딩 더 늘리고 싶으면 1.5rem 2rem 처럼 조정 */
-  
-  /* 자동 줄바꿈 설정 (이전 답변 참고) */
+  /* 두 버튼이 간격(1rem) 제외한 50%씩 차지 */
+  flex: 1 1 calc(50% - 0.5rem);
+  /* 수평 패딩은 조절 가능 */
+  padding: 1.5rem 1rem;
+
+  /* 자동 줄바꿈 & 한글 단어 중간 절단 방지 */
   white-space: normal;
   word-wrap: break-word;
-  
+  word-break: keep-all;
+
   background: #fff;
   border: 2px solid var(--bg-light);
   border-radius: 12px;
-  font-size: 1.1rem;
+  /* 글자 크기 조금 줄여서 한 줄에 약 5자 정도 노출 */
+  font-size: 0.9rem;
   text-align: center;
   cursor: pointer;
   transition: border-color .2s, transform .2s;
 }
+
 
  .option-btn:hover{border-color:var(--discovery-blue);transform:scale(1.02);}
     .option-btn.selected{background:var(--discovery-blue);color:#fff;}
@@ -206,7 +210,7 @@
       {text:'둘중 하나 골라야 한다면?',opt1:'밤 12시까지 야근하기',dim1:'responsibility',opt2:'밤 12시까지 회식하기',dim2:'teamwork'},
       {text:'혼자 완료할 수 있는 일이 주어진다면?',opt1:'혼자 작업 다하기',dim1:'analytical',opt2:'팀과 나눠서하기',dim2:'teamwork'},
       {text:'신입사원으로 보고를 준비 중이라면?',opt1:'데이터를 세밀하게 분석하기',dim1:'analytical',opt2:'창의적인 아이디어제시',dim2:'creativity'},
-      {text:'예산 편성을 앞두고 있다면?',opt1:'안정감이 최고!현행유지',dim1:'responsibility',opt2:'한번 해보자 혁신적인 도전!',dim2:'innovation'},
+      {text:'예산 편성을 앞두고 있다면?',opt1:'현행유지!',dim1:'responsibility',opt2:'혁신적인 도전!',dim2:'innovation'},
       {text:'긴급 기획 요청을 받았다면?',opt1:'체계적인 계획부터 빠르게',dim1:'responsibility',opt2:'일단 즉흥적인 실행',dim2:'creativity'},
       {text:'고객 미팅 전이라면?',opt1:'철저한 요구사항 분석',dim1:'analytical',opt2:'시장 탐색 먼저',dim2:'innovation'},
       {text:'문제가 발생했다면?',opt1:'근본 원인 분석',dim1:'analytical',opt2:'임시 조치 먼저',dim2:'innovation'},

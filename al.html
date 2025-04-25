@@ -58,8 +58,23 @@
     .progress-bar{height:100%;width:0%;background:var(--discovery-blue);transition:width .3s;}
     .question-text{font-size:1.2rem;line-height:1.5;text-align:left;}
     .question-options{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-top:1.5rem;}
-    .option-btn{flex:1;padding:1.5rem;background:#fff;border:2px solid var(--bg-light);border-radius:12px;font-size:1.1rem;text-align:center;cursor:pointer;transition:border-color .2s,transform .2s;}
-    .option-btn:hover{border-color:var(--discovery-blue);transform:scale(1.02);}
+    .option-btn {
+  flex: 1;
+  padding: 1.5rem;
+  background: #fff;
+  border: 2px solid var(--bg-light);
+  border-radius: 12px;
+  font-size: 1.1rem;
+  text-align: center;
+  
+  /* ↓ 이 두 줄 추가 ↓ */
+  white-space: normal;     /* 자동으로 여러 줄로 감싸기 */
+  word-wrap: break-word;   /* 단어 단위로도 줄 바꿈 허용 */
+  
+  cursor: pointer;
+  transition: border-color .2s, transform .2s;
+}
+ .option-btn:hover{border-color:var(--discovery-blue);transform:scale(1.02);}
     .option-btn.selected{background:var(--discovery-blue);color:#fff;}
     .vs-label{font-family:'HDHyundaiBold';font-size:1.5rem;color:var(--trust-blue);margin:0 .5rem;}
     /* Loading */

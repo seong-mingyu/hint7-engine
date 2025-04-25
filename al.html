@@ -66,8 +66,7 @@
     .menu-popup {
       position:absolute; top:64px; right:20px;
       background:#fff;
-      border:1px solid #ccc;
-      border-radius:10px;
+      border:1px solid #ccc; border-radius:10px;
       box-shadow:0 4px 12px rgba(0,0,0,0.15);
       padding:.5rem 1rem;
       opacity:0; pointer-events:none;
@@ -99,28 +98,19 @@
       -webkit-text-fill-color:transparent;
       margin-bottom:.5rem;
     }
-    .al-intro .subtitle {
+    .al-intro .subtitle, .al-intro .tagline {
       font-size:1rem;
-      color:var(--gray-text);
       margin-bottom:1.5rem;
-    }
-    .al-intro .tagline {
-      font-size:1rem; line-height:1.4;
-      color:var(--gray-text);
-      margin-bottom:2rem;
     }
 
     /* Buttons */
     .btn {
       padding:1rem 2rem;
-      border:none;
-      border-radius:8px;
-      font-family:'HDHyundaiBold';
-      font-size:1.1rem;
-      color:#fff;
-      cursor:pointer;
+      border:none; border-radius:8px;
+      font-family:'HDHyundaiBold'; font-size:1.1rem;
+      color:#fff; cursor:pointer;
       display:block; margin:0 auto;
-      transition:transform .2s, box-shadow .2s;
+      transition:transform .2s,box-shadow .2s;
     }
     .btn:hover {
       transform:translateY(-2px);
@@ -134,178 +124,115 @@
       position:fixed; top:0; left:0;
       width:100%; height:100%;
       background:rgba(0,0,0,0.6);
-      display:none;
-      align-items:center; justify-content:center;
+      display:none; align-items:center; justify-content:center;
       padding:1rem; z-index:10000;
     }
     .modal.active { display:flex; }
     .modal-content {
-      background:#fff;
-      border-radius:12px;
-      width:90%;
-      max-width:400px;
-      max-height:90vh;
-      padding:2rem;
-      position:relative;
-      display:flex; flex-direction:column;
-      overflow:auto;
+      background:#fff; border-radius:12px;
+      width:90%; max-width:400px; max-height:90vh;
+      padding:2rem; position:relative;
+      display:flex; flex-direction:column; overflow:auto;
       animation:fadeInDown .4s ease-out;
     }
     @keyframes fadeInDown {
       from { opacity:0; transform:translateY(-20px); }
-      to { opacity:1; transform:translateY(0); }
+      to   { opacity:1; transform:translateY(0); }
     }
     .modal-header {
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
+      display:flex; justify-content:space-between; align-items:center;
       margin-bottom:1rem;
     }
     .modal-header .title {
-      font-family:'HDHyundaiBold';
-      font-size:1.8rem;
+      font-family:'HDHyundaiBold'; font-size:1.8rem;
       background:linear-gradient(90deg,#00B3FF,#9932CC);
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
     }
     .close-modal {
-      background:transparent;
-      border:none;
-      font-size:1.5rem;
-      color:var(--gray-text);
-      cursor:pointer;
+      background:transparent; border:none;
+      font-size:1.5rem; color:var(--gray-text); cursor:pointer;
     }
 
     /* Question */
     .step { display:none; }
     .step.active { display:block; }
     .question-card {
-      background:#f9f9f9;
-      border-radius:12px;
-      padding:1.5rem;
-      margin-bottom:2rem;
+      background:#f9f9f9; border-radius:12px;
+      padding:1.5rem; margin-bottom:2rem;
     }
     .question-header {
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
+      display:flex; justify-content:space-between; align-items:center;
       margin-bottom:1rem;
     }
     .question-number {
-      font-family:'HDHyundaiBold';
-      font-size:1rem;
+      font-family:'HDHyundaiBold'; font-size:1rem;
     }
     .progress {
-      flex:1;
-      height:8px;
-      background:#eee;
-      border-radius:4px;
-      overflow:hidden;
-      margin-left:1rem;
+      flex:1; height:8px; background:#eee;
+      border-radius:4px; overflow:hidden; margin-left:1rem;
     }
     .progress-bar {
-      height:100%;
-      width:0%;
+      height:100%; width:0%;
       background:var(--discovery-blue);
       transition:width .3s;
     }
     .question-text {
-      font-size:1.2rem;
-      line-height:1.5;
-      text-align:left;
+      font-size:1.2rem; line-height:1.5; text-align:left;
     }
     .question-options {
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:1rem;
-      margin-top:1.5rem;
+      display:flex; align-items:center; justify-content:space-between;
+      gap:1rem; margin-top:1.5rem;
     }
     .option-btn {
-      flex:1;
-      padding:1.5rem;
-      background:#fff;
-      border:2px solid var(--bg-light);
-      border-radius:12px;
-      font-size:1.1rem;
-      text-align:center;
-      cursor:pointer;
-      transition:border-color .2s, transform .2s;
+      flex:1; padding:1.5rem; background:#fff;
+      border:2px solid var(--bg-light); border-radius:12px;
+      font-size:1.1rem; text-align:center; cursor:pointer;
+      transition:border-color .2s,transform .2s;
     }
     .option-btn:hover {
       border-color:var(--discovery-blue);
       transform:scale(1.02);
     }
     .option-btn.selected {
-      background:var(--discovery-blue);
-      color:#fff;
+      background:var(--discovery-blue); color:#fff;
     }
     .vs-label {
-      font-family:'HDHyundaiBold';
-      font-size:1.5rem;
-      color:var(--trust-blue);
-      margin:0 .5rem;
+      font-family:'HDHyundaiBold'; font-size:1.5rem;
+      color:var(--trust-blue); margin:0 .5rem;
     }
 
     /* Loading */
     .loading-indicator {
-      width:50px; height:50px;
-      margin:3rem auto;
+      width:50px; height:50px; margin:3rem auto;
       border:5px solid var(--prosperity-green);
-      border-top-color:transparent;
-      border-radius:50%;
+      border-top-color:transparent; border-radius:50%;
       animation:spin 1s linear infinite;
     }
-    @keyframes spin {
-      to { transform:rotate(360deg); }
-    }
+    @keyframes spin { to{transform:rotate(360deg);} }
 
     /* Result */
     .result-card {
-      border-radius:12px;
-      padding:2.5rem;
-      text-align:center;
-      margin-bottom:1.5rem;
-      color:#fff;
-      animation:fadeIn .5s ease-out;
+      border-radius:12px; padding:2.5rem;
+      text-align:center; margin-bottom:1.5rem;
+      color:#fff; animation:fadeIn .5s ease-out;
     }
-    .result-department {
-      font-size:1.2rem;
-      opacity:0.9;
-      margin-bottom:.5rem;
-    }
-    .result-role {
-      font-size:1.5rem;
-      font-weight:bold;
-      margin-bottom:1rem;
-    }
-    .result-desc {
-      font-size:1rem;
-      line-height:1.5;
-      text-align:left;
-    }
+    .result-department { font-size:1.2rem; opacity:.9; margin-bottom:.5rem; }
+    .result-role       { font-size:1.5rem; font-weight:bold; margin-bottom:1rem; }
+    .result-desc       { font-size:1rem; line-height:1.5; text-align:left; }
     .result-buttons {
-      display:flex;
-      justify-content:center;
-      gap:1rem;
-      flex-wrap:wrap;
-      margin-top:2rem;
+      display:flex; justify-content:center; gap:1rem; flex-wrap:wrap; margin-top:2rem;
     }
-    @keyframes fadeIn {
-      from { opacity:0; }
-      to { opacity:1; }
-    }
+    @keyframes fadeIn { from{opacity:0;} to{opacity:1;} }
 
     /* Mobile tweaks */
     @media(max-width:480px) {
       .modal-content { padding:1rem; }
       .btn { font-size:.95rem; padding:.75rem 1.25rem; }
-      .question-text { font-size:1rem; }
-      .option-btn { font-size:1rem; padding:1rem; }
+      .question-text  { font-size:1rem; }
+      .option-btn     { font-size:1rem; padding:1rem; }
     }
   </style>
 </head>
-
 <body>
   <div id="splash">
     <img src="assets/images/logo.png" alt="로고" />
@@ -314,7 +241,9 @@
 
   <div class="navbar">
     <img src="assets/images/logo.png" alt="로고" />
-    <div class="navbar-title"><a href="index.html"><span class="hd">H</span>int <span class="hd">D</span>ream</a></div>
+    <div class="navbar-title">
+      <a href="index.html"><span class="hd">H</span>int <span class="hd">D</span>ream</a>
+    </div>
     <div class="menu-icon" onclick="toggleMenu()">☰</div>
   </div>
   <div class="menu-popup" id="menuPopup">
@@ -327,7 +256,7 @@
     </ul>
   </div>
 
-  <div class="al-intro">
+  <div class="al-intro" data-aos="fade-up">
     <div class="page-title">Intern Al</div>
     <div class="subtitle">내면의 성향, AI가 추천하는 직무</div>
     <div class="tagline">밸런스 게임 10문제를 통해 AI가 추천하는 현대중공업 직무!</div>
@@ -344,9 +273,7 @@
         <div class="question-card">
           <div class="question-header">
             <div class="question-number">1/10</div>
-            <div class="progress">
-              <div id="progressBar" class="progress-bar"></div>
-            </div>
+            <div class="progress"><div id="progressBar" class="progress-bar"></div></div>
           </div>
           <p id="questionText" class="question-text"></p>
           <div class="question-options">
@@ -378,342 +305,95 @@
   <script>
     AOS.init({ duration:800, once:true });
 
-    function toggleMenu() {
+    function toggleMenu(){
       document.getElementById('menuPopup').classList.toggle('active');
     }
     window.addEventListener('click', e => {
       const m = document.getElementById('menuPopup'),
             i = document.querySelector('.menu-icon');
-      if (!m.contains(e.target) && !i.contains(e.target)) {
-        m.classList.remove('active');
-      }
+      if(!m.contains(e.target) && !i.contains(e.target)) m.classList.remove('active');
     });
-
-    // Splash
     window.addEventListener('load', () => {
-      setTimeout(() => {
-        document.getElementById('splash').style.display = 'none';
+      setTimeout(()=>{
+        document.getElementById('splash').style.display='none';
         document.body.classList.add('loaded');
       }, 800);
     });
 
-    // Quiz Logic
-    const modal     = document.getElementById('alModal'),
-          startBtn  = document.getElementById('startBtn'),
-          closeBtn  = document.querySelector('.close-modal'),
-          steps     = {
+    const modal    = document.getElementById('alModal'),
+          startBtn = document.getElementById('startBtn'),
+          closeBtn = document.querySelector('.close-modal'),
+          steps    = {
             question: document.getElementById('stepQuestion'),
             analysis: document.getElementById('stepAnalysis'),
             result:   document.getElementById('stepResult')
           };
 
     const questions = [
-  {
-    text: '프로젝트 마감 전날 상황이라면?',
-    opt1: '밤 12시까지 야근하기',
-    dim1: 'responsibility',
-    opt2: '밤 12시까지 회식하기',
-    dim2: 'teamwork'
-  },
-  {
-    text: '팀 빌딩 워크숍 상황이라면?',
-    opt1: '혼자 몰입 작업',
-    dim1: 'analytical',
-    opt2: '팀 협업 작업',
-    dim2: 'teamwork'
-  },
-  {
-    text: '상사에게 보고를 준비 중이라면?',
-    opt1: '데이터 세밀 분석',
-    dim1: 'analytical',
-    opt2: '창의적 아이디어 제안',
-    dim2: 'creativity'
-  },
-  {
-    text: '예산 심사를 앞두고 있다면?',
-    opt1: '안정적 운영 유지',
-    dim1: 'responsibility',
-    opt2: '과감한 혁신 도전',
-    dim2: 'innovation'
-  },
-  {
-    text: '중요 프레젠테이션 준비 중이라면?',
-    opt1: '데이터 기반 의사결정',
-    dim1: 'analytical',
-    opt2: '직관에 의존한 결정',
-    dim2: 'innovation'
-  },
-  {
-    text: '긴급 기획 요청을 받았다면?',
-    opt1: '체계적 계획 수립',
-    dim1: 'responsibility',
-    opt2: '즉흥 실행',
-    dim2: 'creativity'
-  },
-  {
-    text: '준수해야 할 규정이 많다면?',
-    opt1: '절차 엄격 준수',
-    dim1: 'responsibility',
-    opt2: '유연 대처',
-    dim2: 'innovation'
-  },
-  {
-    text: '고객 미팅을 앞두고 있다면?',
-    opt1: '요구사항 철저 분석',
-    dim1: 'analytical',
-    opt2: '시장 기회 탐색',
-    dim2: 'innovation'
-  },
-  {
-    text: '설계 검토 상황이라면?',
-    opt1: '디테일 집중 검토',
-    dim1: 'analytical',
-    opt2: '전체 구조 조망',
-    dim2: 'innovation'
-  },
-  {
-    text: '문제가 발생했다면?',
-    opt1: '근본 원인 분석',
-    dim1: 'analytical',
-    opt2: '빠른 임시 방편',
-    dim2: 'innovation'
-  },
-  {
-    text: '신기술 도입을 검토 중이라면?',
-    opt1: '신기술 학습',
-    dim1: 'innovation',
-    opt2: '기존 방식 유지',
-    dim2: 'responsibility'
-  },
-  {
-    text: '보고서 작성 과정이라면?',
-    opt1: '문서로 정리',
-    dim1: 'responsibility',
-    opt2: '대면 소통 준비',
-    dim2: 'teamwork'
-  },
-  {
-    text: '사업 계획을 세운다면?',
-    opt1: '장기 전략 수립',
-    dim1: 'analytical',
-    opt2: '단기 목표 설정',
-    dim2: 'responsibility'
-  },
-  {
-    text: 'QC 단계 상황이라면?',
-    opt1: '정확성 우선',
-    dim1: 'responsibility',
-    opt2: '속도 우선',
-    dim2: 'analytical'
-  },
-  {
-    text: '전문성 강화를 원한다면?',
-    opt1: '한 분야 심화 학습',
-    dim1: 'analytical',
-    opt2: '다양한 프로젝트 참여',
-    dim2: 'creativity'
-  },
-  {
-    text: '팀 프로젝트 상황이라면?',
-    opt1: '팀 성과 중시',
-    dim1: 'teamwork',
-    opt2: '개인 성과 중시',
-    dim2: 'responsibility'
-  },
-  {
-    text: '리스크가 큰 상황이라면?',
-    opt1: '리스크 관리',
-    dim1: 'responsibility',
-    opt2: '과감한 시도',
-    dim2: 'innovation'
-  },
-  {
-    text: '제한된 시간이라면?',
-    opt1: '장기적 솔루션',
-    dim1: 'analytical',
-    opt2: '임시 대응책',
-    dim2: 'innovation'
-  },
-  {
-    text: '발표 준비 중이라면?',
-    opt1: '자세한 설명',
-    dim1: 'analytical',
-    opt2: '간결한 요약',
-    dim2: 'creativity'
-  },
-  {
-    text: '자기계발을 위해서라면?',
-    opt1: '혼자 독학',
-    dim1: 'analytical',
-    opt2: '스터디 그룹 참여',
-    dim2: 'teamwork'
-  }
-];
-
+      { text:'프로젝트 마감 전날 상황이라면?',        opt1:'밤 12시까지 야근', dim1:'responsibility', opt2:'밤 12시까지 회식', dim2:'teamwork' },
+      { text:'팀 빌딩 워크숍 상황이라면?',            opt1:'혼자 몰입 작업',    dim1:'analytical',     opt2:'팀 협업 작업',    dim2:'teamwork' },
+      { text:'상사에게 보고 준비 중이라면?',          opt1:'데이터 세밀 분석',  dim1:'analytical',     opt2:'창의적 아이디어',  dim2:'creativity' },
+      { text:'예산 심사를 앞두고 있다면?',            opt1:'안정적 운영 유지',  dim1:'responsibility', opt2:'혁신 도전',        dim2:'innovation' },
+      { text:'긴급 기획 요청을 받았다면?',            opt1:'체계적 계획 수립',  dim1:'responsibility', opt2:'즉흥 실행',        dim2:'creativity' },
+      { text:'고객 미팅 전이라면?',                   opt1:'요구사항 철저 분석',dim1:'analytical',     opt2:'시장 탐색',        dim2:'innovation' },
+      { text:'문제가 발생했다면?',                   opt1:'근본 원인 분석',    dim1:'analytical',     opt2:'임시 방편',        dim2:'innovation' },
+      { text:'신기술 도입 검토 상황이라면?',          opt1:'신기술 학습',      dim1:'innovation',     opt2:'기존 방식 유지',  dim2:'responsibility' },
+      { text:'보고서 작성 상황이라면?',               opt1:'문서로 정리',      dim1:'responsibility', opt2:'대면 소통',        dim2:'teamwork' },
+      { text:'발표 준비 상황이라면?',                 opt1:'자세한 설명',      dim1:'analytical',     opt2:'간결한 요약',      dim2:'creativity' },
+      { text:'장기 프로젝트 계획 상황이라면?',         opt1:'장기 전략 수립',    dim1:'analytical',     opt2:'단기 목표 설정',  dim2:'responsibility' },
+      { text:'QC 단계 상황이라면?',                   opt1:'정확성 우선',      dim1:'responsibility', opt2:'속도 우선',        dim2:'analytical' },
+      { text:'전문성 강화를 원한다면?',               opt1:'심화 학습',        dim1:'analytical',     opt2:'프로젝트 참여',    dim2:'creativity' },
+      { text:'팀 프로젝트 상황이라면?',               opt1:'팀 성과 중시',      dim1:'teamwork',       opt2:'개인 성과 중시',    dim2:'responsibility' },
+      { text:'리스크 큰 업무 상황이라면?',             opt1:'리스크 관리',      dim1:'responsibility', opt2:'과감한 시도',      dim2:'innovation' },
+      { text:'제한된 시간 상황이라면?',               opt1:'장기 솔루션',      dim1:'analytical',     opt2:'임시 대응',        dim2:'innovation' },
+      { text:'회의 자료 준비 상황이라면?',             opt1:'디테일 집중',      dim1:'analytical',     opt2:'전체 조망',        dim2:'innovation' },
+      { text:'고객 피드백 대응 상황이라면?',           opt1:'분석 기반 개선',    dim1:'analytical',     opt2:'창의적 해결',      dim2:'creativity' },
+      { text:'새 시스템 도입 상황이라면?',             opt1:'표준 절차 준수',    dim1:'responsibility', opt2:'유연 대처',        dim2:'innovation' },
+      { text:'팀 문화 활동 상황이라면?',               opt1:'소규모 토론',      dim1:'teamwork',       opt2:'개별 모임',        dim2:'creativity' }
+    ];
 
     const jobs = [
-  const jobs = [
+      // 엔진기계사업부
+      { department:'엔진기계사업부', role:'생산기술 지원', weights:{responsibility:5,analytical:2,teamwork:1,innovation:1,creativity:1}, desc:'대형/중형 엔진 부품 주조 및 기계가공 생산기술 지원' },
+      { department:'엔진기계사업부', role:'조립·시운전 지원', weights:{responsibility:5,analytical:2,teamwork:1,innovation:1,creativity:1}, desc:'엔진 조립·시운전 표준 작업 수립 및 성능 분석' },
+      { department:'엔진기계사업부', role:'설비 개선·투자관리', weights:{responsibility:3,analytical:1,teamwork:1,innovation:4,creativity:1}, desc:'시운전 설비 개선 및 친환경 연료 설비 투자·유지보수' },
+      { department:'엔진기계사업부', role:'생산관리', weights:{responsibility:5,analytical:2,teamwork:1,innovation:1,creativity:1}, desc:'공정·품질 관리 및 설비 현대화 유지보수' },
+      { department:'엔진기계사업부', role:'생산지원', weights:{responsibility:4,analytical:2,teamwork:2,innovation:1,creativity:1}, desc:'사업부 운영전략 수립 및 생산계획 관리, 프로세스 개선' },
+      { department:'엔진기계사업부', role:'영업', weights:{responsibility:2,analytical:1,teamwork:3,innovation:2,creativity:2}, desc:'친환경 추진 기관 및 엔진 시스템 홍보·고객 기술영업' },
+      { department:'엔진기계사업부', role:'상세설계', weights:{responsibility:1,analytical:4,teamwork:1,innovation:2,creativity:2}, desc:'엔진 기계 부품/시스템 3D 모델링 및 도면 작성' },
+      { department:'엔진기계사업부', role:'제어시스템 개발', weights:{responsibility:1,analytical:3,teamwork:1,innovation:4,creativity:1}, desc:'엔진 제어시스템 설계 및 양산 기술 지원' },
+      { department:'엔진기계사업부', role:'품질관리', weights:{responsibility:5,analytical:3,teamwork:1,innovation:1,creativity:0}, desc:'엔진 및 기계 품질 관리 및 최적화' },
+      { department:'엔진기계사업부', role:'HR', weights:{responsibility:2,analytical:1,teamwork:4,innovation:1,creativity:2}, desc:'인사 및 조직 운영, 인재 육성 지원' },
+      { department:'엔진기계사업부', role:'통합구매', weights:{responsibility:3,analytical:3,teamwork:1,innovation:1,creativity:2}, desc:'엔진 부품 및 자재 조달, 공급망 관리' },
+      { department:'엔진기계사업부', role:'안전', weights:{responsibility:5,analytical:2,teamwork:2,innovation:1,creativity:0}, desc:'산업안전 및 환경 관리 기준 수립, 위험 예방' },
+      { department:'엔진기계사업부', role:'DT', weights:{responsibility:1,analytical:2,teamwork:1,innovation:5,creativity:1}, desc:'디지털 혁신 및 IT 시스템 개발' },
 
-  // 엔진기계사업부
-  {
-    department: '엔진기계사업부',
-    role: '생산기술 지원',
-    weights: { responsibility: 4, analytical: 3, teamwork: 1, innovation: 1, creativity: 1 },
-    desc: '대형/중형 엔진 부품 주조 및 기계가공 생산기술 지원'
-  },
-  {
-    department: '엔진기계사업부',
-    role: '조립·시운전 지원',
-    weights: { responsibility: 4, analytical: 3, teamwork: 1, innovation: 1, creativity: 1 },
-    desc: '엔진 조립·시운전 표준 작업 수립 및 성능 분석'
-  },
-  {
-    department: '엔진기계사업부',
-    role: '설비 개선·투자관리',
-    weights: { responsibility: 2, analytical: 3, teamwork: 1, innovation: 3, creativity: 1 },
-    desc: '시운전 설비 개선 및 친환경 연료 설비 투자·유지보수'
-  },
-  {
-    department: '엔진기계사업부',
-    role: '생산관리',
-    weights: { responsibility: 4, analytical: 3, teamwork: 2, innovation: 0, creativity: 1 },
-    desc: '공정·품질 관리 및 설비 현대화 유지보수'
-  },
-  {
-    department: '엔진기계사업부',
-    role: '생산지원',
-    weights: { responsibility: 3, analytical: 3, teamwork: 2, innovation: 1, creativity: 1 },
-    desc: '사업부 운영전략 수립 및 생산계획 관리, 프로세스 개선'
-  },
-  {
-    department: '엔진기계사업부',
-    role: '영업',
-    weights: { responsibility: 2, analytical: 1, teamwork: 3, innovation: 2, creativity: 2 },
-    desc: '친환경 추진 기관 및 엔진 시스템 홍보·고객 기술영업'
-  },
-  {
-    department: '엔진기계사업부',
-    role: '상세설계',
-    weights: { responsibility: 1, analytical: 4, teamwork: 1, innovation: 2, creativity: 2 },
-    desc: '엔진 기계 부품/시스템 3D 모델링 및 도면 작성'
-  },
-  {
-    department: '엔진기계사업부',
-    role: '제어시스템 개발',
-    weights: { responsibility: 1, analytical: 4, teamwork: 1, innovation: 3, creativity: 1 },
-    desc: '엔진 제어시스템 설계 및 양산 기술 지원'
-  },
-  {
-    department: '엔진기계사업부',
-    role: '품질관리',
-    weights: { responsibility: 4, analytical: 3, teamwork: 2, innovation: 1, creativity: 0 },
-    desc: '엔진 및 기계 품질 관리 및 최적화'
-  },
-  {
-    department: '엔진기계사업부',
-    role: 'HR',
-    weights: { responsibility: 3, analytical: 1, teamwork: 4, innovation: 1, creativity: 1 },
-    desc: '인사 및 조직 운영, 인재 육성 지원'
-  },
-  {
-    department: '엔진기계사업부',
-    role: '통합구매',
-    weights: { responsibility: 2, analytical: 4, teamwork: 2, innovation: 1, creativity: 1 },
-    desc: '엔진 부품 및 자재 조달, 공급망 관리'
-  },
-  {
-    department: '엔진기계사업부',
-    role: '안전',
-    weights: { responsibility: 4, analytical: 3, teamwork: 2, innovation: 1, creativity: 0 },
-    desc: '산업안전 및 환경 관리 기준 수립, 위험 예방'
-  },
-  {
-    department: '엔진기계사업부',
-    role: 'DT',
-    weights: { responsibility: 1, analytical: 2, teamwork: 1, innovation: 5, creativity: 1 },
-    desc: '디지털 혁신 및 IT 시스템 개발'
-  },
+      // 조선사업부
+      { department:'조선사업부', role:'기본설계', weights:{responsibility:1,analytical:5,teamwork:1,innovation:1,creativity:2}, desc:'선박 기본 틀 완성 및 계약 사양서 작성' },
+      { department:'조선사업부', role:'조선설계', weights:{responsibility:1,analytical:5,teamwork:1,innovation:1,creativity:2}, desc:'구조 해석, 공법 개선 및 생산도면 설계' },
+      { department:'조선사업부', role:'생산관리', weights:{responsibility:1,analytical:5,teamwork:1,innovation:1,creativity:2}, desc:'생산 계획, 자재·설비 투입 및 안전환경 관리' },
+      { department:'조선사업부', role:'기술기획', weights:{responsibility:1,analytical:5,teamwork:1,innovation:1,creativity:2}, desc:'기술경영 및 사업부 전략 기획' },
+      { department:'조선사업부', role:'생산지원', weights:{responsibility:1,analytical:5,teamwork:1,innovation:1,creativity:2}, desc:'생산계획 수립 및 외주 입고 일정 관리' },
 
-  // 조선사업부
-  {
-    department: '조선사업부',
-    role: '기본설계',
-    weights: { responsibility: 2, analytical: 4, teamwork: 1, innovation: 2, creativity: 1 },
-    desc: '선박 기본 틀 완성 및 계약 사양서 작성'
-  },
-  {
-    department: '조선사업부',
-    role: '조선설계',
-    weights: { responsibility: 1, analytical: 4, teamwork: 1, innovation: 2, creativity: 2 },
-    desc: '구조 해석, 공법 개선 및 생산도면 설계'
-  },
-  {
-    department: '조선사업부',
-    role: '생산관리',
-    weights: { responsibility: 4, analytical: 3, teamwork: 2, innovation: 0, creativity: 1 },
-    desc: '생산 계획, 자재·설비 투입 및 안전환경 관리'
-  },
-  {
-    department: '조선사업부',
-    role: '기술기획',
-    weights: { responsibility: 2, analytical: 3, teamwork: 1, innovation: 3, creativity: 1 },
-    desc: '기술경영 및 사업부 전략 기획'
-  },
-  {
-    department: '조선사업부',
-    role: '생산지원',
-    weights: { responsibility: 3, analytical: 3, teamwork: 2, innovation: 1, creativity: 1 },
-    desc: '생산계획 수립 및 외주 입고 일정 관리'
-  },
+      // 해양사업부
+      { department:'해양사업부', role:'상세설계', weights:{responsibility:1,analytical:2,teamwork:1,innovation:5,creativity:1}, desc:'해양플랜트 설계 SPEC 결정 및 도면 작성' },
+      { department:'해양에너지', role:'설계', weights:{responsibility:1,analytical:2,teamwork:1,innovation:5,creativity:1}, desc:'해양에너지 설비 SPEC 결정 및 절차서 작성' },
 
-  // 해양사업부
-  {
-    department: '해양사업부',
-    role: '상세설계',
-    weights: { responsibility: 1, analytical: 3, teamwork: 1, innovation: 4, creativity: 1 },
-    desc: '해양플랜트 설계 SPEC 결정 및 도면 작성'
-  },
-  {
-    department: '해양에너지',
-    role: '설계',
-    weights: { responsibility: 1, analytical: 3, teamwork: 1, innovation: 4, creativity: 1 },
-    desc: '해양에너지 설비 SPEC 결정 및 절차서 작성'
-  },
-
-  // 특수선사업부
-  {
-    department: '특수선사업부',
-    role: '상세설계',
-    weights: { responsibility: 1, analytical: 2, teamwork: 3, innovation: 1, creativity: 3 },
-    desc: '함정 및 특수선 도면 설계 및 견적'
-  },
-  {
-    department: '특수선사업부',
-    role: '생산관리',
-    weights: { responsibility: 4, analytical: 2, teamwork: 2, innovation: 1, creativity: 1 },
-    desc: '조선 공사 시공 표준 수립 및 자재·설비 관리'
-  },
-  {
-    department: '특수선사업부',
-    role: '영업',
-    weights: { responsibility: 2, analytical: 1, teamwork: 4, innovation: 2, creativity: 1 },
-    desc: '함정 해외 수출 프로젝트 영업'
-  }
-];
-
-];
-
+      // 특수선사업부
+      { department:'특수선사업부', role:'상세설계', weights:{responsibility:1,analytical:1,teamwork:4,innovation:1,creativity:3}, desc:'함정 및 특수선 도면 설계 및 견적' },
+      { department:'특수선사업부', role:'생산관리', weights:{responsibility:1,analytical:1,teamwork:4,innovation:1,creativity:3}, desc:'조선 공사 시공 표준 수립 및 자재·설비 관리' },
+      { department:'특수선사업부', role:'영업', weights:{responsibility:1,analytical:1,teamwork:4,innovation:1,creativity:3}, desc:'함정 해외 수출 프로젝트 영업' }
+    ];
 
     let selected = [], current = 0, answers = [];
 
     startBtn.onclick = () => {
-      selected = questions.sort(() => Math.random() - 0.5).slice(0,10);
+      selected = questions.sort(() => Math.random() - .5).slice(0,10);
       current = 0; answers = [];
       updateQuestion();
       modal.classList.add('active');
     };
     closeBtn.onclick = () => modal.classList.remove('active');
-
     document.getElementById('ans1Btn').onclick = () => selectAnswer(0);
     document.getElementById('ans2Btn').onclick = () => selectAnswer(1);
 
@@ -721,14 +401,10 @@
       answers[current] = choice;
       document.querySelectorAll('.option-btn').forEach(b=>b.classList.remove('selected'));
       document.getElementById(choice===0?'ans1Btn':'ans2Btn').classList.add('selected');
-      setTimeout(() => {
-        if (current < 9) {
-          current++;
-          updateQuestion();
-        } else {
-          showAnalysis();
-        }
-      }, 300);
+      setTimeout(()=>{
+        if(current<9){ current++; updateQuestion(); }
+        else showAnalysis();
+      },300);
     }
 
     function updateQuestion() {
@@ -748,56 +424,50 @@
 
     function showAnalysis() {
       showStep('analysis');
-      setTimeout(showResult, 4000 + Math.random() * 1000);
+      setTimeout(showResult, 2000 + Math.random()*2000);
     }
 
     function showResult() {
-  showStep('result');
-
-  // (1) 차원별 정답 개수 → 정답 비율 계산 (proportions)
-  const scores = {};
-  selected.forEach((q,i) => {
-    const d = answers[i]===0 ? q.dim1 : q.dim2;
-    scores[d] = (scores[d]||0) + 1;
-  });
-  const total = answers.length;
-  const proportions = Object.fromEntries(
-    Object.entries(scores).map(([d,c])=>[d,c/total])
-  );
-
-  // (2) 직무별 점수(normalized)
-  const jobScores = jobs.map(j=>{
-    const W = Object.values(j.weights).reduce((a,b)=>a+b,0);
-    const s = Object.entries(j.weights).reduce((sum,[d,w])=>
-      sum + (proportions[d]||0)*w, 0
-    ) / W;
-    return {...j,score:s};
-  });
-
-  // (3) 부서별 집계
-  const deptScores = {};
-  jobScores.forEach(j=>{
-    deptScores[j.department] = (deptScores[j.department]||0) + j.score;
-  });
-  const topDept = Object.entries(deptScores)
-                         .sort((a,b)=>b[1]-a[1])[0][0];
-
-  // (4) 최종 직무 선택
-  const best = jobScores
-    .filter(j=>j.department===topDept)
-    .sort((a,b)=>b.score-a.score)[0];
-
-  // (5) 렌더링 (이전과 동일)
-  const gradient = colorMap[best.department] || colorMap['엔진기계사업부'];
-  const card = document.getElementById('resultCard');
-  card.style.background = gradient;
-  card.innerHTML = `
-    <div class="result-department">${best.department}</div>
-    <div class="result-role">${best.role} 직무</div>
-    <p class="result-desc">${best.desc}</p>
-  `;
-}
-
+      showStep('result');
+      const counts = {};
+      selected.forEach((q,i)=>{
+        const d = answers[i]===0 ? q.dim1 : q.dim2;
+        counts[d] = (counts[d]||0) + 1;
+      });
+      const proportions = {};
+      for(const [d,c] of Object.entries(counts)){
+        proportions[d] = c/answers.length;
+      }
+      const jobScores = jobs.map(j=>{
+        const W = Object.values(j.weights).reduce((a,b)=>a+b,0);
+        const s = Object.entries(j.weights).reduce((sum,[d,w])=>
+          sum + (proportions[d]||0)*w,0
+        )/W;
+        return {...j,score:s};
+      });
+      const deptSum = {};
+      jobScores.forEach(j=>{
+        deptSum[j.department] = (deptSum[j.department]||0) + j.score;
+      });
+      const topDept = Object.entries(deptSum).sort((a,b)=>b[1]-a[1])[0][0];
+      const best = jobScores.filter(j=>j.department===topDept)
+                            .sort((a,b)=>b.score-a.score)[0];
+      const colorMap = {
+        '엔진기계사업부':'linear-gradient(135deg,#00B3FF,#9932CC)',
+        '조선사업부':'linear-gradient(135deg,#008233,#003087)',
+        '해양사업부':'linear-gradient(135deg,#9932CC,#00B3FF)',
+        '해양에너지':'linear-gradient(135deg,#008233,#9932CC)',
+        '특수선사업부':'linear-gradient(135deg,#003087,#008233)'
+      };
+      const gradient = colorMap[best.department]||colorMap['엔진기계사업부'];
+      const card = document.getElementById('resultCard');
+      card.style.background = gradient;
+      card.innerHTML = `
+        <div class="result-department">${best.department}</div>
+        <div class="result-role">${best.role} 직무</div>
+        <p class="result-desc">${best.desc}</p>
+      `;
+    }
   </script>
 </body>
 </html>

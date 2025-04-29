@@ -30,7 +30,7 @@
       color: var(--gray-text);
       opacity: 0;
       transition: opacity 0.6s ease-in-out;
-    }
+          }
     body.loaded {
       opacity: 1;
     }
@@ -65,7 +65,6 @@
       99% { opacity: 0; }
       100% { display: none; z-index: -1; }
     }
-
     .navbar {
       display: flex;
       justify-content: space-between;
@@ -104,7 +103,7 @@
       cursor: pointer;
     }
 
-    .menu-popup {
+   .menu-popup {
       position: absolute;
       top: 64px;
       right: 20px;
@@ -142,8 +141,7 @@
       font-size: 0.95rem;
       transition: color 0.2s;
     }
-
-    .menu-popup a:hover {
+        .menu-popup a:hover {
       color: var(--discovery-blue);
     }
 
@@ -163,46 +161,34 @@
     }
 
     .gallery {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start; /* 중앙정렬 아님 */
-  padding: 0;
-  margin: 0;
-}
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      padding: 1rem;
+    }
 
-.img-wrapper {
-  width: calc(100% / 3); /* 3열 고정 */
-  aspect-ratio: 4 / 3;
-  background-color: #00AD1D;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  box-sizing: border-box;
-}
-
-.img-wrapper img {
-  width: 85%;
-  height: 85%;
-  object-fit: cover;
-  border-radius: 8px;
-  transition: transform 0.3s ease;
-  cursor: pointer;
-}
-
-.img-wrapper img:hover {
-  transform: scale(1.05);
-}
-
-.empty {
-  width: calc(100% / 3);
-  aspect-ratio: 4 / 3;
-  background: transparent;
-  box-sizing: border-box;
-}
-
-
-
+    .gallery img {
+      width: 120px;
+      height: 90px;
+      object-fit: cover;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .gallery img:hover {
+      transform: scale(1.07);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    .empty {
+      width: 120px;
+      height: 90px;
+      border-radius: 10px; /* 모양 통일 */
+      background: transparent;
+      pointer-events: none; /* 클릭 안 되게 */
+      flex-shrink: 0; /* 줄어들지 않게 고정 */
+    }
 
     .modal {
       display: none;
@@ -233,8 +219,7 @@
       border-radius: 12px;
       box-shadow: 0 2px 12px rgba(0,0,0,0.2);
     }
-
-    .modal-caption {
+        .modal-caption {
       margin-top: 1rem;
       font-size: 1rem;
       font-weight: 500;
@@ -294,86 +279,42 @@
 
   <div class="page-title" data-aos="fade-down">Intern Net</div>
   <div class="subtitle" data-aos="fade-up">서로의 연결, 우리가 함께한 순간</div>
-
+  
   <div class="gallery" data-aos="fade-up">
-  <div class="photo-cell">
     <img src="assets/images/IMG_3932.jpeg" alt="사원증" onclick="openModal(this, '첫 만남! 사원증 받은 날 국룰~ 👔', '2025.03.04(화)')">
-  </div>
-  <div class="empty"></div>
-  <div class="photo-cell">
+    <div class="empty"></div>
     <img src="assets/images/jeong.png" alt="안전 교육" onclick="openModal(this, '안전체험장에서 고소작업 안전교육 받는 명수 !', '2025.03.05(수)')">
-  </div>
-  <div class="photo-cell">
     <img src="assets/images/IMG_4723.jpeg" alt="안전 교육" onclick="openModal(this, '안전체험장에서 고소작업 안전교육 받는 수민 ! 신났네 ㅋㅎㅋㅎ', '2025.03.05(수)')">
-  </div>
-  <div class="empty"></div>
-  <div class="photo-cell">
+    <div class="empty"></div>
     <img src="assets/images/IMG_3965.jpeg" alt="꿀팁" onclick="openModal(this, '부서배치 후 선임분께서 주신 책 ㅎㅎㅎ', '2025.03.07(금)')">
-  </div>
-  <div class="photo-cell">
     <img src="assets/images/IMG_4044.jpeg" alt="아라" onclick="openModal(this, '조 회식! 아라횟집 맛있습니다 ㅎㅎ 가보세용 🐟', '2025.03.13(목)')">
-  </div>
-  <div class="photo-cell">
     <img src="assets/images/IMG_4369.jpeg" alt="율전재" onclick="openModal(this, '율전재 헬스장은 오션뷰 입니다! 🏃‍♂️', '2025.03.24(월)')">
-  </div>
-  <div class="photo-cell">
     <img src="assets/images/IMG_4383.jpeg" alt="다트" onclick="openModal(this, '점심시간 다트로 커피 내기!🎯', '2025.03.25(화)')">
-  </div>
-  <div class="photo-cell">
     <img src="assets/images/group.png" alt="조별 회의" onclick="openModal(this, '성공적인 첫 조별회의 !', '2025.03.26(수)')">
-  </div>
-  <div class="empty"></div>
-  <div class="photo-cell">
-    <img src="assets/images/IMG_4724.jpeg" alt="보리꽃" onclick="openModal(this, 'H-int 전체 회식 보리꽃! 잘먹었습니다 😋 ', '2025.03.26(수)')">
-  </div>
-  <div class="photo-cell">
+    <div class="empty"></div>
+    <img src="assets/images/IMG_4724.jpeg" alt="보리꽃" onclick="openModal(this, 'H-int 전체 회식 보리꽃! 잘먹었습니다 😋 ', '2025.03.26(수)')">  
     <img src="assets/images/IMG_4424.jpeg" alt="다트" onclick="openModal(this, '금요일은 늦게 오시면 셔틀 자리 없어요 ㅠㅠ🚍 먼저갈게~~ 성제형 미안', '2025.03.28(금)')">
-  </div>
-  <div class="empty"></div>
-  <div class="photo-cell">
+    <div class="empty"></div>
     <img src="assets/images/club.png" alt="클럽하우스" onclick="openModal(this, '울산 HD 클럽하우스 견학 ⚽', '2025.04.10(목)')">
-  </div>
-  <div class="empty"></div>
-  <div class="empty"></div>
-  <div class="empty"></div>
-  <div class="photo-cell">
+    <div class="empty"></div>
+    <div class="empty"></div>
+    <div class="empty"></div>
     <img src="assets/images/net_hd_match.jpg" alt="직관" onclick="openModal(this, '울산 HD 축구 직관! vs 강원fc 아쉽게 패배ㅠㅠ', '2025.04.19(토)')">
-  </div>
-  <div class="photo-cell">
     <img src="assets/images/net_hd_match.jpg" alt="직관" onclick="openModal(this, '울산 HD 축구 직관! vs 강원fc 아쉽게 패배ㅠㅠ', '2025.04.19(토)')">
-  </div>
-  <div class="empty"></div>
-  <div class="photo-cell">
+    <div class="empty"></div>
     <img src="assets/images/IMG_4721.jpeg" alt="우생" onclick="openModal(this, '우진이 생일축하행🎉🎉🎉', '2025.04.28(화)')">
-  </div>
-  <div class="empty"></div>
-  <div class="photo-cell">
+    <div class="empty"></div>
     <img src="assets/images/IMG_4722.jpeg" alt="노래방" onclick="openModal(this, '우진이 생일! 노래방은 꼭 가야한다구~ 대환장 파티 ㅋㅋㅋㅋ🎤', '2025.04.28(화)')">
-  </div>
-  <div class="photo-cell">
     <img src="assets/images/IMG_4721.jpeg" alt="우생" onclick="openModal(this, '우진이 생일축하행🎉🎉🎉', '2025.04.28(화)')">
-  </div>
-  <div class="empty"></div>
-  <div class="photo-cell">
+    <div class="empty"></div>
     <img src="assets/images/IMG_4722.jpeg" alt="노래방" onclick="openModal(this, '우진이 생일! 노래방은 꼭 가야한다구~ 대환장 파티 ㅋㅋㅋㅋ🎤', '2025.04.28(화)')">
-  </div>
-  <div class="photo-cell">
     <img src="assets/images/IMG_4721.jpeg" alt="우생" onclick="openModal(this, '우진이 생일축하행🎉🎉🎉', '2025.04.28(화)')">
-  </div>
-  <div class="empty"></div>
-  <div class="photo-cell">
+    <div class="empty"></div>
     <img src="assets/images/IMG_4722.jpeg" alt="노래방" onclick="openModal(this, '우진이 생일! 노래방은 꼭 가야한다구~ 대환장 파티 ㅋㅋㅋㅋ🎤', '2025.04.28(화)')">
-  </div>
-  <div class="photo-cell">
     <img src="assets/images/club.png" alt="클럽하우스" onclick="openModal(this, '울산 HD 클럽하우스 견학 ⚽', '2025.04.10(목)')">
-  </div>
-  <div class="photo-cell">
     <img src="assets/images/net_hd_match.jpg" alt="직관" onclick="openModal(this, '울산 HD 축구 직관! vs 강원fc 아쉽게 패배ㅠㅠ', '2025.04.19(토)')">
+    <div class="empty"></div>
   </div>
-  <div class="empty"></div>
-</div>
-
-
 
   <div id="imageModal" class="modal" onclick="closeModal()">
     <div class="close">&times;</div>
@@ -387,6 +328,7 @@
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
     AOS.init({ duration: 800, once: true });
+
 
     function openModal(img, caption, date) {
       const modal = document.getElementById('imageModal');
@@ -413,3 +355,6 @@
   </script>
 </body>
 </html>
+
+
+

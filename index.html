@@ -136,10 +136,12 @@
   font-family: 'HDHyundaiLight';
   line-height: 1.4;
 
-  /* font-size를 뷰포트에 맞춰 유동적으로 조절 */
-  /* 최소 0.9rem, 뷰포트의 4vw, 최대 1.2rem 사이에서 자동 결정 */
-  font-size: clamp(0.9rem, 4vw, 1.2rem);
+  /* ↓아래 두 줄을 추가/변경↓ */
+  white-space: nowrap;               /* 자동 줄바꿈 금지 */
+  font-size: clamp(0.6rem, 5vw, 1rem);
+  /* - 최소 0.6rem, 뷰포트 너비의 5% 비례, 최대 1rem */
 }
+
 
     .section-links {
       display: flex;

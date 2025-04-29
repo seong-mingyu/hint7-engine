@@ -164,24 +164,51 @@
 
     .gallery {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 무조건 3열 고정 */
-  gap: 1rem;                            /* 칸 사이 간격 */
-  padding: 1rem;                        /* 안쪽 여백 */
+  grid-template-columns: repeat(3, 1fr); /* 언제나 3열 고정 */
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.gallery figure {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  margin: 0;
 }
 
 .gallery img {
-  width: 100%;                          /* 칸 너비에 딱 맞춤 */
-  aspect-ratio: 4/3;                    /* 120×90 비율 유지 */
-  object-fit: cover;                    /* 잘라내기/채우기 */
-  border-radius: 10px;                  /* 모서리 둥글게 */
-  cursor: pointer;
-  transition: transform .3s ease, box-shadow .3s ease;
+  display: block;
+  width: 100%;
+  aspect-ratio: 4/3;         /* 120×90 비율 유지 */
+  object-fit: cover;
+  filter: grayscale(40%);     /* 평상시 살짝 흑백 */
+  transition: transform .3s ease,
+              filter .3s ease,
+              box-shadow .3s ease;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
-.gallery img:hover {
+.gallery figure:hover img {
   transform: scale(1.05);
+  filter: grayscale(0);
   box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+
+/* 캡션 오버레이 */
+.gallery figcaption {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: .5rem;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  font-size: .85rem;
+  text-align: center;
+  transform: translateY(100%);
+  transition: transform .3s ease;
+}
+
+.gallery figure:hover figcaption {
+  transform: translateY(0);
 }
 
 
@@ -277,21 +304,91 @@
   <div class="subtitle" data-aos="fade-up">서로의 연결, 우리가 함께한 순간</div>
 
   <div class="gallery" data-aos="fade-up">
-  <img src="assets/images/IMG_3932.jpeg" alt="사원증" onclick="openModal(this, '첫 만남! 사원증 받은 날 국룰~ 👔', '2025.03.04(화)')">
-  <img src="assets/images/jeong.png"    alt="안전 교육" onclick="openModal(this, '안전체험장에서 고소작업 안전교육 받는 명수 !', '2025.03.05(수)')">
-  <img src="assets/images/IMG_4723.jpeg" alt="안전 교육 (수민)" onclick="openModal(this, '안전체험장에서 고소작업 안전교육 받는 수민 ! 신났네 ㅋㅎㅋㅎ', '2025.03.05(수)')">
-  <img src="assets/images/IMG_3965.jpeg" alt="꿀팁 책" onclick="openModal(this, '부서배치 후 선임분께서 주신 책 ㅎㅎㅎ', '2025.03.07(금)')">
-  <img src="assets/images/IMG_4044.jpeg" alt="아라횟집 회식" onclick="openModal(this, '조 회식! 아라횟집 맛있습니다 ㅎㅎ 가보세용 🐟', '2025.03.13(목)')">
-  <img src="assets/images/IMG_4369.jpeg" alt="율전재 헬스장" onclick="openModal(this, '율전재 헬스장은 오션뷰 입니다! 🏃‍♂️', '2025.03.24(월)')">
-  <img src="assets/images/IMG_4383.jpeg" alt="다트" onclick="openModal(this, '점심시간 다트로 커피 내기! 🎯', '2025.03.25(화)')">
-  <img src="assets/images/group.png"      alt="조별 회의" onclick="openModal(this, '성공적인 첫 조별회의 !', '2025.03.26(수)')">
-  <img src="assets/images/IMG_4724.jpeg"  alt="보리꽃 회식" onclick="openModal(this, 'H-int 전체 회식 보리꽃! 잘먹었습니다 😋', '2025.03.26(수)')">
-  <img src="assets/images/IMG_4424.jpeg"  alt="셔틀 안내" onclick="openModal(this, '금요일은 늦게 오시면 셔틀 자리 없어요 ㅠㅠ 🚍 먼저갈게~~ 성제형 미안', '2025.03.28(금)')">
-  <img src="assets/images/club.png"       alt="클럽하우스 견학" onclick="openModal(this, '울산 HD 클럽하우스 견학 ⚽', '2025.04.10(목)')">
-  <img src="assets/images/net_hd_match.jpg" alt="축구 직관" onclick="openModal(this, '울산 HD 축구 직관! vs 강원FC 아쉽게 패배ㅠㅠ', '2025.04.19(토)')">
-  <img src="assets/images/IMG_4721.jpeg" alt="우진 생일" onclick="openModal(this, '우진이 생일축하행 🎉🎉🎉', '2025.04.28(화)')">
-  <img src="assets/images/IMG_4722.jpeg" alt="노래방 파티" onclick="openModal(this, '노래방은 꼭 가야한다는 우진이~ 대환장 파티 ㅋㅋㅋㅋ 🎤', '2025.04.28(화)')">
+  <figure>
+    <img src="assets/images/IMG_3932.jpeg" alt="사원증"
+         onclick="openModal(this, '첫 만남! 사원증 받은 날 국룰~ 👔', '2025.03.04(화)')">
+    <figcaption>03.04 사원증</figcaption>
+  </figure>
+
+  <figure>
+    <img src="assets/images/jeong.png" alt="안전 교육"
+         onclick="openModal(this, '안전체험장에서 고소작업 안전교육 받는 명수 !', '2025.03.05(수)')">
+    <figcaption>03.05 안전 교육</figcaption>
+  </figure>
+
+  <figure>
+    <img src="assets/images/IMG_4723.jpeg" alt="안전 교육 (수민)"
+         onclick="openModal(this, '안전체험장에서 고소작업 안전교육 받는 수민 ! 신났네 ㅋㅎㅋㅎ', '2025.03.05(수)')">
+    <figcaption>03.05 안전 교육 (수민)</figcaption>
+  </figure>
+
+  <figure>
+    <img src="assets/images/IMG_3965.jpeg" alt="꿀팁 책"
+         onclick="openModal(this, '부서배치 후 선임분께서 주신 책 ㅎㅎㅎ', '2025.03.07(금)')">
+    <figcaption>03.07 꿀팁 책</figcaption>
+  </figure>
+
+  <figure>
+    <img src="assets/images/IMG_4044.jpeg" alt="아라횟집 회식"
+         onclick="openModal(this, '조 회식! 아라횟집 맛있습니다 ㅎㅎ 가보세용 🐟', '2025.03.13(목)')">
+    <figcaption>03.13 아라횟집 회식</figcaption>
+  </figure>
+
+  <figure>
+    <img src="assets/images/IMG_4369.jpeg" alt="율전재 헬스장"
+         onclick="openModal(this, '율전재 헬스장은 오션뷰 입니다! 🏃‍♂️', '2025.03.24(월)')">
+    <figcaption>03.24 율전재 헬스장</figcaption>
+  </figure>
+
+  <figure>
+    <img src="assets/images/IMG_4383.jpeg" alt="점심 다트"
+         onclick="openModal(this, '점심시간 다트로 커피 내기! 🎯', '2025.03.25(화)')">
+    <figcaption>03.25 점심 다트</figcaption>
+  </figure>
+
+  <figure>
+    <img src="assets/images/group.png" alt="조별 회의"
+         onclick="openModal(this, '성공적인 첫 조별회의 !', '2025.03.26(수)')">
+    <figcaption>03.26 조별 회의</figcaption>
+  </figure>
+
+  <figure>
+    <img src="assets/images/IMG_4724.jpeg" alt="보리꽃 회식"
+         onclick="openModal(this, 'H-int 전체 회식 보리꽃! 잘먹었습니다 😋', '2025.03.26(수)')">
+    <figcaption>03.26 보리꽃 회식</figcaption>
+  </figure>
+
+  <figure>
+    <img src="assets/images/IMG_4424.jpeg" alt="셔틀 안내"
+         onclick="openModal(this, '금요일은 늦게 오시면 셔틀 자리 없어요 ㅠㅠ 🚍 먼저갈게~~ 성제형 미안', '2025.03.28(금)')">
+    <figcaption>03.28 셔틀 안내</figcaption>
+  </figure>
+
+  <figure>
+    <img src="assets/images/club.png" alt="클럽하우스 견학"
+         onclick="openModal(this, '울산 HD 클럽하우스 견학 ⚽', '2025.04.10(목)')">
+    <figcaption>04.10 클럽하우스 견학</figcaption>
+  </figure>
+
+  <figure>
+    <img src="assets/images/net_hd_match.jpg" alt="축구 직관"
+         onclick="openModal(this, '울산 HD 축구 직관! vs 강원FC 아쉽게 패배ㅠㅠ', '2025.04.19(토)')">
+    <figcaption>04.19 축구 직관</figcaption>
+  </figure>
+
+  <figure>
+    <img src="assets/images/IMG_4721.jpeg" alt="우진 생일"
+         onclick="openModal(this, '우진이 생일축하행 🎉🎉🎉', '2025.04.28(화)')">
+    <figcaption>04.28 우진 생일</figcaption>
+  </figure>
+
+  <figure>
+    <img src="assets/images/IMG_4722.jpeg" alt="노래방 파티"
+         onclick="openModal(this, '노래방은 꼭 가야한다는 우진이~ 대환장 파티 ㅋㅋㅋㅋ 🎤', '2025.04.28(화)')">
+    <figcaption>04.28 노래방 파티</figcaption>
+  </figure>
 </div>
+
 
 
   <div id="imageModal" class="modal" onclick="closeModal()">

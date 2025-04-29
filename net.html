@@ -163,21 +163,23 @@
     }
 
     .gallery {
-  display: grid; /* 기존 flex -> grid로 변경 */
-  grid-template-columns: repeat(3, 1fr); /* 항상 3열 고정 */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 1rem;
   padding: 1rem;
 }
 
+
 .gallery img {
-  width: 100%; /* 1칸을 꽉 채우게 */
-  aspect-ratio: 4 / 3; /* 가로:세로 비율을 4:3으로 (120x90 느낌 유지) */
+  width: 100%;
+  aspect-ratio: 4 / 3; /* 비율 고정 */
   object-fit: cover;
   border-radius: 10px;
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
+
 
 .gallery img:hover {
   transform: scale(1.07);
@@ -187,10 +189,11 @@
 
     .empty {
   width: 100%;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 4 / 3; /* 꼭! img와 똑같이 */
   background: transparent;
   pointer-events: none;
 }
+
 
     .modal {
       display: none;

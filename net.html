@@ -171,26 +171,27 @@
     }
 
     .img-wrapper {
-      width: 120px;
-      height: 90px;
-      background-color: #00AD1D; /* 초록 배경 */
-      border-radius: 10px;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
+  width: 120px;
+  height: 90px;
+  background-color: #00AD1D;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
 
-    .img-wrapper img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
+.img-wrapper img {
+  width: 90%;
+  height: 90%;
+  object-fit: cover;
+  border-radius: 6px; /* 안쪽 이미지 둥글게 */
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
 
     .img-wrapper img:hover {
       transform: scale(1.07);

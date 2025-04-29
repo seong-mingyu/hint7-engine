@@ -164,23 +164,20 @@
 
     .gallery {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3열 고정 */
-  width: 100%;
-  max-width: 600px; /* 전체 너비 제한 (선택사항, 너무 퍼지지 않게) */
-  margin: 0 auto; /* 가운데 정렬 */
-  gap: 0;
-  padding: 1rem;
+  grid-template-columns: repeat(3, 1fr); /* 3등분 */
+  width: 100vw; /* 화면 전체 너비 */
+  margin: 0;
+  gap: 0; /* 간격 없음 */
 }
 
 .img-wrapper {
   background-color: #00AD1D;
   width: 100%;
-  aspect-ratio: 4 / 3;
-  border-radius: 10px;
-  overflow: hidden;
+  aspect-ratio: 4 / 3; /* 가로세로 비율 통일 */
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
 
 .img-wrapper img {
@@ -188,22 +185,21 @@
   height: 85%;
   object-fit: cover;
   border-radius: 8px;
-  cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
 }
 
 .img-wrapper img:hover {
   transform: scale(1.07);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
 .empty {
   width: 100%;
   aspect-ratio: 4 / 3;
   background: transparent;
-  pointer-events: none;
 }
+
 
 
     .modal {

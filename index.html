@@ -131,12 +131,16 @@
       color: var(--discovery-blue);
     }
     .intro {
-      text-align: center;
-      margin: 2rem 1rem 0rem;
-      font-size: 1rem;
-      font-family: 'HDHyundaiLight';
-      line-height: 0.7;
-    }
+  text-align: center;
+  margin: 2rem 1rem 0;
+  font-family: 'HDHyundaiLight';
+  line-height: 1.4;
+
+  /* font-size를 뷰포트에 맞춰 유동적으로 조절 */
+  /* 최소 0.9rem, 뷰포트의 4vw, 최대 1.2rem 사이에서 자동 결정 */
+  font-size: clamp(0.9rem, 4vw, 1.2rem);
+}
+
     .section-links {
       display: flex;
       flex-direction: column;
@@ -222,8 +226,8 @@
   </div>
 
   <div class="intro" data-aos="fade-up">
-    HD현대중공업 <span style="color: #008233; font-weight: bold;">H-int</span>의 기록을 담은 '힌트 드림' 페이지 입니다.<br><br><br><br>
-    ‘힌트 드림(Hint Dream)’은 인턴십을 준비할 때<br><br>>꼭 필요한 힌트를 전해 드린다는 의미를 담고 있기도 합니다. 😊<br><br><br><br>
+    HD현대중공업 <span style="color: #008233; font-weight: bold;">H-int</span>의 기록을 담은 '힌트 드림' 페이지 입니다.<br><br><br>
+    ‘힌트 드림(Hint Dream)’은 인턴십을 준비할 때<br>꼭 필요한 힌트를 전해 드린다는 의미를 담고 있기도 합니다. 😊<br><br><br>
     아래 항목에서 현업과 인턴십에 대한 다양한 정보를 얻어가세요!
   </div>
 

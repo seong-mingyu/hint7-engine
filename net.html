@@ -160,21 +160,22 @@
 }
 
 .swiper-slide {
-  width: 70vw;
-  max-width: 340px;
+  width: 75vw;
+  max-width: 400px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  transform: scale(0.76);
+  transform: scale(0.85);
   opacity: 0.5;
   transition: transform 0.5s ease, opacity 0.5s ease;
+  background: transparent;
   padding: 0;
   margin: 0;
 }
 
 .swiper-slide-active {
-  transform: scale(0.9);
+  transform: scale(1);
   opacity: 1;
   z-index: 10;
 }
@@ -182,13 +183,16 @@
 .swiper-slide img {
   width: 100%;
   height: auto;
-  max-height: 52vh;              /* 너무 길어지는 세로사진 제한 */
-  object-fit: contain;           /* 원본 비율 유지하면서 꽉 채우지 않음 */
-  border-radius: 0;
-  box-shadow: none;
+  max-height: 50vh;
+  object-fit: contain;
+  border-radius: 20px;
+  background: transparent;
+  box-shadow: none; /* 그림자 제거 */
+  margin: 0;
+  padding: 0;
   display: block;
-  margin: 0 auto;
 }
+
 
 
 
@@ -364,32 +368,39 @@
     AOS.init({ duration: 800, once: true });
 
     const swiper = new Swiper('.swiper', {
-  slidesPerView: 'auto',
-  centeredSlides: true,
+  slidesPerView: 'auto',               // 각 슬라이드 너비 기반 자동
+  centeredSlides: true,                // 가운데 정렬
   loop: true,
-  spaceBetween: 16,
+  spaceBetween: 16,                    // 슬라이드 간 간격
   grabCursor: true,
-  speed: 500,
+  speed: 600,
   slideToClickedSlide: true,
   allowTouchMove: true,
-  touchAngle: 5,
-  resistanceRatio: 0,
-  loopedSlides: 10,
+  touchAngle: 10,                      // 위아래로 흔들리지 않도록 제한
   effect: 'coverflow',
   coverflowEffect: {
-    rotate: 8,
+    rotate: 10,                        // 좌우 기울임 정도 (부드럽게)
     stretch: 0,
     depth: 80,
-    modifier: 1.1,
+    modifier: 1.2,
     slideShadows: false
   },
   breakpoints: {
-    320: { spaceBetween: 8 },
-    480: { spaceBetween: 12 },
-    768: { spaceBetween: 16 },
-    1024: { spaceBetween: 20 }
+    320: {
+      spaceBetween: 8
+    },
+    480: {
+      spaceBetween: 12
+    },
+    768: {
+      spaceBetween: 16
+    },
+    1024: {
+      spaceBetween: 24
+    }
   }
 });
+
 
 
 

@@ -159,6 +159,11 @@
   margin-bottom: 1rem; /* 여백 줄임 */
 }
 
+.swiper {
+  touch-action: pan-x; /* ← 핵심! 가로 방향만 스와이프 허용 */
+}
+
+    
 .swiper-slide {
   width: 75vw;
   max-width: 400px;
@@ -376,7 +381,7 @@
   speed: 600,
   slideToClickedSlide: true,
   allowTouchMove: true,
-  touchAngle: 10,                      // 위아래로 흔들리지 않도록 제한
+  touchAngle: 2,                      // 위아래로 흔들리지 않도록 제한
   effect: 'coverflow',
   coverflowEffect: {
     rotate: 10,                        // 좌우 기울임 정도 (부드럽게)

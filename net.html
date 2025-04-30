@@ -159,21 +159,19 @@
   margin-bottom: 1rem; /* 여백 줄임 */
 }
 
-.swiper {
-  width: 100%;
-  padding: 20px 0;
-  background: #ffffff;
-}
-
 .swiper-slide {
-  width: 75vw; /* 너비 고정으로 옆이 보이게 */
+  width: 75vw;
   max-width: 400px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  transform: scale(0.8);
+  justify-content: center;
+  transform: scale(0.85);
   opacity: 0.5;
-  transition: transform 0.6s ease, opacity 0.6s ease;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  background: transparent;
+  padding: 0;
+  margin: 0;
 }
 
 .swiper-slide-active {
@@ -187,9 +185,14 @@
   height: auto;
   max-height: 50vh;
   object-fit: contain;
-  border-radius: 14px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  background: transparent;
+  box-shadow: none; /* 그림자 제거 */
+  margin: 0;
+  padding: 0;
+  display: block;
 }
+
 
 
     .caption-box {
@@ -252,7 +255,7 @@
     <div class="swiper-slide">
       <img src="assets/images/IMG_3932.jpeg" alt="사원증">
       <div class="caption-box">
-        <div class="caption-text">첫 만남! 사원증 받은 날 국룰~ 👔</div>
+        <div class="caption-text">첫 만남! 사원증 받았다~~ 👔</div>
         <div class="caption-date">2025.03.04(화)</div>
       </div>
     </div>
@@ -260,7 +263,7 @@
     <div class="swiper-slide">
       <img src="assets/images/jeong.png" alt="안전 교육">
       <div class="caption-box">
-        <div class="caption-text">안전체험장에서 고소작업 안전교육 받는 명수 !</div>
+        <div class="caption-text">고소작업 안전교육 받는 명수 !</div>
         <div class="caption-date">2025.03.05(수)</div>
       </div>
     </div>
@@ -268,16 +271,8 @@
     <div class="swiper-slide">
       <img src="assets/images/IMG_4723.jpeg" alt="안전 교육">
       <div class="caption-box">
-        <div class="caption-text">안전체험장에서 고소작업 안전교육 받는 수민 ! 신났네 ㅋㅎㅋㅎ</div>
+        <div class="caption-text">고소작업 안전교육 받는 수민 ! 신났네 ㅋㅎㅎㅎ</div>
         <div class="caption-date">2025.03.05(수)</div>
-      </div>
-    </div>
-
-    <div class="swiper-slide">
-      <img src="assets/images/IMG_3965.jpeg" alt="꿀팁">
-      <div class="caption-box">
-        <div class="caption-text">부서배치 후 선임분께서 주신 책 ㅎㅎㅎ</div>
-        <div class="caption-date">2025.03.07(금)</div>
       </div>
     </div>
 
@@ -324,7 +319,7 @@
     <div class="swiper-slide">
       <img src="assets/images/IMG_4424.jpeg" alt="셔틀">
       <div class="caption-box">
-        <div class="caption-text">금요일은 늦게 오시면 셔틀 자리 없어요 ㅠㅠ🚍 먼저갈게~~ 성제형 미안</div>
+        <div class="caption-text">금요일은 셔틀 자리 없어요 ㅠㅠ🚍 먼저갈게~~ 성제형 미안</div>
         <div class="caption-date">2025.03.28(금)</div>
       </div>
     </div>
@@ -356,7 +351,7 @@
     <div class="swiper-slide">
       <img src="assets/images/IMG_4722.jpeg" alt="노래방">
       <div class="caption-box">
-        <div class="caption-text">우진이 생일! 노래방은 꼭 가야한다구~ 대환장 파티 ㅋㅋㅋㅋ🎤</div>
+        <div class="caption-text">노래방은 꼭 가야하는 우진씌 대환장 파티 ㅋㅋㅋㅋ🎤</div>
         <div class="caption-date">2025.04.28(화)</div>
       </div>
     </div>

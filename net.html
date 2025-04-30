@@ -160,34 +160,31 @@
 }
 
 .swiper-slide {
-  width: 75vw;
-  max-width: 400px;
+  width: 70vw;
+  max-width: 360px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  transform: scale(0.85);
+  transform: scale(0.78);
   opacity: 0.5;
   transition: transform 0.5s ease, opacity 0.5s ease;
-  background: transparent;
   padding: 0;
   margin: 0;
 }
 
 .swiper-slide-active {
-  transform: scale(1);
+  transform: scale(0.92);
   opacity: 1;
   z-index: 10;
 }
 
 .swiper-slide img {
   width: 100%;
-  height: auto;
-  max-height: 50vh;
-  object-fit: contain;
-  border-radius: 20px;
-  background: transparent;
-  box-shadow: none; /* 그림자 제거 */
+  height: 200px; /* 고정 높이로 세로/가로 통일 */
+  object-fit: cover; /* 이미지 꽉 채움 */
+  border-radius: 0; /* 각지게 */
+  box-shadow: none;
   margin: 0;
   padding: 0;
   display: block;
@@ -366,38 +363,33 @@
     AOS.init({ duration: 800, once: true });
 
     const swiper = new Swiper('.swiper', {
-  slidesPerView: 'auto',               // 각 슬라이드 너비 기반 자동
-  centeredSlides: true,                // 가운데 정렬
+  slidesPerView: 'auto',
+  centeredSlides: true,
   loop: true,
-  spaceBetween: 16,                    // 슬라이드 간 간격
+  spaceBetween: 20,
   grabCursor: true,
-  speed: 600,
+  speed: 500,
   slideToClickedSlide: true,
   allowTouchMove: true,
-  touchAngle: 10,                      // 위아래로 흔들리지 않도록 제한
+  touchAngle: 5, // 위아래 흔들림 최소화
+  resistanceRatio: 0, // 터치 후 즉시 반응
+  loopedSlides: 10, // 슬라이드 여러 장 루프시 빠르게 반응
   effect: 'coverflow',
   coverflowEffect: {
-    rotate: 10,                        // 좌우 기울임 정도 (부드럽게)
+    rotate: 8,
     stretch: 0,
     depth: 80,
-    modifier: 1.2,
+    modifier: 1.1,
     slideShadows: false
   },
   breakpoints: {
-    320: {
-      spaceBetween: 8
-    },
-    480: {
-      spaceBetween: 12
-    },
-    768: {
-      spaceBetween: 16
-    },
-    1024: {
-      spaceBetween: 24
-    }
+    320: { spaceBetween: 8 },
+    480: { spaceBetween: 12 },
+    768: { spaceBetween: 16 },
+    1024: { spaceBetween: 20 }
   }
 });
+
 
 
     function toggleMenu() {

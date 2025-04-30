@@ -6,7 +6,7 @@
   <title>Intern Net - H-int</title>
   <link rel="icon" href="assets/images/logo.png" type="image/png">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://unpkg.com/swiper@9/swiper-bundle.min.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/css/glide.core.min.css">
 
   <style>
     @font-face {
@@ -34,6 +34,7 @@
       transition: opacity 0.6s ease-in-out;
       overflow-x: hidden;
     }
+
     body.loaded {
       opacity: 1;
     }
@@ -153,54 +154,26 @@
     }
 
     .subtitle {
-  text-align: center;
-  font-size: 1rem;
-  color: var(--gray-text);
-  margin-bottom: 1rem; /* 여백 줄임 */
-}
+      text-align: center;
+      font-size: 1rem;
+      color: var(--gray-text);
+      margin-bottom: 1rem;
+    }
 
-.swiper {
-  touch-action: pan-x; /* ← 핵심! 가로 방향만 스와이프 허용 */
-}
+    .glide__slide {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
 
-    
-.swiper-slide {
-  width: 75vw;
-  max-width: 400px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  transform: scale(0.85);
-  opacity: 0.5;
-  transition: transform 0.5s ease, opacity 0.5s ease;
-  background: transparent;
-  padding: 0;
-  margin: 0;
-}
-
-.swiper-slide-active {
-  transform: scale(1);
-  opacity: 1;
-  z-index: 10;
-}
-
-.swiper-slide img {
-  width: 100%;
-  height: auto;
-  max-height: 50vh;
-  object-fit: contain;
-  border-radius: 0;
-  background: transparent;
-  box-shadow: none; /* 그림자 제거 */
-  margin: 0;
-  padding: 0;
-  display: block;
-}
-
-
-
-
+    .glide__slide img {
+      width: 100%;
+      max-width: 400px;
+      max-height: 50vh;
+      object-fit: contain;
+      border-radius: 0;
+    }
 
     .caption-box {
       margin-top: 1rem;
@@ -216,15 +189,6 @@
       margin-top: 0.2rem;
       font-size: 0.85rem;
       color: #888;
-    }
-
-    @media (max-width: 768px) {
-      .swiper-slide img {
-        width: 90vw;
-      }
-      .swiper-slide {
-        transform: scale(0.85);
-      }
     }
   </style>
 </head>
@@ -256,159 +220,132 @@
   <div class="page-title" data-aos="fade-down">Intern Net</div>
   <div class="subtitle" data-aos="fade-up">서로의 연결, 우리가 함께한 순간</div>
 
-  <div class="swiper" data-aos="fade-up">
-  <div class="swiper-wrapper">
+  <div class="glide" data-aos="fade-up">
+  <div class="glide__track" data-glide-el="track">
+    <ul class="glide__slides">
+      <li class="glide__slide">
+        <img src="assets/images/IMG_3932.jpeg" alt="사원증">
+        <div class="caption-box">
+          <div class="caption-text">첫 만남! 사원증 받았다~~ 👔</div>
+          <div class="caption-date">2025.03.04(화)</div>
+        </div>
+      </li>
 
-    <div class="swiper-slide">
-      <img src="assets/images/IMG_3932.jpeg" alt="사원증">
-      <div class="caption-box">
-        <div class="caption-text">첫 만남! 사원증 받았다~~ 👔</div>
-        <div class="caption-date">2025.03.04(화)</div>
-      </div>
-    </div>
+      <li class="glide__slide">
+        <img src="assets/images/jeong.png" alt="안전 교육">
+        <div class="caption-box">
+          <div class="caption-text">고소작업 안전교육 받는 명수 !</div>
+          <div class="caption-date">2025.03.05(수)</div>
+        </div>
+      </li>
 
-    <div class="swiper-slide">
-      <img src="assets/images/jeong.png" alt="안전 교육">
-      <div class="caption-box">
-        <div class="caption-text">고소작업 안전교육 받는 명수 !</div>
-        <div class="caption-date">2025.03.05(수)</div>
-      </div>
-    </div>
+      <li class="glide__slide">
+        <img src="assets/images/IMG_4723.jpeg" alt="안전 교육">
+        <div class="caption-box">
+          <div class="caption-text">고소작업 안전교육 받는 수민 ! 신났네 ㅋㅎㅎㅎ</div>
+          <div class="caption-date">2025.03.05(수)</div>
+        </div>
+      </li>
 
-    <div class="swiper-slide">
-      <img src="assets/images/IMG_4723.jpeg" alt="안전 교육">
-      <div class="caption-box">
-        <div class="caption-text">고소작업 안전교육 받는 수민 ! 신났네 ㅋㅎㅎㅎ</div>
-        <div class="caption-date">2025.03.05(수)</div>
-      </div>
-    </div>
+      <li class="glide__slide">
+        <img src="assets/images/IMG_4044.jpeg" alt="아라">
+        <div class="caption-box">
+          <div class="caption-text">조 회식! 아라횟집 맛있습니다 ㅎㅎ 가보세용 🐟</div>
+          <div class="caption-date">2025.03.13(목)</div>
+        </div>
+      </li>
 
-    <div class="swiper-slide">
-      <img src="assets/images/IMG_4044.jpeg" alt="아라">
-      <div class="caption-box">
-        <div class="caption-text">조 회식! 아라횟집 맛있습니다 ㅎㅎ 가보세용 🐟</div>
-        <div class="caption-date">2025.03.13(목)</div>
-      </div>
-    </div>
+      <li class="glide__slide">
+        <img src="assets/images/IMG_4369.jpeg" alt="율전재">
+        <div class="caption-box">
+          <div class="caption-text">율전재 헬스장은 오션뷰 입니다! 🏃‍♂️</div>
+          <div class="caption-date">2025.03.24(월)</div>
+        </div>
+      </li>
 
-    <div class="swiper-slide">
-      <img src="assets/images/IMG_4369.jpeg" alt="율전재">
-      <div class="caption-box">
-        <div class="caption-text">율전재 헬스장은 오션뷰 입니다! 🏃‍♂️</div>
-        <div class="caption-date">2025.03.24(월)</div>
-      </div>
-    </div>
+      <li class="glide__slide">
+        <img src="assets/images/IMG_4383.jpeg" alt="다트">
+        <div class="caption-box">
+          <div class="caption-text">점심시간 다트로 커피 내기!🎯</div>
+          <div class="caption-date">2025.03.25(화)</div>
+        </div>
+      </li>
 
-    <div class="swiper-slide">
-      <img src="assets/images/IMG_4383.jpeg" alt="다트">
-      <div class="caption-box">
-        <div class="caption-text">점심시간 다트로 커피 내기!🎯</div>
-        <div class="caption-date">2025.03.25(화)</div>
-      </div>
-    </div>
+      <li class="glide__slide">
+        <img src="assets/images/group.png" alt="조별 회의">
+        <div class="caption-box">
+          <div class="caption-text">성공적인 첫 조별회의 !</div>
+          <div class="caption-date">2025.03.26(수)</div>
+        </div>
+      </li>
 
-    <div class="swiper-slide">
-      <img src="assets/images/group.png" alt="조별 회의">
-      <div class="caption-box">
-        <div class="caption-text">성공적인 첫 조별회의 !</div>
-        <div class="caption-date">2025.03.26(수)</div>
-      </div>
-    </div>
+      <li class="glide__slide">
+        <img src="assets/images/IMG_4724.jpeg" alt="보리꽃">
+        <div class="caption-box">
+          <div class="caption-text">H-int 전체 회식 보리꽃! 잘먹었습니다 😋</div>
+          <div class="caption-date">2025.03.26(수)</div>
+        </div>
+      </li>
 
-    <div class="swiper-slide">
-      <img src="assets/images/IMG_4724.jpeg" alt="보리꽃">
-      <div class="caption-box">
-        <div class="caption-text">H-int 전체 회식 보리꽃! 잘먹었습니다 😋</div>
-        <div class="caption-date">2025.03.26(수)</div>
-      </div>
-    </div>
+      <li class="glide__slide">
+        <img src="assets/images/IMG_4424.jpeg" alt="셔틀">
+        <div class="caption-box">
+          <div class="caption-text">금요일은 셔틀 자리 없어요 ㅠㅠ🚍 먼저갈게~~ 성제형 미안</div>
+          <div class="caption-date">2025.03.28(금)</div>
+        </div>
+      </li>
 
-    <div class="swiper-slide">
-      <img src="assets/images/IMG_4424.jpeg" alt="셔틀">
-      <div class="caption-box">
-        <div class="caption-text">금요일은 셔틀 자리 없어요 ㅠㅠ🚍 먼저갈게~~ 성제형 미안</div>
-        <div class="caption-date">2025.03.28(금)</div>
-      </div>
-    </div>
+      <li class="glide__slide">
+        <img src="assets/images/club.png" alt="클럽하우스">
+        <div class="caption-box">
+          <div class="caption-text">울산 HD 클럽하우스 견학 ⚽</div>
+          <div class="caption-date">2025.04.10(목)</div>
+        </div>
+      </li>
 
-    <div class="swiper-slide">
-      <img src="assets/images/club.png" alt="클럽하우스">
-      <div class="caption-box">
-        <div class="caption-text">울산 HD 클럽하우스 견학 ⚽</div>
-        <div class="caption-date">2025.04.10(목)</div>
-      </div>
-    </div>
+      <li class="glide__slide">
+        <img src="assets/images/net_hd_match.jpg" alt="직관">
+        <div class="caption-box">
+          <div class="caption-text">울산 HD 축구 직관! vs 강원fc 아쉽게 패배ㅠㅠ</div>
+          <div class="caption-date">2025.04.19(토)</div>
+        </div>
+      </li>
 
-    <div class="swiper-slide">
-      <img src="assets/images/net_hd_match.jpg" alt="직관">
-      <div class="caption-box">
-        <div class="caption-text">울산 HD 축구 직관! vs 강원fc 아쉽게 패배ㅠㅠ</div>
-        <div class="caption-date">2025.04.19(토)</div>
-      </div>
-    </div>
+      <li class="glide__slide">
+        <img src="assets/images/IMG_4721.jpeg" alt="우생">
+        <div class="caption-box">
+          <div class="caption-text">우진이 생일축하행🎉🎉🎉</div>
+          <div class="caption-date">2025.04.28(화)</div>
+        </div>
+      </li>
 
-    <div class="swiper-slide">
-      <img src="assets/images/IMG_4721.jpeg" alt="우생">
-      <div class="caption-box">
-        <div class="caption-text">우진이 생일축하행🎉🎉🎉</div>
-        <div class="caption-date">2025.04.28(화)</div>
-      </div>
-    </div>
-
-    <div class="swiper-slide">
-      <img src="assets/images/IMG_4722.jpeg" alt="노래방">
-      <div class="caption-box">
-        <div class="caption-text">노래방은 꼭 가야하는 우진씌 대환장 파티 ㅋㅋㅋㅋ🎤</div>
-        <div class="caption-date">2025.04.28(화)</div>
-      </div>
-    </div>
-
+      <li class="glide__slide">
+        <img src="assets/images/IMG_4722.jpeg" alt="노래방">
+        <div class="caption-box">
+          <div class="caption-text">노래방은 꼭 가야하는 우진씌 대환장 파티 ㅋㅋㅋㅋ🎤</div>
+          <div class="caption-date">2025.04.28(화)</div>
+        </div>
+      </li>
+    </ul>
   </div>
 </div>
 
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script src="https://unpkg.com/swiper@9/swiper-bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/glide.min.js"></script>
   <script>
     AOS.init({ duration: 800, once: true });
 
-    const swiper = new Swiper('.swiper', {
-  slidesPerView: 'auto',               // 각 슬라이드 너비 기반 자동
-  centeredSlides: true,                // 가운데 정렬
-  loop: true,
-  spaceBetween: 16,                    // 슬라이드 간 간격
-  grabCursor: true,
-  speed: 600,
-  slideToClickedSlide: true,
-  allowTouchMove: true,
-  touchAngle: 2,                      // 위아래로 흔들리지 않도록 제한
-  effect: 'coverflow',
-  coverflowEffect: {
-    rotate: 10,                        // 좌우 기울임 정도 (부드럽게)
-    stretch: 0,
-    depth: 80,
-    modifier: 1.2,
-    slideShadows: false
-  },
-  breakpoints: {
-    320: {
-      spaceBetween: 8
-    },
-    480: {
-      spaceBetween: 12
-    },
-    768: {
-      spaceBetween: 16
-    },
-    1024: {
-      spaceBetween: 24
-    }
-  }
-});
-
-
-
-
+    new Glide('.glide', {
+      type: 'carousel',
+      focusAt: 'center',
+      perView: 1.2,
+      gap: 16,
+      breakpoints: {
+        768: { perView: 1.1 },
+        480: { perView: 1 }
+      }
+    }).mount();
 
     function toggleMenu() {
       document.getElementById("menuPopup").classList.toggle("active");

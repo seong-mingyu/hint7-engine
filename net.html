@@ -6,6 +6,8 @@
   <title>Intern Net - H-int</title>
   <link rel="icon" href="assets/images/logo.png" type="image/png">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/swiper@9/swiper-bundle.min.css"/>
+
   <style>
     @font-face {
       font-family: 'HDHyundaiLight';
@@ -30,7 +32,7 @@
       color: var(--gray-text);
       opacity: 0;
       transition: opacity 0.6s ease-in-out;
-          }
+    }
     body.loaded {
       opacity: 1;
     }
@@ -47,13 +49,11 @@
       align-items: center;
       animation: fadeSplash 0.8s ease forwards;
     }
-
     #splash img {
       width: 60px;
       height: auto;
       margin-bottom: 1rem;
     }
-
     .splash-text {
       font-family: 'HDHyundaiBold';
       font-size: 1.5rem;
@@ -65,6 +65,7 @@
       99% { opacity: 0; }
       100% { display: none; z-index: -1; }
     }
+
     .navbar {
       display: flex;
       justify-content: space-between;
@@ -103,7 +104,7 @@
       cursor: pointer;
     }
 
-   .menu-popup {
+    .menu-popup {
       position: absolute;
       top: 64px;
       right: 20px;
@@ -141,7 +142,8 @@
       font-size: 0.95rem;
       transition: color 0.2s;
     }
-        .menu-popup a:hover {
+
+    .menu-popup a:hover {
       color: var(--discovery-blue);
     }
 
@@ -159,43 +161,41 @@
       color: var(--gray-text);
       margin-bottom: 2rem;
     }
+
     .swiper {
-  width: 100%;
-  padding-top: 50px;
-  padding-bottom: 50px;
-}
+      width: 100%;
+      padding-top: 50px;
+      padding-bottom: 50px;
+    }
 
-.swiper-slide {
-  background: transparent;
-  width: 120px; /* 슬라이드 기본 크기 */
-  height: 90px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.5s ease, opacity 0.5s ease;
-}
+    .swiper-slide {
+      background: transparent;
+      width: 120px;
+      height: 90px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.5s ease, opacity 0.5s ease;
+    }
 
-.swiper-slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
+    .swiper-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
 
-/* 가운데 슬라이드 강조 */
-.swiper-slide-active {
-  transform: scale(1.3) translateY(-10px); /* 크고 위로 올라감 */
-  z-index: 10;
-}
+    .swiper-slide-active {
+      transform: scale(1.3) translateY(-10px);
+      z-index: 10;
+    }
 
-/* 양옆 슬라이드 부드럽게 */
-.swiper-slide-next,
-.swiper-slide-prev {
-  transform: scale(0.9) translateY(10px); /* 작아지고 약간 내려감 */
-  opacity: 0.7;
-}
-
+    .swiper-slide-next,
+    .swiper-slide-prev {
+      transform: scale(0.9) translateY(10px);
+      opacity: 0.7;
+    }
 
     .modal {
       display: none;
@@ -226,7 +226,8 @@
       border-radius: 12px;
       box-shadow: 0 2px 12px rgba(0,0,0,0.2);
     }
-        .modal-caption {
+
+    .modal-caption {
       margin-top: 1rem;
       font-size: 1rem;
       font-weight: 500;
@@ -286,9 +287,9 @@
 
   <div class="page-title" data-aos="fade-down">Intern Net</div>
   <div class="subtitle" data-aos="fade-up">서로의 연결, 우리가 함께한 순간</div>
-  
+
   <div class="swiper" data-aos="fade-up">
-  <div class="swiper-wrapper">
+     <div class="swiper-wrapper">
     <div class="swiper-slide">
   <img src="assets/images/IMG_3932.jpeg" alt="사원증" onclick="openModal(this, '첫 만남! 사원증 받은 날 국룰~ 👔', '2025.03.04(화)')">
 </div>
@@ -331,9 +332,8 @@
     <div class="swiper-slide">
   <img src="assets/images/IMG_4722.jpeg" alt="노래방" onclick="openModal(this, '우진이 생일! 노래방은 꼭 가야한다구~ 대환장 파티 ㅋㅋㅋㅋ🎤', '2025.04.28(화)')">
 </div>
-</div>
-</div>
-
+    </div>
+  </div>
 
   <div id="imageModal" class="modal" onclick="closeModal()">
     <div class="close">&times;</div>
@@ -345,31 +345,25 @@
   </div>
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-  AOS.init({ duration: 800, once: true });
-</script>
+  <script src="https://unpkg.com/swiper@9/swiper-bundle.min.js"></script>
+  <script>
+    AOS.init({ duration: 800, once: true });
 
-<script src="https://unpkg.com/swiper@9/swiper-bundle.min.js"></script>
-<script>
-  const swiper = new Swiper('.swiper', {
-    centeredSlides: true,
-    slidesPerView: 'auto',
-    loop: true,
-    spaceBetween: 30,
-    grabCursor: true,
-    speed: 800,
-    slideToClickedSlide: true,
-  });
-</script>
-
-
+    const swiper = new Swiper('.swiper', {
+      centeredSlides: true,
+      slidesPerView: 'auto',
+      loop: true,
+      spaceBetween: 30,
+      grabCursor: true,
+      speed: 800,
+      slideToClickedSlide: true,
+    });
 
     function openModal(img, caption, date) {
-      const modal = document.getElementById('imageModal');
       document.getElementById('modalImage').src = img.src;
       document.getElementById('modalCaption').innerText = caption;
       document.getElementById('modalDate').innerText = date;
-      modal.style.display = 'flex';
+      document.getElementById('imageModal').style.display = 'flex';
     }
 
     function closeModal() {
@@ -389,6 +383,3 @@
   </script>
 </body>
 </html>
-
-
-

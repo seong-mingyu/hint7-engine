@@ -161,12 +161,12 @@
 
 .swiper-slide {
   width: 70vw;
-  max-width: 360px;
+  max-width: 340px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  transform: scale(0.78);
+  transform: scale(0.76);
   opacity: 0.5;
   transition: transform 0.5s ease, opacity 0.5s ease;
   padding: 0;
@@ -174,21 +174,22 @@
 }
 
 .swiper-slide-active {
-  transform: scale(0.92);
+  transform: scale(0.9);
   opacity: 1;
   z-index: 10;
 }
 
 .swiper-slide img {
   width: 100%;
-  height: 200px; /* 고정 높이로 세로/가로 통일 */
-  object-fit: cover; /* 이미지 꽉 채움 */
-  border-radius: 0; /* 각지게 */
+  height: auto;
+  max-height: 52vh;              /* 너무 길어지는 세로사진 제한 */
+  object-fit: contain;           /* 원본 비율 유지하면서 꽉 채우지 않음 */
+  border-radius: 0;
   box-shadow: none;
-  margin: 0;
-  padding: 0;
   display: block;
+  margin: 0 auto;
 }
+
 
 
 
@@ -366,14 +367,14 @@
   slidesPerView: 'auto',
   centeredSlides: true,
   loop: true,
-  spaceBetween: 20,
+  spaceBetween: 16,
   grabCursor: true,
   speed: 500,
   slideToClickedSlide: true,
   allowTouchMove: true,
-  touchAngle: 5, // 위아래 흔들림 최소화
-  resistanceRatio: 0, // 터치 후 즉시 반응
-  loopedSlides: 10, // 슬라이드 여러 장 루프시 빠르게 반응
+  touchAngle: 5,
+  resistanceRatio: 0,
+  loopedSlides: 10,
   effect: 'coverflow',
   coverflowEffect: {
     rotate: 8,
@@ -389,6 +390,7 @@
     1024: { spaceBetween: 20 }
   }
 });
+
 
 
 

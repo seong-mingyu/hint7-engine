@@ -161,37 +161,36 @@
 
 .swiper {
   width: 100%;
-  padding: 20px 0 10px; /* 위 아래 여백 줄임 */
+  padding: 20px 0;
   background: #ffffff;
 }
 
 .swiper-slide {
+  width: 75vw; /* 너비 고정으로 옆이 보이게 */
+  max-width: 400px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  transform: scale(0.82) rotateY(6deg);
+  transform: scale(0.8);
   opacity: 0.5;
   transition: transform 0.6s ease, opacity 0.6s ease;
-  height: auto;
 }
 
 .swiper-slide-active {
-  transform: scale(0.95) rotateY(0deg);
+  transform: scale(1);
   opacity: 1;
   z-index: 10;
 }
 
 .swiper-slide img {
-  max-width: 75vw;
-  max-height: 50vh; /* 세로 이미지 제한 */
-  width: auto;
+  width: 100%;
   height: auto;
+  max-height: 50vh;
   object-fit: contain;
   border-radius: 14px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
-  display: block;
-  margin: 0 auto;
 }
+
 
     .caption-box {
       margin-top: 1rem;
@@ -372,24 +371,39 @@
     AOS.init({ duration: 800, once: true });
 
     const swiper = new Swiper('.swiper', {
-      centeredSlides: true,
-      slidesPerView: 1.2,
-      loop: true,
-      spaceBetween: 30,
-      grabCursor: true,
-      speed: 700,
-      slideToClickedSlide: true,
-      allowTouchMove: true,
-      touchAngle: 10,
-      effect: 'coverflow',
-      coverflowEffect: {
-        rotate: 30,
-        stretch: 0,
-        depth: 100,
-        modifier: 1,
-        slideShadows: false,
-      }
-    });
+  slidesPerView: 'auto',               // 각 슬라이드 너비 기반 자동
+  centeredSlides: true,                // 가운데 정렬
+  loop: true,
+  spaceBetween: 16,                    // 슬라이드 간 간격
+  grabCursor: true,
+  speed: 600,
+  slideToClickedSlide: true,
+  allowTouchMove: true,
+  touchAngle: 10,                      // 위아래로 흔들리지 않도록 제한
+  effect: 'coverflow',
+  coverflowEffect: {
+    rotate: 10,                        // 좌우 기울임 정도 (부드럽게)
+    stretch: 0,
+    depth: 80,
+    modifier: 1.2,
+    slideShadows: false
+  },
+  breakpoints: {
+    320: {
+      spaceBetween: 8
+    },
+    480: {
+      spaceBetween: 12
+    },
+    768: {
+      spaceBetween: 16
+    },
+    1024: {
+      spaceBetween: 24
+    }
+  }
+});
+
 
     function toggleMenu() {
       document.getElementById("menuPopup").classList.toggle("active");

@@ -153,41 +153,45 @@
     }
 
     .subtitle {
-      text-align: center;
-      font-size: 1rem;
-      color: var(--gray-text);
-      margin-bottom: 2rem;
-    }
+  text-align: center;
+  font-size: 1rem;
+  color: var(--gray-text);
+  margin-bottom: 1rem; /* 여백 줄임 */
+}
 
-    .swiper {
-      width: 90%;
-      padding: 30px 0;
-      background: #ffffff;
-    }
+.swiper {
+  width: 100%;
+  padding: 20px 0 10px; /* 위 아래 여백 줄임 */
+  background: #ffffff;
+}
 
-    .swiper-slide {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      transform: scale(0.6) rotateY(8deg);
-      opacity: 0.5;
-      transition: transform 0.6s ease, opacity 0.6s ease;
-    }
+.swiper-slide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: scale(0.82) rotateY(6deg);
+  opacity: 0.5;
+  transition: transform 0.6s ease, opacity 0.6s ease;
+  height: auto;
+}
 
-    .swiper-slide-active {
-      transform: scale(0.9) rotateY(0deg);
-      opacity: 1;
-      z-index: 10;
-    }
+.swiper-slide-active {
+  transform: scale(0.95) rotateY(0deg);
+  opacity: 1;
+  z-index: 10;
+}
 
-    .swiper-slide img {
-      width: 70vw;
-      height: auto;
-      object-fit: cover;
-      border-radius: 16px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    }
+.swiper-slide img {
+  max-width: 75vw;
+  max-height: 50vh; /* 세로 이미지 제한 */
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 14px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  display: block;
+  margin: 0 auto;
+}
 
     .caption-box {
       margin-top: 1rem;

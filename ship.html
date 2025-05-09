@@ -47,12 +47,7 @@
       justify-content: center;
       align-items: center;
     }
-
-    #splash img {
-      width: 60px;
-      margin-bottom: 1rem;
-    }
-
+    #splash img { width: 60px; margin-bottom: 1rem; }
     .splash-text {
       font-family: 'HDHyundaiBold';
       font-size: 1.5rem;
@@ -71,7 +66,6 @@
       z-index: 1000;
     }
     .navbar img { height: 32px; }
-
     .navbar-title {
       font-size: 1.5rem;
       font-family: 'HDHyundaiBold';
@@ -83,16 +77,13 @@
       text-decoration: none;
       color: inherit;
     }
-    .navbar-title .hd {
-      color: var(--discovery-blue);
-    }
+    .navbar-title .hd { color: var(--discovery-blue); }
 
     .menu-icon {
       font-size: 1.5rem;
       cursor: pointer;
       z-index: 1002;
     }
-
     .menu-popup {
       position: absolute;
       top: 64px;
@@ -113,23 +104,15 @@
       pointer-events: auto;
       transform: translateY(0);
     }
-    .menu-popup ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    .menu-popup li {
-      margin: 0.5rem 0;
-    }
+    .menu-popup ul { list-style: none; padding: 0; margin: 0; }
+    .menu-popup li { margin: 0.5rem 0; }
     .menu-popup a {
       text-decoration: none;
       color: var(--gray-text);
       font-size: 0.95rem;
       transition: color 0.2s;
     }
-    .menu-popup a:hover {
-      color: var(--discovery-blue);
-    }
+    .menu-popup a:hover { color: var(--discovery-blue); }
 
     .page-title {
       text-align: center;
@@ -147,43 +130,96 @@
 
     .ocean {
       position: relative;
-      background: linear-gradient(to bottom, #cce3f6 0%, #a4d0ef 100%);
-      padding: 4rem 1rem 6rem;
+      background: linear-gradient(to bottom, #bce0f5 0%, #90c9f0 100%);
+      padding: 4rem 1rem 8rem;
       overflow: hidden;
     }
+    .wave {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100px;
+      animation: waveMove 6s ease-in-out infinite;
+    }
+    @keyframes waveMove {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(-30px); }
+    }
+
     .boat {
+      position: relative;
       width: 250px;
-      margin: 2rem auto;
-      padding: 1.2rem;
-      background: white;
+      margin: 4rem auto;
+      padding: 1.2rem 1rem 2rem;
+      background: linear-gradient(to bottom, white 60%, var(--trust-blue));
       border-radius: 30% 30% 0 0;
       box-shadow: 0 6px 12px rgba(0,0,0,0.15);
       text-align: center;
       animation: float 3s ease-in-out infinite;
     }
-    .boat h3 {
-      margin: 0.5rem 0;
-      font-size: 1.1rem;
-      color: var(--discovery-blue);
+    .boat::after {
+      content: '';
+      position: absolute;
+      bottom: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 30px;
+      background: var(--trust-blue);
+      clip-path: polygon(0% 0%, 50% 100%, 100% 0%);
     }
-    .boat p {
-      font-size: 0.95rem;
-      margin: 0.5rem 0 0;
+    .boat::before {
+      content: '';
+      position: absolute;
+      top: -40px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 4px;
+      height: 40px;
+      background: #666;
     }
-    .boat .date {
-      font-size: 0.85rem;
-      color: #555;
-    }
+    .boat h3 { margin: 0.5rem 0; font-size: 1.1rem; color: var(--discovery-blue); }
+    .boat p { font-size: 0.95rem; margin: 0.5rem 0 0; }
+    .boat .date { font-size: 0.85rem; color: #555; }
 
     @keyframes float {
       0%, 100% { transform: translateY(0px) rotate(-1.5deg); }
       50% { transform: translateY(-8px) rotate(1.5deg); }
     }
 
+    .cloud, .seagull, .buoy {
+      position: absolute;
+      opacity: 0.3;
+      animation: waveMove 6s ease-in-out infinite;
+    }
+    .cloud {
+      top: 20px;
+      left: 10%;
+      width: 80px;
+      height: 40px;
+      background: white;
+      border-radius: 50%;
+    }
+    .seagull {
+      top: 60px;
+      left: 80%;
+      width: 30px;
+      height: 20px;
+      background: white;
+      clip-path: polygon(0 100%, 50% 0%, 100% 100%);
+    }
+    .buoy {
+      bottom: 40px;
+      left: 40%;
+      width: 20px;
+      height: 30px;
+      background: red;
+      border-radius: 50% 50% 0 0;
+    }
+
     @media (max-width: 768px) {
-      .boat {
-        width: 80%;
-      }
+      .boat { width: 80%; }
     }
   </style>
 </head>
@@ -214,6 +250,10 @@
   <div class="subtitle" data-aos="fade-up">우리의 항해, 인턴십 전체 과정</div>
 
   <div class="ocean" data-aos="fade-up">
+    <div class="cloud"></div>
+    <div class="seagull"></div>
+    <div class="buoy"></div>
+
     <div class="boat">
       <div class="date">2024.12.01</div>
       <h3>📩 서류 지원</h3>
@@ -239,6 +279,10 @@
       <h3>📢 최종 발표</h3>
       <p>마지막 날, 한 달간의 성과를 발표하며 여정을 마무리했습니다.</p>
     </div>
+
+    <svg class="wave" viewBox="0 0 1440 320">
+      <path fill="#a4d0ef" fill-opacity="1" d="M0,96L60,101.3C120,107,240,117,360,128C480,139,600,149,720,160C840,171,960,181,1080,160C1200,139,1320,85,1380,58.7L1440,32V320H0Z"></path>
+    </svg>
   </div>
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>

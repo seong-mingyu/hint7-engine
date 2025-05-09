@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Intern Ship - H-int</title>
+  <title>Intern Ship Timeline</title>
   <link rel="icon" href="assets/images/logo.png" type="image/png" />
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
   <style>
@@ -24,9 +24,10 @@
       --bg-light: #f4f4f4;
     }
 
-    body {
+    html, body {
+      margin: 0; padding: 0;
+      overflow-x: hidden;
       font-family: 'HDHyundaiLight', sans-serif;
-      margin: 0;
       background-color: var(--bg-light);
       color: var(--gray-text);
       opacity: 0;
@@ -81,7 +82,7 @@
       color: var(--gray-text); font-size: 0.95rem;
       text-decoration: none;
     }
-    .menu-popup a:hover { color: var(--ship-green); }
+    .menu-popup a:hover { color: var(--prosperity-green); }
 
     .page-title {
       text-align: center; margin: 2rem 1rem 0.5rem;
@@ -92,6 +93,72 @@
     .subtitle {
       text-align: center; font-size: 1rem;
       color: var(--gray-text); margin-bottom: 2rem;
+    }
+
+    .timeline-container {
+      position: relative;
+      width: 100%;
+      height: 3800px;
+      background: linear-gradient(to bottom, #eaf6ff, #d4ecff);
+    }
+
+    .timeline-svg {
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+    }
+
+    .boat {
+      position: absolute;
+      width: 80px;
+      z-index: 2;
+      transition: top 0.6s ease-out;
+    }
+
+    .milestone {
+      position: absolute;
+      width: 100%;
+      text-align: center;
+      z-index: 3;
+    }
+    .milestone .marker {
+      background: #003087;
+      color: #fff;
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      display: inline-block;
+    }
+    .milestone:hover {
+      cursor: pointer;
+    }
+
+    .modal {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+    .modal-content {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      width: 90%;
+      max-width: 320px;
+      text-align: center;
+    }
+    .modal-close {
+      margin-top: 1rem;
+      background: #003087;
+      color: white;
+      border: none;
+      padding: 0.6rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
     }
   </style>
 </head>
@@ -121,6 +188,51 @@
   <div class="page-title" data-aos="fade-down">Intern Ship</div>
   <div class="subtitle" data-aos="fade-up">우리의 항해, 인턴십 전체 과정</div>
 
+  <div class="timeline-container">
+    <svg class="timeline-svg" width="300" height="3800" viewBox="0 0 300 3800" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M150 0 C0 300, 300 600, 150 900 C0 1200, 300 1500, 150 1800 C0 2100, 300 2400, 150 2700 C0 3000, 300 3300, 150 3600" stroke="#008233" stroke-width="5" fill="none" />
+    </svg>
+    <img src="boat.png" class="boat" id="boat" style="top: 10px; left: calc(50% - 40px);" />
+
+    <div class="milestone" style="top: 100px;" onclick="showModal('3/4 힌트 시작 교육')">
+      <div class="marker">3/4 힌트 시작 교육</div>
+    </div>
+    <div class="milestone" style="top: 350px;" onclick="showModal('3/5 안전교육')">
+      <div class="marker">3/5 안전교육</div>
+    </div>
+    <div class="milestone" style="top: 650px;" onclick="showModal('3/6 야드투어,부서배치')">
+      <div class="marker">3/6 야드투어,부서배치</div>
+    </div>
+    <div class="milestone" style="top: 950px;" onclick="showModal('3/26 조별모임, 보리꽃 회식')">
+      <div class="marker">3/26 조별모임, 보리꽃 회식</div>
+    </div>
+    <div class="milestone" style="top: 1250px;" onclick="showModal('4/10 조모임 클럽하우스 방문')">
+      <div class="marker">4/10 조모임 클럽하우스 방문</div>
+    </div>
+    <div class="milestone" style="top: 1550px;" onclick="showModal('4/19 울산 hd현대 축구 직관')">
+      <div class="marker">4/19 울산 hd현대 축구 직관</div>
+    </div>
+    <div class="milestone" style="top: 1850px;" onclick="showModal('5/15 조별 발표')">
+      <div class="marker">5/15 조별 발표</div>
+    </div>
+    <div class="milestone" style="top: 2150px;" onclick="showModal('5/26 개인 pt 발표')">
+      <div class="marker">5/26 개인 pt 발표</div>
+    </div>
+    <div class="milestone" style="top: 2450px;" onclick="showModal('6/9 최종 면접')">
+      <div class="marker">6/9 최종 면접</div>
+    </div>
+    <div class="milestone" style="top: 2750px;" onclick="showModal('6/20 인턴십 종료')">
+      <div class="marker">6/20 인턴십 종료</div>
+    </div>
+  </div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <div id="modalText"></div>
+      <button class="modal-close" onclick="closeModal()">닫기</button>
+    </div>
+  </div>
+
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
     AOS.init({ duration: 800, once: true });
@@ -135,6 +247,24 @@
         document.body.classList.add("loaded");
       }, 800);
     });
+
+    const boat = document.getElementById("boat");
+    const modal = document.getElementById("modal");
+    const modalText = document.getElementById("modalText");
+
+    window.addEventListener("scroll", () => {
+      const scrollY = window.scrollY;
+      boat.style.top = scrollY + 30 + "px";
+    });
+
+    function showModal(text) {
+      modalText.innerText = text;
+      modal.style.display = "flex";
+    }
+
+    function closeModal() {
+      modal.style.display = "none";
+    }
   </script>
 </body>
 </html>

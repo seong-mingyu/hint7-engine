@@ -31,33 +31,39 @@
       box-sizing: border-box;
     }
     .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      background: white;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background-color: white;
       padding: 1rem 1.5rem;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
     }
-
     .navbar img { height: 32px; }
-
     .navbar-title {
       font-size: 1.5rem;
       font-family: 'HDHyundaiBold';
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
+      white-space: nowrap;
     }
-
-    .navbar-title a {
-      text-decoration: none;
-      color: inherit;
+    .navbar-title a { text-decoration: none; color: inherit; }
+    .navbar-title .hd { color: #003087; }
+    .menu-icon { font-size: 1.5rem; cursor: pointer; }
+    .menu-popup {
+      position: absolute;
+      top: 64px;
+      right: 20px;
+      background: white;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      padding: 0.5rem 1rem;
+      display: none;
     }
-
-    .navbar-title .hd { color: var(--discovery-blue); }
     .menu-popup ul { list-style: none; margin: 0; padding: 0; }
     .menu-popup li { margin: 0.5rem 0; }
     .menu-popup a {
@@ -77,12 +83,9 @@
       padding: 0.4rem 0 0.6rem;
     }
     .page-title {
-      text-align: center;
-      margin: 2rem 1rem 0.5rem;
-      font-size: 1.8rem;
-      font-weight: bold;
-      color: var(--discovery-blue);
-    }
+      font-size: 1.6rem;
+      font-family: 'HDHyundaiBold';
+      color: #002554;
     }
     .subtitle {
       font-size: 0.9rem;
@@ -137,7 +140,7 @@
 
     .boat {
       position: fixed;
-      top: 75%;
+      top: 12%;
       width: 60px;
       z-index: 2;
       left: 5%;
@@ -149,12 +152,12 @@
       50% { transform: translateY(-8px) rotate(1.5deg); }
     }
 
-   .waves {
+    .waves {
       position: fixed;
       bottom: 0;
       width: 100%;
-      height: 100px;
-      background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 120 28" xmlns="http://www.w3.org/2000/svg"><path fill="%23a2d4f4" d="M0 17c10 0 10-10 20-10s10 10 20 10 10-10 20-10 10 10 20 10 10-10 20-10v11H0z"/></svg>') repeat-x;
+      height: 80px;
+      background: url('data:image/svg+xml;utf8,<svg viewBox=\"0 0 120 28\" xmlns=\"http://www.w3.org/2000/svg\"><path fill=\"%23a2d4f4\" d=\"M0 17c10 0 10-10 20-10s10 10 20 10 10-10 20-10 10 10 20 10 10-10 20-10v11H0z\"/></svg>') repeat-x;
       background-size: contain;
       animation: waveMove 12s linear infinite;
       z-index: 0;
@@ -166,7 +169,7 @@
 
     .indicators {
       position: fixed;
-      bottom: 16%;
+      bottom: 90px;
       width: 100vw;
       text-align: center;
       z-index: 5;

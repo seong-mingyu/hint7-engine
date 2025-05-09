@@ -5,40 +5,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Intern Ship - H-int</title>
   <link rel="icon" href="assets/images/logo.png" type="image/png">
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
   <style>
-    html {
-      scroll-snap-type: y mandatory;
-      scroll-behavior: smooth;
+    @font-face {
+      font-family: 'HDHyundaiLight';
+      src: url('assets/fonts/HDHyundai-Light.ttf') format('truetype');
     }
-    body {
+    @font-face {
+      font-family: 'HDHyundaiBold';
+      src: url('assets/fonts/HDHyundai-Bold.ttf') format('truetype');
+    }
+    html, body {
       margin: 0;
+      padding: 0;
+      overflow-y: hidden;
+      overflow-x: auto;
+      scroll-behavior: smooth;
       font-family: 'HDHyundaiLight', sans-serif;
-      background-color: #f0f7ff;
-      color: #63666A;
-      overflow-x: hidden;
-    }
-    section.section {
-      scroll-snap-align: start;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      padding: 2rem;
-      position: relative;
+      background: linear-gradient(to right, #e4f3ff, #ffffff);
     }
     .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      background: white;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background-color: white;
       padding: 1rem 1.5rem;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
     .navbar img {
       height: 32px;
@@ -60,7 +55,6 @@
     .menu-icon {
       font-size: 1.5rem;
       cursor: pointer;
-      z-index: 1002;
     }
     .menu-popup {
       position: absolute;
@@ -71,72 +65,87 @@
       border-radius: 10px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.15);
       padding: 0.5rem 1rem;
-      z-index: 999;
       display: none;
+    }
+    .menu-popup ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .menu-popup li {
+      margin: 0.5rem 0;
+    }
+    .menu-popup a {
+      text-decoration: none;
+      color: #63666A;
+      font-size: 0.95rem;
     }
     .menu-popup.active {
       display: block;
     }
-    .page-title {
+    .intro-section {
+      margin-top: 80px;
       text-align: center;
-      margin: 1rem 1rem 0.2rem;
-      font-size: 1.8rem;
-      font-weight: bold;
+    }
+    .page-title {
+      font-size: 2rem;
+      font-family: 'HDHyundaiBold';
       color: #002554;
     }
     .subtitle {
-      text-align: center;
       font-size: 1rem;
       color: #63666A;
-      margin-bottom: 1rem;
+      margin-top: 0.5rem;
     }
-    .boat-follow {
-      position: fixed;
-      left: 10px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 100px;
-      z-index: 10;
-      animation: float 4s ease-in-out infinite;
+    .slider {
+      display: flex;
+      flex-direction: row;
+      width: max-content;
+      height: 100vh;
+      align-items: center;
     }
-    @keyframes float {
-      0%, 100% { transform: translateY(-50%) translateX(0) rotate(-2deg); }
-      50% { transform: translateY(-50%) translateX(5px) rotate(2deg); }
+    .section {
+      scroll-snap-align: start;
+      flex: 0 0 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
     }
     .card {
       background: white;
       border-radius: 15px;
-      box-shadow: 0 6px 16px rgba(0,0,0,0.08);
-      padding: 2rem 1.5rem;
-      max-width: 600px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+      padding: 2rem;
+      max-width: 500px;
       text-align: center;
     }
     .card img {
       width: 100%;
-      max-height: 200px;
-      object-fit: cover;
       border-radius: 10px;
       margin-bottom: 1rem;
     }
     .card h2 {
-      font-size: 1.4rem;
       color: #003087;
       margin-bottom: 1rem;
       font-family: 'HDHyundaiBold';
     }
     .card p {
-      font-size: 0.95rem;
+      font-size: 1rem;
       line-height: 1.6;
     }
-    .icon-row {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      margin-top: 1.2rem;
+    .boat {
+      position: fixed;
+      top: 30%;
+      left: 5%;
+      width: 120px;
+      z-index: 5;
+      animation: float 4s ease-in-out infinite;
     }
-    .icon-row i {
-      font-size: 1.4rem;
-      color: #002554;
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(-2deg); }
+      50% { transform: translateY(-10px) rotate(2deg); }
     }
   </style>
 </head>
@@ -158,64 +167,53 @@
     </div>
   </div>
 
-  <div class="page-title">Intern Ship</div>
-  <div class="subtitle">우리의 항해, 인턴십 전체 과정</div>
+  <div class="intro-section">
+    <div class="page-title">Intern Ship</div>
+    <div class="subtitle">우리의 항해, 인턴십 전체 과정</div>
+  </div>
 
-  <img src="assets/images/boat.png" alt="배 이미지" class="boat-follow">
+  <img src="assets/images/boat.png" alt="배 이미지" class="boat">
 
-  <section class="section">
-    <div class="card">
-      <img src="assets/images/entry.jpg" alt="출항 이미지">
-      <h2>🚢 출항 - 지원 시작</h2>
-      <p>나의 가능성을 확인하기 위해 배를 띄우다. 설렘 속에 첫 발을 내딛습니다.</p>
-      <div class="icon-row">
-        <i class="bi bi-envelope-paper-heart"></i>
-        <i class="bi bi-stars"></i>
-        <i class="bi bi-binoculars"></i>
+  <div class="slider">
+    <section class="section">
+      <div class="card">
+        <img src="assets/images/entry.jpg" alt="출항 이미지">
+        <h2>🚢 출항 - 지원 시작</h2>
+        <p>나의 가능성을 확인하기 위해 배를 띄우다. 설렘 속에 첫 발을 내딛습니다.</p>
       </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="card">
-      <img src="assets/images/orientation.jpg" alt="승선 이미지">
-      <h2>⚓ 승선 - 오리엔테이션</h2>
-      <p>모두 함께 모여 항해 계획을 세우고, 목적지를 공유하며 첫 만남을 가졌습니다.</p>
-      <div class="icon-row">
-        <i class="bi bi-people"></i>
-        <i class="bi bi-map"></i>
-        <i class="bi bi-flag"></i>
+    </section>
+    <section class="section">
+      <div class="card">
+        <img src="assets/images/orientation.jpg" alt="승선 이미지">
+        <h2>⚓ 승선 - 오리엔테이션</h2>
+        <p>모두 함께 모여 항해 계획을 세우고, 목적지를 공유하며 첫 만남을 가졌습니다.</p>
       </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="card">
-      <h2>🛠 항해 중 - 과제 수행</h2>
-      <p>직무 별 과제를 수행하며, 파도를 넘어 성장의 길을 찾았습니다.</p>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="card">
-      <h2>🧭 항로 조정 - 중간 공유</h2>
-      <p>함께 나아가기 위해 팀원들과 협업하며 방향을 다시 점검했습니다.</p>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="card">
-      <h2>🎯 항해 종료 - 최종 발표</h2>
-      <p>우리가 만든 결과물로 이 항해를 마무리하며 뿌듯함을 느꼈습니다.</p>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="card">
-      <h2>🌅 닻 내림 - 회고</h2>
-      <p>이제는 다시 항해를 준비하며, 더 큰 세상을 향한 돛을 펼칩니다.</p>
-    </div>
-  </section>
+    </section>
+    <section class="section">
+      <div class="card">
+        <h2>🛠 항해 중 - 과제 수행</h2>
+        <p>직무 별 과제를 수행하며, 파도를 넘어 성장의 길을 찾았습니다.</p>
+      </div>
+    </section>
+    <section class="section">
+      <div class="card">
+        <h2>🧭 항로 조정 - 중간 공유</h2>
+        <p>함께 나아가기 위해 팀원들과 협업하며 방향을 다시 점검했습니다.</p>
+      </div>
+    </section>
+    <section class="section">
+      <div class="card">
+        <h2>🎯 항해 종료 - 최종 발표</h2>
+        <p>우리가 만든 결과물로 이 항해를 마무리하며 뿌듯함을 느꼈습니다.</p>
+      </div>
+    </section>
+    <section class="section">
+      <div class="card">
+        <h2>🌅 닻 내림 - 회고</h2>
+        <p>이제는 다시 항해를 준비하며, 더 큰 세상을 향한 돛을 펼칩니다.</p>
+      </div>
+    </section>
+  </div>
 
   <script>
     function toggleMenu() {

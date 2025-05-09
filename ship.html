@@ -18,22 +18,23 @@
 
     :root {
       --discovery-blue: #003087;
+      --prosperity-green: #008233;
       --trust-blue: #002554;
       --gray-text: #63666A;
-      --sea-blue: #b3e0f5;
-      --boat-color: white;
+      --bg-light: #f9f9f9;
     }
 
     body {
       font-family: 'HDHyundaiLight', sans-serif;
       margin: 0;
-      background-color: var(--sea-blue);
+      background-color: var(--bg-light);
       color: var(--gray-text);
-      overflow-x: hidden;
       opacity: 0;
       transition: opacity 0.6s ease-in-out;
     }
-    body.loaded { opacity: 1; }
+    body.loaded {
+      opacity: 1;
+    }
 
     #splash {
       position: fixed;
@@ -46,7 +47,12 @@
       justify-content: center;
       align-items: center;
     }
-    #splash img { width: 60px; margin-bottom: 1rem; }
+
+    #splash img {
+      width: 60px;
+      margin-bottom: 1rem;
+    }
+
     .splash-text {
       font-family: 'HDHyundaiBold';
       font-size: 1.5rem;
@@ -64,7 +70,11 @@
       top: 0;
       z-index: 1000;
     }
-    .navbar img { height: 32px; }
+
+    .navbar img {
+      height: 32px;
+    }
+
     .navbar-title {
       font-size: 1.5rem;
       font-family: 'HDHyundaiBold';
@@ -72,17 +82,22 @@
       left: 50%;
       transform: translateX(-50%);
     }
+
     .navbar-title a {
       text-decoration: none;
       color: inherit;
     }
-    .navbar-title .hd { color: var(--discovery-blue); }
+
+    .navbar-title .hd {
+      color: var(--discovery-blue);
+    }
 
     .menu-icon {
       font-size: 1.5rem;
       cursor: pointer;
       z-index: 1002;
     }
+
     .menu-popup {
       position: absolute;
       top: 64px;
@@ -98,21 +113,33 @@
       transform: translateY(-10px);
       transition: all 0.3s ease;
     }
+
     .menu-popup.active {
       opacity: 1;
       pointer-events: auto;
       transform: translateY(0);
     }
 
-    .menu-popup ul { list-style: none; padding: 0; margin: 0; }
-    .menu-popup li { margin: 0.5rem 0; }
+    .menu-popup ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .menu-popup li {
+      margin: 0.5rem 0;
+    }
+
     .menu-popup a {
       text-decoration: none;
       color: var(--gray-text);
       font-size: 0.95rem;
       transition: color 0.2s;
     }
-    .menu-popup a:hover { color: var(--discovery-blue); }
+
+    .menu-popup a:hover {
+      color: var(--discovery-blue);
+    }
 
     .page-title {
       text-align: center;
@@ -121,6 +148,7 @@
       font-weight: bold;
       color: var(--trust-blue);
     }
+
     .subtitle {
       text-align: center;
       font-size: 1rem;
@@ -128,81 +156,76 @@
       margin-bottom: 2rem;
     }
 
-    .ocean {
+    .timeline {
       position: relative;
-      height: 2500px;
-      background: linear-gradient(to bottom, #b3e0f5 30%, #87ceeb 100%); /* 심해처럼 점점 어두워짐 */
-      z-index: 0;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+      max-width: 700px;
     }
 
-    .wave-line {
+    .timeline::before {
+      content: '';
       position: absolute;
-      width: 100%;
+      left: 50%;
+      top: 0;
+      width: 4px;
       height: 100%;
-      z-index: 1;
+      background: var(--discovery-blue);
+      transform: translateX(-50%);
     }
 
-    .wave-line svg {
+    .timeline-item {
+      position: relative;
+      margin-bottom: 3rem;
       width: 100%;
-      height: 100%;
-      stroke: #005f99;
-      stroke-width: 1; /* 선 얇게 */
-      fill: none;
     }
 
-    .boat {
-      position: absolute;
-      width: 180px;
-      padding: 1rem;
-      background: var(--boat-color);
-      border-radius: 20px 20px 10px 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-      text-align: center;
-      z-index: 5;
+    .timeline-content {
+      background: white;
+      padding: 1.2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      position: relative;
+      width: 90%;
     }
 
-    .boat h3 {
-      margin: 0.5rem 0 0.2rem;
-      font-size: 1rem;
+    .timeline-content h3 {
+      margin: 0;
+      font-size: 1.1rem;
       color: var(--discovery-blue);
     }
-    .boat p {
+
+    .timeline-content p {
+      margin: 0.4rem 0 0;
+      font-size: 0.95rem;
+    }
+
+    .timeline-date {
       font-size: 0.85rem;
-      margin: 0;
+      color: #888;
+      margin-bottom: 0.4rem;
     }
 
-    /* 배 모양 수정: 사다리꼴 윗변 더 길게 */
-    .boat .sail {
-      width: 0;
-      height: 0;
-      border-left: 30px solid transparent;
-      border-right: 30px solid transparent;
-      border-bottom: 40px solid red;
-      margin: 0 auto;
+    .timeline-item.left .timeline-content {
+      left: 0;
+      margin-left: 0;
     }
 
-    .background-object {
-      position: absolute;
-      opacity: 0.3;
-      z-index: 1;
+    .timeline-item.right .timeline-content {
+      left: 50%;
+      margin-left: 5%;
     }
-    .fish {
-      width: 30px;
-      height: 20px;
-      background: orange;
-      clip-path: polygon(0 50%, 80% 0, 100% 50%, 80% 100%);
-    }
-    .bubble {
-      width: 16px;
-      height: 16px;
-      background: white;
-      border-radius: 50%;
-    }
-    .island {
-      width: 100px;
-      height: 40px;
-      background: #654321;
-      border-radius: 50%;
+
+    @media (max-width: 768px) {
+      .timeline::before {
+        left: 8px;
+      }
+      .timeline-item.right .timeline-content,
+      .timeline-item.left .timeline-content {
+        left: 0;
+        margin-left: 24px;
+        width: calc(100% - 40px);
+      }
     }
   </style>
 </head>
@@ -211,6 +234,7 @@
     <img src="assets/images/logo.png" alt="로고">
     <div class="splash-text">H-int Dream</div>
   </div>
+
   <div class="navbar">
     <img src="assets/images/logo.png" alt="HD현대중공업 로고">
     <div class="navbar-title">
@@ -228,92 +252,55 @@
     </div>
   </div>
 
-  <div class="page-title">Intern Ship</div>
-  <div class="subtitle">우리의 항해, 인턴십 전체 과정</div>
+  <div class="page-title" data-aos="fade-down">Intern Ship</div>
+  <div class="subtitle" data-aos="fade-up">우리의 항해, 인턴십 전체 과정</div>
 
-  <div class="ocean">
-    <div class="wave-line">
-      <svg viewBox="0 0 100 2400" preserveAspectRatio="none">
-        <path d="M 20,0 C 80,200 20,400 80,600 C 20,800 80,1000 20,1200 C 80,1400 20,1600 80,1800 C 20,2000 80,2200 50,2400" />
-      </svg>
+  <div class="timeline" data-aos="fade-up">
+    <div class="timeline-item left">
+      <div class="timeline-content">
+        <div class="timeline-date">2024.12.01</div>
+        <h3>📩 서류 지원</h3>
+        <p>HD현대중공업 인턴십 H-int 6기에 지원서를 제출했어요.</p>
+      </div>
     </div>
-
-    <!-- 10 Boats with content -->
-    <div class="boat" style="top: 0px; left: 10%;">
-      <div class="sail"></div>
-      <div class="date">2024.12.01</div>
-      <h3>📩 서류 지원</h3>
-      <p>HD현대중공업 인턴십 H-int 6기에 지원서를 제출했어요.</p>
+    <div class="timeline-item right">
+      <div class="timeline-content">
+        <div class="timeline-date">2025.01.02</div>
+        <h3>👥 부서 배치</h3>
+        <p>각자의 직무와 부서로 배치되어 인턴십을 시작했습니다.</p>
+      </div>
     </div>
-    <div class="boat" style="top: 220px; left: 60%;">
-      <div class="sail"></div>
-      <div class="date">2024.12.15</div>
-      <h3>📞 서류 합격</h3>
-      <p>서류 전형을 통과하고 인터뷰를 준비했어요.</p>
+    <div class="timeline-item left">
+      <div class="timeline-content">
+        <div class="timeline-date">2025.01.04</div>
+        <h3>📝 개인 과제 수행</h3>
+        <p>실무 주제를 받아 프로젝트를 계획하고 직접 수행했습니다.</p>
+      </div>
     </div>
-    <div class="boat" style="top: 440px; left: 20%;">
-      <div class="sail"></div>
-      <div class="date">2024.12.22</div>
-      <h3>🗣️ 면접 전형</h3>
-      <p>자기소개와 경험을 기반으로 면접을 진행했어요.</p>
+    <div class="timeline-item right">
+      <div class="timeline-content">
+        <div class="timeline-date">2025.01.09</div>
+        <h3>🤝 조별 활동</h3>
+        <p>조를 이루어 서로의 분야를 이해하고 팀 프로젝트를 함께했어요.</p>
+      </div>
     </div>
-    <div class="boat" style="top: 660px; left: 55%;">
-      <div class="sail"></div>
-      <div class="date">2025.01.02</div>
-      <h3>👥 부서 배치</h3>
-      <p>각자의 직무와 부서로 배치되어 인턴십이 시작됐어요.</p>
+    <div class="timeline-item left">
+      <div class="timeline-content">
+        <div class="timeline-date">2025.01.24</div>
+        <h3>📢 최종 발표</h3>
+        <p>마지막 날, 한 달간의 성과를 발표하며 여정을 마무리했습니다.</p>
+      </div>
     </div>
-    <div class="boat" style="top: 880px; left: 15%;">
-      <div class="sail"></div>
-      <div class="date">2025.01.04</div>
-      <h3>📚 직무 교육</h3>
-      <p>담당 부서에서 업무에 필요한 교육을 받았어요.</p>
-    </div>
-    <div class="boat" style="top: 1100px; left: 60%;">
-      <div class="sail"></div>
-      <div class="date">2025.01.09</div>
-      <h3>🤝 조별 활동</h3>
-      <p>조를 구성하여 프로젝트를 함께 수행했어요.</p>
-    </div>
-    <div class="boat" style="top: 1320px; left: 20%;">
-      <div class="sail"></div>
-      <div class="date">2025.01.12</div>
-      <h3>💡 아이디어 회의</h3>
-      <p>더 나은 결과물을 위해 다양한 아이디어를 논의했어요.</p>
-    </div>
-    <div class="boat" style="top: 1540px; left: 55%;">
-      <div class="sail"></div>
-      <div class="date">2025.01.18</div>
-      <h3>🛠️ 중간 점검</h3>
-      <p>실행한 과제를 점검하고 피드백을 받았어요.</p>
-    </div>
-    <div class="boat" style="top: 1760px; left: 20%;">
-      <div class="sail"></div>
-      <div class="date">2025.01.22</div>
-      <h3>📝 최종 보고서</h3>
-      <p>한 달 동안의 활동을 정리한 보고서를 작성했어요.</p>
-    </div>
-    <div class="boat" style="top: 1980px; left: 60%;">
-      <div class="sail"></div>
-      <div class="date">2025.01.24</div>
-      <h3>📢 최종 발표</h3>
-      <p>모든 인턴들이 모여 한 달간의 결과를 공유했어요.</p>
-    </div>
-
-    <!-- Background Elements Behind Boats -->
-    <div class="background-object fish" style="top: 300px; left: 20%;"></div>
-    <div class="background-object bubble" style="top: 600px; left: 70%;"></div>
-    <div class="background-object fish" style="top: 1000px; left: 40%;"></div>
-    <div class="background-object island" style="top: 1600px; left: 80%;"></div>
-    <div class="background-object bubble" style="top: 1900px; left: 25%;"></div>
   </div>
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
     AOS.init({ duration: 800, once: true });
+
     function toggleMenu() {
       document.getElementById("menuPopup").classList.toggle("active");
     }
+
     window.addEventListener("load", () => {
       setTimeout(() => {
         document.getElementById("splash").style.display = "none";

@@ -29,7 +29,7 @@
       margin: 0;
       background-color: var(--sea-blue);
       color: var(--gray-text);
-      overflow-x: hidden; /* 가로 스크롤 제한 */
+      overflow-x: hidden;
       opacity: 0;
       transition: opacity 0.6s ease-in-out;
     }
@@ -131,7 +131,7 @@
     .ocean {
       position: relative;
       height: 2500px;
-      background: linear-gradient(to bottom, #b3e0f5 20%, #87ceeb 100%); /* 심해처럼 점점 어두워짐 */
+      background: linear-gradient(to bottom, #b3e0f5 30%, #87ceeb 100%); /* 심해처럼 점점 어두워짐 */
       z-index: 0;
     }
 
@@ -146,7 +146,7 @@
       width: 100%;
       height: 100%;
       stroke: #005f99;
-      stroke-width: 3;
+      stroke-width: 1; /* 선 얇게 */
       fill: none;
     }
 
@@ -171,14 +171,16 @@
       margin: 0;
     }
 
+    /* 배 모양 수정: 사다리꼴 윗변 더 길게 */
     .boat .sail {
       width: 0;
       height: 0;
-      border-left: 20px solid transparent;
-      border-right: 20px solid transparent;
-      border-bottom: 30px solid red;
+      border-left: 30px solid transparent;
+      border-right: 30px solid transparent;
+      border-bottom: 40px solid red;
       margin: 0 auto;
     }
+
     .background-object {
       position: absolute;
       opacity: 0.3;
@@ -202,37 +204,6 @@
       background: #654321;
       border-radius: 50%;
     }
-
-    .boat {
-      position: absolute;
-      width: 180px;
-      padding: 1rem;
-      background: var(--boat-color);
-      border-radius: 20px 20px 10px 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
-      text-align: center;
-      z-index: 5;
-    }
-
-    .boat h3 {
-      margin: 0.5rem 0 0.2rem;
-      font-size: 1rem;
-      color: var(--discovery-blue);
-    }
-    .boat p {
-      font-size: 0.85rem;
-      margin: 0;
-    }
-
-    .boat .sail {
-      width: 0;
-      height: 0;
-      border-left: 20px solid transparent;
-      border-right: 20px solid transparent;
-      border-bottom: 30px solid red;
-      margin: 0 auto;
-    }
-
   </style>
 </head>
 <body>
@@ -240,7 +211,6 @@
     <img src="assets/images/logo.png" alt="로고">
     <div class="splash-text">H-int Dream</div>
   </div>
-
   <div class="navbar">
     <img src="assets/images/logo.png" alt="HD현대중공업 로고">
     <div class="navbar-title">

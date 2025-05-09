@@ -31,39 +31,33 @@
       box-sizing: border-box;
     }
     .navbar {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      z-index: 1000;
-      background: white;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      background-color: white;
       padding: 1rem 1.5rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
+
     .navbar img { height: 32px; }
+
     .navbar-title {
       font-size: 1.5rem;
       font-family: 'HDHyundaiBold';
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
-      white-space: nowrap;
     }
-    .navbar-title a { text-decoration: none; color: inherit; }
-    .navbar-title .hd { color: #003087; }
-    .menu-icon { font-size: 1.5rem; cursor: pointer; }
-    .menu-popup {
-      position: absolute;
-      top: 64px;
-      right: 20px;
-      background: white;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      padding: 0.5rem 1rem;
-      display: none;
+
+    .navbar-title a {
+      text-decoration: none;
+      color: inherit;
     }
+
+    .navbar-title .hd { color: var(--discovery-blue); }
     .menu-popup ul { list-style: none; margin: 0; padding: 0; }
     .menu-popup li { margin: 0.5rem 0; }
     .menu-popup a {

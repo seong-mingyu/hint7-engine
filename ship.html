@@ -33,9 +33,7 @@
       opacity: 0;
       transition: opacity 0.6s ease-in-out;
     }
-    body.loaded {
-      opacity: 1;
-    }
+    body.loaded { opacity: 1; }
 
     #splash {
       position: fixed;
@@ -105,6 +103,7 @@
       pointer-events: auto;
       transform: translateY(0);
     }
+
     .menu-popup ul { list-style: none; padding: 0; margin: 0; }
     .menu-popup li { margin: 0.5rem 0; }
     .menu-popup a {
@@ -131,35 +130,63 @@
 
     .ocean {
       position: relative;
-      height: 120vh;
-      overflow: hidden;
+      height: 2400px;
+      background: var(--sea-blue);
     }
+
     .boat {
       position: absolute;
       width: 160px;
-      padding: 1rem;
       background: var(--boat-color);
       border-radius: 0 0 60% 60%;
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       text-align: center;
       animation: float 3s ease-in-out infinite;
     }
-    .boat h3 { margin: 0.5rem 0; font-size: 1rem; color: var(--discovery-blue); }
-    .boat p { font-size: 0.85rem; margin: 0.5rem 0 0; }
-    .boat .date { font-size: 0.8rem; color: #666; }
-
+    .boat .sail {
+      width: 0;
+      height: 0;
+      border-left: 20px solid transparent;
+      border-right: 20px solid transparent;
+      border-bottom: 30px solid red;
+      margin: 0 auto;
+    }
+    .boat h3 {
+      margin: 0.3rem 0;
+      font-size: 1rem;
+      color: var(--discovery-blue);
+    }
+    .boat p {
+      font-size: 0.85rem;
+      margin: 0.3rem 0 0;
+    }
+    .boat .date {
+      font-size: 0.8rem;
+      color: #666;
+    }
     @keyframes float {
-      0%, 100% { transform: translateY(0px); }
+      0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-8px); }
     }
 
-    .wave-bg {
+    .path-line {
       position: absolute;
-      bottom: 0;
-      left: 0;
       width: 100%;
-      height: 200px;
-      z-index: -1;
+      height: 100%;
+      z-index: 0;
+    }
+    .path-line svg {
+      width: 100%;
+      height: 100%;
+      stroke: #004d99;
+      stroke-width: 3;
+      fill: none;
+      stroke-dasharray: 8 10;
+      animation: drawPath 12s linear infinite;
+    }
+    @keyframes drawPath {
+      0% { stroke-dashoffset: 0; }
+      100% { stroke-dashoffset: 1000; }
     }
 
     .decoration {
@@ -187,8 +214,8 @@
       background: #654321;
       border-radius: 50%;
       position: absolute;
-      bottom: 20px;
-      left: 80%;
+      top: 200px;
+      right: 5%;
       opacity: 0.4;
     }
   </style>
@@ -216,44 +243,83 @@
     </div>
   </div>
 
-  <div class="page-title" data-aos="fade-down">Intern Ship</div>
-  <div class="subtitle" data-aos="fade-up">우리의 항해, 인턴십 전체 과정</div>
+  <div class="page-title">Intern Ship</div>
+  <div class="subtitle">우리의 항해, 인턴십 전체 과정</div>
 
   <div class="ocean">
-    <div class="boat" style="top: 40px; left: 10%;">
-      <div class="date">2024.12.01</div>
-      <h3>📩 서류 지원</h3>
-      <p>지원서를 제출했어요.</p>
-    </div>
-    <div class="boat" style="top: 160px; left: 60%;">
-      <div class="date">2025.01.02</div>
-      <h3>👥 부서 배치</h3>
-      <p>부서로 배치되어 인턴 시작.</p>
-    </div>
-    <div class="boat" style="top: 280px; left: 25%;">
-      <div class="date">2025.01.04</div>
-      <h3>📝 과제 수행</h3>
-      <p>실무 주제를 수행했습니다.</p>
-    </div>
-    <div class="boat" style="top: 400px; left: 55%;">
-      <div class="date">2025.01.09</div>
-      <h3>🤝 조별 활동</h3>
-      <p>팀 프로젝트를 함께했어요.</p>
-    </div>
-    <div class="boat" style="top: 520px; left: 20%;">
-      <div class="date">2025.01.24</div>
-      <h3>📢 최종 발표</h3>
-      <p>성과를 발표하며 마무리.</p>
+    <div class="path-line">
+      <svg viewBox="0 0 100 2400" preserveAspectRatio="none">
+        <path d="M 20,0 C 80,200 20,400 80,600 C 20,800 80,1000 20,1200 C 80,1400 20,1600 80,1800 C 20,2000 80,2200 50,2400" />
+      </svg>
     </div>
 
-    <svg class="wave-bg" viewBox="0 0 1440 320">
-      <path fill="#88cbed" fill-opacity="1" d="M0,160L60,154.7C120,149,240,139,360,144C480,149,600,171,720,186.7C840,203,960,213,1080,192C1200,171,1320,117,1380,90.7L1440,64V320H0Z"></path>
-    </svg>
+    <div class="boat" style="top: 0px; left: 10%;">
+  <div class="sail"></div>
+  <div class="date">2024.12.01</div>
+  <h3>📩 서류 지원</h3>
+  <p>HD현대중공업 인턴십 H-int 6기에 지원서를 제출했어요.</p>
+</div>
+<div class="boat" style="top: 220px; left: 60%;">
+  <div class="sail"></div>
+  <div class="date">2024.12.15</div>
+  <h3>📞 서류 합격</h3>
+  <p>서류 전형을 통과하고 인터뷰를 준비했어요.</p>
+</div>
+<div class="boat" style="top: 440px; left: 20%;">
+  <div class="sail"></div>
+  <div class="date">2024.12.22</div>
+  <h3>🗣️ 면접 전형</h3>
+  <p>자기소개와 경험을 기반으로 면접을 진행했어요.</p>
+</div>
+<div class="boat" style="top: 660px; left: 55%;">
+  <div class="sail"></div>
+  <div class="date">2025.01.02</div>
+  <h3>👥 부서 배치</h3>
+  <p>각자의 직무와 부서로 배치되어 인턴십이 시작됐어요.</p>
+</div>
+<div class="boat" style="top: 880px; left: 15%;">
+  <div class="sail"></div>
+  <div class="date">2025.01.04</div>
+  <h3>📚 직무 교육</h3>
+  <p>담당 부서에서 업무에 필요한 교육을 받았어요.</p>
+</div>
+<div class="boat" style="top: 1100px; left: 60%;">
+  <div class="sail"></div>
+  <div class="date">2025.01.09</div>
+  <h3>🤝 조별 활동</h3>
+  <p>조를 구성하여 프로젝트를 함께 수행했어요.</p>
+</div>
+<div class="boat" style="top: 1320px; left: 20%;">
+  <div class="sail"></div>
+  <div class="date">2025.01.12</div>
+  <h3>💡 아이디어 회의</h3>
+  <p>더 나은 결과물을 위해 다양한 아이디어를 논의했어요.</p>
+</div>
+<div class="boat" style="top: 1540px; left: 55%;">
+  <div class="sail"></div>
+  <div class="date">2025.01.18</div>
+  <h3>🛠️ 중간 점검</h3>
+  <p>실행한 과제를 점검하고 피드백을 받았어요.</p>
+</div>
+<div class="boat" style="top: 1760px; left: 20%;">
+  <div class="sail"></div>
+  <div class="date">2025.01.22</div>
+  <h3>📝 최종 보고서</h3>
+  <p>한 달 동안의 활동을 정리한 보고서를 작성했어요.</p>
+</div>
+<div class="boat" style="top: 1980px; left: 60%;">
+  <div class="sail"></div>
+  <div class="date">2025.01.24</div>
+  <h3>📢 최종 발표</h3>
+  <p>모든 인턴들이 모여 한 달간의 결과를 공유했어요.</p>
+</div>
 
-    <div class="decoration bubble" style="width:20px; height:20px; bottom:80px; left:30%;"></div>
-    <div class="decoration bubble" style="width:12px; height:12px; bottom:120px; left:65%;"></div>
-    <div class="decoration buoy" style="bottom:60px; left:45%;"></div>
-    <div class="decoration fish" style="bottom:100px; left:70%;"></div>
+    <div class="decoration bubble" style="width:16px; height:16px; top:300px; left:25%;"></div>
+    <div class="decoration bubble" style="width:10px; height:10px; top:800px; left:70%;"></div>
+    <div class="decoration bubble" style="width:14px; height:14px; top:1300px; left:40%;"></div>
+    <div class="decoration buoy" style="top:1000px; left:30%;"></div>
+    <div class="decoration fish" style="top:500px; left:75%;"></div>
+    <div class="decoration fish" style="top:1500px; left:20%;"></div>
     <div class="island"></div>
   </div>
 

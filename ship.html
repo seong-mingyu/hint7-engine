@@ -18,17 +18,18 @@
 
     :root {
       --discovery-blue: #003087;
-      --prosperity-green: #008233;
       --trust-blue: #002554;
       --gray-text: #63666A;
-      --bg-light: #f9f9f9;
+      --sea-blue: #b3e0f5;
+      --boat-color: white;
     }
 
     body {
       font-family: 'HDHyundaiLight', sans-serif;
       margin: 0;
-      background-color: var(--bg-light);
+      background-color: var(--sea-blue);
       color: var(--gray-text);
+      overflow-x: hidden;
       opacity: 0;
       transition: opacity 0.6s ease-in-out;
     }
@@ -130,96 +131,51 @@
 
     .ocean {
       position: relative;
-      background: linear-gradient(to bottom, #bce0f5 0%, #90c9f0 100%);
-      padding: 4rem 1rem 8rem;
+      height: 100vh;
       overflow: hidden;
     }
-    .wave {
+    .boat {
+      position: absolute;
+      width: 160px;
+      padding: 1rem;
+      background: var(--boat-color);
+      border-radius: 0 0 60% 60%;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: center;
+      animation: float 3s ease-in-out infinite;
+    }
+    .boat h3 { margin: 0.5rem 0; font-size: 1rem; color: var(--discovery-blue); }
+    .boat p { font-size: 0.85rem; margin: 0.5rem 0 0; }
+    .boat .date { font-size: 0.8rem; color: #666; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+
+    .wave-bg {
       position: absolute;
       bottom: 0;
       left: 0;
       width: 100%;
-      height: 100px;
-      animation: waveMove 6s ease-in-out infinite;
-    }
-    @keyframes waveMove {
-      0%, 100% { transform: translateX(0); }
-      50% { transform: translateX(-30px); }
+      height: 200px;
+      z-index: -1;
     }
 
-    .boat {
-      position: relative;
-      width: 250px;
-      margin: 4rem auto;
-      padding: 1.2rem 1rem 2rem;
-      background: linear-gradient(to bottom, white 60%, var(--trust-blue));
-      border-radius: 30% 30% 0 0;
-      box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-      text-align: center;
-      animation: float 3s ease-in-out infinite;
-    }
-    .boat::after {
-      content: '';
+    .decoration {
       position: absolute;
-      bottom: -20px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100px;
-      height: 30px;
-      background: var(--trust-blue);
-      clip-path: polygon(0% 0%, 50% 100%, 100% 0%);
-    }
-    .boat::before {
-      content: '';
-      position: absolute;
-      top: -40px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 4px;
-      height: 40px;
-      background: #666;
-    }
-    .boat h3 { margin: 0.5rem 0; font-size: 1.1rem; color: var(--discovery-blue); }
-    .boat p { font-size: 0.95rem; margin: 0.5rem 0 0; }
-    .boat .date { font-size: 0.85rem; color: #555; }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0px) rotate(-1.5deg); }
-      50% { transform: translateY(-8px) rotate(1.5deg); }
-    }
-
-    .cloud, .seagull, .buoy {
-      position: absolute;
-      opacity: 0.3;
-      animation: waveMove 6s ease-in-out infinite;
-    }
-    .cloud {
-      top: 20px;
-      left: 10%;
-      width: 80px;
-      height: 40px;
-      background: white;
       border-radius: 50%;
+      opacity: 0.2;
+      animation: float 5s ease-in-out infinite;
     }
-    .seagull {
-      top: 60px;
-      left: 80%;
-      width: 30px;
-      height: 20px;
+    .bubble {
       background: white;
-      clip-path: polygon(0 100%, 50% 0%, 100% 100%);
     }
     .buoy {
-      bottom: 40px;
-      left: 40%;
       width: 20px;
       height: 30px;
       background: red;
       border-radius: 50% 50% 0 0;
-    }
-
-    @media (max-width: 768px) {
-      .boat { width: 80%; }
     }
   </style>
 </head>
@@ -249,40 +205,40 @@
   <div class="page-title" data-aos="fade-down">Intern Ship</div>
   <div class="subtitle" data-aos="fade-up">우리의 항해, 인턴십 전체 과정</div>
 
-  <div class="ocean" data-aos="fade-up">
-    <div class="cloud"></div>
-    <div class="seagull"></div>
-    <div class="buoy"></div>
-
-    <div class="boat">
+  <div class="ocean">
+    <div class="boat" style="top: 40px; left: 10%;">
       <div class="date">2024.12.01</div>
       <h3>📩 서류 지원</h3>
-      <p>HD현대중공업 인턴십 H-int 6기에 지원서를 제출했어요.</p>
+      <p>지원서를 제출했어요.</p>
     </div>
-    <div class="boat">
+    <div class="boat" style="top: 160px; left: 60%;">
       <div class="date">2025.01.02</div>
       <h3>👥 부서 배치</h3>
-      <p>각자의 직무와 부서로 배치되어 인턴십을 시작했습니다.</p>
+      <p>부서로 배치되어 인턴 시작.</p>
     </div>
-    <div class="boat">
+    <div class="boat" style="top: 280px; left: 25%;">
       <div class="date">2025.01.04</div>
-      <h3>📝 개인 과제 수행</h3>
-      <p>실무 주제를 받아 프로젝트를 계획하고 직접 수행했습니다.</p>
+      <h3>📝 과제 수행</h3>
+      <p>실무 주제를 수행했습니다.</p>
     </div>
-    <div class="boat">
+    <div class="boat" style="top: 400px; left: 55%;">
       <div class="date">2025.01.09</div>
       <h3>🤝 조별 활동</h3>
-      <p>조를 이루어 서로의 분야를 이해하고 팀 프로젝트를 함께했어요.</p>
+      <p>팀 프로젝트를 함께했어요.</p>
     </div>
-    <div class="boat">
+    <div class="boat" style="top: 520px; left: 20%;">
       <div class="date">2025.01.24</div>
       <h3>📢 최종 발표</h3>
-      <p>마지막 날, 한 달간의 성과를 발표하며 여정을 마무리했습니다.</p>
+      <p>성과를 발표하며 마무리.</p>
     </div>
 
-    <svg class="wave" viewBox="0 0 1440 320">
-      <path fill="#a4d0ef" fill-opacity="1" d="M0,96L60,101.3C120,107,240,117,360,128C480,139,600,149,720,160C840,171,960,181,1080,160C1200,139,1320,85,1380,58.7L1440,32V320H0Z"></path>
+    <svg class="wave-bg" viewBox="0 0 1440 320">
+      <path fill="#88cbed" fill-opacity="1" d="M0,160L60,154.7C120,149,240,139,360,144C480,149,600,171,720,186.7C840,203,960,213,1080,192C1200,171,1320,117,1380,90.7L1440,64V320H0Z"></path>
     </svg>
+
+    <div class="decoration bubble" style="width:20px; height:20px; bottom:80px; left:30%;"></div>
+    <div class="decoration bubble" style="width:12px; height:12px; bottom:120px; left:65%;"></div>
+    <div class="decoration buoy" style="bottom:60px; left:45%;"></div>
   </div>
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>

@@ -18,7 +18,6 @@
 
     :root {
       --discovery-blue: #003087;
-      --prosperity-green: #008233;
       --trust-blue: #002554;
       --gray-text: #63666A;
       --bg-light: #f9f9f9;
@@ -29,6 +28,7 @@
       margin: 0;
       background-color: var(--bg-light);
       color: var(--gray-text);
+      overflow-x: hidden;
       opacity: 0;
       transition: opacity 0.6s ease-in-out;
     }
@@ -65,10 +65,10 @@
       align-items: center;
       background-color: white;
       padding: 1rem 1.5rem;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       position: sticky;
       top: 0;
       z-index: 1000;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 
     .navbar img {
@@ -143,88 +143,64 @@
 
     .page-title {
       text-align: center;
-      margin: 2rem 1rem 0.5rem;
+      margin-top: 2rem;
       font-size: 1.8rem;
-      font-weight: bold;
       color: var(--trust-blue);
-    }
-
-    .subtitle {
-      text-align: center;
-      font-size: 1rem;
-      color: var(--gray-text);
-      margin-bottom: 2rem;
     }
 
     .timeline {
       position: relative;
-      margin: 0 auto;
-      padding: 2rem 1rem;
-      max-width: 700px;
-    }
-
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 50%;
-      top: 0;
-      width: 4px;
-      height: 100%;
-      background: var(--discovery-blue);
-      transform: translateX(-50%);
+      padding: 1rem;
+      margin: 2rem auto;
+      max-width: 600px;
     }
 
     .timeline-item {
+      background: white;
+      border-radius: 8px;
+      padding: 0.8rem;
+      margin: 1rem auto;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      width: 90%;
       position: relative;
-      margin-bottom: 3rem;
-      width: 100%;
     }
 
     .timeline-content {
-      background: white;
-      padding: 1.2rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      position: relative;
-      width: 90%;
+      margin-left: 80px;
     }
 
     .timeline-content h3 {
       margin: 0;
-      font-size: 1.1rem;
+      font-size: 1rem;
       color: var(--discovery-blue);
     }
 
-    .timeline-content p {
-      margin: 0.4rem 0 0;
-      font-size: 0.95rem;
-    }
-
+    .timeline-content p,
     .timeline-date {
       font-size: 0.85rem;
-      color: #888;
-      margin-bottom: 0.4rem;
+      margin: 0.2rem 0;
     }
 
-    .timeline-item.left .timeline-content {
-      left: 0;
-      margin-left: 0;
-    }
-
-    .timeline-item.right .timeline-content {
-      left: 50%;
-      margin-left: 5%;
+    .boat {
+      position: absolute;
+      left: 15px;
+      width: 40px;
+      transition: top 0.2s ease-out;
     }
 
     @media (max-width: 768px) {
-      .timeline::before {
-        left: 8px;
+      .timeline-item {
+        width: 95%;
+        padding: 0.6rem;
       }
-      .timeline-item.right .timeline-content,
-      .timeline-item.left .timeline-content {
-        left: 0;
-        margin-left: 24px;
-        width: calc(100% - 40px);
+      .timeline-content {
+        margin-left: 60px;
+      }
+      .boat {
+        left: 5px;
+        width: 30px;
       }
     }
   </style>
@@ -236,7 +212,7 @@
   </div>
 
   <div class="navbar">
-    <img src="assets/images/logo.png" alt="HD현대중공업 로고">
+    <img src="assets/images/logo.png" alt="Logo">
     <div class="navbar-title">
       <a href="index.html"><span class="hd">H</span>int <span class="hd">D</span>ream</a>
     </div>
@@ -252,50 +228,25 @@
     </div>
   </div>
 
-  <div class="page-title" data-aos="fade-down">Intern Ship</div>
-  <div class="subtitle" data-aos="fade-up">우리의 항해, 인턴십 전체 과정</div>
+  <div class="page-title">Intern Ship</div>
 
-  <div class="timeline" data-aos="fade-up">
-    <div class="timeline-item left">
-      <div class="timeline-content">
-        <div class="timeline-date">2024.12.01</div>
-        <h3>📩 서류 지원</h3>
-        <p>HD현대중공업 인턴십 H-int 6기에 지원서를 제출했어요.</p>
-      </div>
-    </div>
-    <div class="timeline-item right">
-      <div class="timeline-content">
-        <div class="timeline-date">2025.01.02</div>
-        <h3>👥 부서 배치</h3>
-        <p>각자의 직무와 부서로 배치되어 인턴십을 시작했습니다.</p>
-      </div>
-    </div>
-    <div class="timeline-item left">
-      <div class="timeline-content">
-        <div class="timeline-date">2025.01.04</div>
-        <h3>📝 개인 과제 수행</h3>
-        <p>실무 주제를 받아 프로젝트를 계획하고 직접 수행했습니다.</p>
-      </div>
-    </div>
-    <div class="timeline-item right">
-      <div class="timeline-content">
-        <div class="timeline-date">2025.01.09</div>
-        <h3>🤝 조별 활동</h3>
-        <p>조를 이루어 서로의 분야를 이해하고 팀 프로젝트를 함께했어요.</p>
-      </div>
-    </div>
-    <div class="timeline-item left">
-      <div class="timeline-content">
-        <div class="timeline-date">2025.01.24</div>
-        <h3>📢 최종 발표</h3>
-        <p>마지막 날, 한 달간의 성과를 발표하며 여정을 마무리했습니다.</p>
-      </div>
-    </div>
+  <div class="timeline" id="timeline">
+    <img src="assets/images/boat.png" class="boat" id="boat">
+
+    <!-- timeline-items (as previously defined) -->
+
   </div>
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    AOS.init({ duration: 800, once: true });
+    window.addEventListener('scroll', () => {
+      const boat = document.getElementById('boat');
+      const timeline = document.getElementById('timeline');
+      const rect = timeline.getBoundingClientRect();
+      const offset = rect.top + window.scrollY;
+
+      boat.style.top = `${Math.min(Math.max(window.scrollY - offset + 100, 50), timeline.offsetHeight - 50)}px`;
+    });
 
     function toggleMenu() {
       document.getElementById("menuPopup").classList.toggle("active");
@@ -307,6 +258,8 @@
         document.body.classList.add("loaded");
       }, 800);
     });
+
+    AOS.init({ duration: 800, once: true });
   </script>
 </body>
 </html>

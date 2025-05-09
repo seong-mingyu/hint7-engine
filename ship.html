@@ -150,8 +150,8 @@
 
     .timeline {
       position: relative;
-      padding: 1rem;
-      margin: 2rem auto;
+      padding: 2rem 1rem;
+      margin: 0 auto;
       max-width: 600px;
     }
 
@@ -159,16 +159,16 @@
       background: white;
       border-radius: 8px;
       padding: 0.8rem;
-      margin: 1rem auto;
+      margin-bottom: 1rem;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      position: relative;
+      width: 100%;
       display: flex;
       align-items: center;
-      width: 90%;
-      position: relative;
     }
 
     .timeline-content {
-      margin-left: 80px;
+      margin-left: 70px;
     }
 
     .timeline-content h3 {
@@ -177,30 +177,25 @@
       color: var(--discovery-blue);
     }
 
-    .timeline-content p,
-    .timeline-date {
+    .timeline-date, .timeline-content p {
       font-size: 0.85rem;
       margin: 0.2rem 0;
     }
 
     .boat {
       position: absolute;
-      left: 15px;
+      left: 10px;
       width: 40px;
       transition: top 0.2s ease-out;
     }
 
     @media (max-width: 768px) {
-      .timeline-item {
-        width: 95%;
-        padding: 0.6rem;
-      }
       .timeline-content {
         margin-left: 60px;
       }
       .boat {
-        left: 5px;
         width: 30px;
+        left: 5px;
       }
     }
   </style>
@@ -212,10 +207,8 @@
   </div>
 
   <div class="navbar">
-    <img src="assets/images/logo.png" alt="Logo">
-    <div class="navbar-title">
-      <a href="index.html"><span class="hd">H</span>int <span class="hd">D</span>ream</a>
-    </div>
+    <img src="assets/images/logo.png" alt="HD현대중공업 로고">
+    <div class="navbar-title"><a href="index.html"><span class="hd">H</span>int <span class="hd">D</span>ream</a></div>
     <div class="menu-icon" onclick="toggleMenu()">☰</div>
     <div class="menu-popup" id="menuPopup">
       <ul>
@@ -231,21 +224,54 @@
   <div class="page-title">Intern Ship</div>
 
   <div class="timeline" id="timeline">
-    <img src="assets/images/boat.png" class="boat" id="boat">
+  <img src="assets/images/boat.png" class="boat" id="boat">
 
-    <!-- timeline-items (as previously defined) -->
-
+  <div class="timeline-item">
+    <div class="timeline-content">
+      <div class="timeline-date">2024.12.01</div>
+      <h3>📩 서류 지원</h3>
+      <p>HD현대중공업 인턴십 H-int 6기에 지원서를 제출했어요.</p>
+    </div>
   </div>
 
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <div class="timeline-item">
+    <div class="timeline-content">
+      <div class="timeline-date">2025.01.02</div>
+      <h3>👥 부서 배치</h3>
+      <p>각자의 직무와 부서로 배치되어 인턴십을 시작했습니다.</p>
+    </div>
+  </div>
+
+  <div class="timeline-item">
+    <div class="timeline-content">
+      <div class="timeline-date">2025.01.04</div>
+      <h3>📝 개인 과제 수행</h3>
+      <p>실무 주제를 받아 프로젝트를 계획하고 직접 수행했습니다.</p>
+    </div>
+  </div>
+
+  <div class="timeline-item">
+    <div class="timeline-content">
+      <div class="timeline-date">2025.01.09</div>
+      <h3>🤝 조별 활동</h3>
+      <p>조를 이루어 서로의 분야를 이해하고 팀 프로젝트를 함께했어요.</p>
+    </div>
+  </div>
+
+  <div class="timeline-item">
+    <div class="timeline-content">
+      <div class="timeline-date">2025.01.24</div>
+      <h3>📢 최종 발표</h3>
+      <p>마지막 날, 한 달간의 성과를 발표하며 여정을 마무리했습니다.</p>
+    </div>
+  </div>
+</div>
+
+
   <script>
     window.addEventListener('scroll', () => {
       const boat = document.getElementById('boat');
-      const timeline = document.getElementById('timeline');
-      const rect = timeline.getBoundingClientRect();
-      const offset = rect.top + window.scrollY;
-
-      boat.style.top = `${Math.min(Math.max(window.scrollY - offset + 100, 50), timeline.offsetHeight - 50)}px`;
+      boat.style.top = `${window.scrollY + 100}px`;
     });
 
     function toggleMenu() {
@@ -258,8 +284,6 @@
         document.body.classList.add("loaded");
       }, 800);
     });
-
-    AOS.init({ duration: 800, once: true });
   </script>
 </body>
 </html>

@@ -8,32 +8,26 @@
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
   <style>
-    @font-face {
-      font-family: 'HDHyundaiLight';
-      src: url('assets/fonts/HDHyundai-Light.ttf') format('truetype');
-    }
-    @font-face {
-      font-family: 'HDHyundaiBold';
-      src: url('assets/fonts/HDHyundai-Bold.ttf') format('truetype');
-    }
-    :root {
-      --discovery-blue: #003087;
-      --trust-blue: #002554;
-      --gray-text: #63666A;
-      --bg-light: #f0f7ff;
-      --card-bg: #ffffff;
-      --accent: #aad4ff;
-    }
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    html {
+      scroll-snap-type: y mandatory;
+      scroll-behavior: smooth;
     }
     body {
+      margin: 0;
       font-family: 'HDHyundaiLight', sans-serif;
-      background-color: var(--bg-light);
-      color: var(--gray-text);
+      background-color: #f0f7ff;
+      color: #63666A;
       overflow-x: hidden;
+    }
+    section.section {
+      scroll-snap-align: start;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 2rem;
+      position: relative;
     }
     .navbar {
       display: flex;
@@ -61,7 +55,7 @@
       color: inherit;
     }
     .navbar-title .hd {
-      color: var(--discovery-blue);
+      color: #003087;
     }
     .menu-icon {
       font-size: 1.5rem;
@@ -85,68 +79,37 @@
     }
     .page-title {
       text-align: center;
-      margin: 2rem 1rem 0.5rem;
+      margin: 1rem 1rem 0.2rem;
       font-size: 1.8rem;
       font-weight: bold;
-      color: var(--trust-blue);
+      color: #002554;
     }
     .subtitle {
       text-align: center;
       font-size: 1rem;
-      color: var(--gray-text);
-      margin-bottom: 2rem;
+      color: #63666A;
+      margin-bottom: 1rem;
     }
-    .scene {
-      position: relative;
-      height: 100vh;
-      background: linear-gradient(to top, #d4eaff 60%, #ffffff 100%);
-      display: flex;
-      justify-content: center;
-      align-items: flex-end;
-      overflow: hidden;
-    }
-    .boat {
-      width: 120px;
+    .boat-follow {
+      position: fixed;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 100px;
+      z-index: 10;
       animation: float 4s ease-in-out infinite;
     }
     @keyframes float {
-      0%, 100% { transform: translateY(0px) rotate(-2deg); }
-      50% { transform: translateY(-10px) rotate(2deg); }
-    }
-    .section {
-      padding: 5rem 2rem;
-      text-align: center;
-      background: linear-gradient(to bottom, #f0f7ff 0%, #ffffff 100%);
+      0%, 100% { transform: translateY(-50%) translateX(0) rotate(-2deg); }
+      50% { transform: translateY(-50%) translateX(5px) rotate(2deg); }
     }
     .card {
-      background: var(--card-bg);
+      background: white;
       border-radius: 15px;
       box-shadow: 0 6px 16px rgba(0,0,0,0.08);
       padding: 2rem 1.5rem;
-      margin: 2rem auto;
-      max-width: 650px;
-      position: relative;
-    }
-    .card::before {
-      content: "";
-      position: absolute;
-      top: -20px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 60px;
-      height: 6px;
-      background-color: var(--accent);
-      border-radius: 3px;
-    }
-    .card h2 {
-      font-size: 1.4rem;
-      color: var(--discovery-blue);
-      margin-bottom: 1rem;
-      font-family: 'HDHyundaiBold';
-    }
-    .card p {
-      font-size: 0.95rem;
-      line-height: 1.6;
+      max-width: 600px;
+      text-align: center;
     }
     .card img {
       width: 100%;
@@ -154,6 +117,16 @@
       object-fit: cover;
       border-radius: 10px;
       margin-bottom: 1rem;
+    }
+    .card h2 {
+      font-size: 1.4rem;
+      color: #003087;
+      margin-bottom: 1rem;
+      font-family: 'HDHyundaiBold';
+    }
+    .card p {
+      font-size: 0.95rem;
+      line-height: 1.6;
     }
     .icon-row {
       display: flex;
@@ -163,7 +136,7 @@
     }
     .icon-row i {
       font-size: 1.4rem;
-      color: var(--trust-blue);
+      color: #002554;
     }
   </style>
 </head>
@@ -188,9 +161,7 @@
   <div class="page-title">Intern Ship</div>
   <div class="subtitle">우리의 항해, 인턴십 전체 과정</div>
 
-  <div class="scene">
-    <img src="assets/images/boat.png" alt="배 이미지" class="boat">
-  </div>
+  <img src="assets/images/boat.png" alt="배 이미지" class="boat-follow">
 
   <section class="section">
     <div class="card">

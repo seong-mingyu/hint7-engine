@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Intern Ship - H-int</title>
   <link rel="icon" href="assets/images/logo.png" type="image/png">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -25,7 +25,7 @@
     body {
       font-family: 'HDHyundaiLight', sans-serif;
       margin: 0;
-      background-color: var(--bg-light);
+      background: linear-gradient(to bottom, #b2e0f7 0%, #ffffff 100%);
       color: var(--gray-text);
       opacity: 0;
       transition: opacity 0.6s ease-in-out;
@@ -41,10 +41,7 @@
       justify-content: center;
       align-items: center;
     }
-    #splash img {
-      width: 60px;
-      margin-bottom: 1rem;
-    }
+    #splash img { width: 60px; margin-bottom: 1rem; }
     .splash-text {
       font-family: 'HDHyundaiBold';
       font-size: 1.5rem;
@@ -57,8 +54,7 @@
       background-color: white;
       padding: 1rem 1.5rem;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      position: sticky;
-      top: 0;
+      position: sticky; top: 0;
       z-index: 1000;
     }
     .navbar img { height: 32px; }
@@ -66,16 +62,10 @@
       font-size: 1.5rem;
       font-family: 'HDHyundaiBold';
       position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
+      left: 50%; transform: translateX(-50%);
     }
-    .navbar-title a {
-      text-decoration: none;
-      color: inherit;
-    }
-    .navbar-title .hd {
-      color: var(--discovery-blue);
-    }
+    .navbar-title a { text-decoration: none; color: inherit; }
+    .navbar-title .hd { color: var(--discovery-blue); }
     .menu-icon {
       font-size: 1.5rem;
       cursor: pointer;
@@ -83,8 +73,7 @@
     }
     .menu-popup {
       position: absolute;
-      top: 64px;
-      right: 20px;
+      top: 64px; right: 20px;
       background: white;
       border: 1px solid #ccc;
       border-radius: 10px;
@@ -101,28 +90,20 @@
       pointer-events: auto;
       transform: translateY(0);
     }
-    .menu-popup ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    .menu-popup li {
-      margin: 0.5rem 0;
-    }
+    .menu-popup ul { list-style: none; padding: 0; margin: 0; }
+    .menu-popup li { margin: 0.5rem 0; }
     .menu-popup a {
       text-decoration: none;
       color: var(--gray-text);
       font-size: 0.95rem;
       transition: color 0.2s;
     }
-    .menu-popup a:hover {
-      color: var(--discovery-blue);
-    }
+    .menu-popup a:hover { color: var(--discovery-blue); }
     .page-title {
       text-align: center;
       margin: 2rem 1rem 0.5rem;
       font-size: 1.8rem;
-      font-weight: bold;
+      font-family: 'HDHyundaiBold';
       color: var(--trust-blue);
     }
     .subtitle {
@@ -132,68 +113,56 @@
       margin-bottom: 2rem;
     }
     .timeline {
-      position: relative;
-      padding: 1rem 1rem 1rem 2.5rem;
-      max-width: 700px;
-      margin: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1rem;
     }
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 20px;
-      top: 0;
-      bottom: 0;
-      width: 4px;
-      background: var(--discovery-blue);
-    }
-    .timeline-item {
-      position: relative;
+    .ship-card {
+      width: 90%;
+      max-width: 500px;
       background: white;
-      border-radius: 12px;
-      padding: 1.2rem;
-      margin-bottom: 2rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      margin-left: 1rem;
+      border-radius: 2rem 2rem 0 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      margin: 1.5rem 0;
+      padding: 1.2rem 1.5rem;
+      position: relative;
+      animation: float 4s ease-in-out infinite;
     }
-    .timeline-item::before {
-      content: '';
+    .ship-card::after {
+      content: "";
       position: absolute;
-      left: -2.1rem;
-      top: 1.2rem;
-      width: 14px;
-      height: 14px;
-      background: white;
-      border: 4px solid var(--discovery-blue);
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60%;
+      height: 10px;
+      background: rgba(0,0,0,0.05);
       border-radius: 50%;
-      z-index: 2;
     }
-    .timeline-item::after {
-      content: '';
-      position: absolute;
-      left: -1.2rem;
-      top: 1.55rem;
-      width: 1.2rem;
-      height: 2px;
-      background: var(--discovery-blue);
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
     }
-    .timeline-date {
-      font-size: 0.85rem;
+    .ship-card .date {
+      font-size: 0.9rem;
       color: #888;
       margin-bottom: 0.4rem;
     }
-    .timeline-item h3 {
+    .ship-card h3 {
       margin: 0;
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       color: var(--discovery-blue);
     }
-    .timeline-item p {
-      margin-top: 0.4rem;
+    .ship-card p {
       font-size: 0.95rem;
+      margin-top: 0.5rem;
+    }
+    @media (max-width: 600px) {
+      .ship-card { padding: 1rem; }
     }
   </style>
 </head>
-
-
 <body>
   <div id="splash">
     <img src="assets/images/logo.png" alt="로고">
@@ -220,21 +189,21 @@
   <div class="page-title" data-aos="fade-down">Intern Ship</div>
   <div class="subtitle" data-aos="fade-up">우리의 항해, 인턴십 전체 과정</div>
 
-  <div class="timeline" data-aos="fade-up">
-    <div class="timeline-item"><div class="timeline-date">25.01.30</div><h3>📩 서류 지원</h3><p>H-int 6기 인턴십에 지원서를 제출했어요.</p></div>
-    <div class="timeline-item"><div class="timeline-date">25.02.07</div><h3>📬 서류 합격 통보</h3><p>서류 전형 결과를 받고 기쁨을 나눴어요.</p></div>
-    <div class="timeline-item"><div class="timeline-date">25.02.10</div><h3>💻 1차 면접</h3><p>온라인 화상으로 직무 중심 면접을 진행했어요.</p></div>
-    <div class="timeline-item"><div class="timeline-date">25.02.18</div><h3>📞 면접 합격 통보</h3><p>합격 소식을 듣고 본격적인 준비를 시작했어요.</p></div>
-    <div class="timeline-item"><div class="timeline-date">25.03.04~03.05</div><h3>🧑‍🏫 3일간 교육</h3><p>안전, 직무, 시스템 관련 교육을 받았어요.</p></div>
-    <div class="timeline-item"><div class="timeline-date">25.03.06</div><h3>🛳 야드 투어 및 부서 배치</h3><p>조선소를 둘러보고 본격적인 부서 생활을 시작했어요.</p></div>
-    <div class="timeline-item"><div class="timeline-date">25.03.26</div><h3>🍻 조별모임 및 회식</h3><p>보리꽃에서 전체 조가 모여 즐거운 시간을 가졌어요.</p></div>
-    <div class="timeline-item"><div class="timeline-date">25.04.10</div><h3>🏠 HD클럽하우스 방문</h3><p>조모임과 함께 클럽하우스를 체험했어요.</p></div>
-    <div class="timeline-item"><div class="timeline-date">25.04.19</div><h3>⚽ HD 축구 직관</h3><p>울산 HD축구팀 경기를 직관했어요.</p></div>
-    <div class="timeline-item"><div class="timeline-date">25.05.22~05.28</div><h3>🧑‍💼 개인 PT 발표</h3><p>각자의 과제를 바탕으로 발표를 진행했어요.</p></div>
-    <div class="timeline-item"><div class="timeline-date">25.05.30</div><h3>🗣 마지막 조별 회의</h3><p>마지막 조별 회의를 통해 프로젝트를 정리했어요.</p></div>
-    <div class="timeline-item"><div class="timeline-date">25.06.05</div><h3>📊 조별 과제 발표</h3><p>조별 과제를 정리하여 발표했어요.</p></div>
-    <div class="timeline-item"><div class="timeline-date">25.06.12~13</div><h3>🏁 직원 전환 면접 & 수료식</h3><p>직원 전환을 위한 마지막 평가와 수료식을 진행했어요.</p></div>
-    <div class="timeline-item"><div class="timeline-date">25.06.20</div><h3>🚢 인턴십 종료</h3><p>모든 여정을 마치고 인턴십을 마무리했어요.</p></div>
+  <div class="timeline">
+    <div class="ship-card" data-aos="fade-up"><div class="date">25.01.30</div><h3>📩 서류 지원</h3><p>H-int 6기 인턴십에 지원서를 제출했어요.</p></div>
+    <div class="ship-card" data-aos="fade-up"><div class="date">25.02.07</div><h3>📬 서류 합격 통보</h3><p>서류 전형 결과를 받고 기쁨을 나눴어요.</p></div>
+    <div class="ship-card" data-aos="fade-up"><div class="date">25.02.10</div><h3>💻 1차 면접</h3><p>온라인 화상으로 직무 중심 면접을 진행했어요.</p></div>
+    <div class="ship-card" data-aos="fade-up"><div class="date">25.02.18</div><h3>📞 면접 합격 통보</h3><p>합격 소식을 듣고 본격적인 준비를 시작했어요.</p></div>
+    <div class="ship-card" data-aos="fade-up"><div class="date">25.03.04~03.05</div><h3>🧑‍🏫 3일간 교육</h3><p>안전, 직무, 시스템 관련 교육을 받았어요.</p></div>
+    <div class="ship-card" data-aos="fade-up"><div class="date">25.03.06</div><h3>🛳 야드 투어 및 부서 배치</h3><p>조선소를 둘러보고 본격적인 부서 생활을 시작했어요.</p></div>
+    <div class="ship-card" data-aos="fade-up"><div class="date">25.03.26</div><h3>🍻 조별모임 및 회식</h3><p>보리꽃에서 전체 조가 모여 즐거운 시간을 가졌어요.</p></div>
+    <div class="ship-card" data-aos="fade-up"><div class="date">25.04.10</div><h3>🏠 HD클럽하우스 방문</h3><p>조모임과 함께 클럽하우스를 체험했어요.</p></div>
+    <div class="ship-card" data-aos="fade-up"><div class="date">25.04.19</div><h3>⚽ HD 축구 직관</h3><p>울산 HD축구팀 경기를 직관했어요.</p></div>
+    <div class="ship-card" data-aos="fade-up"><div class="date">25.05.22~05.28</div><h3>🧑‍💼 개인 PT 발표</h3><p>각자의 과제를 바탕으로 발표를 진행했어요.</p></div>
+    <div class="ship-card" data-aos="fade-up"><div class="date">25.05.30</div><h3>🗣 마지막 조별 회의</h3><p>마지막 조별 회의를 통해 프로젝트를 정리했어요.</p></div>
+    <div class="ship-card" data-aos="fade-up"><div class="date">25.06.05</div><h3>📊 조별 과제 발표</h3><p>조별 과제를 정리하여 발표했어요.</p></div>
+    <div class="ship-card" data-aos="fade-up"><div class="date">25.06.12~13</div><h3>🏁 직원 전환 면접 & 수료식</h3><p>직원 전환을 위한 마지막 평가와 수료식을 진행했어요.</p></div>
+    <div class="ship-card" data-aos="fade-up"><div class="date">25.06.20</div><h3>🚢 인턴십 종료</h3><p>모든 여정을 마치고 인턴십을 마무리했어요.</p></div>
   </div>
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>

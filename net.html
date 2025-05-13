@@ -6,7 +6,7 @@
   <title>Intern Net - H-int</title>
   <link rel="icon" href="assets/images/logo.png" type="image/png">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://unpkg.com/swiper@9/swiper-bundle.min.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/css/glide.core.min.css">
 
   <style>
     @font-face {
@@ -30,10 +30,11 @@
       margin: 0;
       background-color: var(--bg-light);
       color: var(--gray-text);
+      overflow-x: hidden;
       opacity: 0;
       transition: opacity 0.6s ease-in-out;
-      overflow-x: hidden;
     }
+
     body.loaded {
       opacity: 1;
     }
@@ -50,7 +51,7 @@
       align-items: center;
       animation: fadeSplash 0.8s ease forwards;
     }
-
+    
     @keyframes fadeSplash {
       0% { opacity: 1; }
       99% { opacity: 0; }
@@ -75,9 +76,7 @@
       z-index: 1000;
     }
 
-    .navbar img {
-      height: 32px;
-    }
+    .navbar img { height: 32px; }
 
     .navbar-title {
       font-size: 1.5rem;
@@ -92,14 +91,9 @@
       color: inherit;
     }
 
-    .navbar-title .hd {
-      color: var(--discovery-blue);
-    }
+    .navbar-title .hd { color: var(--discovery-blue); }
 
-    .menu-icon {
-      font-size: 1.5rem;
-      cursor: pointer;
-    }
+    .menu-icon { font-size: 1.5rem; cursor: pointer; }
 
     .menu-popup {
       position: absolute;
@@ -116,32 +110,11 @@
       transform: translateY(-10px);
       transition: all 0.3s ease;
     }
-
+    
     .menu-popup.active {
       opacity: 1;
       pointer-events: auto;
       transform: translateY(0);
-    }
-
-    .menu-popup ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .menu-popup li {
-      margin: 0.5rem 0;
-    }
-
-    .menu-popup a {
-      text-decoration: none;
-      color: var(--gray-text);
-      font-size: 0.95rem;
-      transition: color 0.2s;
-    }
-
-    .menu-popup a:hover {
-      color: var(--discovery-blue);
     }
 
     .page-title {
@@ -156,62 +129,59 @@
       text-align: center;
       font-size: 1rem;
       color: var(--gray-text);
-      margin-bottom: 2rem;
+      margin-bottom: 1rem;
     }
 
-    .swiper {
-      width: 100%;
-      padding: 60px 0;
-      background: #ffffff;
-    }
-
-    .swiper-slide {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      transform: scale(0.8) rotateY(8deg);
-      opacity: 0.5;
-      transition: transform 0.6s ease, opacity 0.6s ease;
-    }
-
-    .swiper-slide-active {
-      transform: scale(1) rotateY(0deg);
-      opacity: 1;
-      z-index: 10;
-    }
-
-    .swiper-slide img {
-      width: 85vw;
-      height: auto;
-      object-fit: cover;
-      border-radius: 16px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    }
-
-    .caption-box {
-      margin-top: 1rem;
+    .glide__slide {
+      position: relative;
       text-align: center;
+      transition: all 0.4s ease;
     }
 
-    .caption-text {
-      font-size: 1rem;
-      font-weight: 500;
+    .main-glide .glide__slide img {
+      width: 100%;
+      max-width: 400px;
+      max-height: 50vh;
+      object-fit: contain;
     }
 
     .caption-date {
-      margin-top: 0.2rem;
-      font-size: 0.85rem;
-      color: #888;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(0,0,0,0.5);
+      color: #fff;
+      font-size: 0.75rem;
+      padding: 4px 8px;
+      border-radius: 6px;
     }
 
-    @media (max-width: 768px) {
-      .swiper-slide img {
-        width: 90vw;
-      }
-      .swiper-slide {
-        transform: scale(0.85);
-      }
+    .caption-box {
+      margin-top: 0.5rem;
+    }
+    
+    .caption-text {
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: #333;
+    }
+
+    .thumb-glide .glide__slide img {
+      width: 60px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 6px;
+      opacity: 0.6;
+      transition: all 0.3s ease;
+    }
+
+    .thumb-glide .glide__slide--active img {
+      opacity: 1;
+      border: 2px solid var(--discovery-blue);
+    }
+
+    .thumb-glide {
+      margin-top: 1rem;
     }
   </style>
 </head>
@@ -239,153 +209,118 @@
       </ul>
     </div>
   </div>
-
+  
   <div class="page-title" data-aos="fade-down">Intern Net</div>
-  <div class="subtitle" data-aos="fade-up">서로의 연결, 우리가 함께한 순간</div>
+  <div class="subtitle" data-aos="fade-up">우리의 네트워킹, 우리가 함께한 순간</div>
 
-  <div class="swiper" data-aos="fade-up">
-  <div class="swiper-wrapper">
+  <!-- 메인 슬라이더 -->
+  <div class="glide main-glide" data-aos="fade-up">
+    <div class="glide__track" data-glide-el="track">
+      <ul class="glide__slides">
+        <li class="glide__slide">
+  <img src="assets/images/IMG_4044.jpeg" alt="">
+  <div class="caption-date">2025.03.13(목)</div>
+  <div class="caption-box"><div class="caption-text">조 회식! 아라횟집 맛있습니다 ㅎㅎ 가보세용 🐟</div></div>
+</li>
+<li class="glide__slide">
+  <img src="assets/images/IMG_4369.jpeg" alt="">
+  <div class="caption-date">2025.03.24(월)</div>
+  <div class="caption-box"><div class="caption-text">율전재 헬스장은 오션뷰 입니다! 🏃‍♂️</div></div>
+</li>
+<li class="glide__slide">
+  <img src="assets/images/IMG_4383.jpeg" alt="">
+  <div class="caption-date">2025.03.25(화)</div>
+  <div class="caption-box"><div class="caption-text">점심시간 다트로 커피 내기!🎯</div></div>
+</li>
+<li class="glide__slide">
+  <img src="assets/images/group.png" alt="">
+  <div class="caption-date">2025.03.26(수)</div>
+  <div class="caption-box"><div class="caption-text">성공적인 첫 조별회의 !</div></div>
+</li>
+<li class="glide__slide">
+  <img src="assets/images/IMG_4724.jpeg" alt="">
+  <div class="caption-date">2025.03.26(수)</div>
+  <div class="caption-box"><div class="caption-text">H-int 전체 회식 보리꽃! 잘먹었습니다 😋</div></div>
+</li>
+<li class="glide__slide">
+  <img src="assets/images/IMG_4424.jpeg" alt="">
+  <div class="caption-date">2025.03.28(금)</div>
+  <div class="caption-box"><div class="caption-text">금요일은 셔틀 자리 없어요 ㅠㅠ🚍 먼저갈게~~ 성제형 미안</div></div>
+</li>
+<li class="glide__slide">
+  <img src="assets/images/club.png" alt="">
+  <div class="caption-date">2025.04.10(목)</div>
+  <div class="caption-box"><div class="caption-text">울산 HD 클럽하우스 견학 ⚽</div></div>
+</li>
+<li class="glide__slide">
+  <img src="assets/images/net_hd_match.jpg" alt="">
+  <div class="caption-date">2025.04.19(토)</div>
+  <div class="caption-box"><div class="caption-text">울산 HD 축구 직관! vs 강원fc 아쉽게 패배ㅠㅠ</div></div>
+</li>
+<li class="glide__slide">
+  <img src="assets/images/IMG_4721.jpeg" alt="">
+  <div class="caption-date">2025.04.28(화)</div>
+  <div class="caption-box"><div class="caption-text">우진이 생일축하행🎉🎉🎉</div></div>
+</li>
+<li class="glide__slide">
+  <img src="assets/images/IMG_4722.jpeg" alt="">
+  <div class="caption-date">2025.04.28(화)</div>
+  <div class="caption-box"><div class="caption-text">노래방은 꼭 가야하는 우진씌 대환장 파티 ㅋㅋㅋㅋ🎤</div></div>
+</li>
 
-    <div class="swiper-slide">
-      <img src="assets/images/IMG_3932.jpeg" alt="사원증">
-      <div class="caption-box">
-        <div class="caption-text">첫 만남! 사원증 받은 날 국룰~ 👔</div>
-        <div class="caption-date">2025.03.04(화)</div>
-      </div>
+      </ul>
     </div>
-
-    <div class="swiper-slide">
-      <img src="assets/images/jeong.png" alt="안전 교육">
-      <div class="caption-box">
-        <div class="caption-text">안전체험장에서 고소작업 안전교육 받는 명수 !</div>
-        <div class="caption-date">2025.03.05(수)</div>
-      </div>
-    </div>
-
-    <div class="swiper-slide">
-      <img src="assets/images/IMG_4723.jpeg" alt="안전 교육">
-      <div class="caption-box">
-        <div class="caption-text">안전체험장에서 고소작업 안전교육 받는 수민 ! 신났네 ㅋㅎㅋㅎ</div>
-        <div class="caption-date">2025.03.05(수)</div>
-      </div>
-    </div>
-
-    <div class="swiper-slide">
-      <img src="assets/images/IMG_3965.jpeg" alt="꿀팁">
-      <div class="caption-box">
-        <div class="caption-text">부서배치 후 선임분께서 주신 책 ㅎㅎㅎ</div>
-        <div class="caption-date">2025.03.07(금)</div>
-      </div>
-    </div>
-
-    <div class="swiper-slide">
-      <img src="assets/images/IMG_4044.jpeg" alt="아라">
-      <div class="caption-box">
-        <div class="caption-text">조 회식! 아라횟집 맛있습니다 ㅎㅎ 가보세용 🐟</div>
-        <div class="caption-date">2025.03.13(목)</div>
-      </div>
-    </div>
-
-    <div class="swiper-slide">
-      <img src="assets/images/IMG_4369.jpeg" alt="율전재">
-      <div class="caption-box">
-        <div class="caption-text">율전재 헬스장은 오션뷰 입니다! 🏃‍♂️</div>
-        <div class="caption-date">2025.03.24(월)</div>
-      </div>
-    </div>
-
-    <div class="swiper-slide">
-      <img src="assets/images/IMG_4383.jpeg" alt="다트">
-      <div class="caption-box">
-        <div class="caption-text">점심시간 다트로 커피 내기!🎯</div>
-        <div class="caption-date">2025.03.25(화)</div>
-      </div>
-    </div>
-
-    <div class="swiper-slide">
-      <img src="assets/images/group.png" alt="조별 회의">
-      <div class="caption-box">
-        <div class="caption-text">성공적인 첫 조별회의 !</div>
-        <div class="caption-date">2025.03.26(수)</div>
-      </div>
-    </div>
-
-    <div class="swiper-slide">
-      <img src="assets/images/IMG_4724.jpeg" alt="보리꽃">
-      <div class="caption-box">
-        <div class="caption-text">H-int 전체 회식 보리꽃! 잘먹었습니다 😋</div>
-        <div class="caption-date">2025.03.26(수)</div>
-      </div>
-    </div>
-
-    <div class="swiper-slide">
-      <img src="assets/images/IMG_4424.jpeg" alt="셔틀">
-      <div class="caption-box">
-        <div class="caption-text">금요일은 늦게 오시면 셔틀 자리 없어요 ㅠㅠ🚍 먼저갈게~~ 성제형 미안</div>
-        <div class="caption-date">2025.03.28(금)</div>
-      </div>
-    </div>
-
-    <div class="swiper-slide">
-      <img src="assets/images/club.png" alt="클럽하우스">
-      <div class="caption-box">
-        <div class="caption-text">울산 HD 클럽하우스 견학 ⚽</div>
-        <div class="caption-date">2025.04.10(목)</div>
-      </div>
-    </div>
-
-    <div class="swiper-slide">
-      <img src="assets/images/net_hd_match.jpg" alt="직관">
-      <div class="caption-box">
-        <div class="caption-text">울산 HD 축구 직관! vs 강원fc 아쉽게 패배ㅠㅠ</div>
-        <div class="caption-date">2025.04.19(토)</div>
-      </div>
-    </div>
-
-    <div class="swiper-slide">
-      <img src="assets/images/IMG_4721.jpeg" alt="우생">
-      <div class="caption-box">
-        <div class="caption-text">우진이 생일축하행🎉🎉🎉</div>
-        <div class="caption-date">2025.04.28(화)</div>
-      </div>
-    </div>
-
-    <div class="swiper-slide">
-      <img src="assets/images/IMG_4722.jpeg" alt="노래방">
-      <div class="caption-box">
-        <div class="caption-text">우진이 생일! 노래방은 꼭 가야한다구~ 대환장 파티 ㅋㅋㅋㅋ🎤</div>
-        <div class="caption-date">2025.04.28(화)</div>
-      </div>
-    </div>
-
   </div>
-</div>
 
+  <!-- 썸네일 슬라이더 -->
+  <div class="glide thumb-glide">
+    <div class="glide__track" data-glide-el="track">
+      <ul class="glide__slides">
+                <li class="glide__slide"><img src="assets/images/IMG_4044.jpeg" alt=""></li>
+<li class="glide__slide"><img src="assets/images/IMG_4369.jpeg" alt=""></li>
+<li class="glide__slide"><img src="assets/images/IMG_4383.jpeg" alt=""></li>
+<li class="glide__slide"><img src="assets/images/group.png" alt=""></li>
+<li class="glide__slide"><img src="assets/images/IMG_4724.jpeg" alt=""></li>
+<li class="glide__slide"><img src="assets/images/IMG_4424.jpeg" alt=""></li>
+<li class="glide__slide"><img src="assets/images/club.png" alt=""></li>
+<li class="glide__slide"><img src="assets/images/net_hd_match.jpg" alt=""></li>
+<li class="glide__slide"><img src="assets/images/IMG_4721.jpeg" alt=""></li>
+<li class="glide__slide"><img src="assets/images/IMG_4722.jpeg" alt=""></li>
+
+      </ul>
+    </div>
+  </div>
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script src="https://unpkg.com/swiper@9/swiper-bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/glide.min.js"></script>
   <script>
     AOS.init({ duration: 800, once: true });
+    
+    const main = new Glide('.main-glide', {
+      type: 'carousel',
+      perView: 1,
+      focusAt: 'center',
+    });
 
-    const swiper = new Swiper('.swiper', {
-      centeredSlides: true,
-      slidesPerView: 1.2,
-      loop: true,
-      spaceBetween: 30,
-      grabCursor: true,
-      speed: 700,
-      slideToClickedSlide: true,
-      allowTouchMove: true,
-      touchAngle: 10,
-      effect: 'coverflow',
-      coverflowEffect: {
-        rotate: 30,
-        stretch: 0,
-        depth: 100,
-        modifier: 1,
-        slideShadows: false,
+    const thumbs = new Glide('.thumb-glide', {
+      perView: 5,
+      gap: 8,
+      focusAt: 'center',
+      breakpoints: {
+        480: { perView: 3 }
       }
     });
+
+    main.on('run.after', () => {
+      thumbs.go(=${main.index});
+    });
+
+    thumbs.on('run.after', () => {
+      main.go(=${thumbs.index});
+    });
+
+    main.mount();
+    thumbs.mount();
 
     function toggleMenu() {
       document.getElementById("menuPopup").classList.toggle("active");

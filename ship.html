@@ -167,6 +167,15 @@
       border-radius: 50%;
       z-index: 2;
     }
+    .timeline-item::after {
+      content: '';
+      position: absolute;
+      left: -1.2rem;
+      top: 1.55rem;
+      width: 1.2rem;
+      height: 2px;
+      background: var(--discovery-blue);
+    }
     .timeline-date {
       font-size: 0.85rem;
       color: #888;
@@ -183,6 +192,7 @@
     }
   </style>
 </head>
+
 
 <body>
   <div id="splash">

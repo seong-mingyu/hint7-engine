@@ -6,7 +6,6 @@
   <title>Intern Net - H-int</title>
   <link rel="icon" href="assets/images/logo.png" type="image/png">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://unpkg.com/swiper@9/swiper-bundle.min.css"/>
 
   <style>
     @font-face {
@@ -159,59 +158,57 @@
       margin-bottom: 2rem;
     }
 
-    .swiper {
-      width: 100%;
-      padding: 60px 0;
-      background: #ffffff;
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      padding: 0 6px 60px;
     }
 
-    .swiper-slide {
-      display: flex;
-      flex-direction: column;
+    .gallery-grid img {
+      width: 100%;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .gallery-grid img:hover {
+      transform: scale(1.03);
+    }
+
+    #imageModal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.7);
       justify-content: center;
       align-items: center;
-      transform: scale(0.8) rotateY(8deg);
-      opacity: 0.5;
-      transition: transform 0.6s ease, opacity 0.6s ease;
+      flex-direction: column;
     }
 
-    .swiper-slide-active {
-      transform: scale(1) rotateY(0deg);
-      opacity: 1;
-      z-index: 10;
+    #modalImage {
+      max-width: 90%;
+      max-height: 60%;
+      border-radius: 10px;
     }
 
-    .swiper-slide img {
-      width: 85vw;
-      height: auto;
-      object-fit: cover;
-      border-radius: 16px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    }
-
-    .caption-box {
+    #modalCaption {
       margin-top: 1rem;
+      font-size: 1rem;
+      color: white;
       text-align: center;
     }
 
-    .caption-text {
-      font-size: 1rem;
-      font-weight: 500;
-    }
-
-    .caption-date {
-      margin-top: 0.2rem;
+    #modalDate {
       font-size: 0.85rem;
-      color: #888;
-    }
-
-    @media (max-width: 768px) {
-      .swiper-slide img {
-        width: 90vw;
-      }
-      .swiper-slide {
-        transform: scale(0.85);
-      }
+      color: #ccc;
+      text-align: center;
     }
   </style>
 </head>
@@ -243,152 +240,39 @@
   <div class="page-title" data-aos="fade-down">Intern Net</div>
   <div class="subtitle" data-aos="fade-up">서로의 연결, 우리가 함께한 순간</div>
 
-  <div class="swiper" data-aos="fade-up">
-  <div class="swiper-wrapper">
-
-    <div class="swiper-slide">
-      <img src="assets/images/IMG_3932.jpeg" alt="사원증">
-      <div class="caption-box">
-        <div class="caption-text">첫 만남! 사원증 받은 날 국룰~ 👔</div>
-        <div class="caption-date">2025.03.04(화)</div>
-      </div>
-    </div>
-
-    <div class="swiper-slide">
-      <img src="assets/images/jeong.png" alt="안전 교육">
-      <div class="caption-box">
-        <div class="caption-text">안전체험장에서 고소작업 안전교육 받는 명수 !</div>
-        <div class="caption-date">2025.03.05(수)</div>
-      </div>
-    </div>
-
-    <div class="swiper-slide">
-      <img src="assets/images/IMG_4723.jpeg" alt="안전 교육">
-      <div class="caption-box">
-        <div class="caption-text">안전체험장에서 고소작업 안전교육 받는 수민 ! 신났네 ㅋㅎㅋㅎ</div>
-        <div class="caption-date">2025.03.05(수)</div>
-      </div>
-    </div>
-
-    <div class="swiper-slide">
-      <img src="assets/images/IMG_3965.jpeg" alt="꿀팁">
-      <div class="caption-box">
-        <div class="caption-text">부서배치 후 선임분께서 주신 책 ㅎㅎㅎ</div>
-        <div class="caption-date">2025.03.07(금)</div>
-      </div>
-    </div>
-
-    <div class="swiper-slide">
-      <img src="assets/images/IMG_4044.jpeg" alt="아라">
-      <div class="caption-box">
-        <div class="caption-text">조 회식! 아라횟집 맛있습니다 ㅎㅎ 가보세용 🐟</div>
-        <div class="caption-date">2025.03.13(목)</div>
-      </div>
-    </div>
-
-    <div class="swiper-slide">
-      <img src="assets/images/IMG_4369.jpeg" alt="율전재">
-      <div class="caption-box">
-        <div class="caption-text">율전재 헬스장은 오션뷰 입니다! 🏃‍♂️</div>
-        <div class="caption-date">2025.03.24(월)</div>
-      </div>
-    </div>
-
-    <div class="swiper-slide">
-      <img src="assets/images/IMG_4383.jpeg" alt="다트">
-      <div class="caption-box">
-        <div class="caption-text">점심시간 다트로 커피 내기!🎯</div>
-        <div class="caption-date">2025.03.25(화)</div>
-      </div>
-    </div>
-
-    <div class="swiper-slide">
-      <img src="assets/images/group.png" alt="조별 회의">
-      <div class="caption-box">
-        <div class="caption-text">성공적인 첫 조별회의 !</div>
-        <div class="caption-date">2025.03.26(수)</div>
-      </div>
-    </div>
-
-    <div class="swiper-slide">
-      <img src="assets/images/IMG_4724.jpeg" alt="보리꽃">
-      <div class="caption-box">
-        <div class="caption-text">H-int 전체 회식 보리꽃! 잘먹었습니다 😋</div>
-        <div class="caption-date">2025.03.26(수)</div>
-      </div>
-    </div>
-
-    <div class="swiper-slide">
-      <img src="assets/images/IMG_4424.jpeg" alt="셔틀">
-      <div class="caption-box">
-        <div class="caption-text">금요일은 늦게 오시면 셔틀 자리 없어요 ㅠㅠ🚍 먼저갈게~~ 성제형 미안</div>
-        <div class="caption-date">2025.03.28(금)</div>
-      </div>
-    </div>
-
-    <div class="swiper-slide">
-      <img src="assets/images/club.png" alt="클럽하우스">
-      <div class="caption-box">
-        <div class="caption-text">울산 HD 클럽하우스 견학 ⚽</div>
-        <div class="caption-date">2025.04.10(목)</div>
-      </div>
-    </div>
-
-    <div class="swiper-slide">
-      <img src="assets/images/net_hd_match.jpg" alt="직관">
-      <div class="caption-box">
-        <div class="caption-text">울산 HD 축구 직관! vs 강원fc 아쉽게 패배ㅠㅠ</div>
-        <div class="caption-date">2025.04.19(토)</div>
-      </div>
-    </div>
-
-    <div class="swiper-slide">
-      <img src="assets/images/IMG_4721.jpeg" alt="우생">
-      <div class="caption-box">
-        <div class="caption-text">우진이 생일축하행🎉🎉🎉</div>
-        <div class="caption-date">2025.04.28(화)</div>
-      </div>
-    </div>
-
-    <div class="swiper-slide">
-      <img src="assets/images/IMG_4722.jpeg" alt="노래방">
-      <div class="caption-box">
-        <div class="caption-text">우진이 생일! 노래방은 꼭 가야한다구~ 대환장 파티 ㅋㅋㅋㅋ🎤</div>
-        <div class="caption-date">2025.04.28(화)</div>
-      </div>
-    </div>
-
+  <div class="gallery-grid" data-aos="fade-up">
+    <img src="assets/images/IMG_3932.jpeg" alt="사원증" onclick="openModal(this, '첫 만남! 사원증 받은 날 국룰~ 👔', '2025.03.04(화)')">
+    <img src="assets/images/jeong.png" alt="안전교육" onclick="openModal(this, '안전체험장에서 고소작업 안전교육 받는 명수!', '2025.03.05(수)')">
+    <img src="assets/images/IMG_4723.jpeg" alt="수민" onclick="openModal(this, '고소작업 교육받는 수민! 신났네 ㅋㅎㅋㅎ', '2025.03.05(수)')">
+    <img src="assets/images/IMG_3965.jpeg" alt="책" onclick="openModal(this, '부서배치 후 선임분께서 주신 책 ㅎㅎㅎ', '2025.03.07(금)')">
+    <img src="assets/images/IMG_4044.jpeg" alt="아라" onclick="openModal(this, '조 회식! 아라횟집 맛있습니다 🐟', '2025.03.13(목)')">
+    <img src="assets/images/IMG_4369.jpeg" alt="헬스장" onclick="openModal(this, '율전재 헬스장은 오션뷰 입니다! 🏃‍♂️', '2025.03.24(월)')">
+    <!-- 필요 시 더 추가 가능 -->
   </div>
-</div>
 
+  <div id="imageModal" onclick="closeModal()">
+    <img id="modalImage" src="" alt="모달 이미지">
+    <div id="modalCaption"></div>
+    <div id="modalDate"></div>
+  </div>
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script src="https://unpkg.com/swiper@9/swiper-bundle.min.js"></script>
   <script>
     AOS.init({ duration: 800, once: true });
 
-    const swiper = new Swiper('.swiper', {
-      centeredSlides: true,
-      slidesPerView: 1.2,
-      loop: true,
-      spaceBetween: 30,
-      grabCursor: true,
-      speed: 700,
-      slideToClickedSlide: true,
-      allowTouchMove: true,
-      touchAngle: 10,
-      effect: 'coverflow',
-      coverflowEffect: {
-        rotate: 30,
-        stretch: 0,
-        depth: 100,
-        modifier: 1,
-        slideShadows: false,
-      }
-    });
-
     function toggleMenu() {
       document.getElementById("menuPopup").classList.toggle("active");
+    }
+
+    function openModal(img, caption, date) {
+      document.getElementById("modalImage").src = img.src;
+      document.getElementById("modalCaption").innerText = caption;
+      document.getElementById("modalDate").innerText = date;
+      document.getElementById("imageModal").style.display = "flex";
+    }
+
+    function closeModal() {
+      document.getElementById("imageModal").style.display = "none";
     }
 
     window.addEventListener("load", () => {

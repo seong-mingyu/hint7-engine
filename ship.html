@@ -126,7 +126,7 @@
       width: 200%; height: 200px;
       bottom: 0;
       left: 0;
-      background: url('assets/images/wave.svg') repeat-x;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23003087" fill-opacity="0.2" d="M0,224L48,197.3C96,171,192,117,288,101.3C384,85,480,107,576,117.3C672,128,768,128,864,117.3C960,107,1056,85,1152,106.7C1248,128,1344,192,1392,224L1440,256L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') repeat-x;
       animation: wave 10s linear infinite;
     }
     @keyframes wave {
@@ -135,11 +135,14 @@
     }
     .fish {
       position: absolute;
-      bottom: 60px;
-      left: -100px;
       font-size: 1.5rem;
-      animation: swim 15s linear infinite;
+      animation-name: swim;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
     }
+    .fish:nth-child(2) { bottom: 60px; left: -100px; animation-duration: 15s; animation-delay: 0s; }
+    .fish:nth-child(3) { bottom: 100px; left: -200px; animation-duration: 18s; animation-delay: 2s; }
+    .fish:nth-child(4) { bottom: 140px; left: -150px; animation-duration: 13s; animation-delay: 1s; transform: scaleX(-1); }
     @keyframes swim {
       0% { transform: translateX(0); }
       100% { transform: translateX(120vw); }
@@ -225,6 +228,8 @@
   <div class="sea">
     <div class="wave"></div>
     <div class="fish">🐟</div>
+    <div class="fish">🐠</div>
+    <div class="fish">🐡</div>
   </div>
 
   <div class="timeline">

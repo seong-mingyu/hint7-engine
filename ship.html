@@ -113,68 +113,37 @@
       color: var(--gray-text);
       margin-bottom: 2rem;
     }
-    .sea {
-      position: fixed;
-      width: 100%; height: 100%;
-      top: 0; left: 0;
-      overflow: hidden;
-      pointer-events: none;
-      z-index: -1;
-    }
-    .wave {
-      position: absolute;
-      width: 200%; height: 200px;
-      bottom: 0;
-      left: 0;
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23003087" fill-opacity="0.2" d="M0,224L48,197.3C96,171,192,117,288,101.3C384,85,480,107,576,117.3C672,128,768,128,864,117.3C960,107,1056,85,1152,106.7C1248,128,1344,192,1392,224L1440,256L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') repeat-x;
-      animation: wave 10s linear infinite;
-    }
-    @keyframes wave {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-    .fish {
-      position: absolute;
-      font-size: 1.5rem;
-      animation-name: swim;
-      animation-timing-function: linear;
-      animation-iteration-count: infinite;
-    }
-    .fish:nth-child(2) { bottom: 60px; left: -100px; animation-duration: 15s; animation-delay: 0s; }
-    .fish:nth-child(3) { bottom: 100px; left: -200px; animation-duration: 18s; animation-delay: 2s; }
-    .fish:nth-child(4) { bottom: 140px; left: -150px; animation-duration: 13s; animation-delay: 1s; transform: scaleX(-1); }
-    @keyframes swim {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(120vw); }
-    }
     .timeline {
       display: flex;
       flex-direction: column;
       align-items: center;
       padding: 2rem 1rem;
-      position: relative;
     }
     .ship-card {
       width: 90%;
       max-width: 500px;
-      background: white;
-      border-radius: 2rem 2rem 0 0;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      margin: 2rem 0;
-      padding: 1.5rem;
+      background: #004d40;
+      color: white;
+      border-radius: 50% 50% 15% 15% / 100% 100% 15% 15%;
+      box-shadow: inset 0 -10px 0 #00695c, 0 8px 15px rgba(0,0,0,0.2);
+      padding: 2rem 1.5rem 3rem;
+      margin: 2rem auto;
       position: relative;
+      text-align: center;
       animation: float 4s ease-in-out infinite;
     }
-    .ship-card::after {
-      content: "";
+    .ship-card::before {
+      content: '';
       position: absolute;
-      bottom: -10px;
+      bottom: 20px;
+      width: 20px;
+      height: 20px;
+      background: white;
+      border-radius: 50%;
+      box-shadow: 50px 0 white, -50px 0 white;
       left: 50%;
       transform: translateX(-50%);
-      width: 60%;
-      height: 10px;
-      background: rgba(0,0,0,0.05);
-      border-radius: 50%;
+      z-index: 2;
     }
     @keyframes float {
       0%, 100% { transform: translateY(0); }
@@ -182,13 +151,13 @@
     }
     .ship-card .date {
       font-size: 0.9rem;
-      color: #888;
+      color: #cfd8dc;
       margin-bottom: 0.4rem;
     }
     .ship-card h3 {
       margin: 0;
       font-size: 1.2rem;
-      color: var(--discovery-blue);
+      color: #ffffff;
     }
     .ship-card p {
       font-size: 0.95rem;

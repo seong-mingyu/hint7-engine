@@ -230,27 +230,26 @@
     ];
 
     const jobs=[
-      {department:'엔진기계사업부',role:'생산관리',weights:{responsibility:4,analytical:3,teamwork:1,innovation:1,creativity:1},desc:'공정·품질 관리 및 설비 현대화 유지보수'},
-      {department:'엔진기계사업부',role:'생산지원',weights:{responsibility:3,analytical:4,teamwork:1,innovation:1,creativity:1},desc:'사업부 운영전략 수립 및 생산계획 관리, 프로세스 개선'},
-      {department:'엔진기계사업부',role:'영업',weights:{responsibility:3,analytical:3,teamwork:2,innovation:1,creativity:1},desc:'친환경 추진 기관 및 엔진 시스템 홍보·고객 기술영업'},
-      {department:'엔진기계사업부',role:'상세설계',weights:{responsibility:2,analytical:3,teamwork:3,innovation:1,creativity:1},desc:'엔진 기계 부품/시스템 3D 모델링 및 도면 작성'},
-      {department:'엔진기계사업부',role:'제어시스템 개발',weights:{responsibility:2,analytical:3,teamwork:2,innovation:2,creativity:1},desc:'엔진 제어시스템 설계 및 양산 기술 지원'},
-      {department:'엔진기계사업부',role:'HR',weights:{responsibility:2,analytical:1,teamwork:4,innovation:1,creativity:2},desc:'인사 및 조직 운영, 인재 육성 지원'},
-      {department:'엔진기계사업부',role:'DT',weights:{responsibility:1,analytical:2,teamwork:1,innovation:3,creativity:3},desc:'디지털 혁신 및 IT 시스템 개발'},
+  { department: "엔진기계사업부", role: "영업", weights: { responsibility: 3, analytical: 3, teamwork: 2, innovation: 1, creativity: 1 }, desc: "친환경 선박 엔진이나 발전용 엔진 시스템을 조선소나 선주에게 소개하고, 고객의 요구에 맞는 기술적인 설명과 계약을 진행합니다. 국내외 고객과의 협의를 통해 프로젝트를 수주하고, 엔진 마케팅 전략을 수립하는 역할도 함께 수행합니다." },
+  { department: "엔진기계사업부", role: "상세설계", weights: { responsibility: 2, analytical: 3, teamwork: 3, innovation: 1, creativity: 1 }, desc: "선박용 엔진의 기계 부품이나 시스템을 개발하고, 이를 3D 모델로 설계하여 실제로 제작할 수 있도록 도면을 작성합니다. 개발된 제품이 양산될 수 있도록 기술 지원을 하며, 제어시스템까지 포함한 설계·개발 업무를 수행합니다." },
+  { department: "엔진기계사업부", role: "생산관리", weights: { responsibility: 4, analytical: 3, teamwork: 1, innovation: 1, creativity: 1 }, desc: "대형 또는 중형 선박 엔진이 원활히 생산될 수 있도록 부품 조달, 조립 일정, 품질 검사, 성능 시험 등 생산 전 과정을 관리하고 지원합니다. 공장에서 발생하는 데이터를 분석하고, 생산 장비나 공정을 개선하는 일도 담당합니다." },
+  { department: "엔진기계사업부", role: "생산지원", weights: { responsibility: 3, analytical: 4, teamwork: 1, innovation: 1, creativity: 1 }, desc: "사업부 전체의 운영 전략을 수립하고, 제품 입출고 및 일정 등을 체계적으로 관리합니다. 주요 제품의 생산계획을 수립하고 이를 실적과 비교하며, 공정 개선이나 업무 방식 효율화를 위한 프로젝트도 진행합니다." }
+  { department: "조선사업부", role: "기본설계", weights: { responsibility: 3, analytical: 3, teamwork: 2, innovation: 1, creativity: 1 }, desc: "선박의 신설정과 기본 구조를 설계하고, 계약 사양서를 작성하며 기술적 대응과 고객 미팅을 통해 설계 방향을 결정합니다." },
+  { department: "조선사업부", role: "조선설계", weights: { responsibility: 3, analytical: 3, teamwork: 2, innovation: 1, creativity: 1 }, desc: "선박 건조를 위한 구조 해석, 중량 검토, 도면 설계 등을 수행하고 생산 도면 작성과 설계 시스템 개발을 담당합니다." },
+  { department: "해양사업부", role: "생산관리", weights: { responsibility: 4, analytical: 3, teamwork: 2, innovation: 1, creativity: 0 }, desc: "해양플랜트 제작을 위한 공정 계획과 자재/협력업체 등 생산 관리 전반을 수행하며, 안전·품질 예방 활동을 함께 수행합니다." },
+  { department: "해양사업부", role: "상세설계", weights: { responsibility: 3, analytical: 4, teamwork: 1, innovation: 1, creativity: 1 }, desc: "해양플랜트의 구매사양서 및 상세 설계를 위한 도면, 계산서, 절차서 작성 등 전반적인 상세 설계와 기술 대응을 수행합니다." },
+  { department: "특수선사업부", role: "상세설계", weights: { responsibility: 3, analytical: 4, teamwork: 1, innovation: 1, creativity: 1 }, desc: "함정 및 특수목적 선박의 상세 설계를 위한 기본 도면과 기술 문서를 작성합니다." },
+  { department: "특수선사업부", role: "생산관리", weights: { responsibility: 4, analytical: 3, teamwork: 2, innovation: 1, creativity: 0 }, desc: "함정 건조를 위한 생산 일정 관리, 품질 확보, 원가 절감 등 생산 전반을 관리하고, 안전/품질 사전 예방 활동을 수행합니다." },
+  { department: "특수선사업부", role: "영업", weights: { responsibility: 3, analytical: 2, teamwork: 3, innovation: 1, creativity: 1 }, desc: "함정 해외수출사업 및 관련 입찰 대응, 시장 조사 및 기획, 홍보와 마케팅 활동을 수행합니다." },
+  { department: "법경영", role: "상생", weights: { responsibility: 2, analytical: 2, teamwork: 3, innovation: 2, creativity: 1 }, desc: "노사관계 정책 수립, 노사협의회 운영, 교육 및 문화 개선 활동 등을 통해 건강한 조직문화를 만듭니다." },
+  { department: "법경영", role: "IT보안", weights: { responsibility: 3, analytical: 4, teamwork: 1, innovation: 1, creativity: 1 }, desc: "IT 인프라 보안 정책 수립 및 운영을 통해 회사 자산을 보호하고 보안 사고를 예방합니다." },
+  { department: "법경영", role: "대외협력", weights: { responsibility: 3, analytical: 3, teamwork: 2, innovation: 1, creativity: 1 }, desc: "회사의 자산(부동산 등)과 투자/계획/법무 관련 업무를 담당하고, 외부기관과의 협업 및 행정 대응을 수행합니다." },
+  { department: "법경영", role: "구매", weights: { responsibility: 3, analytical: 4, teamwork: 2, innovation: 1, creativity: 0 }, desc: "자재 소싱 및 계약 체결, 구매 프로세스 개선, ESG 기반의 공급망 관리 등 구매 관련 전반을 담당합니다." },
+  { department: "법경영", role: "자산", weights: { responsibility: 3, analytical: 3, teamwork: 2, innovation: 1, creativity: 1 }, desc: "고정자산 회계 및 설비 자산관리, 에너지 사용량 분석 등 기업 자산의 효율적인 운영을 관리합니다." },
+  { department: "법경영", role: "DT", weights: { responsibility: 2, analytical: 2, teamwork: 1, innovation: 3, creativity: 2 }, desc: "디지털 전환을 위한 시스템 기획 및 운영, 스마트 팩토리 구축 등을 통해 업무 혁신을 추진합니다." },
+  { department: "법경영", role: "재경", weights: { responsibility: 3, analytical: 4, teamwork: 1, innovation: 1, creativity: 1 }, desc: "회사의 실적 및 지표를 분석하고, 예산 편성·조세 전략·자금 운영 등 재무 업무를 수행합니다." }
+]
 
-      {department:'조선사업부',role:'기본설계',weights:{responsibility:1,analytical:3,teamwork:2,innovation:1,creativity:3},desc:'선박 기본 틀 완성 및 계약 사양서 작성'},
-      {department:'조선사업부',role:'상세설계',weights:{responsibility:1,analytical:4,teamwork:1,innovation:2,creativity:1},desc:'구조 해석, 공법 개선 및 생산도면 설계'},
-      {department:'조선사업부',role:'생산관리',weights:{responsibility:2,analytical:1,teamwork:2,innovation:2,creativity:3},desc:'생산 계획, 자재·설비 투입 및 안전환경 관리'},
-      {department:'조선사업부',role:'기술기획',weights:{responsibility:1,analytical:3,teamwork:3,innovation:1,creativity:2},desc:'기술경영 및 사업부 전략 기획'},
-      {department:'조선사업부',role:'생산지원',weights:{responsibility:2,analytical:2,teamwork:2,innovation:3,creativity:1},desc:'생산계획 수립 및 외주 입고 일정 관리'},
-
-      {department:'해양에너지',role:'상세설계',weights:{responsibility:2,analytical:4,teamwork:1,innovation:1,creativity:2},desc:'해양플랜트 설계 SPEC 결정 및 도면 작성'},
-      {department:'해양에너지',role:'설계',weights:{responsibility:3,analytical:1,teamwork:3,innovation:2,creativity:1},desc:'해양에너지 설비 SPEC 결정 및 절차서 작성'},
-
-      {department:'특수선사업부',role:'상세설계',weights:{responsibility:3,analytical:3,teamwork:2,innovation:1,creativity:3},desc:'함정 및 특수선 도면 설계 및 견적'},
-      {department:'특수선사업부',role:'생산관리',weights:{responsibility:4,analytical:2,teamwork:2,innovation:1,creativity:1},desc:'조선 공사 시공 표준 수립 및 자재·설비 관리'},
-      {department:'특수선사업부',role:'영업',weights:{responsibility:2,analytical:1,teamwork:3,innovation:1,creativity:3},desc:'함정 해외 수출 프로젝트 영업'}
-    ];
 
     let selected=[], current=0, answers=[];
 

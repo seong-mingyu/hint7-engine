@@ -91,7 +91,14 @@
     .question-number{font-family:'HDHyundaiBold';font-size:1rem;}
     .progress{flex:1;height:8px;background:#eee;border-radius:4px;overflow:hidden;margin-left:1rem;}
     .progress-bar{height:100%;width:0%;background:var(--discovery-blue);transition:width .3s;}
-    .question-text{font-size:1.2rem;line-height:1.5;text-align:left;}
+    .question-text {
+  font-size: 1.5rem;                 /* 기존보다 조금 더 크게 */
+  line-height: 1.6;
+  text-align: left;
+  font-family: 'HDHyundaiBold';       /* bold체 적용 */
+  margin-bottom: 2rem;                /* 버튼과의 간격 확보 */
+}
+
     .question-options {
   display: flex;
   gap: 1rem;

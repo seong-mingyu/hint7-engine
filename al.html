@@ -92,26 +92,29 @@
     .progress{flex:1;height:8px;background:#eee;border-radius:4px;overflow:hidden;margin-left:1rem;}
     .progress-bar{height:100%;width:0%;background:var(--discovery-blue);transition:width .3s;}
     .question-text{font-size:1.2rem;line-height:1.5;text-align:left;}
-    .question-options{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-top:1.5rem;}
+    .question-options {
+  display: flex;
+  gap: 1rem;
+  align-items: stretch;  /* 여기 중요: 버튼 높이를 강제로 맞춤 */
+}
+
     .option-btn {
-  /* 두 버튼이 간격(1rem) 제외한 50%씩 차지 */
   flex: 1 1 calc(50% - 0.5rem);
-  /* 수평 패딩은 조절 가능 */
-  padding: 1.5rem 1rem;
-
-  /* 자동 줄바꿈 & 한글 단어 중간 절단 방지 */
-  white-space: normal;
-  word-wrap: break-word;
-  word-break: keep-all;
-
+  padding: 1rem;
+  min-height: 100px;               /* 고정된 최소 높이 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
   background: #fff;
   border: 2px solid var(--bg-light);
   border-radius: 12px;
-  /* 글자 크기 조금 줄여서 한 줄에 약 5자 정도 노출 */
-  font-size: 0.9rem;
-  text-align: center;
+  font-size: 0.95rem;
   cursor: pointer;
-  transition: border-color .2s, transform .2s;
+  transition: border-color 0.2s, transform 0.2s;
+
+  white-space: normal;             /* 줄바꿈 허용 */
+  word-break: keep-all;            /* 단어 중간에서 끊기지 않음 (한글 가독성 ↑) */
 }
 
 

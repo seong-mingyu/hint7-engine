@@ -134,22 +134,19 @@
       100% { transform: translateX(-50%); }
     }
     .fish {
-  position: absolute;
-  font-size: 1.5rem;
-  animation-name: swim;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-}
-
-.fish:nth-child(2) { bottom: 60px; left: -100px; animation-duration: 10s; animation-delay: 0s; }
-.fish:nth-child(3) { bottom: 100px; left: -200px; animation-duration: 13s; animation-delay: 3s; }
-.fish:nth-child(4) { bottom: 90px; left: -150px; animation-duration: 8s; animation-delay: 0s; transform: scaleX(-1); }
-
-.fish:nth-child(5) { bottom: 80px; left: -120px; animation-duration: 11s; animation-delay: 2.5s; }
-.fish:nth-child(6) { bottom: 40px; left: -180px; animation-duration: 9s; animation-delay: 1.5s; transform: scaleX(-1); }
-.fish:nth-child(7) { bottom: 20px; left: -90px; animation-duration: 15s; animation-delay: 0s; }
-.fish:nth-child(8) { bottom: 70px; left: -200px; animation-duration: 12s; animation-delay: 3.5s; transform: scaleX(-1); }
-
+      position: absolute;
+      font-size: 1.5rem;
+      animation-name: swim;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
+    .fish:nth-child(2) { bottom: 60px; left: -100px; animation-duration: 10s; animation-delay: 0s; }
+    .fish:nth-child(3) { bottom: 100px; left: -200px; animation-duration: 13s; animation-delay: 3s; }
+    .fish:nth-child(4) { bottom: 90px; left: -150px; animation-duration: 8s; animation-delay: 0s; transform: scaleX(-1); }
+    .fish:nth-child(5) { bottom: 80px; left: -120px; animation-duration: 11s; animation-delay: 2.5s; }
+    .fish:nth-child(6) { bottom: 40px; left: -180px; animation-duration: 9s; animation-delay: 1.5s; transform: scaleX(-1); }
+    .fish:nth-child(7) { bottom: 20px; left: -90px; animation-duration: 15s; animation-delay: 0s; }
+    .fish:nth-child(8) { bottom: 70px; left: -200px; animation-duration: 12s; animation-delay: 3.5s; transform: scaleX(-1); }
     @keyframes swim {
       0% { transform: translateX(0); }
       100% { transform: translateX(120vw); }
@@ -158,16 +155,17 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 2rem 1rem;
+      padding: 1rem 1rem 3rem;
       position: relative;
+      margin-top: -2rem;
     }
     .ship-card {
       width: 90%;
       max-width: 500px;
-      background: rgba(255, 255, 255, 0.7); /* 불투명도 */
+      background: rgba(255, 255, 255, 0.7);
       border-radius: 2rem 2rem 0 0;
       box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      margin: 0.7rem 0;
+      margin: 1.5rem 0;
       padding: 1.5rem;
       position: relative;
       animation: float 4s ease-in-out infinite;
@@ -242,24 +240,23 @@
     <div class="fish">🦈</div>
     <div class="fish">🐳</div>
     <div class="fish">🐋</div>
-
   </div>
 
   <div class="timeline">
-    <div class="ship-card" data-aos="fade-up"><div class="date">25.01.30</div><h3>📩 서류 지원</h3><p>H-int 6기 인턴십 지원서를 제출!</p></div>
-    <div class="ship-card" data-aos="fade-up"><div class="date">25.02.07</div><h3>📬 서류 합격 통보</h3><p>서류 전형 결과 발표</p></div>
-    <div class="ship-card" data-aos="fade-up"><div class="date">25.02.10</div><h3>💻 1차 면접</h3><p>온라인 화상 면접 진행</p></div>
-    <div class="ship-card" data-aos="fade-up"><div class="date">25.02.18</div><h3>📞 면접 합격 통보</h3><p>합격 소식!</p></div>
-    <div class="ship-card" data-aos="fade-up"><div class="date">25.03.04~03.05</div><h3>🧑‍🏫 2일간 교육</h3><p>입사 전 간단한 교육과 안전교육 진행</p></div>
-    <div class="ship-card" data-aos="fade-up"><div class="date">25.03.06</div><h3>🛳 야드 투어 및 부서 배치</h3><p>회사를 둘러보고 본격적인 부서 생활 시작</p></div>
-    <div class="ship-card" data-aos="fade-up"><div class="date">25.03.26</div><h3>🍻 조별모임 및 회식</h3><p>조별 회의와 H-int 전체 회식!</p></div>
-    <div class="ship-card" data-aos="fade-up"><div class="date">25.04.10</div><h3>🏠 울산HD 클럽하우스 방문</h3><p>울산HD 클럽하우스 체험</p></div>
-    <div class="ship-card" data-aos="fade-up"><div class="date">25.04.19</div><h3>⚽ 울산HD 축구 직관</h3><p>울산HD 경기 직관</p></div>
-    <div class="ship-card" data-aos="fade-up"><div class="date">25.05.22~05.28</div><h3>🧑‍💼 개인 PT 발표</h3><p>각자의 과제를 바탕으로 발표를 진행</p></div>
-    <div class="ship-card" data-aos="fade-up"><div class="date">25.05.30</div><h3>🗣 마지막 조별 회의</h3><p>마지막 조별 회의를 통해 조별과제 정리</p></div>
-    <div class="ship-card" data-aos="fade-up"><div class="date">25.06.05</div><h3>📊 조별 과제 발표</h3><p>조별 과제를 정리하여 발표!</p></div>
-    <div class="ship-card" data-aos="fade-up"><div class="date">25.06.12~13</div><h3>🏁 직원 전환 면접 & 수료식</h3><p>직원 전환을 위한 마지막 평가와 수료식 진행</p></div>
-    <div class="ship-card" data-aos="fade-up"><div class="date">25.06.20</div><h3>🚢 인턴십 종료</h3><p>모든 여정을 마치고 인턴십을 마무리!!</p></div>
+    <div class="ship-card"><div class="date">25.01.30</div><h3>📩 서류 지원</h3><p>H-int 6기 인턴십 지원서를 제출!</p></div>
+    <div class="ship-card"><div class="date">25.02.07</div><h3>📬 서류 합격 통보</h3><p>서류 전형 결과 발표</p></div>
+    <div class="ship-card"><div class="date">25.02.10</div><h3>💻 1차 면접</h3><p>온라인 화상 면접 진행</p></div>
+    <div class="ship-card"><div class="date">25.02.18</div><h3>📞 면접 합격 통보</h3><p>합격 소식!</p></div>
+    <div class="ship-card"><div class="date">25.03.04~03.05</div><h3>🧑‍🏫 2일간 교육</h3><p>입사 전 간단한 교육과 안전교육 진행</p></div>
+    <div class="ship-card"><div class="date">25.03.06</div><h3>🛳 야드 투어 및 부서 배치</h3><p>회사를 둘러보고 본격적인 부서 생활 시작</p></div>
+    <div class="ship-card"><div class="date">25.03.26</div><h3>🍻 조별모임 및 회식</h3><p>조별 회의와 H-int 전체 회식!</p></div>
+    <div class="ship-card"><div class="date">25.04.10</div><h3>🏠 울산HD 클럽하우스 방문</h3><p>울산HD 클럽하우스 체험</p></div>
+    <div class="ship-card"><div class="date">25.04.19</div><h3>⚽ 울산HD 축구 직관</h3><p>울산HD 경기 직관</p></div>
+    <div class="ship-card"><div class="date">25.05.22~05.28</div><h3>🧑‍💼 개인 PT 발표</h3><p>각자의 과제를 바탕으로 발표를 진행</p></div>
+    <div class="ship-card"><div class="date">25.05.30</div><h3>🗣 마지막 조별 회의</h3><p>마지막 조별 회의를 통해 조별과제 정리</p></div>
+    <div class="ship-card"><div class="date">25.06.05</div><h3>📊 조별 과제 발표</h3><p>조별 과제를 정리하여 발표!</p></div>
+    <div class="ship-card"><div class="date">25.06.12~13</div><h3>🏁 직원 전환 면접 & 수료식</h3><p>직원 전환을 위한 마지막 평가와 수료식 진행</p></div>
+    <div class="ship-card"><div class="date">25.06.20</div><h3>🚢 인턴십 종료</h3><p>모든 여정을 마치고 인턴십을 마무리!!</p></div>
   </div>
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>

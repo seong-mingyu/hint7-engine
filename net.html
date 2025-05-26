@@ -1,3 +1,4 @@
+<!-- net.html - 이미지 부분 전체 수정 + 기존 메뉴/상단바 유지 -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -6,8 +7,6 @@
   <title>Intern Net - H-int</title>
   <link rel="icon" href="assets/images/logo.png" type="image/png">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/css/glide.core.min.css">
-
   <style>
     @font-face {
       font-family: 'HDHyundaiLight';
@@ -17,14 +16,12 @@
       font-family: 'HDHyundaiBold';
       src: url('assets/fonts/HDHyundai-Bold.ttf') format('truetype');
     }
-
     :root {
       --discovery-blue: #003087;
       --prosperity-green: #008233;
       --gray-text: #63666A;
       --bg-light: #fdfdfd;
     }
-
     body {
       font-family: 'HDHyundaiLight', sans-serif;
       margin: 0;
@@ -34,154 +31,88 @@
       opacity: 0;
       transition: opacity 0.6s ease-in-out;
     }
-
-    body.loaded {
-      opacity: 1;
-    }
-
+    body.loaded { opacity: 1; }
     #splash {
-      position: fixed;
-      z-index: 3000;
-      background-color: white;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      position: fixed; z-index: 3000; background: white;
+      width: 100%; height: 100%; display: flex;
+      flex-direction: column; justify-content: center; align-items: center;
       animation: fadeSplash 0.8s ease forwards;
     }
-
     @keyframes fadeSplash {
-      0% { opacity: 1; }
-      99% { opacity: 0; }
-      100% { display: none; z-index: -1; }
+      0% { opacity: 1; } 99% { opacity: 0; } 100% { display: none; z-index: -1; }
     }
-
     .splash-text {
-      font-family: 'HDHyundaiBold';
-      font-size: 1.5rem;
-      color: #003087;
+      font-family: 'HDHyundaiBold'; font-size: 1.5rem; color: #003087;
     }
-
     .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background-color: white;
-      padding: 1rem 1.5rem;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
+      display: flex; justify-content: space-between; align-items: center;
+      background: white; padding: 1rem 1.5rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      position: sticky; top: 0; z-index: 1000;
     }
-
     .navbar img { height: 32px; }
-
     .navbar-title {
-      font-size: 1.5rem;
-      font-family: 'HDHyundaiBold';
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
+      font-size: 1.5rem; font-family: 'HDHyundaiBold';
+      position: absolute; left: 50%; transform: translateX(-50%);
     }
-
-    .navbar-title a {
-      text-decoration: none;
-      color: inherit;
-    }
-
+    .navbar-title a { text-decoration: none; color: inherit; }
     .navbar-title .hd { color: var(--discovery-blue); }
-
     .menu-icon { font-size: 1.5rem; cursor: pointer; }
-
     .menu-popup {
-      position: absolute;
-      top: 64px;
-      right: 20px;
-      background: white;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      padding: 0.5rem 1rem;
-      z-index: 999;
-      opacity: 0;
-      pointer-events: none;
-      transform: translateY(-10px);
+      position: absolute; top: 64px; right: 20px; background: white;
+      border: 1px solid #ccc; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      padding: 0.5rem 1rem; z-index: 999;
+      opacity: 0; pointer-events: none; transform: translateY(-10px);
       transition: all 0.3s ease;
     }
-
     .menu-popup.active {
-      opacity: 1;
-      pointer-events: auto;
-      transform: translateY(0);
+      opacity: 1; pointer-events: auto; transform: translateY(0);
     }
-
     .page-title {
-      text-align: center;
-      margin: 2rem 1rem 0.5rem;
-      font-size: 1.8rem;
-      font-weight: bold;
-      color: var(--prosperity-green);
+      text-align: center; margin: 2rem 1rem 0.5rem;
+      font-size: 1.8rem; font-weight: bold; color: var(--prosperity-green);
     }
-
     .subtitle {
-      text-align: center;
-      font-size: 1rem;
-      color: var(--gray-text);
-      margin-bottom: 1rem;
+      text-align: center; font-size: 1rem; color: var(--gray-text); margin-bottom: 1rem;
     }
-
-    .glide__slide {
-      position: relative;
-      text-align: center;
-      transition: all 0.4s ease;
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      padding: 1rem;
     }
-
-    .main-glide .glide__slide img {
-      width: 100%;
-      max-width: 400px;
-      max-height: 50vh;
-      object-fit: contain;
-    }
-
-    .caption-date {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      background: rgba(0,0,0,0.5);
-      color: #fff;
-      font-size: 0.75rem;
-      padding: 4px 8px;
-      border-radius: 6px;
-    }
-
-    .caption-box {
-      margin-top: 0.5rem;
-    }
-
-    .caption-text {
-      font-size: 0.9rem;
-      font-weight: 400;
-      color: #333;
-    }
-
-    .thumb-glide .glide__slide img {
-      width: 60px;
-      height: 60px;
+    .gallery img {
+      width: 100%; height: auto; aspect-ratio: 1 / 1;
       object-fit: cover;
-      border-radius: 6px;
-      opacity: 0.6;
-      transition: all 0.3s ease;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.2s;
     }
-
-    .thumb-glide .glide__slide--active img {
-      opacity: 1;
-      border: 2px solid var(--discovery-blue);
+    .gallery img:hover {
+      transform: scale(1.03);
     }
-
-    .thumb-glide {
-      margin-top: 1rem;
+    .modal {
+      position: fixed; top: 0; left: 0;
+      width: 100%; height: 100%; background: rgba(0,0,0,0.8);
+      display: flex; justify-content: center; align-items: center;
+      z-index: 5000; display: none;
+    }
+    .modal-content {
+      max-width: 90%; max-height: 80%; position: relative;
+      text-align: center; color: white;
+    }
+    .modal-content img {
+      width: auto; height: 60vh; max-width: 100%; border-radius: 10px;
+    }
+    .modal-caption { margin-top: 1rem; font-size: 1rem; }
+    .modal-nav {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      font-size: 2rem; cursor: pointer; color: white; user-select: none;
+    }
+    .modal-prev { left: -2rem; }
+    .modal-next { right: -2rem; }
+    .modal-close {
+      position: absolute; top: 10px; right: 20px; font-size: 2rem;
+      color: white; cursor: pointer;
     }
   </style>
 </head>
@@ -190,7 +121,6 @@
     <img src="assets/images/logo.png" alt="로고">
     <div class="splash-text">H-int Dream</div>
   </div>
-
   <div class="navbar">
     <img src="assets/images/logo.png" alt="HD현대중공업 로고">
     <div class="navbar-title">
@@ -209,129 +139,82 @@
       </ul>
     </div>
   </div>
-
   <div class="page-title" data-aos="fade-down">Intern Net</div>
   <div class="subtitle" data-aos="fade-up">우리의 네트워킹, 우리가 함께한 순간</div>
 
-  <!-- 메인 슬라이더 -->
-  <div class="glide main-glide" data-aos="fade-up">
-    <div class="glide__track" data-glide-el="track">
-      <ul class="glide__slides">
-        <li class="glide__slide">
-  <img src="assets/images/IMG_4044.jpeg" alt="">
-  <div class="caption-date">2025.03.13(목)</div>
-  <div class="caption-box"><div class="caption-text">조 회식! 아라횟집 맛있습니다 ㅎㅎ 가보세용 🐟</div></div>
-</li>
-<li class="glide__slide">
-  <img src="assets/images/IMG_4369.jpeg" alt="">
-  <div class="caption-date">2025.03.24(월)</div>
-  <div class="caption-box"><div class="caption-text">율전재 헬스장은 오션뷰 입니다! 🏃‍♂️</div></div>
-</li>
-<li class="glide__slide">
-  <img src="assets/images/IMG_4383.jpeg" alt="">
-  <div class="caption-date">2025.03.25(화)</div>
-  <div class="caption-box"><div class="caption-text">점심시간 다트로 커피 내기!🎯</div></div>
-</li>
-<li class="glide__slide">
-  <img src="assets/images/group.png" alt="">
-  <div class="caption-date">2025.03.26(수)</div>
-  <div class="caption-box"><div class="caption-text">성공적인 첫 조별회의 !</div></div>
-</li>
-<li class="glide__slide">
-  <img src="assets/images/IMG_4724.jpeg" alt="">
-  <div class="caption-date">2025.03.26(수)</div>
-  <div class="caption-box"><div class="caption-text">H-int 전체 회식 보리꽃! 잘먹었습니다 😋</div></div>
-</li>
-<li class="glide__slide">
-  <img src="assets/images/IMG_4424.jpeg" alt="">
-  <div class="caption-date">2025.03.28(금)</div>
-  <div class="caption-box"><div class="caption-text">금요일은 셔틀 자리 없어요 ㅠㅠ🚍 먼저갈게~~ 성제형 미안</div></div>
-</li>
-<li class="glide__slide">
-  <img src="assets/images/club.png" alt="">
-  <div class="caption-date">2025.04.10(목)</div>
-  <div class="caption-box"><div class="caption-text">울산 HD 클럽하우스 견학 ⚽</div></div>
-</li>
-<li class="glide__slide">
-  <img src="assets/images/net_hd_match.jpg" alt="">
-  <div class="caption-date">2025.04.19(토)</div>
-  <div class="caption-box"><div class="caption-text">울산 HD 축구 직관! vs 강원fc 아쉽게 패배ㅠㅠ</div></div>
-</li>
-<li class="glide__slide">
-  <img src="assets/images/IMG_4721.jpeg" alt="">
-  <div class="caption-date">2025.04.28(화)</div>
-  <div class="caption-box"><div class="caption-text">우진이 생일축하행🎉🎉🎉</div></div>
-</li>
-<li class="glide__slide">
-  <img src="assets/images/IMG_4722.jpeg" alt="">
-  <div class="caption-date">2025.04.28(화)</div>
-  <div class="caption-box"><div class="caption-text">노래방은 꼭 가야하는 우진씌 대환장 파티 ㅋㅋㅋㅋ🎤</div></div>
-</li>
-
-      </ul>
-    </div>
-  </div>
-
-  <!-- 썸네일 슬라이더 -->
-  <div class="glide thumb-glide">
-    <div class="glide__track" data-glide-el="track">
-      <ul class="glide__slides">
-        <li class="glide__slide"><img src="assets/images/IMG_4044.jpeg" alt=""></li>
-<li class="glide__slide"><img src="assets/images/IMG_4369.jpeg" alt=""></li>
-<li class="glide__slide"><img src="assets/images/IMG_4383.jpeg" alt=""></li>
-<li class="glide__slide"><img src="assets/images/group.png" alt=""></li>
-<li class="glide__slide"><img src="assets/images/IMG_4724.jpeg" alt=""></li>
-<li class="glide__slide"><img src="assets/images/IMG_4424.jpeg" alt=""></li>
-<li class="glide__slide"><img src="assets/images/club.png" alt=""></li>
-<li class="glide__slide"><img src="assets/images/net_hd_match.jpg" alt=""></li>
-<li class="glide__slide"><img src="assets/images/IMG_4721.jpeg" alt=""></li>
-<li class="glide__slide"><img src="assets/images/IMG_4722.jpeg" alt=""></li>
-
-      </ul>
+  <div class="gallery" id="gallery"></div>
+  <div class="modal" id="imageModal">
+    <div class="modal-content">
+      <span class="modal-close" onclick="closeModal()">&times;</span>
+      <span class="modal-nav modal-prev" onclick="prevImage()">&#10094;</span>
+      <img id="modalImg" src="" alt="">
+      <div class="modal-caption" id="modalCaption"></div>
+      <span class="modal-nav modal-next" onclick="nextImage()">&#10095;</span>
     </div>
   </div>
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/glide.min.js"></script>
   <script>
     AOS.init({ duration: 800, once: true });
-
-    const main = new Glide('.main-glide', {
-      type: 'carousel',
-      perView: 1,
-      focusAt: 'center',
-    });
-
-    const thumbs = new Glide('.thumb-glide', {
-      perView: 5,
-      gap: 8,
-      focusAt: 'center',
-      breakpoints: {
-        480: { perView: 3 }
-      }
-    });
-
-    main.on('run.after', () => {
-      thumbs.go(`=${main.index}`);
-    });
-
-    thumbs.on('run.after', () => {
-      main.go(`=${thumbs.index}`);
-    });
-
-    main.mount();
-    thumbs.mount();
 
     function toggleMenu() {
       document.getElementById("menuPopup").classList.toggle("active");
     }
-
     window.addEventListener("load", () => {
       setTimeout(() => {
         document.getElementById("splash").style.display = "none";
         document.body.classList.add("loaded");
       }, 800);
     });
+
+    const images = [
+      {src: 'assets/images/IMG_4044.jpeg', date: '2025.03.13(목)', text: '조 회식! 아라횟집 맛있습니다 ㅎㅎ 가보세용 🐟'},
+      {src: 'assets/images/IMG_4369.jpeg', date: '2025.03.24(월)', text: '율전재 헬스장은 오션뷰 입니다! 🏃‍♂️'},
+      {src: 'assets/images/IMG_4383.jpeg', date: '2025.03.25(화)', text: '점심시간 다트로 커피 내기!🎯'},
+      {src: 'assets/images/group.png', date: '2025.03.26(수)', text: '성공적인 첫 조별회의 !'},
+      {src: 'assets/images/IMG_4724.jpeg', date: '2025.03.26(수)', text: 'H-int 전체 회식 보리꽃! 잘먹었습니다 😋'},
+      {src: 'assets/images/IMG_4424.jpeg', date: '2025.03.28(금)', text: '금요일은 셔틀 자리 없어요 ㅠㅠ🚍 먼저갈게~~ 성제형 미안'},
+      {src: 'assets/images/club.png', date: '2025.04.10(목)', text: '울산 HD 클럽하우스 견학 ⚽'},
+      {src: 'assets/images/net_hd_match.jpg', date: '2025.04.19(토)', text: '울산 HD 축구 직관! vs 강원fc 아쉽게 패배ㅠㅠ'},
+      {src: 'assets/images/IMG_4721.jpeg', date: '2025.04.28(화)', text: '우진이 생일축하행🎉🎉🎉'},
+      {src: 'assets/images/IMG_4722.jpeg', date: '2025.04.28(화)', text: '노래방은 꼭 가야하는 우진씌 대환장 파티 ㅋㅋㅋㅋ🎤'}
+    ];
+
+    const gallery = document.getElementById('gallery');
+    const modal = document.getElementById('imageModal');
+    const modalImg = document.getElementById('modalImg');
+    const modalCaption = document.getElementById('modalCaption');
+    let currentIndex = 0;
+
+    images.forEach((img, index) => {
+      const imgEl = document.createElement('img');
+      imgEl.src = img.src;
+      imgEl.alt = img.text;
+      imgEl.onclick = () => openModal(index);
+      gallery.appendChild(imgEl);
+    });
+
+    function openModal(index) {
+      currentIndex = index;
+      modal.style.display = 'flex';
+      updateModal();
+    }
+    function closeModal() {
+      modal.style.display = 'none';
+    }
+    function updateModal() {
+      const img = images[currentIndex];
+      modalImg.src = img.src;
+      modalCaption.innerHTML = `<strong>${img.date}</strong><br>${img.text}`;
+    }
+    function nextImage() {
+      currentIndex = (currentIndex + 1) % images.length;
+      updateModal();
+    }
+    function prevImage() {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      updateModal();
+    }
   </script>
 </body>
 </html>

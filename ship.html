@@ -257,8 +257,8 @@
 
       cards.forEach(card => {
         const rect = card.getBoundingClientRect();
-        const ratio = 1 - rect.top / windowHeight;
-        const opacity = Math.min(1, Math.max(0.4, ratio));
+        const ratio = 1.5 - rect.top / windowHeight;
+        const opacity = Math.min(1, Math.max(0.5, ratio));
         card.style.background = `rgba(255, 255, 255, ${opacity.toFixed(2)})`;
       });
     }

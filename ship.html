@@ -145,32 +145,61 @@
       margin-top: -2rem;
     }
     .ship-card {
-      width: 90%;
-      max-width: 500px;
-      background: rgba(255, 255, 255, 1);
-      border-radius: 2rem 2rem 0 0;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      margin: 0.5rem 0;
-      padding: 1.5rem;
-      position: relative;
-      animation: float 4s ease-in-out infinite;
-      transition: background 0.3s ease;
-    }
-    .ship-card::after {
-      content: "";
-      position: absolute;
-      bottom: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 60%;
-      height: 10px;
-      background: rgba(0,0,0,0.05);
-      border-radius: 50%;
-    }
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
+  width: 80%;
+  max-width: 320px;
+  margin: 2rem auto;
+  padding: 1.5rem 1.2rem;
+  background: #ffffff;
+  border-radius: 2rem 2rem 4rem 4rem;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  font-size: 1rem;
+  animation: bobbing 3s ease-in-out infinite;
+  position: relative;
+  transition: background 0.3s ease;
+}
+
+.ship-card::after {
+  content: "";
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50%;
+  height: 10px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  z-index: -1;
+}
+
+@keyframes bobbing {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.ship-card .date {
+  font-size: 0.9rem;
+  color: #888;
+  margin-bottom: 0.4rem;
+}
+
+.ship-card h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: var(--discovery-blue);
+}
+
+.ship-card p {
+  font-size: 0.95rem;
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 600px) {
+  .ship-card {
+    padding: 1rem;
+  }
+}
+
     .ship-card .date {
       font-size: 0.9rem;
       color: #888;

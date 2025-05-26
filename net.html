@@ -186,29 +186,43 @@
       top: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0,0,0,0.7);
+      background-color: rgba(0,0,0,0.85);
+      overflow: hidden;
       justify-content: center;
       align-items: center;
       flex-direction: column;
     }
 
-    #modalImage {
-      max-width: 90%;
-      max-height: 60%;
+    .modal-slider {
+      display: flex;
+      flex-direction: row;
+      transition: transform 0.3s ease;
+      width: 100%;
+      height: 60%;
+      overflow: hidden;
+    }
+
+    .modal-slider img {
+      flex-shrink: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
       border-radius: 10px;
     }
 
-    #modalCaption {
-      margin-top: 1rem;
-      font-size: 1rem;
+    #modalCaption, #modalDate {
       color: white;
       text-align: center;
+      margin-top: 1rem;
+    }
+
+    #modalCaption {
+      font-size: 1.1rem;
     }
 
     #modalDate {
-      font-size: 0.85rem;
+      font-size: 0.9rem;
       color: #ccc;
-      text-align: center;
     }
   </style>
 </head>
@@ -241,26 +255,25 @@
   <div class="subtitle" data-aos="fade-up">서로의 연결, 우리가 함께한 순간</div>
 
   <div class="gallery-grid" data-aos="fade-up">
-    <img src="assets/images/IMG_3932.jpeg" alt="사원증" onclick="openModal(this, '첫 만남! 사원증 받은 날 👔', '2025.03.04(화)')">
-    <img src="assets/images/jeong.png" alt="안전교육" onclick="openModal(this, '안전교육 받는 명수!', '2025.03.05(수)')">
-    <img src="assets/images/IMG_4723.jpeg" alt="수민" onclick="openModal(this, '안전교육 받는 수민!', '2025.03.05(수)')">
-    <img src="assets/images/IMG_4044.jpeg" alt="아라" onclick="openModal(this, '조 회식! 아라횟집 맛있습니다 🐟', '2025.03.13(목)')">
-    <img src="assets/images/IMG_4369.jpeg" alt="헬스장" onclick="openModal(this, '율전재 헬스장은 오션뷰 입니다! 🏃‍♂️', '2025.03.24(월)')">
-    <img src="assets/images/IMG_4383.jpeg" alt="다트" onclick="openModal(this, '점심시간 다트로 커피 내기!🎯', '2025.03.25(화)')">
-    <img src="assets/images/group.png" alt="조별 회의" onclick="openModal(this, '성공적인 첫 조별회의 !', '2025.03.26(수)')">
-    <img src="assets/images/IMG_4724.jpeg" alt="보리꽃" onclick="openModal(this, 'H-int 전체 회식 보리꽃! 잘먹었습니다 😋', '2025.03.26(수)')">
-    <img src="assets/images/IMG_4424.jpeg" alt="셔틀" onclick="openModal(this, '셔틀버스 놓친 성제와 건우 먼저갈게~ 🚍', '2025.03.28(금)')">
-    <img src="assets/images/club.png" alt="클럽하우스" onclick="openModal(this, '울산 HD 클럽하우스 견학 ⚽', '2025.04.10(목)')">
-    <img src="assets/images/IMG_4823.jpeg" alt="직관" onclick="openModal(this, '울산 HD 축구 직관! vs 강원fc 아쉽게 패배ㅠㅠ', '2025.04.19(토)')">
-    <img src="assets/images/IMG_4828.jpeg" alt="촬영" onclick="openModal(this, '인턴 조별과제 인트로 촬영', '2025.04.24(목)')">
-    <img src="assets/images/IMG_4721.jpeg" alt="우생" onclick="openModal(this, '우진이 생일파티 🎉', '2025.04.28(화)')">
-    <img src="assets/images/IMG_4722.jpeg" alt="노래방" onclick="openModal(this, '노래방 꼭 가야하는 우진이 🎤', '2025.04.28(화)')">
-    <img src="assets/images/IMG_4822.jpeg" alt="치킨" onclick="openModal(this, '조별과제 회의 후 치킨 먹방 🍗', '2025.05.08(목)')">
-
+    <img src="assets/images/IMG_3932.jpeg" alt="사원증 받은 날 👔" data-date="2025.03.04(화)" onclick="openModal(this, this.alt, this.dataset.date)">
+    <img src="assets/images/jeong.png" alt="안전교육 받는 명수!" data-date="2025.03.05(수)" onclick="openModal(this, this.alt, this.dataset.date)">
+    <img src="assets/images/IMG_4723.jpeg" alt="안전교육 받는 수민!" data-date="2025.03.05(수)" onclick="openModal(this, this.alt, this.dataset.date)">
+    <img src="assets/images/IMG_4044.jpeg" alt="조 회식! 아라횟집 맛있습니다 🐟" data-date="2025.03.13(목)" onclick="openModal(this, this.alt, this.dataset.date)">
+    <img src="assets/images/IMG_4369.jpeg" alt="율전재 헬스장은 오션뷰 입니다! 🏃‍♂️" data-date="2025.03.24(월)" onclick="openModal(this, this.alt, this.dataset.date)">
+    <img src="assets/images/IMG_4383.jpeg" alt="점심시간 다트로 커피 내기!🎯" data-date="2025.03.25(화)" onclick="openModal(this, this.alt, this.dataset.date)">
+    <img src="assets/images/group.png" alt="성공적인 첫 조별회의 !" data-date="2025.03.26(수)" onclick="openModal(this, this.alt, this.dataset.date)">
+    <img src="assets/images/IMG_4724.jpeg" alt="H-int 전체 회식 보리꽃! 잘먹었습니다 😋" data-date="2025.03.26(수)" onclick="openModal(this, this.alt, this.dataset.date)">
+    <img src="assets/images/IMG_4424.jpeg" alt="셔틀버스 놓친 성제와 건우 먼저갈게~ 🚍" data-date="2025.03.28(금)" onclick="openModal(this, this.alt, this.dataset.date)">
+    <img src="assets/images/club.png" alt="울산 HD 클럽하우스 견학 ⚽" data-date="2025.04.10(목)" onclick="openModal(this, this.alt, this.dataset.date)">
+    <img src="assets/images/IMG_4823.jpeg" alt="울산 HD 축구 직관! vs 강원fc 아쉽게 패배ㅠㅠ" data-date="2025.04.19(토)" onclick="openModal(this, this.alt, this.dataset.date)">
+    <img src="assets/images/IMG_4828.jpeg" alt="인턴 조별과제 인트로 촬영" data-date="2025.04.24(목)" onclick="openModal(this, this.alt, this.dataset.date)">
+    <img src="assets/images/IMG_4721.jpeg" alt="우진이 생일파티 🎉" data-date="2025.04.28(화)" onclick="openModal(this, this.alt, this.dataset.date)">
+    <img src="assets/images/IMG_4722.jpeg" alt="노래방 꼭 가야하는 우진이 🎤" data-date="2025.04.28(화)" onclick="openModal(this, this.alt, this.dataset.date)">
+    <img src="assets/images/IMG_4822.jpeg" alt="조별과제 회의 후 치킨 먹방 🍗" data-date="2025.05.08(목)" onclick="openModal(this, this.alt, this.dataset.date)">
   </div>
 
   <div id="imageModal" onclick="closeModal()">
-    <img id="modalImage" src="" alt="모달 이미지">
+    <div id="modalSlider" class="modal-slider" onclick="event.stopPropagation()"></div>
     <div id="modalCaption"></div>
     <div id="modalDate"></div>
   </div>
@@ -269,19 +282,63 @@
   <script>
     AOS.init({ duration: 800, once: true });
 
+    const galleryImages = Array.from(document.querySelectorAll('.gallery-grid img'));
+    let currentIndex = 0;
+    let touchStartX = 0;
+    let touchEndX = 0;
+
     function toggleMenu() {
       document.getElementById("menuPopup").classList.toggle("active");
     }
 
     function openModal(img, caption, date) {
-      document.getElementById("modalImage").src = img.src;
-      document.getElementById("modalCaption").innerText = caption;
-      document.getElementById("modalDate").innerText = date;
+      currentIndex = galleryImages.indexOf(img);
       document.getElementById("imageModal").style.display = "flex";
+      document.body.style.overflow = "hidden";
+
+      const slider = document.getElementById("modalSlider");
+      slider.innerHTML = '';
+
+      galleryImages.forEach((imgEl) => {
+        const slideImg = document.createElement("img");
+        slideImg.src = imgEl.src;
+        slider.appendChild(slideImg);
+      });
+
+      updateSlider();
     }
 
     function closeModal() {
       document.getElementById("imageModal").style.display = "none";
+      document.body.style.overflow = "auto";
+    }
+
+    function updateSlider() {
+      const slider = document.getElementById("modalSlider");
+      slider.style.transform = `translateX(-${currentIndex * 100}%)`;
+      const currentImg = galleryImages[currentIndex];
+      document.getElementById("modalCaption").innerText = currentImg.alt;
+      document.getElementById("modalDate").innerText = currentImg.dataset.date || '';
+    }
+
+    document.getElementById("modalSlider").addEventListener("touchstart", (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    });
+
+    document.getElementById("modalSlider").addEventListener("touchend", (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    });
+
+    function handleSwipe() {
+      const threshold = 50;
+      if (touchEndX < touchStartX - threshold && currentIndex < galleryImages.length - 1) {
+        currentIndex++;
+        updateSlider();
+      } else if (touchEndX > touchStartX + threshold && currentIndex > 0) {
+        currentIndex--;
+        updateSlider();
+      }
     }
 
     window.addEventListener("load", () => {

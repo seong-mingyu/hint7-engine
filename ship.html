@@ -154,9 +154,21 @@
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
   text-align: center;
   font-size: 1rem;
-  animation: bobbing 3s ease-in-out infinite;
   position: relative;
-  transition: background 0.3s ease;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+  opacity: 0;
+  transform: translateX(-50%) scale(0.95);
+  animation: float-wobble 3s ease-in-out infinite;
+}
+
+.ship-card.visible {
+  opacity: 1;
+  transform: translateX(0) scale(1);
+}
+
+.ship-card.exiting {
+  opacity: 0;
+  transform: translateX(50%) scale(0.95);
 }
 
 .ship-card::after {
@@ -172,9 +184,11 @@
   z-index: -1;
 }
 
-@keyframes bobbing {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
+@keyframes float-wobble {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-3px) rotate(-1deg); }
+  50% { transform: translateY(-6px) rotate(1deg); }
+  75% { transform: translateY(-3px) rotate(-1deg); }
 }
 
 .ship-card .date {
@@ -199,24 +213,6 @@
     padding: 1rem;
   }
 }
-
-    .ship-card .date {
-      font-size: 0.9rem;
-      color: #888;
-      margin-bottom: 0.4rem;
-    }
-    .ship-card h3 {
-      margin: 0;
-      font-size: 1.2rem;
-      color: var(--discovery-blue);
-    }
-    .ship-card p {
-      font-size: 0.95rem;
-      margin-top: 0.5rem;
-    }
-    @media (max-width: 600px) {
-      .ship-card { padding: 1rem; }
-    }
   </style>
 </head>
 <body>
@@ -274,32 +270,51 @@
   </div>
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>
-    AOS.init({ duration: 800, once: true });
-    function toggleMenu() {
-      document.getElementById("menuPopup").classList.toggle("active");
-    }
+<script>
+  AOS.init({ duration: 800, once: true });
 
-    function updateCardOpacity() {
-      const cards = document.querySelectorAll(".ship-card");
-      const windowHeight = window.innerHeight;
+  function toggleMenu() {
+    document.getElementById("menuPopup").classList.toggle("active");
+  }
 
-      cards.forEach(card => {
-        const rect = card.getBoundingClientRect();
-        const ratio = 1.5 - rect.top / windowHeight;
-        const opacity = Math.min(1, Math.max(0.5, ratio));
-        card.style.background = `rgba(255, 255, 255, ${opacity.toFixed(2)})`;
-      });
-    }
+  // 카드가 화면에 있을 때만 투명도 조절
+  function updateCardOpacity() {
+    const cards = document.querySelectorAll(".ship-card.visible");
+    const windowHeight = window.innerHeight;
 
-    window.addEventListener("scroll", updateCardOpacity);
-    window.addEventListener("load", () => {
-      setTimeout(() => {
-        document.getElementById("splash").style.display = "none";
-        document.body.classList.add("loaded");
-        updateCardOpacity(); // 초기에도 적용
-      }, 800);
+    cards.forEach(card => {
+      const rect = card.getBoundingClientRect();
+      const ratio = 1.5 - rect.top / windowHeight;
+      const opacity = Math.min(1, Math.max(0.5, ratio));
+      card.style.background = `rgba(255, 255, 255, ${opacity.toFixed(2)})`;
     });
-  </script>
+  }
+
+  // 카드 등장/퇴장 제어
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        entry.target.classList.remove("exiting");
+      } else {
+        entry.target.classList.remove("visible");
+        entry.target.classList.add("exiting");
+      }
+    });
+    updateCardOpacity(); // intersection 변화가 있을 때도 투명도 갱신
+  }, { threshold: 0.3 });
+
+  document.querySelectorAll(".ship-card").forEach(card => observer.observe(card));
+
+  window.addEventListener("scroll", updateCardOpacity);
+  window.addEventListener("load", () => {
+    setTimeout(() => {
+      document.getElementById("splash").style.display = "none";
+      document.body.classList.add("loaded");
+      updateCardOpacity(); // 초기 1회 적용
+    }, 800);
+  });
+</script>
+
 </body>
 </html>

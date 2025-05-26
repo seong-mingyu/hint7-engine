@@ -6,6 +6,7 @@
   <title>Intern Net - H-int</title>
   <link rel="icon" href="assets/images/logo.png" type="image/png">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/css/glide.core.min.css">
 
   <style>
     @font-face {
@@ -29,10 +30,11 @@
       margin: 0;
       background-color: var(--bg-light);
       color: var(--gray-text);
+      overflow-x: hidden;
       opacity: 0;
       transition: opacity 0.6s ease-in-out;
-      overflow-x: hidden;
     }
+
     body.loaded {
       opacity: 1;
     }
@@ -74,9 +76,7 @@
       z-index: 1000;
     }
 
-    .navbar img {
-      height: 32px;
-    }
+    .navbar img { height: 32px; }
 
     .navbar-title {
       font-size: 1.5rem;
@@ -91,14 +91,9 @@
       color: inherit;
     }
 
-    .navbar-title .hd {
-      color: var(--discovery-blue);
-    }
+    .navbar-title .hd { color: var(--discovery-blue); }
 
-    .menu-icon {
-      font-size: 1.5rem;
-      cursor: pointer;
-    }
+    .menu-icon { font-size: 1.5rem; cursor: pointer; }
 
     .menu-popup {
       position: absolute;
@@ -122,27 +117,6 @@
       transform: translateY(0);
     }
 
-    .menu-popup ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .menu-popup li {
-      margin: 0.5rem 0;
-    }
-
-    .menu-popup a {
-      text-decoration: none;
-      color: var(--gray-text);
-      font-size: 0.95rem;
-      transition: color 0.2s;
-    }
-
-    .menu-popup a:hover {
-      color: var(--discovery-blue);
-    }
-
     .page-title {
       text-align: center;
       margin: 2rem 1rem 0.5rem;
@@ -155,60 +129,59 @@
       text-align: center;
       font-size: 1rem;
       color: var(--gray-text);
-      margin-bottom: 2rem;
+      margin-bottom: 1rem;
     }
 
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 6px;
-      padding: 0 6px 60px;
+    .glide__slide {
+      position: relative;
+      text-align: center;
+      transition: all 0.4s ease;
     }
 
-    .gallery-grid img {
+    .main-glide .glide__slide img {
       width: 100%;
-      aspect-ratio: 1/1;
+      max-width: 400px;
+      max-height: 50vh;
+      object-fit: contain;
+    }
+
+    .caption-date {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(0,0,0,0.5);
+      color: #fff;
+      font-size: 0.75rem;
+      padding: 4px 8px;
+      border-radius: 6px;
+    }
+
+    .caption-box {
+      margin-top: 0.5rem;
+    }
+
+    .caption-text {
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: #333;
+    }
+
+    .thumb-glide .glide__slide img {
+      width: 60px;
+      height: 60px;
       object-fit: cover;
       border-radius: 6px;
-      cursor: pointer;
-      transition: transform 0.2s ease;
+      opacity: 0.6;
+      transition: all 0.3s ease;
     }
 
-    .gallery-grid img:hover {
-      transform: scale(1.03);
+    .thumb-glide .glide__slide--active img {
+      opacity: 1;
+      border: 2px solid var(--discovery-blue);
     }
 
-    #imageModal {
-      display: none;
-      position: fixed;
-      z-index: 2000;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0,0,0,0.7);
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-    }
-
-    #modalImage {
-      max-width: 90%;
-      max-height: 60%;
-      border-radius: 10px;
-    }
-
-    #modalCaption {
+    .thumb-glide {
       margin-top: 1rem;
-      font-size: 1rem;
-      color: white;
-      text-align: center;
-    }
-
-    #modalDate {
-      font-size: 0.85rem;
-      color: #ccc;
-      text-align: center;
     }
   </style>
 </head>
@@ -221,7 +194,9 @@
   <div class="navbar">
     <img src="assets/images/logo.png" alt="HD현대중공업 로고">
     <div class="navbar-title">
-      <a href="index.html"><span class="hd">H</span>int <span class="hd">D</span>ream</a>
+      <a href="index.html">
+        <span class="hd">H</span>int <span class="hd">D</span>ream
+      </a>
     </div>
     <div class="menu-icon" onclick="toggleMenu()">☰</div>
     <div class="menu-popup" id="menuPopup">
@@ -236,49 +211,119 @@
   </div>
 
   <div class="page-title" data-aos="fade-down">Intern Net</div>
-  <div class="subtitle" data-aos="fade-up">서로의 연결, 우리가 함께한 순간</div>
+  <div class="subtitle" data-aos="fade-up">우리의 네트워킹, 우리가 함께한 순간</div>
 
-  <div class="gallery-grid" data-aos="fade-up">
-    <img src="assets/images/IMG_3932.jpeg" alt="첫 만남! 사원증 받은 날 👔" data-date="2025.03.04(화)" onclick="openModal(this)">
-    <img src="assets/images/jeong.png" alt="안전교육 받는 명수!" data-date="2025.03.05(수)" onclick="openModal(this)">
-    <img src="assets/images/IMG_4723.jpeg" alt="안전교육 받는 수민!" data-date="2025.03.05(수)" onclick="openModal(this)">
-    <img src="assets/images/IMG_4044.jpeg" alt="조 회식! 아라횟집 맛있습니다 🐟" data-date="2025.03.13(목)" onclick="openModal(this)">
-    <img src="assets/images/IMG_4369.jpeg" alt="율전재 헬스장은 오션뷰 입니다! 🏃‍♂️" data-date="2025.03.24(월)" onclick="openModal(this)">
-    <img src="assets/images/IMG_4383.jpeg" alt="점심시간 다트로 커피 내기!🎯" data-date="2025.03.25(화)" onclick="openModal(this)">
-    <img src="assets/images/group.png" alt="성공적인 첫 조별회의 !" data-date="2025.03.26(수)" onclick="openModal(this)">
-    <img src="assets/images/IMG_4724.jpeg" alt="H-int 전체 회식 보리꽃! 잘먹었습니다 😋" data-date="2025.03.26(수)" onclick="openModal(this)">
-    <img src="assets/images/IMG_4424.jpeg" alt="셔틀버스 놓친 성제와 건우 먼저갈게~ 🚍" data-date="2025.03.28(금)" onclick="openModal(this)">
-    <img src="assets/images/club.png" alt="울산 HD 클럽하우스 견학 ⚽" data-date="2025.04.10(목)" onclick="openModal(this)">
-    <img src="assets/images/IMG_4823.jpeg" alt="울산 HD 축구 직관! vs 강원fc 아쉽게 패배ㅠㅠ" data-date="2025.04.19(토)" onclick="openModal(this)">
-    <img src="assets/images/IMG_4828.jpeg" alt="인턴 조별과제 인트로 촬영" data-date="2025.04.24(목)" onclick="openModal(this)">
-    <img src="assets/images/IMG_4721.jpeg" alt="우진이 생일파티 🎉" data-date="2025.04.28(화)" onclick="openModal(this)">
-    <img src="assets/images/IMG_4722.jpeg" alt="노래방 꼭 가야하는 우진이 🎤" data-date="2025.04.28(화)" onclick="openModal(this)">
-    <img src="assets/images/IMG_4822.jpeg" alt="조별과제 회의 후 치킨 먹방 🍗" data-date="2025.05.08(목)" onclick="openModal(this)">
+  <!-- 메인 슬라이더 -->
+  <div class="glide main-glide" data-aos="fade-up">
+    <div class="glide__track" data-glide-el="track">
+      <ul class="glide__slides">
+        <li class="glide__slide">
+  <img src="assets/images/IMG_4044.jpeg" alt="">
+  <div class="caption-date">2025.03.13(목)</div>
+  <div class="caption-box"><div class="caption-text">조 회식! 아라횟집 맛있습니다 ㅎㅎ 가보세용 🐟</div></div>
+</li>
+<li class="glide__slide">
+  <img src="assets/images/IMG_4369.jpeg" alt="">
+  <div class="caption-date">2025.03.24(월)</div>
+  <div class="caption-box"><div class="caption-text">율전재 헬스장은 오션뷰 입니다! 🏃‍♂️</div></div>
+</li>
+<li class="glide__slide">
+  <img src="assets/images/IMG_4383.jpeg" alt="">
+  <div class="caption-date">2025.03.25(화)</div>
+  <div class="caption-box"><div class="caption-text">점심시간 다트로 커피 내기!🎯</div></div>
+</li>
+<li class="glide__slide">
+  <img src="assets/images/group.png" alt="">
+  <div class="caption-date">2025.03.26(수)</div>
+  <div class="caption-box"><div class="caption-text">성공적인 첫 조별회의 !</div></div>
+</li>
+<li class="glide__slide">
+  <img src="assets/images/IMG_4724.jpeg" alt="">
+  <div class="caption-date">2025.03.26(수)</div>
+  <div class="caption-box"><div class="caption-text">H-int 전체 회식 보리꽃! 잘먹었습니다 😋</div></div>
+</li>
+<li class="glide__slide">
+  <img src="assets/images/IMG_4424.jpeg" alt="">
+  <div class="caption-date">2025.03.28(금)</div>
+  <div class="caption-box"><div class="caption-text">금요일은 셔틀 자리 없어요 ㅠㅠ🚍 먼저갈게~~ 성제형 미안</div></div>
+</li>
+<li class="glide__slide">
+  <img src="assets/images/club.png" alt="">
+  <div class="caption-date">2025.04.10(목)</div>
+  <div class="caption-box"><div class="caption-text">울산 HD 클럽하우스 견학 ⚽</div></div>
+</li>
+<li class="glide__slide">
+  <img src="assets/images/net_hd_match.jpg" alt="">
+  <div class="caption-date">2025.04.19(토)</div>
+  <div class="caption-box"><div class="caption-text">울산 HD 축구 직관! vs 강원fc 아쉽게 패배ㅠㅠ</div></div>
+</li>
+<li class="glide__slide">
+  <img src="assets/images/IMG_4721.jpeg" alt="">
+  <div class="caption-date">2025.04.28(화)</div>
+  <div class="caption-box"><div class="caption-text">우진이 생일축하행🎉🎉🎉</div></div>
+</li>
+<li class="glide__slide">
+  <img src="assets/images/IMG_4722.jpeg" alt="">
+  <div class="caption-date">2025.04.28(화)</div>
+  <div class="caption-box"><div class="caption-text">노래방은 꼭 가야하는 우진씌 대환장 파티 ㅋㅋㅋㅋ🎤</div></div>
+</li>
+
+      </ul>
+    </div>
   </div>
 
-  <div id="imageModal" onclick="closeModal()">
-    <img id="modalImage" src="" alt="모달 이미지">
-    <div id="modalCaption"></div>
-    <div id="modalDate"></div>
+  <!-- 썸네일 슬라이더 -->
+  <div class="glide thumb-glide">
+    <div class="glide__track" data-glide-el="track">
+      <ul class="glide__slides">
+        <li class="glide__slide"><img src="assets/images/IMG_4044.jpeg" alt=""></li>
+<li class="glide__slide"><img src="assets/images/IMG_4369.jpeg" alt=""></li>
+<li class="glide__slide"><img src="assets/images/IMG_4383.jpeg" alt=""></li>
+<li class="glide__slide"><img src="assets/images/group.png" alt=""></li>
+<li class="glide__slide"><img src="assets/images/IMG_4724.jpeg" alt=""></li>
+<li class="glide__slide"><img src="assets/images/IMG_4424.jpeg" alt=""></li>
+<li class="glide__slide"><img src="assets/images/club.png" alt=""></li>
+<li class="glide__slide"><img src="assets/images/net_hd_match.jpg" alt=""></li>
+<li class="glide__slide"><img src="assets/images/IMG_4721.jpeg" alt=""></li>
+<li class="glide__slide"><img src="assets/images/IMG_4722.jpeg" alt=""></li>
+
+      </ul>
+    </div>
   </div>
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@glidejs/glide/dist/glide.min.js"></script>
   <script>
     AOS.init({ duration: 800, once: true });
 
+    const main = new Glide('.main-glide', {
+      type: 'carousel',
+      perView: 1,
+      focusAt: 'center',
+    });
+
+    const thumbs = new Glide('.thumb-glide', {
+      perView: 5,
+      gap: 8,
+      focusAt: 'center',
+      breakpoints: {
+        480: { perView: 3 }
+      }
+    });
+
+    main.on('run.after', () => {
+      thumbs.go(`=${main.index}`);
+    });
+
+    thumbs.on('run.after', () => {
+      main.go(`=${thumbs.index}`);
+    });
+
+    main.mount();
+    thumbs.mount();
+
     function toggleMenu() {
       document.getElementById("menuPopup").classList.toggle("active");
-    }
-
-    function openModal(img, caption, date) {
-      document.getElementById("modalImage").src = img.src;
-      document.getElementById("modalCaption").innerText = caption;
-      document.getElementById("modalDate").innerText = date;
-      document.getElementById("imageModal").style.display = "flex";
-    }
-
-    function closeModal() {
-      document.getElementById("imageModal").style.display = "none";
     }
 
     window.addEventListener("load", () => {

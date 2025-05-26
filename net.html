@@ -1,4 +1,4 @@
-<!-- net.html - 이미지 부분 전체 수정 + 기존 메뉴/상단바 유지 -->
+<!-- net.html - 모달 개선 버전 -->
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -76,12 +76,12 @@
     }
     .gallery {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
       gap: 10px;
       padding: 1rem;
     }
     .gallery img {
-      width: 100%; height: auto; aspect-ratio: 1 / 1;
+      width: 100%; aspect-ratio: auto;
       object-fit: cover;
       border-radius: 8px;
       cursor: pointer;
@@ -97,22 +97,27 @@
       z-index: 5000; display: none;
     }
     .modal-content {
-      max-width: 90%; max-height: 80%; position: relative;
-      text-align: center; color: white;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      max-width: 90vw;
     }
-    .modal-content img {
-      width: auto; height: 60vh; max-width: 100%; border-radius: 10px;
+    .modal-image-wrapper {
+      scroll-snap-align: center;
+      flex: 0 0 100%;
+      text-align: center;
     }
-    .modal-caption { margin-top: 1rem; font-size: 1rem; }
-    .modal-nav {
-      position: absolute; top: 50%; transform: translateY(-50%);
-      font-size: 2rem; cursor: pointer; color: white; user-select: none;
+    .modal-image-wrapper img {
+      max-height: 70vh;
+      max-width: 100%;
+      border-radius: 10px;
     }
-    .modal-prev { left: -2rem; }
-    .modal-next { right: -2rem; }
-    .modal-close {
-      position: absolute; top: 10px; right: 20px; font-size: 2rem;
-      color: white; cursor: pointer;
+    .modal-caption {
+      margin-top: 1rem;
+      font-size: 1rem;
+      color: white;
     }
   </style>
 </head>
@@ -143,20 +148,13 @@
   <div class="subtitle" data-aos="fade-up">우리의 네트워킹, 우리가 함께한 순간</div>
 
   <div class="gallery" id="gallery"></div>
-  <div class="modal" id="imageModal">
-    <div class="modal-content">
-      <span class="modal-close" onclick="closeModal()">&times;</span>
-      <span class="modal-nav modal-prev" onclick="prevImage()">&#10094;</span>
-      <img id="modalImg" src="" alt="">
-      <div class="modal-caption" id="modalCaption"></div>
-      <span class="modal-nav modal-next" onclick="nextImage()">&#10095;</span>
-    </div>
+  <div class="modal" id="imageModal" onclick="closeModal(event)">
+    <div class="modal-content" id="modalContent"></div>
   </div>
 
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
     AOS.init({ duration: 800, once: true });
-
     function toggleMenu() {
       document.getElementById("menuPopup").classList.toggle("active");
     }
@@ -182,9 +180,7 @@
 
     const gallery = document.getElementById('gallery');
     const modal = document.getElementById('imageModal');
-    const modalImg = document.getElementById('modalImg');
-    const modalCaption = document.getElementById('modalCaption');
-    let currentIndex = 0;
+    const modalContent = document.getElementById('modalContent');
 
     images.forEach((img, index) => {
       const imgEl = document.createElement('img');
@@ -195,25 +191,25 @@
     });
 
     function openModal(index) {
-      currentIndex = index;
+      modalContent.innerHTML = '';
+      images.forEach((img, i) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'modal-image-wrapper';
+        const image = document.createElement('img');
+        image.src = img.src;
+        const caption = document.createElement('div');
+        caption.className = 'modal-caption';
+        caption.innerHTML = `<strong>${img.date}</strong><br>${img.text}`;
+        wrapper.appendChild(image);
+        wrapper.appendChild(caption);
+        modalContent.appendChild(wrapper);
+      });
+      modalContent.scrollLeft = modalContent.clientWidth * index;
       modal.style.display = 'flex';
-      updateModal();
     }
-    function closeModal() {
-      modal.style.display = 'none';
-    }
-    function updateModal() {
-      const img = images[currentIndex];
-      modalImg.src = img.src;
-      modalCaption.innerHTML = `<strong>${img.date}</strong><br>${img.text}`;
-    }
-    function nextImage() {
-      currentIndex = (currentIndex + 1) % images.length;
-      updateModal();
-    }
-    function prevImage() {
-      currentIndex = (currentIndex - 1 + images.length) % images.length;
-      updateModal();
+
+    function closeModal(e) {
+      if (e.target === modal) modal.style.display = 'none';
     }
   </script>
 </body>

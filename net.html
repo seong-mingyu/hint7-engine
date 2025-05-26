@@ -6,6 +6,7 @@
   <title>Intern Net - H-int</title>
   <link rel="icon" href="assets/images/logo.png" type="image/png">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
   <style>
     @font-face {
       font-family: 'HDHyundaiLight';
@@ -159,7 +160,7 @@
 
     .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 6px;
       padding: 0 6px 60px;
     }
@@ -185,41 +186,29 @@
       top: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0,0,0,0.85);
-      overflow: hidden;
+      background-color: rgba(0,0,0,0.7);
       justify-content: center;
       align-items: center;
       flex-direction: column;
     }
 
-    .modal-slider {
-      display: flex;
-      transition: transform 0.3s ease;
-      width: 100%;
-      height: 60%;
-    }
-
-    .modal-slider img {
-      flex-shrink: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
+    #modalImage {
+      max-width: 90%;
+      max-height: 60%;
       border-radius: 10px;
     }
 
-    #modalCaption, #modalDate {
+    #modalCaption {
+      margin-top: 1rem;
+      font-size: 1rem;
       color: white;
       text-align: center;
-      margin-top: 1rem;
-    }
-
-    #modalCaption {
-      font-size: 1.1rem;
     }
 
     #modalDate {
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       color: #ccc;
+      text-align: center;
     }
   </style>
 </head>
@@ -268,7 +257,7 @@
   </div>
 
   <div id="imageModal" onclick="closeModal()">
-    <div id="modalSlider" class="modal-slider"></div>
+    <img id="modalImage" src="" alt="모달 이미지">
     <div id="modalCaption"></div>
     <div id="modalDate"></div>
   </div>
@@ -277,60 +266,20 @@
   <script>
     AOS.init({ duration: 800, once: true });
 
-    const galleryImages = Array.from(document.querySelectorAll('.gallery-grid img'));
-    let currentIndex = 0;
-
     function toggleMenu() {
       document.getElementById("menuPopup").classList.toggle("active");
     }
 
-    function openModal(img) {
-      currentIndex = galleryImages.indexOf(img);
-      const modal = document.getElementById("imageModal");
-      const slider = document.getElementById("modalSlider");
-      slider.innerHTML = "";
-
-      galleryImages.forEach(image => {
-        const slideImg = document.createElement("img");
-        slideImg.src = image.src;
-        slider.appendChild(slideImg);
-      });
-
-      updateSlider();
-      modal.style.display = "flex";
-      document.body.style.overflow = "hidden";
+    function openModal(img, caption, date) {
+      document.getElementById("modalImage").src = img.src;
+      document.getElementById("modalCaption").innerText = caption;
+      document.getElementById("modalDate").innerText = date;
+      document.getElementById("imageModal").style.display = "flex";
     }
 
     function closeModal() {
       document.getElementById("imageModal").style.display = "none";
-      document.body.style.overflow = "auto";
     }
-
-    function updateSlider() {
-      const slider = document.getElementById("modalSlider");
-      slider.style.transform = `translateX(-${currentIndex * 100}%)`;
-      document.getElementById("modalCaption").innerText = galleryImages[currentIndex].alt;
-      document.getElementById("modalDate").innerText = galleryImages[currentIndex].dataset.date || '';
-    }
-
-    let startX = 0;
-
-    document.getElementById("modalSlider").addEventListener("touchstart", e => {
-      startX = e.touches[0].clientX;
-    });
-
-    document.getElementById("modalSlider").addEventListener("touchend", e => {
-      const endX = e.changedTouches[0].clientX;
-      const diff = endX - startX;
-
-      if (diff > 50 && currentIndex > 0) {
-        currentIndex--;
-        updateSlider();
-      } else if (diff < -50 && currentIndex < galleryImages.length - 1) {
-        currentIndex++;
-        updateSlider();
-      }
-    });
 
     window.addEventListener("load", () => {
       setTimeout(() => {

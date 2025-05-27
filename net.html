@@ -163,11 +163,12 @@
     }
 
     .gallery {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-      padding: 1rem;
-    }
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);  /* 무조건 3열 */
+  gap: 1.5rem;
+  padding: 1rem;
+}
+
 
     .image-card {
       overflow: hidden;
@@ -195,17 +196,12 @@
       transform: scale(1.05);
     }
 
-    @media (max-width: 768px) {
-      .gallery {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (max-width: 480px) {
-      .gallery {
-        grid-template-columns: 1fr;
-      }
-    }
+    @media (max-width: 768px),
+@media (max-width: 480px) {
+  .gallery {
+    grid-template-columns: repeat(3, 1fr);  /* 여전히 3열 유지 */
+  }
+}
 
     .modal {
       display: none;

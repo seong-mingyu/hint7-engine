@@ -20,7 +20,7 @@
       --discovery-blue: #003087;
       --prosperity-green: #008233;
       --gray-text: #63666A;
-      --bg-light: #f9f9f9;
+      --bg-light: #FFF5EC;
     }
 
     body {
@@ -47,19 +47,16 @@
       align-items: center;
       animation: fadeSplash 0.8s ease forwards;
     }
-
     #splash img {
       width: 60px;
       height: auto;
       margin-bottom: 1rem;
     }
-
     .splash-text {
       font-family: 'HDHyundaiBold';
       font-size: 1.5rem;
       color: #003087;
     }
-
     @keyframes fadeSplash {
       0% { opacity: 1; }
       99% { opacity: 0; }
@@ -77,11 +74,9 @@
       top: 0;
       z-index: 1000;
     }
-
     .navbar img {
       height: 32px;
     }
-
     .navbar-title {
       font-size: 1.5rem;
       font-family: 'HDHyundaiBold';
@@ -89,21 +84,17 @@
       left: 50%;
       transform: translateX(-50%);
     }
-
     .navbar-title a {
       text-decoration: none;
       color: inherit;
     }
-
     .navbar-title .hd {
       color: var(--discovery-blue);
     }
-
     .menu-icon {
       font-size: 1.5rem;
       cursor: pointer;
     }
-
     .menu-popup {
       position: absolute;
       top: 64px;
@@ -119,30 +110,25 @@
       transform: translateY(-10px);
       transition: all 0.3s ease;
     }
-
     .menu-popup.active {
       opacity: 1;
       pointer-events: auto;
       transform: translateY(0);
     }
-
     .menu-popup ul {
       list-style: none;
       padding: 0;
       margin: 0;
     }
-
     .menu-popup li {
       margin: 0.5rem 0;
     }
-
     .menu-popup a {
       text-decoration: none;
       color: var(--gray-text);
       font-size: 0.95rem;
       transition: color 0.2s;
     }
-
     .menu-popup a:hover {
       color: var(--discovery-blue);
     }
@@ -163,19 +149,20 @@
     }
 
     .gallery {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);  /* 무조건 3열 */
-  gap: 1.5rem;
-  padding: 1rem;
-}
-
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.3rem;
+      padding: 0.5rem 0.3rem;
+    }
 
     .image-card {
+      background: none;
       overflow: hidden;
       border-radius: 16px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
       cursor: pointer;
+      line-height: 0;
+      display: block;
     }
 
     .image-card img {
@@ -196,12 +183,11 @@
       transform: scale(1.05);
     }
 
-    @media (max-width: 768px),
-@media (max-width: 480px) {
-  .gallery {
-    grid-template-columns: repeat(3, 1fr);  /* 여전히 3열 유지 */
-  }
-}
+    @media (max-width: 768px), @media (max-width: 480px) {
+      .gallery {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
 
     .modal {
       display: none;
@@ -275,9 +261,7 @@
   <div class="navbar">
     <img src="assets/images/logo.png" alt="HD현대중공업 로고">
     <div class="navbar-title">
-      <a href="index.html">
-        <span class="hd">H</span>int <span class="hd">D</span>ream
-      </a>
+      <a href="index.html"><span class="hd">H</span>int <span class="hd">D</span>ream</a>
     </div>
     <div class="menu-icon" onclick="toggleMenu()">☰</div>
     <div class="menu-popup" id="menuPopup">

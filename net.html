@@ -164,13 +164,12 @@
 
     .gallery {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 1.5rem;
       padding: 1rem;
     }
 
     .image-card {
-      position: relative;
       overflow: hidden;
       border-radius: 16px;
       box-shadow: 0 6px 18px rgba(0,0,0,0.08);
@@ -180,7 +179,7 @@
 
     .image-card img {
       width: 100%;
-      height: 100%;
+      height: auto;
       aspect-ratio: 4 / 3;
       object-fit: cover;
       display: block;
@@ -194,19 +193,6 @@
 
     .image-card:hover img {
       transform: scale(1.05);
-    }
-
-    .caption {
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      padding: 0.6rem 0;
-      background: rgba(255, 255, 255, 0.5);
-      backdrop-filter: blur(8px);
-      text-align: center;
-      font-size: 0.9rem;
-      font-weight: bold;
-      color: #003087;
     }
 
     @media (max-width: 768px) {
@@ -229,38 +215,38 @@
       top: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0,0,0,0.7);
+      background-color: rgba(0,0,0,0.9);
       justify-content: center;
       align-items: center;
+      flex-direction: column;
     }
 
     .modal-content {
-      background-color: white;
-      padding: 1.2rem;
-      border-radius: 16px;
-      max-width: 92%;
-      max-height: 90%;
+      background: none;
+      padding: 0;
+      border-radius: 0;
       text-align: center;
       animation: zoomIn 0.3s ease-in-out;
     }
 
     .modal-content img {
-      max-width: 100%;
-      max-height: 60vh;
+      max-width: 90%;
+      max-height: 70vh;
       border-radius: 12px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+      box-shadow: 0 0 12px rgba(255,255,255,0.3);
     }
 
     .modal-caption {
       margin-top: 1rem;
       font-size: 1rem;
       font-weight: 500;
+      color: white;
     }
 
     .modal-date {
       margin-top: 0.4rem;
       font-size: 0.85rem;
-      color: #999;
+      color: #ccc;
     }
 
     .close {
@@ -315,23 +301,18 @@
   <div class="gallery" data-aos="fade-up">
     <div class="image-card" onclick="openModal(this.querySelector('img'), '첫 만남! 사원증 받은 날 국룰~ 👔', '2025.03.04(화)')">
       <img src="assets/images/IMG_3932.jpeg" alt="사원증">
-      <div class="caption">사원증 받은 날</div>
     </div>
     <div class="image-card" onclick="openModal(this.querySelector('img'), '안전체험장에서 고소작업 안전교육 받는 명수 !', '2025.03.05(수)')">
       <img src="assets/images/jeong.png" alt="안전 교육">
-      <div class="caption">안전 교육</div>
     </div>
     <div class="image-card" onclick="openModal(this.querySelector('img'), '스크린야구', '2025.01.21')">
       <img src="assets/images/net_screenbaseball.jpg" alt="스크린야구">
-      <div class="caption">스크린야구</div>
     </div>
     <div class="image-card" onclick="openModal(this.querySelector('img'), '봄날의 꽃놀이', '2025.01.23')">
       <img src="assets/images/net_flower.jpg" alt="꽃놀이">
-      <div class="caption">꽃놀이</div>
     </div>
     <div class="image-card" onclick="openModal(this.querySelector('img'), '바닷가 드라이브', '2025.01.23')">
       <img src="assets/images/net_drive.jpg" alt="드라이브">
-      <div class="caption">드라이브</div>
     </div>
   </div>
 

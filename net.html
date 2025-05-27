@@ -163,26 +163,62 @@
     }
 
     .gallery {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1.5rem;
       padding: 1rem;
     }
 
-    .gallery img {
-      width: 120px;
-      height: 90px;
-      object-fit: cover;
-      border-radius: 10px;
-      cursor: pointer;
+    .image-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 16px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      cursor: pointer;
     }
 
-    .gallery img:hover {
-      transform: scale(1.07);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    .image-card img {
+      width: 100%;
+      height: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .image-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+    }
+
+    .image-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .caption {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      padding: 0.6rem 0;
+      background: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(8px);
+      text-align: center;
+      font-size: 0.9rem;
+      font-weight: bold;
+      color: #003087;
+    }
+
+    @media (max-width: 768px) {
+      .gallery {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .gallery {
+        grid-template-columns: 1fr;
+      }
     }
 
     .modal {
@@ -277,31 +313,26 @@
   <div class="subtitle" data-aos="fade-up">서로의 연결, 우리가 함께한 순간</div>
 
   <div class="gallery" data-aos="fade-up">
-    <img src="assets/images/IMG_3932.jpeg" alt="사원증" onclick="openModal(this, '첫 만남! 사원증 받은 날 국룰~ 👔', '2025.03.04(화)')">
-    <img src="assets/images/jeong.png" alt="안전 교육" onclick="openModal(this, '안전체험장에서 고소작업 안전교육 받는 명수 !', '2025.03.05(수)')">
-    <img src="assets/images/IMG_4723.jpeg" alt="안전 교육" onclick="openModal(this, '안전체험장에서 고소작업 안전교육 받는 수민 ! 신났네 ㅋㅎㅋㅎ', '2025.03.05(수)')">
-    <img src="assets/images/IMG_3965.jpeg" alt="꿀팁" onclick="openModal(this, '부서배치 후 선임분께서 주신 책 ㅎㅎㅎ', '2025.03.07(금)')">
-    <img src="assets/images/IMG_4044.jpeg" alt="아라" onclick="openModal(this, '조 회식! 아라횟집 맛있습니다 ㅎㅎ 가보세용 🐟', '2025.03.13(목)')">
-    <img src="assets/images/IMG_4369.jpeg" alt="율전재" onclick="openModal(this, '율전재 헬스장은 오션뷰 입니다! 🏃‍♂️', '2025.03.24(월)')">
-    <img src="assets/images/IMG_4383.jpeg" alt="다트" onclick="openModal(this, '점심시간 다트로 커피 내기!🎯', '2025.03.25(화)')">
-    <img src="assets/images/group.png" alt="조별 회의" onclick="openModal(this, '성공적인 첫 조별회의 !', '2025.03.26(수)')">
-    <img src="assets/images/IMG_4724.jpeg" alt="보리꽃" onclick="openModal(this, 'H-int 전체 회식 보리꽃! 잘먹었습니다 😋 ', '2025.03.26(수)')">  
-    <img src="assets/images/IMG_4424.jpeg" alt="다트" onclick="openModal(this, '금요일은 늦게 오시면 셔틀 자리 없어요 ㅠㅠ🚍 먼저갈게~~ 성제형 미안', '2025.03.28(금)')">
-    <img src="assets/images/club.png" alt="클럽하우스" onclick="openModal(this, '울산 HD 클럽하우스 견학 ⚽', '2025.04.10(목)')">
-    <img src="assets/images/net_hd_match.jpg" alt="직관" onclick="openModal(this, '울산 HD 축구 직관! vs 강원fc 아쉽게 패배ㅠㅠ', '2025.04.19(토)')">
-    <img src="assets/images/IMG_4721.jpeg" alt="우생" onclick="openModal(this, '우진이 생일축하행🎉🎉🎉', '2025.04.28(화)')">
-    <img src="assets/images/IMG_4722.jpeg" alt="노래방" onclick="openModal(this, '우진이 생일! 노래방은 꼭 가야한다구~ 대환장 파티 ㅋㅋㅋㅋ🎤', '2025.04.28(화)')">
-
-    
-
-    <img src="assets/images/net_mt.jpg" alt="홍보영상 촬영" onclick="openModal(this, '7조 엠티', '2025.01.20')">
-    <img src="assets/images/net_mt.jpg" alt="바다" onclick="openModal(this, '7조 엠티', '2025.01.20')">
-    <img src="assets/images/net_mt.jpg" alt="캠핑" onclick="openModal(this, '7조 엠티', '2025.01.20')">
-    <img src="assets/images/net_mt.jpg" alt="계곡 엠티!" onclick="openModal(this, '7조 엠티', '2025.01.20')">
-    <img src="assets/images/net_bowling.jpg" alt="볼링" onclick="openModal(this, '볼링 치는 시간', '2025.01.20')">
-    <img src="assets/images/net_screenbaseball.jpg" alt="스크린야구" onclick="openModal(this, '스크린야구', '2025.01.21')">
-    <img src="assets/images/net_flower.jpg" alt="꽃놀이" onclick="openModal(this, '봄날의 꽃놀이', '2025.01.23')">
-    <img src="assets/images/net_drive.jpg" alt="드라이브" onclick="openModal(this, '바닷가 드라이브', '2025.01.23')">
+    <div class="image-card" onclick="openModal(this.querySelector('img'), '첫 만남! 사원증 받은 날 국룰~ 👔', '2025.03.04(화)')">
+      <img src="assets/images/IMG_3932.jpeg" alt="사원증">
+      <div class="caption">사원증 받은 날</div>
+    </div>
+    <div class="image-card" onclick="openModal(this.querySelector('img'), '안전체험장에서 고소작업 안전교육 받는 명수 !', '2025.03.05(수)')">
+      <img src="assets/images/jeong.png" alt="안전 교육">
+      <div class="caption">안전 교육</div>
+    </div>
+    <div class="image-card" onclick="openModal(this.querySelector('img'), '스크린야구', '2025.01.21')">
+      <img src="assets/images/net_screenbaseball.jpg" alt="스크린야구">
+      <div class="caption">스크린야구</div>
+    </div>
+    <div class="image-card" onclick="openModal(this.querySelector('img'), '봄날의 꽃놀이', '2025.01.23')">
+      <img src="assets/images/net_flower.jpg" alt="꽃놀이">
+      <div class="caption">꽃놀이</div>
+    </div>
+    <div class="image-card" onclick="openModal(this.querySelector('img'), '바닷가 드라이브', '2025.01.23')">
+      <img src="assets/images/net_drive.jpg" alt="드라이브">
+      <div class="caption">드라이브</div>
+    </div>
   </div>
 
   <div id="imageModal" class="modal" onclick="closeModal()">
